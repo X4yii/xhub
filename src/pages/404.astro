@@ -1,0 +1,95 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="404 - No Encontrado" >
+  <main class="container">
+    <div class="ambient-glow"></div>
+    <div class="error-content glass-panel">
+      <h1>404</h1>
+      <h2>
+        <span data-i18n="es">Página no encontrada</span>
+        <span data-i18n="en">Page not found</span>
+      </h2>
+      <p>
+        <span data-i18n="es">Parece que te has perdido en el vacío. La ruta que buscas no existe o ha sido movida.</span>
+        <span data-i18n="en">It seems you got lost in the void. The path you are looking for does not exist or has been moved.</span>
+      </p>
+      <a href="/" class="home-button">
+        <span data-i18n="es">&larr; Volver al Hub</span>
+        <span data-i18n="en">&larr; Return to Hub</span>
+      </a>
+    </div>
+  </main>
+</Layout>
+<style>
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+    padding: 2rem;
+    position: relative;
+  }
+  .ambient-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50vw;
+    height: 50vh;
+    background: radial-gradient(circle, rgba(244, 63, 94, 0.15) 0%, rgba(10, 10, 12, 0) 70%);
+    z-index: -1;
+    pointer-events: none;
+  }
+  .error-content {
+    text-align: center;
+    padding: 4rem 2rem;
+    max-width: 600px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 20px 40px -10px rgba(0,0,0,0.5);
+  }
+  h1 {
+    font-size: 8rem;
+    line-height: 1;
+    margin: 0;
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    background-image: linear-gradient(135deg, #f43f5e, #e11d48);
+    font-weight: 900;
+    letter-spacing: -0.05em;
+  }
+  h2 {
+    font-size: 2rem;
+    color: var(--text-primary);
+    margin: 1rem 0;
+  }
+  p {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+  }
+  .home-button {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background: rgba(244, 63, 94, 0.1);
+    color: #fda4af;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 8px;
+    border: 1px solid rgba(244, 63, 94, 0.2);
+    transition: all 0.2s ease;
+  }
+  .home-button:hover {
+    background: rgba(244, 63, 94, 0.2);
+    border-color: rgba(244, 63, 94, 0.4);
+    color: #fff1f2;
+    transform: translateY(-2px);
+  }
+</style>

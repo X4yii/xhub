@@ -1,0 +1,90 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+const allDocs = await getCollection('docs');
+const projectsMap = new Map();
+allDocs.forEach(doc => {
+    const proj = doc.data.project;
+    if (!projectsMap.has(proj)) {
+        projectsMap.set(proj, doc);
+    } else {
+        const existing = projectsMap.get(proj);
+        const docOrder = doc.data.categoryOrder ?? 99;
+        const existingOrder = existing.data.categoryOrder ?? 99;
+        if (docOrder < existingOrder) {
+            projectsMap.set(proj, doc);
+        }
+    }
+});
+const projects = Array.from(projectsMap.values());
+---
+<Layout title="XHub - Documentación">
+  <main class="container">
+    <header class="section-header">
+        <h1>
+            <span data-i18n="es">Documentación</span>
+            <span data-i18n="en">Documentation</span>
+        </h1>
+        <p>
+            <span data-i18n="es">Selecciona un proyecto para leer su manual oficial.</span>
+            <span data-i18n="en">Select a project to read its official manual.</span>
+        </p>
+    </header>
+    <div class="card-grid">
+      {projects.map(doc => (
+        <a href={`/docs/${doc.id}`} class="doc-card">
+            <span class="project-tag">Framework</span>
+            <h2>{doc.data.project} &rarr;</h2>
+            <p class="proj-desc">
+                <span data-i18n="es">Documentación oficial.</span>
+                <span data-i18n="en">Official documentation.</span>
+            </p>
+        </a>
+      ))}
+    </div>
+  </main>
+</Layout>
+<style>
+  .container { max-width: 1100px; margin: 4rem auto; padding: 0 2rem; min-height: 70vh; }
+  .section-header { margin-bottom: 3rem; }
+  h1 { color: var(--text-primary); font-size: 3rem; margin-bottom: 0.5rem; letter-spacing: -0.03em; }
+  p { color: var(--text-secondary); font-size: 1.1rem; }
+  .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+  }
+  .doc-card {
+      display: block;
+      padding: 1.5rem;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 12px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+  }
+  .doc-card:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: var(--accent-docs);
+      transform: translateY(-4px);
+  }
+  .project-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--accent-docs);
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+      display: inline-block;
+  }
+  .doc-card h2 {
+      color: var(--text-primary);
+      font-size: 1.5rem;
+      margin: 0 0 0.5rem 0;
+  }
+  .proj-desc {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin: 0;
+  }
+</style>

@@ -1,0 +1,138 @@
+---
+---
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="/" class="brand">XHub</a>
+    <ul class="nav-links">
+      <li><a href="/proyectos">Proyectos</a></li>
+      <li><a href="/noticias">Noticias</a></li>
+      <li><a href="/docs">Docs</a></li>
+      <li><a href="/changelogs">Changelogs</a></li>
+    </ul>
+    <div class="nav-controls">
+      <button class="search-btn" id="open-search" aria-label="Search">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <span class="search-text">Buscar...</span>
+        <kbd class="search-kbd">Ctrl K</kbd>
+      </button>
+      <div class="lang-selector">
+        <select id="lang-switch" aria-label="Cambiar idioma">
+          <option value="es">ES</option>
+          <option value="en">EN</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</nav>
+<script is:inline>
+  const selector = document.getElementById('lang-switch');
+  const currentLang = localStorage.getItem('lang') || 'es';
+  selector.value = currentLang;
+  document.documentElement.setAttribute('lang', currentLang);
+  selector.addEventListener('change', (e) => {
+    const newLang = e.target.value;
+    localStorage.setItem('lang', newLang);
+    document.documentElement.setAttribute('lang', newLang);
+  });
+  const openSearchBtn = document.getElementById('open-search');
+  if (openSearchBtn) {
+    openSearchBtn.addEventListener('click', () => {
+      const dialog = document.getElementById('search-dialog');
+      if (dialog) dialog.showModal();
+    });
+  }
+</script>
+<style>
+  .navbar {
+    position: sticky;
+    top: 0;
+    backdrop-filter: blur(12px);
+    background-color: rgba(10, 10, 12, 0.8);
+    border-bottom: 1px solid var(--border);
+    z-index: 100;
+  }
+  .nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.05em;
+    text-decoration: none;
+  }
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    margin-right: auto;
+    margin-left: 3rem;
+  }
+  .nav-links a {
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: 0.95rem;
+    text-decoration: none;
+  }
+  .nav-links a:hover {
+    color: var(--text-primary);
+  }
+  .nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .search-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-secondary);
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .search-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+  .search-text {
+    font-size: 0.9rem;
+  }
+  .search-kbd {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin-left: 0.5rem;
+  }
+  .lang-selector select {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+    padding: 0.4rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+  }
+  .lang-selector select option {
+    background: var(--bg-secondary);
+  }
+  @media (max-width: 768px) {
+      .nav-links {
+          display: none; 
+      }
+  }
+</style>

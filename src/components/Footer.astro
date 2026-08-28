@@ -1,0 +1,71 @@
+---
+---
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-info">
+      <h3>XHub</h3>
+      <p>The cave of X4yi. Proyects, News and Docs.</p>
+    </div>
+    <div class="footer-contact">
+      <h4>Contacto</h4>
+      <p>Email: <a href="mailto:contactx4yi@gd.</p>mail.com">contactx4yi@gmail.com</a></p>
+      <div class="social-links">
+        <a href="https://github.com/X4yii">GitHub</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; {new Date().getFullYear()} X4yi. All rights reserved.</p>
+  </div>
+</footer>
+<style>
+  .footer {
+    border-top: 1px solid var(--border);
+    margin-top: 4rem;
+    background-color: var(--bg-primary);
+  }
+  .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+  h3, h4 {
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+  }
+  p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+  }
+  .footer-contact a {
+    color: var(--text-secondary);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  .footer-contact a:hover {
+    color: var(--text-primary);
+  }
+  .social-links {
+    margin-top: 1rem;
+    display: flex;
+    gap: 1.5rem;
+  }
+  .social-links a {
+      text-decoration: none;
+  }
+  .footer-bottom {
+    text-align: center;
+    padding: 1.5rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+  }
+  @media (max-width: 768px) {
+      .footer-container {
+          grid-template-columns: 1fr;
+      }
+  }
+</style>

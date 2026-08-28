@@ -1,0 +1,135 @@
+---
+import { getCollection } from 'astro:content';
+const { currentProject, currentId } = Astro.props;
+const allDocs = await getCollection('docs');
+const projectDocs = allDocs.filter(doc => doc.data.project.toLowerCase() === currentProject.toLowerCase());
+const grouped = projectDocs.reduce((acc, doc) => {
+    const cat = doc.data.category;
+    if (!acc[cat]) {
+        acc[cat] = {
+            order: doc.data.categoryOrder ?? 99,
+            docs: []
+        };
+    }
+    acc[cat].docs.push(doc);
+    return acc;
+}, {});
+const sortedCategories = Object.keys(grouped).sort((a, b) => grouped[a].order - grouped[b].order);
+sortedCategories.forEach(cat => {
+    grouped[cat].docs.sort((a, b) => a.data.title.localeCompare(b.data.title));
+});
+---
+<aside class="sidebar">
+    <div class="sidebar-header">
+        <a href="/docs" class="back-link">
+            <span data-i18n="es">&larr; Volver</span>
+            <span data-i18n="en">&larr; Back</span>
+        </a>
+        <h2 class="project-title">{currentProject.toUpperCase()}</h2>
+    </div>
+    <nav class="sidebar-nav">
+        {sortedCategories.map(cat => (
+            <div class="nav-group">
+                <h3 class="nav-category">{cat}</h3>
+                <ul class="nav-links">
+                    {grouped[cat].docs.map(doc => (
+                        <li>
+                            <a
+                                href={`/docs/${doc.id}`}
+                                class={doc.id === currentId ? 'active' : ''}
+                            >
+                                {doc.data.title}
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        ))}
+    </nav>
+</aside>
+<style>
+    .sidebar {
+        width: 280px;
+        flex-shrink: 0;
+        border-right: 1px solid var(--border);
+        padding: 2rem 1.5rem;
+        height: calc(100vh - 70px); 
+        position: sticky;
+        top: 70px;
+        overflow-y: auto;
+        background: var(--bg-primary);
+    }
+    .sidebar::-webkit-scrollbar {
+        width: 6px;
+    }
+    .sidebar::-webkit-scrollbar-thumb {
+        background: rgba(255,255,255,0.1);
+        border-radius: 4px;
+    }
+    .sidebar-header {
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--border);
+    }
+    .back-link {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        text-decoration: none;
+        display: inline-block;
+        margin-bottom: 0.5rem;
+    }
+    .back-link:hover { color: var(--text-primary); }
+    .project-title {
+        font-size: 1.5rem;
+        color: var(--accent-docs);
+        margin: 0;
+        letter-spacing: -0.03em;
+    }
+    .nav-group {
+        margin-bottom: 1.5rem;
+    }
+    .nav-category {
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--text-secondary);
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+    }
+    .nav-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .nav-links li {
+        margin-bottom: 0.25rem;
+    }
+    .nav-links a {
+        display: block;
+        padding: 0.4rem 0.75rem;
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-size: 0.95rem;
+        border-radius: 6px;
+        transition: all 0.2s ease;
+    }
+    .nav-links a:hover {
+        background: rgba(255,255,255,0.03);
+        color: var(--text-primary);
+    }
+    .nav-links a.active {
+        background: rgba(59, 130, 246, 0.15); 
+        color: var(--accent-docs);
+        font-weight: 500;
+    }
+    @media (max-width: 900px) {
+        .sidebar {
+            width: 100%;
+            height: auto;
+            position: relative;
+            top: 0;
+            border-right: none;
+            border-bottom: 1px solid var(--border);
+        }
+    }
+</style>

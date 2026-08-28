@@ -1,0 +1,274 @@
+---
+---
+<dialog id="search-dialog" class="search-modal">
+  <div class="search-container">
+    <header class="search-header">
+      <span data-i18n="es">Buscar en XHub</span>
+      <span data-i18n="en">Search XHub</span>
+      <button id="close-search" class="close-btn">&times;</button>
+    </header>
+    <div class="search-body">
+      <input type="text" id="fuse-search-input" placeholder="Search..." autocomplete="off" />
+      <div id="fuse-results-area" class="results-area"></div>
+    </div>
+  </div>
+</dialog>
+
+<style>
+  .search-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: none;
+    align-items: flex-start;
+    justify-content: center;
+    z-index: 1000;
+  }
+  .search-modal[open] {
+    display: flex;
+    animation: fadeIn 0.2s ease-out;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  .search-container {
+    background: var(--bg-primary);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    width: 100%;
+    max-width: 600px;
+    margin-top: 10vh;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    max-height: 80vh;
+    overflow: hidden;
+  }
+  .search-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    font-weight: 600;
+    color: var(--text-primary);
+    flex-shrink: 0;
+  }
+  .close-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s;
+  }
+  .close-btn:hover {
+    color: var(--text-primary);
+  }
+  .search-body {
+    padding: 1.5rem;
+    overflow-y: auto;
+    flex-grow: 1;
+  }
+  #fuse-search-input {
+    width: 100%;
+    background: rgba(0,0,0,0.2);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.2s;
+    margin-bottom: 1.5rem;
+    box-sizing: border-box;
+  }
+  #fuse-search-input:focus {
+    border-color: var(--accent-news);
+  }
+  .results-area {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .result-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 12px;
+    padding: 1.2rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    display: block;
+  }
+  .result-card:hover {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+  }
+  .result-title {
+    font-weight: 700;
+    color: var(--accent-news);
+    margin-bottom: 0.5rem;
+    display: block;
+    font-size: 1.1rem;
+  }
+  .result-project {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+    display: inline-block;
+  }
+  .result-excerpt {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+  .result-excerpt mark {
+    background: rgba(217, 70, 239, 0.2);
+    color: var(--text-primary);
+    border-radius: 2px;
+    padding: 0 0.1rem;
+  }
+  .no-results {
+    text-align: center;
+    color: var(--text-secondary);
+    padding: 2rem;
+  }
+</style>
+
+<script>
+  import Fuse from 'fuse.js';
+
+  let searchData = null;
+  let fuse = null;
+  
+  const dialog = document.getElementById('search-dialog') as HTMLDialogElement;
+  const closeBtn = document.getElementById('close-search');
+  const input = document.getElementById('fuse-search-input') as HTMLInputElement;
+  const resultsArea = document.getElementById('fuse-results-area');
+
+  async function initSearch() {
+    if (searchData) return;
+    try {
+      const res = await fetch('/search.json');
+      searchData = await res.json();
+    } catch (e) {
+      console.error("Failed to load search index", e);
+      return;
+    }
+  }
+
+  function getActiveLang() {
+    return document.documentElement.getAttribute('lang') || 'es';
+  }
+
+  function performSearch() {
+    if (!searchData || !input.value.trim()) {
+      if (resultsArea) resultsArea.innerHTML = '';
+      return;
+    }
+
+    const lang = getActiveLang();
+    
+    // Initialize fuse dynamically based on language to weight the correct text field
+    fuse = new Fuse(searchData, {
+      keys: ['title', 'project', lang],
+      includeMatches: true,
+      threshold: 0.3,
+      ignoreLocation: true
+    });
+
+    const results = fuse.search(input.value);
+    
+    if (results.length === 0) {
+      if (resultsArea) {
+        resultsArea.innerHTML = `<div class="no-results">${lang === 'es' ? 'No se encontraron resultados.' : 'No results found.'}</div>`;
+      }
+      return;
+    }
+
+    if (resultsArea) {
+      resultsArea.innerHTML = results.slice(0, 10).map(res => {
+        const item = res.item;
+        const text = item[lang] || '';
+        
+        // Find best match in text to create a snippet
+        let snippet = text.substring(0, 150) + '...';
+        
+        const textMatch = res.matches?.find(m => m.key === lang);
+        if (textMatch && textMatch.indices.length > 0) {
+           const start = Math.max(0, textMatch.indices[0][0] - 50);
+           const end = Math.min(text.length, textMatch.indices[0][1] + 100);
+           snippet = (start > 0 ? '...' : '') + text.substring(start, end) + '...';
+           
+           // Simple highlight (not perfect for overlapping but works for preview)
+           const matchText = input.value.trim().toLowerCase();
+           const regex = new RegExp(`(${matchText})`, 'gi');
+           snippet = snippet.replace(regex, '<mark>$1</mark>');
+        }
+
+        return `
+          <a href="${item.url}" class="result-card" onclick="document.getElementById('search-dialog').close()">
+            <span class="result-project">${item.project}</span>
+            <span class="result-title">${item.title}</span>
+            <p class="result-excerpt">${snippet}</p>
+          </a>
+        `;
+      }).join('');
+    }
+  }
+
+  if (input) {
+    input.addEventListener('input', performSearch);
+  }
+
+  if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+      dialog.close();
+    });
+  }
+  
+  if (dialog) {
+    dialog.addEventListener('click', (e) => {
+      if (e.target === dialog) {
+        dialog.close();
+      }
+    });
+  }
+  
+  document.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+      e.preventDefault();
+      if (dialog) {
+        dialog.showModal();
+        initSearch();
+        setTimeout(() => input?.focus(), 50);
+      }
+    }
+  });
+
+  // Also hook into header search buttons if they exist
+  document.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement;
+    if (target.closest('[data-search-trigger]')) {
+      if (dialog) {
+        dialog.showModal();
+        initSearch();
+        setTimeout(() => input?.focus(), 50);
+      }
+    }
+  });
+</script>

@@ -1,0 +1,332 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+const allNews = await getCollection('noticias');
+const allChangelogs = await getCollection('changelogs');
+const combinedFeed = [...allNews, ...allChangelogs]
+    .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+    .slice(0, 4);
+const allDocs = await getCollection('docs');
+const uniqueProjectsDocs = new Set(allDocs.map((doc: any) => doc.data.project)).size;
+const numDocs = uniqueProjectsDocs;
+const numProjects = 2;
+---
+<Layout title="XHub - Dashboard" >
+	<main class="container">
+        <!-- Ambient background glow -->
+        <div class="ambient-glow"></div>
+		<header class="hero">
+			<h1><span class="text-accent">XHub</span> Dashboard</h1>
+			<p class="subtitle">
+                <span data-i18n="es">Estado de la red y transmisiones recientes.</span>
+                <span data-i18n="en">Network status and recent transmissions.</span>
+            </p>
+		</header>
+        <div class="dashboard-grid">
+            <aside class="sidebar-stats">
+                <div class="stat-card glass-panel projects-panel">
+                    <div class="stat-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
+                    </div>
+                    <div class="stat-content">
+                        <h3>
+                            <span data-i18n="es">Proyectos</span>
+                            <span data-i18n="en">Projects</span>
+                        </h3>
+                        <div class="stat-value">{numProjects}</div>
+                        <a href="/proyectos" class="stat-link">
+                            <span data-i18n="es">Explorar Directorio &rarr;</span>
+                            <span data-i18n="en">Explore Directory &rarr;</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="stat-card glass-panel docs-panel">
+                    <div class="stat-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+                    </div>
+                    <div class="stat-content">
+                        <h3>
+                            <span data-i18n="es">Documentación</span>
+                            <span data-i18n="en">Documentation</span>
+                        </h3>
+                        <div class="stat-value">{numDocs}</div>
+                        <a href="/docs" class="stat-link">
+                            <span data-i18n="es">Leer manuales &rarr;</span>
+                            <span data-i18n="en">Read manuals &rarr;</span>
+                        </a>
+                    </div>
+                </div>
+            </aside>
+            <section class="feed glass-panel">
+                <div class="feed-header">
+                    <h2>
+                        <span data-i18n="es">Actividad Reciente</span>
+                        <span data-i18n="en">Recent Activity</span>
+                    </h2>
+                    <span class="pulse-indicator"></span>
+                </div>
+                <div class="feed-list">
+                    {combinedFeed.map((item) => (
+                        <article class="feed-item">
+                            <div class={`feed-timeline ${item.collection === 'noticias' ? 'line-news' : 'line-changelogs'}`}></div>
+                            <div class="feed-card">
+                                <div class="feed-card-header">
+                                    <span class={`feed-badge ${item.collection === 'noticias' ? 'badge-news' : 'badge-changelogs'}`}>
+                                        <span data-i18n="es">{item.collection === 'noticias' ? 'Noticia' : 'Changelog'}</span>
+                                        <span data-i18n="en">{item.collection === 'noticias' ? 'News' : 'Changelog'}</span>
+                                    </span>
+                                    <span class="feed-meta">
+                                        {item.data.date.toLocaleDateString()}
+                                    </span>
+                                </div>
+                                <h4><a href={item.collection === 'changelogs' ? `/changelogs/${item.id.split('/')[0]}#${item.data.version}` : `/${item.collection}/${item.id}`}>{item.data.title}</a></h4>
+                            </div>
+                        </article>
+                    ))}
+                </div>
+                <div class="view-all-link">
+                    <a href="/noticias">
+                        <span data-i18n="es">Ver historial completo &rarr;</span>
+                        <span data-i18n="en">View full history &rarr;</span>
+                    </a>
+                </div>
+            </section>
+        </div>
+	</main>
+</Layout>
+<style>
+	.container {
+		max-width: 1100px;
+		margin: 0 auto;
+		padding: 3rem 2rem;
+        min-height: 80vh;
+        position: relative;
+	}
+    .ambient-glow {
+        position: absolute;
+        top: -10%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60vw;
+        height: 60vh;
+        background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, rgba(10, 10, 12, 0) 70%);
+        z-index: -1;
+        pointer-events: none;
+    }
+	.hero {
+        margin-bottom: 4rem;
+        text-align: left;
+	}
+	h1 {
+		font-size: 3.5rem;
+		margin-bottom: 0.5rem;
+		letter-spacing: -0.03em;
+        font-weight: 800;
+	}
+	.text-accent {
+		color: transparent;
+        background-clip: text;
+        -webkit-background-clip: text;
+        background-image: linear-gradient(90deg, var(--accent-projects), var(--accent-news));
+	}
+	.subtitle {
+		color: var(--text-secondary);
+		font-size: 1.2rem;
+	}
+    .glass-panel {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 16px;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+    .dashboard-grid {
+        display: grid;
+        grid-template-columns: 320px 1fr;
+        gap: 2rem;
+        align-items: start;
+    }
+    .sidebar-stats {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    .stat-card {
+        padding: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+    }
+    .projects-panel:hover { border-color: rgba(245, 158, 11, 0.3); }
+    .docs-panel:hover { border-color: rgba(59, 130, 246, 0.3); }
+    .stat-icon {
+        color: var(--text-secondary);
+        background: rgba(0,0,0,0.2);
+        padding: 1rem;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 60px;
+        height: 60px;
+        transition: color 0.3s;
+    }
+    .projects-panel:hover .stat-icon { color: var(--accent-projects); }
+    .docs-panel:hover .stat-icon { color: var(--accent-docs); }
+    .stat-content h3 {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 0.25rem;
+    }
+    .stat-value {
+        font-size: 2.5rem;
+        font-weight: 700;
+        line-height: 1;
+        margin-bottom: 0.75rem;
+        color: var(--text-primary);
+    }
+    .stat-link {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        font-weight: 500;
+    }
+    .stat-link:hover { color: var(--text-primary); }
+    .feed {
+        padding: 2rem;
+    }
+    .feed-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .feed-header h2 {
+        font-size: 1.5rem;
+        font-weight: 600;
+    }
+    .pulse-indicator {
+        width: 10px;
+        height: 10px;
+        background-color: var(--accent-changelogs);
+        border-radius: 50%;
+        box-shadow: 0 0 10px var(--accent-changelogs);
+        animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+        0% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.5; transform: scale(1.2); }
+        100% { opacity: 1; transform: scale(1); }
+    }
+    .feed-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    .feed-item {
+        display: flex;
+        gap: 1.5rem;
+    }
+    .feed-timeline {
+        width: 2px;
+        background: linear-gradient(to bottom, rgba(255,255,255,0.15), rgba(255,255,255,0));
+        position: relative;
+        margin-top: 10px;
+    }
+    .feed-timeline::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -4px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+    }
+    .line-news::before { background-color: var(--accent-news); box-shadow: 0 0 8px var(--accent-news); }
+    .line-changelogs::before { background-color: var(--accent-changelogs); box-shadow: 0 0 8px var(--accent-changelogs); }
+    .feed-card {
+        flex: 1;
+        background: rgba(0, 0, 0, 0.2);
+        padding: 1.5rem;
+        border-radius: 12px;
+        border: 1px solid rgba(255,255,255,0.03);
+        transition: background 0.2s ease, border-color 0.2s ease;
+    }
+    .feed-card:hover {
+        background: rgba(255, 255, 255, 0.03);
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+    .feed-card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+    .feed-badge {
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        letter-spacing: 0.05em;
+    }
+    .badge-news { background-color: rgba(217, 70, 239, 0.15); color: #e879f9; }
+    .badge-changelogs { background-color: rgba(16, 185, 129, 0.15); color: #34d399; }
+    .feed-meta {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        font-weight: 500;
+    }
+    .feed-card h4 {
+        font-size: 1.25rem;
+        margin-bottom: 0.5rem;
+    }
+    .feed-card h4 a {
+        color: var(--text-primary);
+        text-decoration: none;
+        transition: color 0.2s;
+    }
+    .feed-card h4 a:hover {
+        color: var(--accent-docs);
+    }
+    .feed-summary {
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+    .view-all-link {
+        margin-top: 2rem;
+        text-align: center;
+    }
+    .view-all-link a {
+        display: inline-block;
+        color: var(--accent-news);
+        font-weight: 600;
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        background: rgba(217, 70, 239, 0.05);
+        border: 1px solid rgba(217, 70, 239, 0.1);
+        transition: all 0.2s ease;
+    }
+    .view-all-link a:hover {
+        background: rgba(217, 70, 239, 0.15);
+        transform: translateY(-2px);
+    }
+    @media (max-width: 900px) {
+        .dashboard-grid {
+            grid-template-columns: 1fr;
+        }
+        .ambient-glow {
+            width: 100vw;
+        }
+    }
+</style>

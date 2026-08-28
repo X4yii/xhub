@@ -1,0 +1,205 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, render } from 'astro:content';
+
+const allChangelogs = await getCollection('changelogs');
+// Sort all chronologically
+allChangelogs.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+// Get top 3 most recent
+const recentChangelogs = allChangelogs.slice(0, 3);
+const recentRendered = await Promise.all(recentChangelogs.map(async (cl) => {
+    const { Content } = await render(cl);
+    return { ...cl, Content };
+}));
+
+// Get unique projects
+const uniqueProjects = Array.from(new Set(allChangelogs.map(cl => cl.data.project)));
+---
+<Layout title="XHub - Changelogs" >
+  <main class="container">
+    <header class="section-header">
+        <h1><span data-i18n="es">Actualizaciones</span><span data-i18n="en">Updates</span></h1>
+        <p>
+            <span data-i18n="es">Historial centralizado de todos los proyectos.</span>
+            <span data-i18n="en">Centralized history of all projects.</span>
+        </p>
+    </header>
+
+    <!-- Top 3 Recent Updates -->
+    <section class="recent-updates">
+        <h2>
+            <span data-i18n="es">Novedades Recientes</span>
+            <span data-i18n="en">Recent Novedades</span>
+        </h2>
+        <div class="recent-grid">
+            {recentRendered.map(item => (
+                <div class="recent-card">
+                    <div class="card-header">
+                        <span class="project-tag">{item.data.project} {item.data.version}</span>
+                        <span class="date">{item.data.date.toLocaleDateString()}</span>
+                    </div>
+                    <h3>{item.data.title}</h3>
+                    <div class="snippet-content prose-snippet">
+                        <item.Content />
+                        <div class="fade-overlay"></div>
+                    </div>
+                    <a href={`/changelogs/${item.id.split('/')[0]}#${item.data.version}`} class="read-more">
+                        <span data-i18n="es">Ver actualización completa &rarr;</span>
+                        <span data-i18n="en">View full update &rarr;</span>
+                    </a>
+                </div>
+            ))}
+        </div>
+    </section>
+
+    <!-- Project Directories -->
+    <section class="project-directories">
+        <h2>
+            <span data-i18n="es">Historiales por Proyecto</span>
+            <span data-i18n="en">Project Histories</span>
+        </h2>
+        <div class="dir-grid">
+            {uniqueProjects.map(project => {
+                const projectLogs = allChangelogs.filter(c => c.data.project === project);
+                const latest = projectLogs[0];
+                return (
+                    <a href={`/changelogs/${latest.id.split('/')[0]}`} class="dir-card">
+                        <h3>{project}</h3>
+                        <p>
+                            <span data-i18n="es">{projectLogs.length} versiones registradas.</span>
+                            <span data-i18n="en">{projectLogs.length} versions logged.</span>
+                        </p>
+                        <div class="dir-meta">
+                            <span class="version-badge">Última: {latest.data.version}</span>
+                        </div>
+                    </a>
+                )
+            })}
+        </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .container { max-width: 1100px; margin: 4rem auto; padding: 0 2rem; min-height: 70vh; }
+  .section-header { margin-bottom: 4rem; text-align: center; }
+  h1 { color: var(--text-primary); font-size: 3.5rem; margin-bottom: 0.5rem; letter-spacing: -0.03em; }
+  .section-header p { color: var(--text-secondary); font-size: 1.2rem; }
+  
+  h2 { color: var(--text-primary); font-size: 1.8rem; margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem; }
+  
+  .recent-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 2rem;
+      margin-bottom: 5rem;
+  }
+  
+  .recent-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 12px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+  }
+  
+  .card-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      font-size: 0.85rem;
+  }
+  
+  .project-tag { font-weight: bold; color: var(--accent-changelogs); }
+  .date { color: var(--text-secondary); }
+  
+  .recent-card h3 {
+      font-size: 1.4rem;
+      color: var(--text-primary);
+      margin-top: 0;
+      margin-bottom: 1rem;
+  }
+  
+  .snippet-content {
+      position: relative;
+      max-height: 120px;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+  }
+  
+  .prose-snippet {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.6;
+  }
+  
+  :global(.prose-snippet h1, .prose-snippet h2, .prose-snippet h3) { display: none; }
+  :global(.prose-snippet ul) { padding-left: 1.5rem; }
+  
+  .fade-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: linear-gradient(to bottom, rgba(15,15,15,0) 0%, rgba(15,15,15,1) 100%);
+  }
+  
+  .read-more {
+      color: var(--accent-changelogs);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      display: inline-block;
+      transition: opacity 0.2s;
+  }
+  .read-more:hover { opacity: 0.8; }
+  
+  .dir-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.5rem;
+  }
+  
+  .dir-card {
+      display: block;
+      padding: 1.5rem;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 12px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+  }
+  
+  .dir-card:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: var(--accent-changelogs);
+      transform: translateY(-4px);
+  }
+  
+  .dir-card h3 {
+      color: var(--text-primary);
+      font-size: 1.3rem;
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+  }
+  
+  .dir-card p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+  }
+  
+  .version-badge {
+      display: inline-block;
+      padding: 0.3rem 0.6rem;
+      background: rgba(255,255,255,0.1);
+      border-radius: 4px;
+      font-size: 0.8rem;
+      color: var(--text-primary);
+  }
+</style>

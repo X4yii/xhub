@@ -1,0 +1,183 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, render } from 'astro:content';
+export async function getStaticPaths({ paginate }) {
+  const noticias = await getCollection('noticias');
+  noticias.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+  return paginate(noticias, { pageSize: 10 });
+}
+const { page } = Astro.props;
+const renderedNews = await Promise.all(
+  page.data.map(async (n) => {
+    const { Content } = await render(n);
+    return { ...n, Content };
+  })
+);
+---
+<Layout title="XHub - Noticias" >
+  <main class="container">
+    <header class="section-header">
+        <h1>
+            <span data-i18n="es">Noticias</span>
+            <span data-i18n="en">News</span>
+        </h1>
+        <p>
+            <span data-i18n="es">Últimos anuncios y novedades operativas.</span>
+            <span data-i18n="en">Latest announcements and operational updates.</span>
+        </p>
+    </header>
+    <div class="news-accordion">
+      {renderedNews.map(noticia => {
+        const { Content } = noticia;
+        return (
+          <article class="news-row" id={`news-${noticia.id}`}>
+              <div class="news-header">
+                  <div class="news-meta">
+                      <span class="news-date">{noticia.data.date.toLocaleDateString()}</span>
+                      <span class="news-author">
+                          <span data-i18n="es">Por</span>
+                          <span data-i18n="en">By</span> {noticia.data.author}
+                      </span>
+                  </div>
+                  <h2>{noticia.data.title}</h2>
+              </div>
+              <div class="news-body">
+                  <div class="news-content">
+                      <div class="prose">
+                          <Content />
+                      </div>
+                      <a href={`/noticias/${noticia.id}`} class="read-more">
+                          <span data-i18n="es">Ver página aislada &rarr;</span>
+                          <span data-i18n="en">View isolated page &rarr;</span>
+                      </a>
+                  </div>
+              </div>
+          </article>
+        )
+      })}
+    </div>
+    <div class="pagination">
+      {page.url.prev ? (
+        <a href={page.url.prev} class="page-link">&larr; Anterior</a>
+      ) : (
+        <span class="page-link disabled">&larr; Anterior</span>
+      )}
+      <span class="page-info">
+        Página {page.currentPage} de {page.lastPage}
+      </span>
+      {page.url.next ? (
+        <a href={page.url.next} class="page-link">Siguiente &rarr;</a>
+      ) : (
+        <span class="page-link disabled">Siguiente &rarr;</span>
+      )}
+    </div>
+  </main>
+</Layout>
+<style>
+  .container { max-width: 1100px; margin: 4rem auto; padding: 0 2rem; min-height: 70vh; }
+  .section-header { margin-bottom: 3rem; }
+  h1 { color: var(--text-primary); font-size: 3rem; margin-bottom: 0.5rem; letter-spacing: -0.03em; }
+  p { color: var(--text-secondary); font-size: 1.1rem; }
+  .news-accordion {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+  }
+  .news-row {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+  }
+  .news-row:hover {
+      background: rgba(255, 255, 255, 0.04);
+      border-color: var(--accent-news);
+  }
+  .news-header {
+      padding: 1.5rem;
+      cursor: pointer;
+  }
+  .news-meta {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.5rem;
+      display: flex;
+      gap: 1rem;
+  }
+  .news-date { font-weight: bold; color: var(--accent-news); }
+  .news-row h2 {
+      color: var(--text-primary);
+      font-size: 1.25rem;
+      margin: 0;
+      transition: color 0.2s;
+  }
+  .news-body {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .news-content {
+      overflow: hidden;
+      padding: 0 1.5rem;
+      opacity: 0;
+      transition: opacity 0.3s ease, padding 0.3s ease;
+  }
+  .news-row:hover .news-body {
+      grid-template-rows: 1fr;
+  }
+  .news-row:hover .news-content {
+      padding: 0 1.5rem 1.5rem 1.5rem;
+      opacity: 1;
+  }
+  .prose {
+      color: var(--text-secondary);
+      line-height: 1.6;
+      font-size: 0.95rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding-top: 1.5rem;
+      margin-top: 0.5rem;
+  }
+  :global(.prose p) { margin-bottom: 1rem; }
+  :global(.prose h2, .prose h3) { color: var(--text-primary); margin: 1.5rem 0 0.5rem 0; }
+  :global(.prose ul) { margin-left: 1.5rem; margin-bottom: 1rem; }
+  .read-more {
+      display: inline-block;
+      margin-top: 1.5rem;
+      color: var(--accent-news);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+  }
+  .read-more:hover { text-decoration: underline; }
+  .pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1.5rem;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+  }
+  .page-link {
+      padding: 0.5rem 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      color: var(--text-primary);
+      text-decoration: none;
+      transition: all 0.2s;
+  }
+  .page-link:hover:not(.disabled) {
+      background: var(--accent-news);
+      border-color: var(--accent-news);
+  }
+  .page-link.disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+  }
+  .page-info {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+  }
+</style>

@@ -1,0 +1,80 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+<Layout title="XHub - Proyectos" >
+  <main class="container">
+    <header class="section-header">
+        <h1>Proyectos</h1>
+        <p>Directorio de herramientas, frameworks y mods desarrollados por X4yi.</p>
+    </header>
+    <div class="card-grid">
+        <div class="project-card">
+            <h2>LethalWeaponry</h2>
+            <p>A Minecraft Forge 1.12.2 combat overhaul featuring 4 weapon types (WarHammer, Katana, Scythe, Chain Blade) with unique mechanics, advanced capabilities, and fully synced multiplayer networking.</p>
+            <div class="project-links">
+                <a href="/docs/lethalweaponry/00-introduction/00-overview" class="external-link">Docs &rarr;</a>
+                <a href="https://github.com/X4yii/LethalWeaponry" target="_blank" class="external-link">GitHub &rarr;</a>
+                <a href="https://www.curseforge.com/minecraft/mc-mods/lethalweaponry" target="_blank" class="external-link">CurseForge &rarr;</a>
+                <a href="https://modrinth.com/mod/lethalweaponryy" target="_blank" class="external-link">Modrinth &rarr;</a>
+            </div>
+        </div>
+        <div class="project-card">
+            <h2>X4UI Framework</h2>
+            <p>A modern, high-performance, object-oriented GUI framework for Minecraft Forge 1.12.2. Includes FlexBox layouts and DOM structure.</p>
+            <div class="project-links">
+                <a href="https://github.com/X4yii/X4UI" target="_blank" class="external-link">GitHub &rarr;</a>
+            </div>
+        </div>
+    </div>
+  </main>
+</Layout>
+<style>
+  .container { max-width: 1100px; margin: 4rem auto; padding: 0 2rem; min-height: 70vh; }
+  .section-header { margin-bottom: 3rem; }
+  h1 { color: var(--text-primary); font-size: 3rem; margin-bottom: 0.5rem; letter-spacing: -0.03em; }
+  p { color: var(--text-secondary); font-size: 1.1rem; }
+  .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+  }
+  .project-card {
+      display: block;
+      padding: 1.5rem;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 12px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+  }
+  .project-card:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: var(--accent-projects);
+      transform: translateY(-4px);
+  }
+  .project-card h2 {
+      color: var(--text-primary);
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+  }
+  .project-card p {
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+  }
+  .project-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: auto;
+  }
+  .external-link {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent-projects);
+      text-decoration: none;
+      transition: color 0.2s;
+  }
+  .external-link:hover {
+      color: white;
+  }
+</style>

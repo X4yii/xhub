@@ -1,0 +1,51 @@
+---
+import '../styles/global.css';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import SearchDialog from '../components/SearchDialog.astro';
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  type?: string;
+  url?: string;
+  pagefindIgnore?: boolean;
+}
+const {
+  title = "XHub",
+  description = "El cerro de X4yi.",
+  ogImage = "/favicon.svg",
+  type = "website",
+  url = "https://x4yi.github.io",
+  
+} = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+        <!-- SEO Extreme Optimization -->
+		<title>{title}</title>
+        <meta name="description" content={description} />
+        <!-- OpenGraph -->
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={ogImage} />
+        <meta property="og:type" content={type} />
+        <meta property="og:url" content={url} />
+        <!-- Twitter -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={ogImage} />
+	</head>
+	<body>
+        <Navbar />
+		<slot />
+        <Footer />
+        <SearchDialog />
+	</body>
+</html>

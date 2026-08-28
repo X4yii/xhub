@@ -1,0 +1,70 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Sidebar from '../../components/Sidebar.astro';
+import TOC from '../../components/TOC.astro';
+export async function getStaticPaths() {
+  const docs = await getCollection('docs');
+  return docs.map(entry => ({
+    params: { id: entry.id }, props: { entry },
+  }));
+}
+const { entry } = Astro.props;
+const { Content, headings } = await render(entry);
+const currentProject = entry.data.project;
+---
+<Layout title={`XHub - ${entry.data.title}`} type="article" url={`https://x4yi.github.io/docs/${entry.id}`}>
+  <div class="docs-layout">
+    <Sidebar currentProject={currentProject} currentId={entry.id} />
+    <main class="docs-content-area" >
+      <header class="doc-header">
+          <span class="category-tag">{entry.data.category}</span>
+          <h1>{entry.data.title}</h1>
+      </header>
+      <div class="content-wrapper prose">
+        <Content />
+      </div>
+    </main>
+    <aside class="toc-sidebar">
+      {headings.length > 0 && <TOC headings={headings} />}
+    </aside>
+  </div>
+</Layout>
+<style>
+  .docs-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr 250px;
+      max-width: 1500px;
+      margin: 0 auto;
+      min-height: calc(100vh - 70px);
+  }
+  .docs-content-area {
+      padding: 3rem 4rem;
+      max-width: 900px;
+  }
+  .toc-sidebar {
+      padding: 3rem 1.5rem 3rem 0;
+  }
+  .doc-header { margin-bottom: 3rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+  .category-tag { font-size: 0.85rem; font-weight: bold; text-transform: uppercase; color: var(--accent-docs); letter-spacing: 0.05em; }
+  .doc-header h1 { font-size: 3rem; color: var(--text-primary); margin-top: 0.5rem; letter-spacing: -0.03em; }
+  .prose { color: var(--text-secondary); line-height: 1.8; font-size: 1.05rem; }
+  :global(.prose h1, .prose h2, .prose h3) { color: var(--text-primary); margin-top: 2.5rem; margin-bottom: 1rem; scroll-margin-top: 100px; }
+  :global(.prose p) { margin-bottom: 1.5rem; }
+  :global(.prose ul, .prose ol) { margin-bottom: 1.5rem; padding-left: 2rem; }
+  :global(.prose li) { margin-bottom: 0.5rem; }
+  :global(.prose pre) { background: rgba(0,0,0,0.3) !important; padding: 1.5rem; border-radius: 8px; overflow-x: auto; margin: 2rem 0; border: 1px solid rgba(255,255,255,0.05); }
+  :global(.prose code) { font-family: 'Courier New', Courier, monospace; color: var(--accent-news); background: rgba(255,255,255,0.05); padding: 0.1rem 0.3rem; border-radius: 4px; }
+  :global(.prose pre code) { background: none; color: #e5e7eb; padding: 0; }
+  :global(.prose strong) { color: var(--text-primary); }
+  :global(.prose hr) { border: none; border-top: 1px solid var(--border); margin: 3rem 0; }
+  :global(.prose img) { max-width: 100%; height: auto; border-radius: 8px; margin: 1.5rem 0; display: block; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+  @media (max-width: 1200px) {
+      .docs-layout { grid-template-columns: 250px 1fr; }
+      .toc-sidebar { display: none; }
+  }
+  @media (max-width: 900px) {
+      .docs-layout { display: flex; flex-direction: column; }
+      .docs-content-area { padding: 2rem; }
+  }
+</style>

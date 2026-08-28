@@ -1,0 +1,52 @@
+
+:root {
+  
+  --bg-primary: #0a0a0c;
+  --bg-secondary: #121215;
+  --text-primary: #f3f3f5;
+  --text-secondary: #a0a0ab;
+  
+  
+  --accent-news: #d946ef; 
+  --accent-changelogs: #10b981; 
+  --accent-docs: #3b82f6; 
+  --accent-projects: #f59e0b; 
+  
+  --border: #27272a;
+  
+  color-scheme: dark;
+}
+
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+
+a, button {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+html[lang="es"] [data-i18n="en"] {
+    display: none !important;
+}
+
+html[lang="en"] [data-i18n="es"] {
+    display: none !important;
+}

@@ -1,0 +1,150 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const allChangelogs = await getCollection('changelogs');
+  const uniqueProjects = Array.from(new Set(allChangelogs.map(cl => cl.data.project)));
+  
+  return uniqueProjects.map(project => {
+    // Find any changelog from this project to extract the folder slug
+    const sampleLog = allChangelogs.find(cl => cl.data.project === project);
+    const slug = sampleLog ? sampleLog.id.split('/')[0] : project.toLowerCase().replace(/\s+/g, '-');
+    return {
+      params: { project: slug },
+      props: { projectName: project },
+    };
+  });
+}
+
+const { projectName } = Astro.props;
+const allChangelogs = await getCollection('changelogs');
+const projectLogs = allChangelogs
+    .filter(cl => cl.data.project === projectName)
+    .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const renderedLogs = await Promise.all(projectLogs.map(async (cl) => {
+    const { Content } = await render(cl);
+    return { ...cl, Content };
+}));
+---
+<Layout title={`XHub - ${projectName} Changelogs`} >
+  <main class="container">
+    <a href="/changelogs" class="back-link">&larr; <span data-i18n="es">Volver a Changelogs</span><span data-i18n="en">Back to Changelogs</span></a>
+    
+    <header class="doc-header">
+        <h1>{projectName} <span data-i18n="es">Historial</span><span data-i18n="en">History</span></h1>
+        <p>
+            <span data-i18n="es">Registro completo de actualizaciones de este proyecto.</span>
+            <span data-i18n="en">Complete update log for this project.</span>
+        </p>
+    </header>
+
+    <div class="timeline">
+      {renderedLogs.map((item, index) => (
+        <article class="timeline-item" id={item.data.version}>
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+                <header class="version-header">
+                    <h2>{item.data.title}</h2>
+                    <span class="version-date">{item.data.date.toLocaleDateString()}</span>
+                </header>
+                <div class="content-wrapper prose">
+                    <item.Content />
+                </div>
+            </div>
+        </article>
+      ))}
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .container { max-width: 900px; margin: 4rem auto; padding: 0 2rem; min-height: 70vh; }
+  
+  .back-link { 
+      color: var(--text-secondary); 
+      text-decoration: none; 
+      font-size: 0.95rem; 
+      margin-bottom: 2rem; 
+      display: inline-block; 
+      transition: color 0.2s; 
+  }
+  .back-link:hover { color: var(--text-primary); }
+  
+  .doc-header { margin-bottom: 4rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+  .doc-header h1 { font-size: 3.5rem; color: var(--text-primary); margin-bottom: 0.5rem; letter-spacing: -0.03em; }
+  .doc-header p { font-size: 1.2rem; color: var(--text-secondary); }
+  
+  /* Timeline specific styles */
+  .timeline {
+      position: relative;
+      padding-left: 2rem;
+  }
+  .timeline::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 7px;
+      width: 2px;
+      background: rgba(255, 255, 255, 0.05);
+  }
+  
+  .timeline-item {
+      position: relative;
+      margin-bottom: 4rem;
+      scroll-margin-top: 100px; /* For anchor links */
+  }
+  .timeline-item:last-child {
+      margin-bottom: 0;
+  }
+  
+  .timeline-marker {
+      position: absolute;
+      top: 10px;
+      left: -2rem;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--background);
+      border: 3px solid var(--accent-changelogs);
+      z-index: 2;
+  }
+  
+  .version-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+  }
+  
+  .version-header h2 {
+      margin: 0;
+      font-size: 2rem;
+      color: var(--text-primary);
+  }
+  
+  .version-date {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      background: rgba(255,255,255,0.05);
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+  }
+  
+  /* Prose styles */
+  .content-wrapper.prose { color: var(--text-secondary); line-height: 1.8; font-size: 1.05rem; }
+  :global(.prose h1, .prose h2, .prose h3) { color: var(--text-primary); margin-top: 2.5rem; margin-bottom: 1rem; scroll-margin-top: 100px; }
+  :global(.prose h1) { font-size: 2rem; margin-top: 0; }
+  :global(.prose p) { margin-bottom: 1.5rem; }
+  :global(.prose ul, .prose ol) { margin-bottom: 1.5rem; padding-left: 2rem; }
+  :global(.prose li) { margin-bottom: 0.5rem; }
+  :global(.prose pre) { background: rgba(0,0,0,0.3) !important; padding: 1.5rem; border-radius: 8px; overflow-x: auto; margin: 2rem 0; border: 1px solid rgba(255,255,255,0.05); }
+  :global(.prose code) { font-family: 'Courier New', Courier, monospace; color: var(--accent-changelogs); background: rgba(255,255,255,0.05); padding: 0.1rem 0.3rem; border-radius: 4px; }
+  :global(.prose pre code) { background: none; color: #e5e7eb; padding: 0; }
+  :global(.prose strong) { color: var(--text-primary); }
+  :global(.prose hr) { border: none; border-top: 1px solid var(--border); margin: 3rem 0; }
+</style>

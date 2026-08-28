@@ -77,4 +77,11 @@ import Layout from '../../layouts/Layout.astro';
   .external-link:hover {
       color: white;
   }
+
+  @media (max-width: 768px) {
+    .container { padding: 0 1rem; margin: 2rem auto; }
+    h1 { font-size: 2.2rem; }
+    .card-grid { grid-template-columns: 1fr; }
+    .project-links { flex-direction: column; }
+  }
 </style>

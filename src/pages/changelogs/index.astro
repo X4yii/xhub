@@ -199,4 +199,14 @@ const uniqueProjects = Array.from(new Set(allChangelogs.map(cl => cl.data.projec
       font-size: 0.8rem;
       color: var(--text-primary);
   }
+
+  @media (max-width: 768px) {
+    .container { padding: 0 1rem; margin: 2rem auto; }
+    h1 { font-size: 2.2rem; }
+    .recent-grid { grid-template-columns: 1fr; }
+    .dir-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 480px) {
+    .dir-grid { grid-template-columns: 1fr; }
+  }
 </style>

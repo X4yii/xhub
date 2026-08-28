@@ -11,15 +11,12 @@ export async function GET() {
     allEntries.forEach(entry => {
         const body = entry.body || '';
         
-        // Extract ES content
         const esMatch = body.match(/\[ES\]([\s\S]*?)\[\/ES\]/);
         const esContent = esMatch ? esMatch[1].replace(/[#*`_]/g, '').trim() : '';
         
-        // Extract EN content
         const enMatch = body.match(/\[EN\]([\s\S]*?)\[\/EN\]/);
         const enContent = enMatch ? enMatch[1].replace(/[#*`_]/g, '').trim() : '';
 
-        // Determine URL based on collection
         let url = '';
         if (entry.collection === 'docs') {
             url = `/xhub/docs/${entry.slug}/`;
@@ -30,7 +27,6 @@ export async function GET() {
             url = `/xhub/changelogs/${projectSlug}/#${entry.data.version}`;
         }
 
-        // Add to index
         index.push({
             title: entry.data.title,
             url: url,

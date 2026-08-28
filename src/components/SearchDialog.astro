@@ -183,7 +183,6 @@
 
     const lang = getActiveLang();
     
-    // Initialize fuse dynamically based on language to weight the correct text field
     fuse = new Fuse(searchData, {
       keys: ['title', 'project', lang],
       includeMatches: true,
@@ -205,7 +204,6 @@
         const item = res.item;
         const text = item[lang] || '';
         
-        // Find best match in text to create a snippet
         let snippet = text.substring(0, 150) + '...';
         
         const textMatch = res.matches?.find(m => m.key === lang);
@@ -214,7 +212,6 @@
            const end = Math.min(text.length, textMatch.indices[0][1] + 100);
            snippet = (start > 0 ? '...' : '') + text.substring(start, end) + '...';
            
-           // Simple highlight (not perfect for overlapping but works for preview)
            const matchText = input.value.trim().toLowerCase();
            const regex = new RegExp(`(${matchText})`, 'gi');
            snippet = snippet.replace(regex, '<mark>$1</mark>');
@@ -260,7 +257,6 @@
     }
   });
 
-  // Also hook into header search buttons if they exist
   document.addEventListener('click', (e) => {
     const target = e.target as HTMLElement;
     if (target.closest('[data-search-trigger]')) {

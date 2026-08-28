@@ -3,17 +3,14 @@ import Layout from '../../layouts/Layout.astro';
 import { getCollection, render } from 'astro:content';
 
 const allChangelogs = await getCollection('changelogs');
-// Sort all chronologically
 allChangelogs.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
-// Get top 3 most recent
 const recentChangelogs = allChangelogs.slice(0, 3);
 const recentRendered = await Promise.all(recentChangelogs.map(async (cl) => {
     const { Content } = await render(cl);
     return { ...cl, Content };
 }));
 
-// Get unique projects
 const uniqueProjects = Array.from(new Set(allChangelogs.map(cl => cl.data.project)));
 ---
 <Layout title="XHub - Changelogs" >
@@ -26,7 +23,7 @@ const uniqueProjects = Array.from(new Set(allChangelogs.map(cl => cl.data.projec
         </p>
     </header>
 
-    <!-- Top 3 Recent Updates -->
+    
     <section class="recent-updates">
         <h2>
             <span data-i18n="es">Novedades Recientes</span>
@@ -53,7 +50,7 @@ const uniqueProjects = Array.from(new Set(allChangelogs.map(cl => cl.data.projec
         </div>
     </section>
 
-    <!-- Project Directories -->
+    
     <section class="project-directories">
         <h2>
             <span data-i18n="es">Historiales por Proyecto</span>

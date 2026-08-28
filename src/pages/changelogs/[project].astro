@@ -7,7 +7,6 @@ export async function getStaticPaths() {
   const uniqueProjects = Array.from(new Set(allChangelogs.map(cl => cl.data.project)));
   
   return uniqueProjects.map(project => {
-    // Find any changelog from this project to extract the folder slug
     const sampleLog = allChangelogs.find(cl => cl.data.project === project);
     const slug = sampleLog ? sampleLog.id.split('/')[0] : project.toLowerCase().replace(/\s+/g, '-');
     return {

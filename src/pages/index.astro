@@ -79,7 +79,7 @@ const numProjects = 2;
                                         {item.data.date.toLocaleDateString()}
                                     </span>
                                 </div>
-                                <h4><a href={item.collection === 'changelogs' ? `/changelogs/${item.id.split('/')[0]}#${item.data.version}` : `/${item.collection}/${item.id}`}>{item.data.title}</a></h4>
+                                <h4><a href={item.collection === 'changelogs' ? `/xhub/changelogs/${item.id.split('/')[0]}#${item.data.version}` : `/xhub/${item.collection}/${item.id}`}>{item.data.title}</a></h4>
                             </div>
                         </article>
                     ))}

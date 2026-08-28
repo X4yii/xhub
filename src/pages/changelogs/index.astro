@@ -44,7 +44,7 @@ const uniqueProjects = Array.from(new Set(allChangelogs.map(cl => cl.data.projec
                         <item.Content />
                         <div class="fade-overlay"></div>
                     </div>
-                    <a href={`/changelogs/${item.id.split('/')[0]}#${item.data.version}`} class="read-more">
+                    <a href={`/xhub/changelogs/${item.id.split('/')[0]}#${item.data.version}`} class="read-more">
                         <span data-i18n="es">Ver actualización completa &rarr;</span>
                         <span data-i18n="en">View full update &rarr;</span>
                     </a>
@@ -64,7 +64,7 @@ const uniqueProjects = Array.from(new Set(allChangelogs.map(cl => cl.data.projec
                 const projectLogs = allChangelogs.filter(c => c.data.project === project);
                 const latest = projectLogs[0];
                 return (
-                    <a href={`/changelogs/${latest.id.split('/')[0]}`} class="dir-card">
+                    <a href={`/xhub/changelogs/${latest.id.split('/')[0]}`} class="dir-card">
                         <h3>{project}</h3>
                         <p>
                             <span data-i18n="es">{projectLogs.length} versiones registradas.</span>

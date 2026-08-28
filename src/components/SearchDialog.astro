@@ -163,7 +163,7 @@
   async function initSearch() {
     if (searchData) return;
     try {
-      const res = await fetch('/search.json');
+      const res = await fetch('/xhub/search.json');
       searchData = await res.json();
     } catch (e) {
       console.error("Failed to load search index", e);

@@ -1,0 +1,113 @@
+---
+const CARBON_CODE = 'YOUR_CARBON_CODE';
+const CARBON_PLACEMENT = 'x4yiigithubio';
+const isActive = CARBON_CODE !== 'YOUR_CARBON_CODE';
+---
+
+{isActive ? (
+  <div class="carbon-wrapper">
+    <script
+      async
+      type="text/javascript"
+      src={`//cdn.carbonads.com/carbon.js?serve=${CARBON_CODE}&placement=${CARBON_PLACEMENT}`}
+      id="_carbonads_js"
+    ></script>
+  </div>
+) : (
+  <div class="carbon-wrapper carbon-placeholder" aria-hidden="true">
+    <div class="carbon-placeholder-inner">
+      <div class="placeholder-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="12" x="2" y="6" rx="2"/><path d="M12 12h.01"/><path d="M17 12h.01"/><path d="M7 12h.01"/></svg>
+      </div>
+      <span class="placeholder-label">Carbon Ads</span>
+      <span class="placeholder-sub">Pending approval</span>
+    </div>
+  </div>
+)}
+
+<style is:global>
+  #carbonads {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+    padding: 1rem;
+    font-size: 0.8rem;
+    line-height: 1.4;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  #carbonads a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  #carbonads a:hover {
+    color: var(--text-primary);
+  }
+
+  #carbonads .carbon-img img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
+  }
+
+  #carbonads .carbon-text {
+    color: var(--text-secondary);
+    font-size: 0.82rem;
+  }
+
+  #carbonads .carbon-poweredby {
+    display: block;
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.2);
+    text-align: right;
+    margin-top: 0.2rem;
+    letter-spacing: 0.03em;
+  }
+</style>
+
+<style>
+  .carbon-wrapper {
+    margin-top: 2rem;
+    width: 100%;
+  }
+
+  .carbon-placeholder {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px dashed rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    padding: 1.2rem 1rem;
+  }
+
+  .carbon-placeholder-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    opacity: 0.3;
+  }
+
+  .placeholder-icon {
+    color: var(--text-secondary);
+  }
+
+  .placeholder-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .placeholder-sub {
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+  }
+</style>

@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import Sidebar from '../../components/Sidebar.astro';
 import TOC from '../../components/TOC.astro';
+import CarbonAds from '../../components/CarbonAds.astro';
 export async function getStaticPaths() {
   const docs = await getCollection('docs');
   return docs.map(entry => ({
@@ -27,6 +28,7 @@ const currentProject = entry.data.project;
     </main>
     <aside class="toc-sidebar">
       {headings.length > 0 && <TOC headings={headings} />}
+      <CarbonAds />
     </aside>
   </div>
 </Layout>

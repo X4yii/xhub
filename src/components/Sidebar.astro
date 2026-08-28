@@ -21,7 +21,7 @@ sortedCategories.forEach(cat => {
 ---
 <aside class="sidebar">
     <div class="sidebar-header">
-        <a href="/xhub/docs" class="back-link">
+        <a href="/xhub/docs/" class="back-link">
             <span data-i18n="es">&larr; Volver</span>
             <span data-i18n="en">&larr; Back</span>
         </a>
@@ -35,7 +35,7 @@ sortedCategories.forEach(cat => {
                     {grouped[cat].docs.map(doc => (
                         <li>
                             <a
-                                href={`/xhub/docs/${doc.id}`}
+                                href={`/xhub/docs/${doc.id}/`}
                                 class={doc.id === currentId ? 'active' : ''}
                             >
                                 {doc.data.title}

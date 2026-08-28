@@ -32,7 +32,7 @@ const projects = Array.from(projectsMap.values());
     </header>
     <div class="card-grid">
       {projects.map(doc => (
-        <a href={`/xhub/docs/${doc.id}`} class="doc-card">
+        <a href={`/xhub/docs/${doc.id}/`} class="doc-card">
             <span class="project-tag">Framework</span>
             <h2>{doc.data.project} &rarr;</h2>
             <p class="proj-desc">

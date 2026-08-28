@@ -22,12 +22,12 @@ export async function GET() {
         // Determine URL based on collection
         let url = '';
         if (entry.collection === 'docs') {
-            url = `/xhub/docs/${entry.slug}`;
+            url = `/xhub/docs/${entry.slug}/`;
         } else if (entry.collection === 'noticias') {
-            url = `/xhub/noticias/${entry.id}`;
+            url = `/xhub/noticias/${entry.id}/`;
         } else if (entry.collection === 'changelogs') {
             const projectSlug = entry.id.split('/')[0];
-            url = `/xhub/changelogs/${projectSlug}#${entry.data.version}`;
+            url = `/xhub/changelogs/${projectSlug}/#${entry.data.version}`;
         }
 
         // Add to index

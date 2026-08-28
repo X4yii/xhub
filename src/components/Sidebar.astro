@@ -25,6 +25,9 @@ sortedCategories.forEach(cat => {
             <span data-i18n="es">&larr; Volver</span>
             <span data-i18n="en">&larr; Back</span>
         </a>
+        <button class="sidebar-close-btn" id="sidebar-close-btn" aria-label="Cerrar">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
         <h2 class="project-title">{currentProject.toUpperCase()}</h2>
     </div>
     <nav class="sidebar-nav">
@@ -70,6 +73,28 @@ sortedCategories.forEach(cat => {
         margin-bottom: 2rem;
         padding-bottom: 1rem;
         border-bottom: 1px solid var(--border);
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+    .sidebar-close-btn {
+        display: none;
+        background: none;
+        border: none;
+        color: var(--text-secondary);
+        cursor: pointer;
+        padding: 4px;
+        border-radius: 6px;
+        align-self: flex-end;
+        transition: color 0.2s, background 0.2s;
+        margin-bottom: 0.25rem;
+    }
+    .sidebar-close-btn:hover {
+        color: var(--text-primary);
+        background: rgba(255,255,255,0.05);
+    }
+    @media (max-width: 900px) {
+        .sidebar-close-btn { display: flex; }
     }
     .back-link {
         font-size: 0.85rem;
@@ -121,15 +146,5 @@ sortedCategories.forEach(cat => {
         background: rgba(59, 130, 246, 0.15); 
         color: var(--accent-docs);
         font-weight: 500;
-    }
-    @media (max-width: 900px) {
-        .sidebar {
-            width: 100%;
-            height: auto;
-            position: relative;
-            top: 0;
-            border-right: none;
-            border-bottom: 1px solid var(--border);
-        }
     }
 </style>

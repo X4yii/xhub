@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "project": {
+      "type": "string"
+    },
+    "category": {
+      "default": "General",
+      "type": "string"
+    },
+    "categoryOrder": {
+      "default": 0,
+      "type": "number"
+    },
+    "order": {
+      "default": 0,
+      "type": "number"
+    },
+    "$schema": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "title",
+    "project"
+  ]
+}

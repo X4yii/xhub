@@ -1,0 +1,966 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" type="image/svg+xml" href="/xhub/favicon.svg"><meta name="generator" content="Astro v7.2.7"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/xhub/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CYDbzu1r.js"></script><title>XHub - Core Concepts</title><meta name="description" content="El cerro de X4yi."><meta property="og:title" content="XHub - Core Concepts"><meta property="og:description" content="El cerro de X4yi."><meta property="og:image" content="/favicon.svg"><meta property="og:type" content="article"><meta property="og:url" content="https://x4yi.github.io/docs/x4ui/core-concepts"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="XHub - Core Concepts"><meta name="twitter:description" content="El cerro de X4yi."><meta name="twitter:image" content="/favicon.svg"><link rel="stylesheet" href="/xhub/_astro/Layout.x4fbhSDA.css"><link rel="stylesheet" href="/xhub/_astro/_..DHkhKyNK.css"></head><body><nav class="navbar" data-astro-cid-l7arcky5><div class="nav-container" data-astro-cid-l7arcky5><a href="/xhub/" class="brand" data-astro-cid-l7arcky5>XHub</a><ul class="nav-links" data-astro-cid-l7arcky5><li data-astro-cid-l7arcky5><a href="/xhub/proyectos/" data-astro-cid-l7arcky5>Proyectos</a></li><li data-astro-cid-l7arcky5><a href="/xhub/noticias/" data-astro-cid-l7arcky5>Noticias</a></li><li data-astro-cid-l7arcky5><a href="/xhub/docs/" data-astro-cid-l7arcky5>Docs</a></li><li data-astro-cid-l7arcky5><a href="/xhub/changelogs/" data-astro-cid-l7arcky5>Changelogs</a></li></ul><div class="nav-controls" data-astro-cid-l7arcky5><button class="search-btn" id="open-search" aria-label="Search" data-astro-cid-l7arcky5><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-l7arcky5><circle cx="11" cy="11" r="8" data-astro-cid-l7arcky5></circle><path d="m21 21-4.3-4.3" data-astro-cid-l7arcky5></path></svg><span class="search-text" data-astro-cid-l7arcky5>Buscar...</span><kbd class="search-kbd" data-astro-cid-l7arcky5>Ctrl K</kbd></button><div class="lang-selector" data-astro-cid-l7arcky5><select id="lang-switch" aria-label="Cambiar idioma" data-astro-cid-l7arcky5><option value="es" data-astro-cid-l7arcky5>ES</option><option value="en" data-astro-cid-l7arcky5>EN</option></select></div><button class="hamburger" id="hamburger-btn" aria-label="Abrir menú" aria-expanded="false" data-astro-cid-l7arcky5><span data-astro-cid-l7arcky5></span><span data-astro-cid-l7arcky5></span><span data-astro-cid-l7arcky5></span></button></div></div></nav><div class="mobile-drawer" id="mobile-drawer" aria-hidden="true" data-astro-cid-l7arcky5><div class="drawer-header" data-astro-cid-l7arcky5><span class="brand" data-astro-cid-l7arcky5>XHub</span><button class="drawer-close" id="drawer-close" aria-label="Cerrar menú" data-astro-cid-l7arcky5><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-l7arcky5><path d="M18 6 6 18" data-astro-cid-l7arcky5></path><path d="m6 6 12 12" data-astro-cid-l7arcky5></path></svg></button></div><nav class="drawer-nav" data-astro-cid-l7arcky5><a href="/xhub/proyectos/" class="drawer-link" data-astro-cid-l7arcky5><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-l7arcky5><path d="m7.5 4.27 9 5.15" data-astro-cid-l7arcky5></path><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z" data-astro-cid-l7arcky5></path><path d="m3.3 7 8.7 5 8.7-5" data-astro-cid-l7arcky5></path><path d="M12 22V12" data-astro-cid-l7arcky5></path></svg>Proyectos</a><a href="/xhub/noticias/" class="drawer-link" data-astro-cid-l7arcky5><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-l7arcky5><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 0-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2" data-astro-cid-l7arcky5></path><path d="M18 14h-8" data-astro-cid-l7arcky5></path><path d="M15 18h-5" data-astro-cid-l7arcky5></path><path d="M10 6h8v4h-8V6Z" data-astro-cid-l7arcky5></path></svg>Noticias</a><a href="/xhub/docs/" class="drawer-link" data-astro-cid-l7arcky5><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-l7arcky5><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" data-astro-cid-l7arcky5></path></svg>Docs</a><a href="/xhub/changelogs/" class="drawer-link" data-astro-cid-l7arcky5><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-l7arcky5><path d="M12 20h9" data-astro-cid-l7arcky5></path><path d="M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.854z" data-astro-cid-l7arcky5></path></svg>Changelogs</a></nav><div class="drawer-footer" data-astro-cid-l7arcky5><button class="search-btn-drawer" id="open-search-drawer" aria-label="Buscar" data-astro-cid-l7arcky5><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-l7arcky5><circle cx="11" cy="11" r="8" data-astro-cid-l7arcky5></circle><path d="m21 21-4.3-4.3" data-astro-cid-l7arcky5></path></svg>Buscar...</button><div class="lang-selector-drawer" data-astro-cid-l7arcky5><select id="lang-switch-drawer" aria-label="Cambiar idioma" data-astro-cid-l7arcky5><option value="es" data-astro-cid-l7arcky5>ES</option><option value="en" data-astro-cid-l7arcky5>EN</option></select></div></div></div><div class="drawer-overlay" id="drawer-overlay" data-astro-cid-l7arcky5></div><script>
+document.addEventListener('astro:page-load', () => {
+  const selector = document.getElementById('lang-switch');
+  const selectorDrawer = document.getElementById('lang-switch-drawer');
+  const currentLang = localStorage.getItem('lang') || 'es';
+  
+  if (selector) selector.value = currentLang;
+  if (selectorDrawer) selectorDrawer.value = currentLang;
+  document.documentElement.setAttribute('lang', currentLang);
+
+  function setLang(lang) {
+    localStorage.setItem('lang', lang);
+    document.documentElement.setAttribute('lang', lang);
+    if (selector) selector.value = lang;
+    if (selectorDrawer) selectorDrawer.value = lang;
+  }
+
+  if (selector) selector.addEventListener('change', (e) => setLang(e.target.value));
+  if (selectorDrawer) selectorDrawer.addEventListener('change', (e) => setLang(e.target.value));
+
+  const openSearchBtn = document.getElementById('open-search');
+  const openSearchDrawerBtn = document.getElementById('open-search-drawer');
+  function openSearch() {
+    const dialog = document.getElementById('search-dialog');
+    if (dialog) dialog.showModal();
+    closeDrawer();
+  }
+  if (openSearchBtn) openSearchBtn.addEventListener('click', openSearch);
+  if (openSearchDrawerBtn) openSearchDrawerBtn.addEventListener('click', openSearch);
+
+  const hamburger = document.getElementById('hamburger-btn');
+  const drawer = document.getElementById('mobile-drawer');
+  const overlay = document.getElementById('drawer-overlay');
+  const drawerClose = document.getElementById('drawer-close');
+
+  function openDrawer() {
+    if (!drawer) return;
+    drawer.classList.add('open');
+    overlay.classList.add('open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    hamburger.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeDrawer() {
+    if (!drawer) return;
+    drawer.classList.remove('open');
+    overlay.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    hamburger.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  if (hamburger) {
+    hamburger.addEventListener('click', () => {
+      drawer.classList.contains('open') ? closeDrawer() : openDrawer();
+    });
+  }
+  if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+  if (overlay) overlay.addEventListener('click', closeDrawer);
+});
+</script><div class="docs-layout" data-astro-cid-gfcwjq6c><button class="sidebar-toggle" id="sidebar-toggle" aria-label="Abrir navegación" data-astro-cid-gfcwjq6c><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-gfcwjq6c><path d="M3 12h18" data-astro-cid-gfcwjq6c></path><path d="M3 6h18" data-astro-cid-gfcwjq6c></path><path d="M3 18h18" data-astro-cid-gfcwjq6c></path></svg><span data-astro-cid-gfcwjq6c>X4UI</span></button><div class="sidebar-overlay" id="sidebar-overlay" data-astro-cid-gfcwjq6c></div><aside class="sidebar" data-astro-cid-wv7whodv><div class="sidebar-header" data-astro-cid-wv7whodv><a href="/xhub/docs/" class="back-link" data-astro-cid-wv7whodv><span data-i18n="es" data-astro-cid-wv7whodv>&larr; Volver</span><span data-i18n="en" data-astro-cid-wv7whodv>&larr; Back</span></a><button class="sidebar-close-btn" id="sidebar-close-btn" aria-label="Cerrar" data-astro-cid-wv7whodv><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-wv7whodv><path d="M18 6 6 18" data-astro-cid-wv7whodv></path><path d="m6 6 12 12" data-astro-cid-wv7whodv></path></svg></button><h2 class="project-title" data-astro-cid-wv7whodv>X4UI</h2></div><nav class="sidebar-nav" data-astro-cid-wv7whodv><div class="nav-group" data-astro-cid-wv7whodv><h3 class="nav-category" data-astro-cid-wv7whodv>General</h3><ul class="nav-links" data-astro-cid-wv7whodv><li data-astro-cid-wv7whodv><a href="/xhub/docs/x4ui/x4ui-manual/" class data-astro-cid-wv7whodv>X4UI Framework - Manual de desarrollo</a></li><li data-astro-cid-wv7whodv><a href="/xhub/docs/x4ui/getting-started/" class data-astro-cid-wv7whodv>Getting Started</a></li><li data-astro-cid-wv7whodv><a href="/xhub/docs/x4ui/core-concepts/" class="active" data-astro-cid-wv7whodv>Core Concepts</a></li><li data-astro-cid-wv7whodv><a href="/xhub/docs/x4ui/remote-assets/" class data-astro-cid-wv7whodv>Remote Assets</a></li><li data-astro-cid-wv7whodv><a href="/xhub/docs/x4ui/networking-and-sync/" class data-astro-cid-wv7whodv>Networking &amp; Sync</a></li><li data-astro-cid-wv7whodv><a href="/xhub/docs/x4ui/media-limitations/" class data-astro-cid-wv7whodv>Media Limitations</a></li></ul></div><div class="nav-group" data-astro-cid-wv7whodv><h3 class="nav-category" data-astro-cid-wv7whodv>Components</h3><ul class="nav-links" data-astro-cid-wv7whodv><li data-astro-cid-wv7whodv><a href="/xhub/docs/x4ui/components/advanced-components/" class data-astro-cid-wv7whodv>Advanced Components</a></li><li data-astro-cid-wv7whodv><a href="/xhub/docs/x4ui/components/buttons-and-inputs/" class data-astro-cid-wv7whodv>Buttons And Inputs</a></li><li data-astro-cid-wv7whodv><a href="/xhub/docs/x4ui/components/containers-and-panels/" class data-astro-cid-wv7whodv>Containers And Panels</a></li><li data-astro-cid-wv7whodv><a href="/xhub/docs/x4ui/components/multimedia/" class data-astro-cid-wv7whodv>Multimedia</a></li></ul></div></nav></aside><main class="docs-content-area" data-astro-cid-gfcwjq6c><header class="doc-header" data-astro-cid-gfcwjq6c><span class="category-tag" data-astro-cid-gfcwjq6c>General</span><h1 data-astro-cid-gfcwjq6c>Core Concepts</h1></header><div class="content-wrapper prose" data-astro-cid-gfcwjq6c>
+<div data-i18n="es">
+
+<h1 id="conceptos-fundamentales">Conceptos Fundamentales</h1>
+<p>Este documento describe los sistemas base de X4UI: el árbol de componentes, el sistema de coordenadas, el motor de diseño, la propagación de eventos, el estado reactivo, los temas, la API builder, las animaciones y la gestión de memoria.</p>
+<h2 id="1-árbol-de-componentes">1. Árbol de Componentes</h2>
+<p>X4UI utiliza un árbol de componentes de modo retenido (patrón Composite). Cada elemento UI extiende <code>GuiComponent</code>. Los componentes forman una jerarquía padre-hijo con raíz en <code>rootPanel</code>.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>rootPanel (GuiPanel)</span></span>
+<span class="line"><span>├── headerPanel (GuiPanel)</span></span>
+<span class="line"><span>│   ├── GuiLabel "Title"</span></span>
+<span class="line"><span>│   └── GuiButton "Close"</span></span>
+<span class="line"><span>├── contentPanel (GuiScrollPanel)</span></span>
+<span class="line"><span>│   ├── GuiButton "Item 1"</span></span>
+<span class="line"><span>│   ├── GuiButton "Item 2"</span></span>
+<span class="line"><span>│   └── GuiButton "Item 3"</span></span>
+<span class="line"><span>└── footerPanel (GuiPanel)</span></span>
+<span class="line"><span>    └── GuiSliderInt</span></span></code></pre>
+<h3 id="agregar-y-eliminar-hijos">Agregar y Eliminar Hijos</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">GuiPanel panel </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> GuiPanel</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">200</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">300</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">GuiButton btn </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> GuiButton</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">100</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Click"</span><span style="color:#E1E4E8">, () </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> {});</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">panel.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(btn);       </span><span style="color:#6A737D">// Agrega btn como hijo de panel</span></span>
+<span class="line"><span style="color:#E1E4E8">panel.</span><span style="color:#B392F0">removeChild</span><span style="color:#E1E4E8">(btn);    </span><span style="color:#6A737D">// Elimina btn de panel</span></span>
+<span class="line"><span style="color:#E1E4E8">panel.</span><span style="color:#B392F0">clearChildren</span><span style="color:#E1E4E8">();     </span><span style="color:#6A737D">// Elimina todos los hijos</span></span>
+<span class="line"><span style="color:#E1E4E8">panel.</span><span style="color:#B392F0">getChildren</span><span style="color:#E1E4E8">();       </span><span style="color:#6A737D">// Devuelve la lista de hijos</span></span></code></pre>
+<h3 id="ciclo-de-vida-del-componente">Ciclo de Vida del Componente</h3>
+<ol>
+<li><strong>Construcción</strong> — <code>new GuiComponent(x, y, width, height)</code> establece la posición y el tamaño.</li>
+<li><strong>Adjunción</strong> — <code>addChild()</code> establece la referencia al padre y marca al padre como dirty.</li>
+<li><strong>Tick</strong> — <code>tick(float deltaTime)</code> se llama cada cuadro. Ejecuta el diseño pendiente y luego ejecuta el tick de todos los hijos.</li>
+<li><strong>Renderizado</strong> — <code>render(mouseX, mouseY, partialTicks)</code> llama a <code>renderSelf()</code> y luego a <code>renderChildren()</code>.</li>
+<li><strong>Destrucción</strong> — <code>destroy()</code> ejecuta todos los desvinculadores (de <code>bindState()</code>), luego destruye todos los hijos.</li>
+</ol>
+<p>Cuando una pantalla se cierra (<code>onGuiClosed()</code>), <code>rootPanel.destroy()</code> se llama automáticamente, lo que desencadena <code>destroy()</code> en cada componente del árbol.</p>
+<h2 id="2-sistema-de-coordenadas">2. Sistema de Coordenadas</h2>
+<p>Todas las coordenadas son <strong>relativas al componente padre</strong>. Un hijo en <code>(x: 10, y: 10)</code> dentro de un padre en <code>(x: 50, y: 50)</code> se renderiza en la posición de pantalla <code>(60, 60)</code>.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">GuiPanel parent </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> GuiPanel</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">50</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">50</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">200</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">200</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">GuiButton child </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> GuiButton</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">80</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Button"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">null</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">parent.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(child);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// child.getAbsoluteX() == 60</span></span>
+<span class="line"><span style="color:#6A737D">// child.getAbsoluteY() == 60</span></span></code></pre>
+<p>Los métodos <code>getAbsoluteX()</code> y <code>getAbsoluteY()</code> recorren la cadena de padres para calcular la posición en espacio de pantalla.</p>
+<h3 id="recorte-con-opengl-scissor">Recorte con OpenGL Scissor</h3>
+<p>Los componentes hijos renderizados fuera de los límites del padre se recortan mediante OpenGL scissor. Esto se aplica automáticamente en <code>GuiScrollPanel</code> y cualquier contenedor que sobrescriba <code>renderChildren()</code>.</p>
+<h2 id="3-diseño-flexbox-flexlayout">3. Diseño Flexbox (<code>FlexLayout</code>)</h2>
+<p><code>GuiPanel</code> utiliza un gestor de diseño <code>FlexLayout</code> que dispone los hijos secuencialmente. Cuando se establece una dirección flex, los hijos ignoran sus valores estáticos <code>x/y</code> y son posicionados por el motor de diseño.</p>
+<h3 id="flexdirection">FlexDirection</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.layout.FlexDirection;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">panel.</span><span style="color:#B392F0">setFlexDirection</span><span style="color:#E1E4E8">(FlexDirection.VERTICAL);    </span><span style="color:#6A737D">// Apila hijos de arriba a abajo</span></span>
+<span class="line"><span style="color:#E1E4E8">panel.</span><span style="color:#B392F0">setFlexDirection</span><span style="color:#E1E4E8">(FlexDirection.HORIZONTAL);  </span><span style="color:#6A737D">// Apila hijos de izquierda a derecha</span></span>
+<span class="line"><span style="color:#E1E4E8">panel.</span><span style="color:#B392F0">setFlexDirection</span><span style="color:#E1E4E8">(FlexDirection.ABSOLUTE);    </span><span style="color:#6A737D">// Los hijos usan su propio x/y (por defecto)</span></span></code></pre>
+<h3 id="espaciado-gap">Espaciado (Gap)</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">panel.</span><span style="color:#B392F0">setGap</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">5</span><span style="color:#E1E4E8">);  </span><span style="color:#6A737D">// 5px de espacio entre cada hijo</span></span></code></pre>
+<h3 id="envoltura-flex-flex-wrap">Envoltura Flex (Flex Wrap)</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">panel.</span><span style="color:#B392F0">setFlexWrap</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">);  </span><span style="color:#6A737D">// Envuelve hijos a la siguiente fila/columna cuando exceden las dimensiones del padre</span></span></code></pre>
+<h3 id="comportamiento-del-diseño">Comportamiento del Diseño</h3>
+<ul>
+<li><strong>VERTICAL</strong>: Los hijos se apilan de arriba a abajo. La altura del padre se ajusta automáticamente para容纳 a todos los hijos (a menos que <code>flexWrap</code> esté habilitado).</li>
+<li><strong>HORIZONTAL</strong>: Los hijos se apilan de izquierda a derecha. El ancho del padre se ajusta automáticamente para容纳 a todos los hijos (a menos que <code>flexWrap</code> esté habilitado).</li>
+<li><strong>ABSOLUTE</strong>: Sin posicionamiento automático. Cada hijo usa sus propios valores <code>x/y</code>.</li>
+<li>El <code>padding</code> del padre crea espacio interno. El <code>margin</code> del hijo crea espacio exterior alrededor de cada hijo.</li>
+<li>Los hijos invisibles son omitidos por el motor de diseño.</li>
+</ul>
+<h3 id="ejemplo-completo">Ejemplo Completo</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiPanel;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiButton;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.layout.FlexDirection;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.utils.Insets;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">GuiPanel form </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> GuiPanel</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">200</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">250</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">form.</span><span style="color:#B392F0">setFlexDirection</span><span style="color:#E1E4E8">(FlexDirection.VERTICAL);</span></span>
+<span class="line"><span style="color:#E1E4E8">form.</span><span style="color:#B392F0">setGap</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">4</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">form.</span><span style="color:#B392F0">setPadding</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> Insets</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">8</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">form.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiButton</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">180</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Save"</span><span style="color:#E1E4E8">, () </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Saved"</span><span style="color:#E1E4E8">)));</span></span>
+<span class="line"><span style="color:#E1E4E8">form.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiButton</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">180</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Cancel"</span><span style="color:#E1E4E8">, () </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Cancelled"</span><span style="color:#E1E4E8">)));</span></span>
+<span class="line"><span style="color:#E1E4E8">form.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiButton</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">180</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Delete"</span><span style="color:#E1E4E8">, () </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Deleted"</span><span style="color:#E1E4E8">)));</span></span></code></pre>
+<p>Los botones se apilan verticalmente con 4px de espacio, dentro de un área de 8px de padding.</p>
+<h2 id="4-insets-padding-y-margin">4. Insets (Padding y Margin)</h2>
+<p><code>Insets</code> es un objeto de valor inmutable para espaciado, análogo al atajo de CSS.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.utils.Insets;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">new</span><span style="color:#B392F0"> Insets</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">5</span><span style="color:#E1E4E8">);              </span><span style="color:#6A737D">// Todos los lados: 5</span></span>
+<span class="line"><span style="color:#F97583">new</span><span style="color:#B392F0"> Insets</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">5</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">);          </span><span style="color:#6A737D">// Vertical: 5, Horizontal: 10</span></span>
+<span class="line"><span style="color:#F97583">new</span><span style="color:#B392F0"> Insets</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">4</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">6</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">8</span><span style="color:#E1E4E8">);    </span><span style="color:#6A737D">// Arriba: 2, Derecha: 4, Abajo: 6, Izquierda: 8</span></span>
+<span class="line"><span style="color:#E1E4E8">Insets.ZERO;                </span><span style="color:#6A737D">// Constante sin espaciado</span></span></code></pre>
+<p>Aplicar a componentes:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">panel.</span><span style="color:#B392F0">setPadding</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> Insets</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">));          </span><span style="color:#6A737D">// Espacio interno dentro del panel</span></span>
+<span class="line"><span style="color:#E1E4E8">button.</span><span style="color:#B392F0">setMargin</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> Insets</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">5</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">)); </span><span style="color:#6A737D">// 5px de margen debajo del botón</span></span></code></pre>
+<h2 id="5-sistema-de-eventos">5. Sistema de Eventos</h2>
+<p>Los eventos se propagan desde el componente raíz hacia abajo a través del árbol. La raíz (<code>GuiBaseScreen</code> o <code>GuiBaseContainer</code>) recibe eventos crudos de Minecraft y los reenvía a <code>rootPanel</code>.</p>
+<h3 id="tipos-de-evento">Tipos de Evento</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Evento</th><th>Método</th><th>Descripción</th></tr></thead><tbody><tr><td>Clic del ratón</td><td><code>onMouseClick(mouseX, mouseY, mouseButton)</code></td><td>Izquierdo (0), derecho (1), medio (2)</td></tr><tr><td>Liberación del ratón</td><td><code>onMouseRelease(mouseX, mouseY, state)</code></td><td>Después de liberar el clic</td></tr><tr><td>Arrastre del ratón</td><td><code>onMouseDrag(mouseX, mouseY, button, timeSinceLastClick)</code></td><td>Mientras el botón está presionado</td></tr><tr><td>Desplazamiento del ratón</td><td><code>onMouseScroll(mouseX, mouseY, wheel)</code></td><td>Rueda de desplazamiento</td></tr><tr><td>Tecla presionada</td><td><code>onKeyPress(typedChar, keyCode)</code></td><td>Entrada de teclado</td></tr></tbody></table>
+<h3 id="orden-de-propagación">Orden de Propagación</h3>
+<p>Los eventos iteran los hijos en <strong>orden de renderizado inverso</strong> (el hijo con mayor capa/primer plano primero). Si un hijo retorna <code>true</code> desde un manejador de eventos, la propagación se detiene (el evento es consumido).</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">GuiButton btn </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> GuiButton</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">100</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Click"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">null</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Sobrescribir onMouseClick para agregar comportamiento personalizado</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Override</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> boolean</span><span style="color:#B392F0"> onMouseClick</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> mouseX, </span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> mouseY, </span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> mouseButton) {</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> (</span><span style="color:#79B8FF">super</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">onMouseClick</span><span style="color:#E1E4E8">(mouseX, mouseY, mouseButton)) {</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#79B8FF"> true</span><span style="color:#E1E4E8">; </span><span style="color:#6A737D">// Ya fue manejado por un hijo</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> (</span><span style="color:#B392F0">isMouseOver</span><span style="color:#E1E4E8">(mouseX, mouseY) </span><span style="color:#F97583">&#x26;&#x26;</span><span style="color:#E1E4E8"> mouseButton </span><span style="color:#F97583">==</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Custom click logic"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#79B8FF"> true</span><span style="color:#E1E4E8">; </span><span style="color:#6A737D">// Consumido</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">; </span><span style="color:#6A737D">// No manejado</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="gestión-del-foco">Gestión del Foco</h3>
+<p>Solo un componente puede tener el foco a la vez. El foco se almacena en el componente raíz.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">textField.</span><span style="color:#B392F0">requestFocus</span><span style="color:#E1E4E8">();   </span><span style="color:#6A737D">// Otorga el foco al campo de texto</span></span>
+<span class="line"><span style="color:#E1E4E8">textField.</span><span style="color:#B392F0">clearFocus</span><span style="color:#E1E4E8">();     </span><span style="color:#6A737D">// Elimina el foco</span></span>
+<span class="line"><span style="color:#E1E4E8">textField.</span><span style="color:#B392F0">isFocused</span><span style="color:#E1E4E8">();      </span><span style="color:#6A737D">// Retorna true si tiene el foco</span></span></code></pre>
+<p>El foco se elimina automáticamente al hacer clic fuera del componente enfocado.</p>
+<h2 id="6-estado-reactivo-statet">6. Estado Reactivo (<code>State&#x3C;T></code>)</h2>
+<p><code>State&#x3C;T></code> es un contenedor reactivo que notifica a los listeners cuando su valor cambia. Es el mecanismo principal para el enlace de datos en X4UI.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.common.State;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">State&#x3C;</span><span style="color:#F97583">Integer</span><span style="color:#E1E4E8">> counter </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> State&#x3C;>(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Escuchar cambios</span></span>
+<span class="line"><span style="color:#E1E4E8">counter.</span><span style="color:#B392F0">addListener</span><span style="color:#E1E4E8">(value </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Counter: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> value));</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">counter.</span><span style="color:#B392F0">set</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">);  </span><span style="color:#6A737D">// Imprime: Counter: 1</span></span>
+<span class="line"><span style="color:#E1E4E8">counter.</span><span style="color:#B392F0">set</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">5</span><span style="color:#E1E4E8">);  </span><span style="color:#6A737D">// Imprime: Counter: 5</span></span>
+<span class="line"><span style="color:#E1E4E8">counter.</span><span style="color:#B392F0">set</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">5</span><span style="color:#E1E4E8">);  </span><span style="color:#6A737D">// No imprime (valor sin cambio, deduplicado)</span></span></code></pre>
+<h3 id="estado-derivado-con-map">Estado Derivado con <code>map()</code></h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">State&#x3C;</span><span style="color:#F97583">Integer</span><span style="color:#E1E4E8">> count </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> State&#x3C;>(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">State&#x3C;</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">> label </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> count.</span><span style="color:#B392F0">map</span><span style="color:#E1E4E8">(c </span><span style="color:#F97583">-></span><span style="color:#9ECBFF"> "Count: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> c);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">label.</span><span style="color:#B392F0">addListener</span><span style="color:#E1E4E8">(System.out</span><span style="color:#F97583">::</span><span style="color:#E1E4E8">println);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">count.</span><span style="color:#B392F0">set</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">);  </span><span style="color:#6A737D">// Imprime: Count: 1</span></span>
+<span class="line"><span style="color:#E1E4E8">count.</span><span style="color:#B392F0">set</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">);  </span><span style="color:#6A737D">// Imprime: Count: 2</span></span></code></pre>
+<h3 id="enlazar-estado-a-componentes">Enlazar Estado a Componentes</h3>
+<p>Use <code>bindState()</code> en cualquier <code>GuiComponent</code> para actualizar automáticamente cuando el estado cambia. La función de回调 se garantiza que se ejecute en el hilo de renderizado. Los enlaces se eliminan automáticamente cuando se llama <code>destroy()</code>.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">State&#x3C;</span><span style="color:#F97583">Boolean</span><span style="color:#E1E4E8">> showButton </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> State&#x3C;>(</span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">GuiButton btn </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> GuiButton</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">100</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Dynamic"</span><span style="color:#E1E4E8">, () </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> {});</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">btn.</span><span style="color:#B392F0">bindState</span><span style="color:#E1E4E8">(showButton, visible </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> btn.</span><span style="color:#B392F0">setVisible</span><span style="color:#E1E4E8">(visible));</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Después: showButton.set(false) oculta el botón</span></span>
+<span class="line"><span style="color:#6A737D">// showButton.set(true) lo muestra de nuevo</span></span></code></pre>
+<h3 id="enlazar-estado-mediante-guibuilder">Enlazar Estado mediante GuiBuilder</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">State&#x3C;</span><span style="color:#F97583">Boolean</span><span style="color:#E1E4E8">> enabled </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> State&#x3C;>(</span><span style="color:#79B8FF">false</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">GuiBuilder.</span><span style="color:#B392F0">createButton</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Submit"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">position</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">size</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">100</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">bindEnabled</span><span style="color:#E1E4E8">(enabled)</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">build</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Después: enabled.set(true) habilita el botón</span></span></code></pre>
+<h3 id="estado-en-contenedores">Estado en Contenedores</h3>
+<p><code>State&#x3C;T></code> se encuentra en <code>com.x4yi.x4ui.common</code>, lo que lo hace seguro para usar tanto en cliente como en servidor. Para la sincronización de servidor a cliente, use <code>NetworkSyncHelper</code> (véase <code>networking-and-sync.md</code>).</p>
+<h2 id="7-temas-itheme">7. Temas (<code>ITheme</code>)</h2>
+<p>Los temas definen todos los estilos visuales usados por los componentes. Cada componente resuelve su tema recorriendo la cadena de padres. Si no se encuentra ningún tema, se usa <code>DefaultTheme.INSTANCE</code>.</p>
+<h3 id="defaulttheme">DefaultTheme</h3>
+<p>El tema oscuro integrado con colores inspirados en Material Design:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Token</th><th>Color</th><th>Descripción</th></tr></thead><tbody><tr><td>Primary</td><td><code>0xFF3B82F6</code></td><td>Acento azul</td></tr><tr><td>Background</td><td><code>0xFF1F2937</code></td><td>Gris oscuro</td></tr><tr><td>Text</td><td><code>0xFFF3F4F6</code></td><td>Gris claro</td></tr><tr><td>Button BG</td><td><code>0x80000000</code></td><td>Negro semitransparente</td></tr><tr><td>Button Hover</td><td><code>0xFF29B6F6</code></td><td>Azul claro</td></tr><tr><td>Slider Fill</td><td><code>0xFF29B6F6</code></td><td>Azul claro</td></tr></tbody></table>
+<h3 id="aplicar-un-tema">Aplicar un Tema</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.utils.DefaultTheme;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Aplicar a toda la pantalla</span></span>
+<span class="line"><span style="color:#B392F0">setTheme</span><span style="color:#E1E4E8">(DefaultTheme.INSTANCE);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Aplicar a un subárbol específico</span></span>
+<span class="line"><span style="color:#E1E4E8">myPanel.</span><span style="color:#B392F0">setTheme</span><span style="color:#E1E4E8">(customTheme);</span></span></code></pre>
+<h3 id="implementar-un-tema-personalizado">Implementar un Tema Personalizado</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.utils.ITheme;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiComponent;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.util.List;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> MyTheme</span><span style="color:#F97583"> implements</span><span style="color:#B392F0"> ITheme</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span><span style="color:#F97583"> public</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> getPrimaryColor</span><span style="color:#E1E4E8">()           { </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> 0xFF6200EA</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span><span style="color:#F97583"> public</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> getSecondaryColor</span><span style="color:#E1E4E8">()          { </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> 0xFF03DAC5</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span><span style="color:#F97583"> public</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> getBackgroundColor</span><span style="color:#E1E4E8">()         { </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> 0xFF121212</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span><span style="color:#F97583"> public</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> getTextColor</span><span style="color:#E1E4E8">()               { </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> 0xFFE0E0E0</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span><span style="color:#F97583"> public</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> getDisabledTextColor</span><span style="color:#E1E4E8">()       { </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> 0xFF757575</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span><span style="color:#F97583"> public</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> getButtonBackgroundColor</span><span style="color:#E1E4E8">()   { </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> 0x80000000</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span><span style="color:#F97583"> public</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> getButtonHoverColor</span><span style="color:#E1E4E8">()        { </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> 0xFF6200EA</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span><span style="color:#F97583"> public</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> getButtonDisabledColor</span><span style="color:#E1E4E8">()     { </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> 0x40000000</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span><span style="color:#F97583"> public</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> getScrollbarTrackColor</span><span style="color:#E1E4E8">()     { </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> 0xFF2C2C36</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span><span style="color:#F97583"> public</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> getScrollbarThumbColor</span><span style="color:#E1E4E8">()     { </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> 0xFF555560</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span><span style="color:#F97583"> public</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> getScrollbarThumbHoverColor</span><span style="color:#E1E4E8">(){ </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> 0xFF777782</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span><span style="color:#F97583"> public</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> getSliderTrackColor</span><span style="color:#E1E4E8">()        { </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> 0xFF2C2C36</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span><span style="color:#F97583"> public</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> getSliderFillColor</span><span style="color:#E1E4E8">()         { </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> 0xFF6200EA</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span><span style="color:#F97583"> public</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> getSliderHandleColor</span><span style="color:#E1E4E8">()       { </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> 0xFFBBBBCC</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span><span style="color:#F97583"> public</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> getSliderHandleHoverColor</span><span style="color:#E1E4E8">()  { </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> 0xFFFFFFFF</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span><span style="color:#F97583"> public</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> getTextInputBackgroundColor</span><span style="color:#E1E4E8">(){ </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> 0xFF16161E</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span><span style="color:#F97583"> public</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> getTextInputBorderColor</span><span style="color:#E1E4E8">()    { </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> 0xFF2C2C36</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span><span style="color:#F97583"> public</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> getTextInputFocusedBorderColor</span><span style="color:#E1E4E8">() { </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> 0xFF6200EA</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span><span style="color:#F97583"> public</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> getTooltipBackgroundColor</span><span style="color:#E1E4E8">()  { </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> 0xE01A1A24</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span><span style="color:#F97583"> public</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> getTooltipBorderColor</span><span style="color:#E1E4E8">()      { </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> 0xFF3B3B48</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span><span style="color:#F97583"> public</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> getTooltipTextColor</span><span style="color:#E1E4E8">()        { </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> 0xFFE0E0E0</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span><span style="color:#F97583"> public</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> getTooltipPadding</span><span style="color:#E1E4E8">()          { </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> 6</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span><span style="color:#F97583"> public</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> getTooltipGap</span><span style="color:#E1E4E8">()              { </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> 2</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> drawTooltip</span><span style="color:#E1E4E8">(List&#x3C;</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">> </span><span style="color:#FFAB70">lines</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">int</span><span style="color:#FFAB70"> mouseX</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">int</span><span style="color:#FFAB70"> mouseY</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">int</span><span style="color:#FFAB70"> screenW</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">int</span><span style="color:#FFAB70"> screenH</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#6A737D">        // Implementar renderizado de tooltip</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> drawTooltipComponent</span><span style="color:#E1E4E8">(GuiComponent </span><span style="color:#FFAB70">component</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">int</span><span style="color:#FFAB70"> mouseX</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">int</span><span style="color:#FFAB70"> mouseY</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">int</span><span style="color:#FFAB70"> screenW</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">int</span><span style="color:#FFAB70"> screenH</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#6A737D">        // Implementar renderizado de componente tooltip personalizado</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h2 id="8-tooltips">8. Tooltips</h2>
+<p>Cualquier <code>GuiComponent</code> puede mostrar un tooltip al pasar el cursor. Los tooltips son renderizados por el tema.</p>
+<h3 id="tooltip-de-texto">Tooltip de Texto</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">button.</span><span style="color:#B392F0">setTooltip</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Click to save your progress"</span><span style="color:#E1E4E8">);</span></span></code></pre>
+<h3 id="tooltip-multilínea">Tooltip Multilínea</h3>
+<p>Use <code>\n</code> para saltos de línea:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">button.</span><span style="color:#B392F0">setTooltip</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Line 1</span><span style="color:#79B8FF">\n</span><span style="color:#9ECBFF">Line 2</span><span style="color:#79B8FF">\n</span><span style="color:#9ECBFF">Line 3"</span><span style="color:#E1E4E8">);</span></span></code></pre>
+<h3 id="componente-tooltip-personalizado">Componente Tooltip Personalizado</h3>
+<p>Para tooltips enriquecidos, cree un componente personalizado:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiPanel;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiLabel;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.layout.FlexDirection;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">GuiPanel tooltipPanel </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> GuiPanel</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">150</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">60</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">tooltipPanel.</span><span style="color:#B392F0">setFlexDirection</span><span style="color:#E1E4E8">(FlexDirection.VERTICAL);</span></span>
+<span class="line"><span style="color:#E1E4E8">tooltipPanel.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiLabel</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Custom Tooltip"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0xFF00E5FF</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"><span style="color:#E1E4E8">tooltipPanel.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiLabel</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"With multiple lines"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0xFFAAAAAA</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">button.</span><span style="color:#B392F0">setTooltipComponent</span><span style="color:#E1E4E8">(tooltipPanel);</span></span></code></pre>
+<h3 id="propagación-de-tooltips">Propagación de Tooltips</h3>
+<p>Los tooltips se resuelven recorriendo la cadena de padres. Si un hijo no tiene tooltip, se usa el tooltip del padre. El componente más profundo con tooltip bajo el cursor es el que se muestra.</p>
+<h2 id="9-sistema-de-dirty-flags-rendimiento">9. Sistema de Dirty Flags (Rendimiento)</h2>
+<p>X4UI utiliza un modelo de evaluación perezosa con dirty flags para evitar recálculos innecesarios:</p>
+<ul>
+<li><code>requestLayout()</code> — Marca el componente como necesitando re-diseño. El motor de diseño se ejecuta en el siguiente <code>tick()</code>.</li>
+<li><code>requestRender()</code> — Marca el componente como necesitando re-ordenación del orden de renderizado. Los hijos se re-ordenan por <code>layer</code> en el siguiente renderizado.</li>
+<li><code>markDirty()</code> — Llama a <code>requestLayout()</code> y <code>requestRender()</code>.</li>
+</ul>
+<p>El diseño y la ordenación de renderizado solo se ejecutan cuando los flags están activados. Mutar propiedades puramente visuales (por ejemplo, color, texto) sin cambiar posición o tamaño evita activar el recálculo del diseño.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#6A737D">// Esto NO activa el recálculo del diseño</span></span>
+<span class="line"><span style="color:#E1E4E8">label.</span><span style="color:#B392F0">setText</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"New text"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Esto SÍ activa el recálculo del diseño</span></span>
+<span class="line"><span style="color:#E1E4E8">button.</span><span style="color:#B392F0">setWidth</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">200</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">button.</span><span style="color:#B392F0">setHeight</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">30</span><span style="color:#E1E4E8">);</span></span></code></pre>
+<h2 id="10-sistema-de-capas-z-index">10. Sistema de Capas (Z-Index)</h2>
+<p>Cada componente tiene un entero <code>layer</code>. Los hijos se renderizan en orden ascendente de capa. Las capas más altas se renderizan encima.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">background.</span><span style="color:#B392F0">setLayer</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">);   </span><span style="color:#6A737D">// Se renderiza primero (detrás)</span></span>
+<span class="line"><span style="color:#E1E4E8">foreground.</span><span style="color:#B392F0">setLayer</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">);  </span><span style="color:#6A737D">// Se renderiza último (al frente)</span></span>
+<span class="line"><span style="color:#E1E4E8">popup.</span><span style="color:#B392F0">setLayer</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">100</span><span style="color:#E1E4E8">);      </span><span style="color:#6A737D">// Se renderiza encima de todo</span></span></code></pre>
+<p>El componente <code>GuiDropdown</code> usa <code>layer = 100</code> por defecto para que su popup se renderice encima de otros componentes.</p>
+<h2 id="11-motor-de-animación-guianimator">11. Motor de Animación (<code>GuiAnimator</code>)</h2>
+<p>Un sistema de animación de propiedades basado en tiempo con funciones de aceleración (easing).</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.animation.GuiAnimator;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.animation.GuiAnimator.Easing;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Animar una propiedad float de 0 a 1 en 500ms con ease-out</span></span>
+<span class="line"><span style="color:#E1E4E8">GuiAnimator.</span><span style="color:#B392F0">animate</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#E1E4E8">    myComponent,           </span><span style="color:#6A737D">// objeto objetivo</span></span>
+<span class="line"><span style="color:#9ECBFF">    "opacity"</span><span style="color:#E1E4E8">,             </span><span style="color:#6A737D">// nombre de la propiedad (String)</span></span>
+<span class="line"><span style="color:#79B8FF">    0.0f</span><span style="color:#E1E4E8">,                  </span><span style="color:#6A737D">// valor inicial</span></span>
+<span class="line"><span style="color:#79B8FF">    1.0f</span><span style="color:#E1E4E8">,                  </span><span style="color:#6A737D">// valor final</span></span>
+<span class="line"><span style="color:#79B8FF">    500</span><span style="color:#E1E4E8">,                   </span><span style="color:#6A737D">// duración en milisegundos</span></span>
+<span class="line"><span style="color:#E1E4E8">    Easing.EASE_OUT,       </span><span style="color:#6A737D">// función de aceleración</span></span>
+<span class="line"><span style="color:#F97583">    new</span><span style="color:#E1E4E8"> GuiAnimator.</span><span style="color:#B392F0">AnimationCallback</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">        @</span><span style="color:#F97583">Override</span><span style="color:#F97583"> public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> onUpdate</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">float</span><span style="color:#E1E4E8"> value) {</span></span>
+<span class="line"><span style="color:#6A737D">            // Llamado cada cuadro con el valor interpolado</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">        @</span><span style="color:#F97583">Override</span><span style="color:#F97583"> public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> onComplete</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#6A737D">            // Llamado cuando la animación termina</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">);</span></span></code></pre>
+<h3 id="funciones-de-aceleración">Funciones de Aceleración</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Aceleración</th><th>Descripción</th></tr></thead><tbody><tr><td><code>LINEAR</code></td><td>Velocidad constante</td></tr><tr><td><code>EASE_IN</code></td><td>Inicio lento, final rápido</td></tr><tr><td><code>EASE_OUT</code></td><td>Inicio rápido, final lento</td></tr><tr><td><code>EASE_IN_OUT</code></td><td>Inicio y final lentos</td></tr></tbody></table>
+<h3 id="notas-importantes">Notas Importantes</h3>
+<ul>
+<li><code>GuiAnimator.update()</code> se debe llamar cada cuadro para actualizar las animaciones.</li>
+<li>Las animaciones en el mismo objetivo+propiedad se reemplazan (solo una activa por propiedad).</li>
+<li>Llame a <code>GuiAnimator.clearAnimations()</code> para cancelar todas las animaciones activas.</li>
+</ul>
+<h2 id="12-caché-de-ancho-de-fuente">12. Caché de Ancho de Fuente</h2>
+<p><code>FontWidthCache</code> proporciona una caché LRU por mod para los resultados de <code>FontRenderer.getStringWidth()</code>. Esto previene fugas de memoria en UIs con mucho texto (por ejemplo, <code>GuiMarkdown</code>) limitando las entradas en caché a 10,000 por namespace de mod.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.utils.FontWidthCache;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Usar en componentes personalizados</span></span>
+<span class="line"><span style="color:#F97583">int</span><span style="color:#E1E4E8"> width </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> FontWidthCache.</span><span style="color:#B392F0">getStringWidth</span><span style="color:#E1E4E8">(fontRenderer, </span><span style="color:#9ECBFF">"Hello World"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"mymod"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Limpiar la caché cuando ya no se necesite</span></span>
+<span class="line"><span style="color:#E1E4E8">FontWidthCache.</span><span style="color:#B392F0">clearCache</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"mymod"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">FontWidthCache.</span><span style="color:#B392F0">clearAll</span><span style="color:#E1E4E8">();</span></span></code></pre>
+<h2 id="13-scissorhelper">13. ScissorHelper</h2>
+<p><code>ScissorHelper</code> gestiona regiones de scissor OpenGL anidadas. Cada <code>pushScissor()</code> intersecciona con la región de scissor actual (semántica similar a <code>overflow: hidden</code> de CSS).</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.utils.ScissorHelper;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">ScissorHelper.</span><span style="color:#B392F0">pushScissor</span><span style="color:#E1E4E8">(x </span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> scale, y </span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> scale, w </span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> scale, h </span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> scale);</span></span>
+<span class="line"><span style="color:#6A737D">// ... renderizar contenido recortado ...</span></span>
+<span class="line"><span style="color:#E1E4E8">ScissorHelper.</span><span style="color:#B392F0">popScissor</span><span style="color:#E1E4E8">();</span></span></code></pre>
+<p>Esto se usa internamente por <code>GuiScrollPanel</code> para el recorte de desplazamiento. Los componentes que se renderizan fuera de la región de scissor son recortados.</p>
+<h2 id="14-delta-time">14. Delta Time</h2>
+<p><code>GuiBaseScreen.deltaTime</code> es un float estático (en segundos) que representa el tiempo entre el cuadro actual y el anterior. Está limitado a 0.1s para evitar saltos de animación después de picos de latencia.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">float</span><span style="color:#E1E4E8"> dt </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> GuiBaseScreen.deltaTime;</span></span>
+<span class="line"><span style="color:#F97583">float</span><span style="color:#E1E4E8"> speed </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 10f</span><span style="color:#F97583"> *</span><span style="color:#E1E4E8"> dt; </span><span style="color:#6A737D">// Velocidad independiente de FPS</span></span></code></pre>
+<p>Todos los componentes integrados usan delta time para animaciones (interpolación de hover, animación de toggle, suavizado de desplazamiento).
+</p>
+
+</div>
+
+
+<div data-i18n="en">
+
+<h1 id="core-concepts">Core Concepts</h1>
+<p>This document covers the foundational systems of X4UI: the component tree, coordinate system, layout engine, event propagation, reactive state, theming, the builder API, animation, and memory management.</p>
+<h2 id="1-component-tree">1. Component Tree</h2>
+<p>X4UI uses a retained-mode component tree (Composite pattern). Every UI element extends <code>GuiComponent</code>. Components form a parent-child hierarchy rooted at <code>rootPanel</code>.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>rootPanel (GuiPanel)</span></span>
+<span class="line"><span>├── headerPanel (GuiPanel)</span></span>
+<span class="line"><span>│   ├── GuiLabel "Title"</span></span>
+<span class="line"><span>│   └── GuiButton "Close"</span></span>
+<span class="line"><span>├── contentPanel (GuiScrollPanel)</span></span>
+<span class="line"><span>│   ├── GuiButton "Item 1"</span></span>
+<span class="line"><span>│   ├── GuiButton "Item 2"</span></span>
+<span class="line"><span>│   └── GuiButton "Item 3"</span></span>
+<span class="line"><span>└── footerPanel (GuiPanel)</span></span>
+<span class="line"><span>    └── GuiSliderInt</span></span></code></pre>
+<h3 id="adding-and-removing-children">Adding and Removing Children</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">GuiPanel panel </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> GuiPanel</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">200</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">300</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">GuiButton btn </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> GuiButton</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">100</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Click"</span><span style="color:#E1E4E8">, () </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> {});</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">panel.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(btn);       </span><span style="color:#6A737D">// Adds btn as a child of panel</span></span>
+<span class="line"><span style="color:#E1E4E8">panel.</span><span style="color:#B392F0">removeChild</span><span style="color:#E1E4E8">(btn);    </span><span style="color:#6A737D">// Removes btn from panel</span></span>
+<span class="line"><span style="color:#E1E4E8">panel.</span><span style="color:#B392F0">clearChildren</span><span style="color:#E1E4E8">();     </span><span style="color:#6A737D">// Removes all children</span></span>
+<span class="line"><span style="color:#E1E4E8">panel.</span><span style="color:#B392F0">getChildren</span><span style="color:#E1E4E8">();       </span><span style="color:#6A737D">// Returns the children list</span></span></code></pre>
+<h3 id="component-lifecycle">Component Lifecycle</h3>
+<ol>
+<li><strong>Construction</strong> — <code>new GuiComponent(x, y, width, height)</code> sets position and size.</li>
+<li><strong>Attachment</strong> — <code>addChild()</code> sets the parent reference and marks the parent dirty.</li>
+<li><strong>Tick</strong> — <code>tick(float deltaTime)</code> is called each frame. Runs pending layout, then ticks all children.</li>
+<li><strong>Render</strong> — <code>render(mouseX, mouseY, partialTicks)</code> calls <code>renderSelf()</code> then <code>renderChildren()</code>.</li>
+<li><strong>Destroy</strong> — <code>destroy()</code> runs all unbinders (from <code>bindState()</code>), then destroys all children.</li>
+</ol>
+<p>When a screen closes (<code>onGuiClosed()</code>), <code>rootPanel.destroy()</code> is called automatically, which cascades <code>destroy()</code> to every component in the tree.</p>
+<h2 id="2-coordinate-system">2. Coordinate System</h2>
+<p>All coordinates are <strong>relative to the parent component</strong>. A child at <code>(x: 10, y: 10)</code> inside a parent at <code>(x: 50, y: 50)</code> renders at screen position <code>(60, 60)</code>.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">GuiPanel parent </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> GuiPanel</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">50</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">50</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">200</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">200</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">GuiButton child </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> GuiButton</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">80</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Button"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">null</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">parent.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(child);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// child.getAbsoluteX() == 60</span></span>
+<span class="line"><span style="color:#6A737D">// child.getAbsoluteY() == 60</span></span></code></pre>
+<p>The <code>getAbsoluteX()</code> and <code>getAbsoluteY()</code> methods walk up the parent chain to compute the screen-space position.</p>
+<h3 id="opengl-scissor-clipping">OpenGL Scissor Clipping</h3>
+<p>Child components rendered outside their parent’s bounds are clipped via OpenGL scissor. This is applied automatically by <code>GuiScrollPanel</code> and any container that overrides <code>renderChildren()</code>.</p>
+<h2 id="3-flexbox-layout-flexlayout">3. Flexbox Layout (<code>FlexLayout</code>)</h2>
+<p><code>GuiPanel</code> uses a <code>FlexLayout</code> manager that arranges children sequentially. When a flex direction is set, children ignore their static <code>x/y</code> values and are positioned by the layout engine.</p>
+<h3 id="flexdirection-1">FlexDirection</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.layout.FlexDirection;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">panel.</span><span style="color:#B392F0">setFlexDirection</span><span style="color:#E1E4E8">(FlexDirection.VERTICAL);    </span><span style="color:#6A737D">// Stack children top-to-bottom</span></span>
+<span class="line"><span style="color:#E1E4E8">panel.</span><span style="color:#B392F0">setFlexDirection</span><span style="color:#E1E4E8">(FlexDirection.HORIZONTAL);  </span><span style="color:#6A737D">// Stack children left-to-right</span></span>
+<span class="line"><span style="color:#E1E4E8">panel.</span><span style="color:#B392F0">setFlexDirection</span><span style="color:#E1E4E8">(FlexDirection.ABSOLUTE);    </span><span style="color:#6A737D">// Children use their own x/y (default)</span></span></code></pre>
+<h3 id="gap">Gap</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">panel.</span><span style="color:#B392F0">setGap</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">5</span><span style="color:#E1E4E8">);  </span><span style="color:#6A737D">// 5px spacing between each child</span></span></code></pre>
+<h3 id="flex-wrap">Flex Wrap</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">panel.</span><span style="color:#B392F0">setFlexWrap</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">);  </span><span style="color:#6A737D">// Wraps children to the next row/column when they exceed the parent's dimensions</span></span></code></pre>
+<h3 id="layout-behavior">Layout Behavior</h3>
+<ul>
+<li><strong>VERTICAL</strong>: Children are stacked top-to-bottom. The parent’s height auto-sizes to fit all children (unless <code>flexWrap</code> is enabled).</li>
+<li><strong>HORIZONTAL</strong>: Children are stacked left-to-right. The parent’s width auto-sizes to fit all children (unless <code>flexWrap</code> is enabled).</li>
+<li><strong>ABSOLUTE</strong>: No automatic positioning. Each child uses its own <code>x/y</code> values.</li>
+<li>Parent <code>padding</code> creates inner spacing. Child <code>margin</code> creates outer spacing around each child.</li>
+<li>Invisible children are skipped by the layout engine.</li>
+</ul>
+<h3 id="full-example">Full Example</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiPanel;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiButton;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.layout.FlexDirection;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.utils.Insets;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">GuiPanel form </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> GuiPanel</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">200</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">250</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">form.</span><span style="color:#B392F0">setFlexDirection</span><span style="color:#E1E4E8">(FlexDirection.VERTICAL);</span></span>
+<span class="line"><span style="color:#E1E4E8">form.</span><span style="color:#B392F0">setGap</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">4</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">form.</span><span style="color:#B392F0">setPadding</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> Insets</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">8</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">form.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiButton</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">180</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Save"</span><span style="color:#E1E4E8">, () </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Saved"</span><span style="color:#E1E4E8">)));</span></span>
+<span class="line"><span style="color:#E1E4E8">form.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiButton</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">180</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Cancel"</span><span style="color:#E1E4E8">, () </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Cancelled"</span><span style="color:#E1E4E8">)));</span></span>
+<span class="line"><span style="color:#E1E4E8">form.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiButton</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">180</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Delete"</span><span style="color:#E1E4E8">, () </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Deleted"</span><span style="color:#E1E4E8">)));</span></span></code></pre>
+<p>The buttons are stacked vertically with 4px gaps, inside an 8px padding area.</p>
+<h2 id="4-insets-padding-and-margin">4. Insets (Padding and Margin)</h2>
+<p><code>Insets</code> is an immutable value object for spacing, analogous to CSS shorthand.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.utils.Insets;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">new</span><span style="color:#B392F0"> Insets</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">5</span><span style="color:#E1E4E8">);              </span><span style="color:#6A737D">// All sides: 5</span></span>
+<span class="line"><span style="color:#F97583">new</span><span style="color:#B392F0"> Insets</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">5</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">);          </span><span style="color:#6A737D">// Vertical: 5, Horizontal: 10</span></span>
+<span class="line"><span style="color:#F97583">new</span><span style="color:#B392F0"> Insets</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">4</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">6</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">8</span><span style="color:#E1E4E8">);    </span><span style="color:#6A737D">// Top: 2, Right: 4, Bottom: 6, Left: 8</span></span>
+<span class="line"><span style="color:#E1E4E8">Insets.ZERO;                </span><span style="color:#6A737D">// Constant for no spacing</span></span></code></pre>
+<p>Apply to components:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">panel.</span><span style="color:#B392F0">setPadding</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> Insets</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">));          </span><span style="color:#6A737D">// Inner spacing inside the panel</span></span>
+<span class="line"><span style="color:#E1E4E8">button.</span><span style="color:#B392F0">setMargin</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> Insets</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">5</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">)); </span><span style="color:#6A737D">// 5px margin below the button</span></span></code></pre>
+<h2 id="5-event-system">5. Event System</h2>
+<p>Events propagate from the root component down through the tree. The root (<code>GuiBaseScreen</code> or <code>GuiBaseContainer</code>) receives raw Minecraft events and forwards them to <code>rootPanel</code>.</p>
+<h3 id="event-types">Event Types</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Event</th><th>Method</th><th>Description</th></tr></thead><tbody><tr><td>Mouse click</td><td><code>onMouseClick(mouseX, mouseY, mouseButton)</code></td><td>Left (0), right (1), middle (2)</td></tr><tr><td>Mouse release</td><td><code>onMouseRelease(mouseX, mouseY, state)</code></td><td>After click release</td></tr><tr><td>Mouse drag</td><td><code>onMouseDrag(mouseX, mouseY, button, timeSinceLastClick)</code></td><td>While button held</td></tr><tr><td>Mouse scroll</td><td><code>onMouseScroll(mouseX, mouseY, wheel)</code></td><td>Scroll wheel</td></tr><tr><td>Key press</td><td><code>onKeyPress(typedChar, keyCode)</code></td><td>Keyboard input</td></tr></tbody></table>
+<h3 id="propagation-order">Propagation Order</h3>
+<p>Events iterate children in <strong>reverse render order</strong> (topmost/highest-layer child first). If a child returns <code>true</code> from an event handler, propagation stops (the event is consumed).</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">GuiButton btn </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> GuiButton</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">100</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Click"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">null</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Override onMouseClick to add custom behavior</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Override</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> boolean</span><span style="color:#B392F0"> onMouseClick</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> mouseX, </span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> mouseY, </span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> mouseButton) {</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> (</span><span style="color:#79B8FF">super</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">onMouseClick</span><span style="color:#E1E4E8">(mouseX, mouseY, mouseButton)) {</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#79B8FF"> true</span><span style="color:#E1E4E8">; </span><span style="color:#6A737D">// Already handled by a child</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> (</span><span style="color:#B392F0">isMouseOver</span><span style="color:#E1E4E8">(mouseX, mouseY) </span><span style="color:#F97583">&#x26;&#x26;</span><span style="color:#E1E4E8"> mouseButton </span><span style="color:#F97583">==</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Custom click logic"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#79B8FF"> true</span><span style="color:#E1E4E8">; </span><span style="color:#6A737D">// Consumed</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">; </span><span style="color:#6A737D">// Not handled</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="focus-management">Focus Management</h3>
+<p>Only one component can be focused at a time. Focus is stored on the root component.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">textField.</span><span style="color:#B392F0">requestFocus</span><span style="color:#E1E4E8">();   </span><span style="color:#6A737D">// Gives focus to the text field</span></span>
+<span class="line"><span style="color:#E1E4E8">textField.</span><span style="color:#B392F0">clearFocus</span><span style="color:#E1E4E8">();     </span><span style="color:#6A737D">// Removes focus</span></span>
+<span class="line"><span style="color:#E1E4E8">textField.</span><span style="color:#B392F0">isFocused</span><span style="color:#E1E4E8">();      </span><span style="color:#6A737D">// Returns true if focused</span></span></code></pre>
+<p>Focus is automatically cleared when clicking outside the focused component.</p>
+<h2 id="6-reactive-state-statet">6. Reactive State (<code>State&#x3C;T></code>)</h2>
+<p><code>State&#x3C;T></code> is a reactive container that notifies listeners when its value changes. It is the primary mechanism for data binding in X4UI.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.common.State;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">State&#x3C;</span><span style="color:#F97583">Integer</span><span style="color:#E1E4E8">> counter </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> State&#x3C;>(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Listen for changes</span></span>
+<span class="line"><span style="color:#E1E4E8">counter.</span><span style="color:#B392F0">addListener</span><span style="color:#E1E4E8">(value </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Counter: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> value));</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">counter.</span><span style="color:#B392F0">set</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">);  </span><span style="color:#6A737D">// Prints: Counter: 1</span></span>
+<span class="line"><span style="color:#E1E4E8">counter.</span><span style="color:#B392F0">set</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">5</span><span style="color:#E1E4E8">);  </span><span style="color:#6A737D">// Prints: Counter: 5</span></span>
+<span class="line"><span style="color:#E1E4E8">counter.</span><span style="color:#B392F0">set</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">5</span><span style="color:#E1E4E8">);  </span><span style="color:#6A737D">// No print (value unchanged, deduplicated)</span></span></code></pre>
+<h3 id="derived-state-with-map">Derived State with <code>map()</code></h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">State&#x3C;</span><span style="color:#F97583">Integer</span><span style="color:#E1E4E8">> count </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> State&#x3C;>(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">State&#x3C;</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">> label </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> count.</span><span style="color:#B392F0">map</span><span style="color:#E1E4E8">(c </span><span style="color:#F97583">-></span><span style="color:#9ECBFF"> "Count: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> c);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">label.</span><span style="color:#B392F0">addListener</span><span style="color:#E1E4E8">(System.out</span><span style="color:#F97583">::</span><span style="color:#E1E4E8">println);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">count.</span><span style="color:#B392F0">set</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">);  </span><span style="color:#6A737D">// Prints: Count: 1</span></span>
+<span class="line"><span style="color:#E1E4E8">count.</span><span style="color:#B392F0">set</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">);  </span><span style="color:#6A737D">// Prints: Count: 2</span></span></code></pre>
+<h3 id="binding-state-to-components">Binding State to Components</h3>
+<p>Use <code>bindState()</code> on any <code>GuiComponent</code> to automatically update when the state changes. The callback is guaranteed to run on the render thread. Bindings are automatically removed when <code>destroy()</code> is called.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">State&#x3C;</span><span style="color:#F97583">Boolean</span><span style="color:#E1E4E8">> showButton </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> State&#x3C;>(</span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">GuiButton btn </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> GuiButton</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">100</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Dynamic"</span><span style="color:#E1E4E8">, () </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> {});</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">btn.</span><span style="color:#B392F0">bindState</span><span style="color:#E1E4E8">(showButton, visible </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> btn.</span><span style="color:#B392F0">setVisible</span><span style="color:#E1E4E8">(visible));</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Later: showButton.set(false) hides the button</span></span>
+<span class="line"><span style="color:#6A737D">// showButton.set(true) shows it again</span></span></code></pre>
+<h3 id="binding-state-via-guibuilder">Binding State via GuiBuilder</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">State&#x3C;</span><span style="color:#F97583">Boolean</span><span style="color:#E1E4E8">> enabled </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> State&#x3C;>(</span><span style="color:#79B8FF">false</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">GuiBuilder.</span><span style="color:#B392F0">createButton</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Submit"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">position</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">size</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">100</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">bindEnabled</span><span style="color:#E1E4E8">(enabled)</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">build</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Later: enabled.set(true) enables the button</span></span></code></pre>
+<h3 id="state-in-containers">State in Containers</h3>
+<p><code>State&#x3C;T></code> lives in <code>com.x4yi.x4ui.common</code>, making it safe to use on both client and server. For server-to-client synchronization, use <code>NetworkSyncHelper</code> (see <code>networking-and-sync.md</code>).</p>
+<h2 id="7-theming-itheme">7. Theming (<code>ITheme</code>)</h2>
+<p>Themes define all visual styles used by components. Every component resolves its theme by walking up the parent chain. If no theme is found, <code>DefaultTheme.INSTANCE</code> is used.</p>
+<h3 id="defaulttheme-1">DefaultTheme</h3>
+<p>The built-in dark theme with Material Design-inspired colors:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Token</th><th>Color</th><th>Description</th></tr></thead><tbody><tr><td>Primary</td><td><code>0xFF3B82F6</code></td><td>Blue accent</td></tr><tr><td>Background</td><td><code>0xFF1F2937</code></td><td>Dark gray</td></tr><tr><td>Text</td><td><code>0xFFF3F4F6</code></td><td>Light gray</td></tr><tr><td>Button BG</td><td><code>0x80000000</code></td><td>Semi-transparent black</td></tr><tr><td>Button Hover</td><td><code>0xFF29B6F6</code></td><td>Light blue</td></tr><tr><td>Slider Fill</td><td><code>0xFF29B6F6</code></td><td>Light blue</td></tr></tbody></table>
+<h3 id="applying-a-theme">Applying a Theme</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.utils.DefaultTheme;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Apply to entire screen</span></span>
+<span class="line"><span style="color:#B392F0">setTheme</span><span style="color:#E1E4E8">(DefaultTheme.INSTANCE);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Apply to a specific subtree</span></span>
+<span class="line"><span style="color:#E1E4E8">myPanel.</span><span style="color:#B392F0">setTheme</span><span style="color:#E1E4E8">(customTheme);</span></span></code></pre>
+<h3 id="implementing-a-custom-theme">Implementing a Custom Theme</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.utils.ITheme;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiComponent;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.util.List;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> MyTheme</span><span style="color:#F97583"> implements</span><span style="color:#B392F0"> ITheme</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span><span style="color:#F97583"> public</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> getPrimaryColor</span><span style="color:#E1E4E8">()           { </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> 0xFF6200EA</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span><span style="color:#F97583"> public</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> getSecondaryColor</span><span style="color:#E1E4E8">()          { </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> 0xFF03DAC5</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span><span style="color:#F97583"> public</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> getBackgroundColor</span><span style="color:#E1E4E8">()         { </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> 0xFF121212</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span><span style="color:#F97583"> public</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> getTextColor</span><span style="color:#E1E4E8">()               { </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> 0xFFE0E0E0</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span><span style="color:#F97583"> public</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> getDisabledTextColor</span><span style="color:#E1E4E8">()       { </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> 0xFF757575</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span><span style="color:#F97583"> public</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> getButtonBackgroundColor</span><span style="color:#E1E4E8">()   { </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> 0x80000000</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span><span style="color:#F97583"> public</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> getButtonHoverColor</span><span style="color:#E1E4E8">()        { </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> 0xFF6200EA</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span><span style="color:#F97583"> public</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> getButtonDisabledColor</span><span style="color:#E1E4E8">()     { </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> 0x40000000</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span><span style="color:#F97583"> public</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> getScrollbarTrackColor</span><span style="color:#E1E4E8">()     { </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> 0xFF2C2C36</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span><span style="color:#F97583"> public</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> getScrollbarThumbColor</span><span style="color:#E1E4E8">()     { </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> 0xFF555560</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span><span style="color:#F97583"> public</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> getScrollbarThumbHoverColor</span><span style="color:#E1E4E8">(){ </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> 0xFF777782</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span><span style="color:#F97583"> public</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> getSliderTrackColor</span><span style="color:#E1E4E8">()        { </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> 0xFF2C2C36</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span><span style="color:#F97583"> public</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> getSliderFillColor</span><span style="color:#E1E4E8">()         { </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> 0xFF6200EA</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span><span style="color:#F97583"> public</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> getSliderHandleColor</span><span style="color:#E1E4E8">()       { </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> 0xFFBBBBCC</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span><span style="color:#F97583"> public</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> getSliderHandleHoverColor</span><span style="color:#E1E4E8">()  { </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> 0xFFFFFFFF</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span><span style="color:#F97583"> public</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> getTextInputBackgroundColor</span><span style="color:#E1E4E8">(){ </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> 0xFF16161E</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span><span style="color:#F97583"> public</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> getTextInputBorderColor</span><span style="color:#E1E4E8">()    { </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> 0xFF2C2C36</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span><span style="color:#F97583"> public</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> getTextInputFocusedBorderColor</span><span style="color:#E1E4E8">() { </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> 0xFF6200EA</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span><span style="color:#F97583"> public</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> getTooltipBackgroundColor</span><span style="color:#E1E4E8">()  { </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> 0xE01A1A24</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span><span style="color:#F97583"> public</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> getTooltipBorderColor</span><span style="color:#E1E4E8">()      { </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> 0xFF3B3B48</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span><span style="color:#F97583"> public</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> getTooltipTextColor</span><span style="color:#E1E4E8">()        { </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> 0xFFE0E0E0</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span><span style="color:#F97583"> public</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> getTooltipPadding</span><span style="color:#E1E4E8">()          { </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> 6</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span><span style="color:#F97583"> public</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> getTooltipGap</span><span style="color:#E1E4E8">()              { </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> 2</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> drawTooltip</span><span style="color:#E1E4E8">(List&#x3C;</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">> </span><span style="color:#FFAB70">lines</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">int</span><span style="color:#FFAB70"> mouseX</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">int</span><span style="color:#FFAB70"> mouseY</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">int</span><span style="color:#FFAB70"> screenW</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">int</span><span style="color:#FFAB70"> screenH</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#6A737D">        // Implement tooltip rendering</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> drawTooltipComponent</span><span style="color:#E1E4E8">(GuiComponent </span><span style="color:#FFAB70">component</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">int</span><span style="color:#FFAB70"> mouseX</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">int</span><span style="color:#FFAB70"> mouseY</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">int</span><span style="color:#FFAB70"> screenW</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">int</span><span style="color:#FFAB70"> screenH</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#6A737D">        // Implement custom tooltip component rendering</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h2 id="8-tooltips-1">8. Tooltips</h2>
+<p>Any <code>GuiComponent</code> can display a tooltip on hover. Tooltips are rendered by the theme.</p>
+<h3 id="text-tooltip">Text Tooltip</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">button.</span><span style="color:#B392F0">setTooltip</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Click to save your progress"</span><span style="color:#E1E4E8">);</span></span></code></pre>
+<h3 id="multi-line-tooltip">Multi-line Tooltip</h3>
+<p>Use <code>\n</code> for line breaks:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">button.</span><span style="color:#B392F0">setTooltip</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Line 1</span><span style="color:#79B8FF">\n</span><span style="color:#9ECBFF">Line 2</span><span style="color:#79B8FF">\n</span><span style="color:#9ECBFF">Line 3"</span><span style="color:#E1E4E8">);</span></span></code></pre>
+<h3 id="custom-tooltip-component">Custom Tooltip Component</h3>
+<p>For rich tooltips, create a custom component:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiPanel;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiLabel;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.layout.FlexDirection;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">GuiPanel tooltipPanel </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> GuiPanel</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">150</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">60</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">tooltipPanel.</span><span style="color:#B392F0">setFlexDirection</span><span style="color:#E1E4E8">(FlexDirection.VERTICAL);</span></span>
+<span class="line"><span style="color:#E1E4E8">tooltipPanel.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiLabel</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Custom Tooltip"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0xFF00E5FF</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"><span style="color:#E1E4E8">tooltipPanel.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiLabel</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"With multiple lines"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0xFFAAAAAA</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">button.</span><span style="color:#B392F0">setTooltipComponent</span><span style="color:#E1E4E8">(tooltipPanel);</span></span></code></pre>
+<h3 id="tooltip-propagation">Tooltip Propagation</h3>
+<p>Tooltips are resolved by walking up the parent chain. If a child has no tooltip, the parent’s tooltip is used. The deepest component with a tooltip under the cursor is the one displayed.</p>
+<h2 id="9-dirty-flag-system-performance">9. Dirty Flag System (Performance)</h2>
+<p>X4UI uses a lazy evaluation model with dirty flags to avoid unnecessary recalculations:</p>
+<ul>
+<li><code>requestLayout()</code> — Marks the component as needing re-layout. The layout engine runs on the next <code>tick()</code>.</li>
+<li><code>requestRender()</code> — Marks the component as needing render-order re-sort. Children are re-sorted by <code>layer</code> on the next render.</li>
+<li><code>markDirty()</code> — Calls both <code>requestLayout()</code> and <code>requestRender()</code>.</li>
+</ul>
+<p>Layout and render sorting only execute when the flags are set. Mutating purely visual properties (e.g., color, text) without changing position or size avoids triggering layout recalculation.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#6A737D">// This does NOT trigger layout recalculation</span></span>
+<span class="line"><span style="color:#E1E4E8">label.</span><span style="color:#B392F0">setText</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"New text"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// This DOES trigger layout recalculation</span></span>
+<span class="line"><span style="color:#E1E4E8">button.</span><span style="color:#B392F0">setWidth</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">200</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">button.</span><span style="color:#B392F0">setHeight</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">30</span><span style="color:#E1E4E8">);</span></span></code></pre>
+<h2 id="10-layer-system-z-index">10. Layer System (Z-Index)</h2>
+<p>Each component has a <code>layer</code> integer. Children are rendered in ascending layer order. Higher layers render on top.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">background.</span><span style="color:#B392F0">setLayer</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">);   </span><span style="color:#6A737D">// Rendered first (behind)</span></span>
+<span class="line"><span style="color:#E1E4E8">foreground.</span><span style="color:#B392F0">setLayer</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">);  </span><span style="color:#6A737D">// Rendered last (in front)</span></span>
+<span class="line"><span style="color:#E1E4E8">popup.</span><span style="color:#B392F0">setLayer</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">100</span><span style="color:#E1E4E8">);      </span><span style="color:#6A737D">// Rendered above everything</span></span></code></pre>
+<p>The <code>GuiDropdown</code> component uses <code>layer = 100</code> by default so its popup renders above other components.</p>
+<h2 id="11-animation-engine-guianimator">11. Animation Engine (<code>GuiAnimator</code>)</h2>
+<p>A time-based property animation system with easing functions.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.animation.GuiAnimator;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.animation.GuiAnimator.Easing;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Animate a float property from 0 to 1 over 500ms with ease-out</span></span>
+<span class="line"><span style="color:#E1E4E8">GuiAnimator.</span><span style="color:#B392F0">animate</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#E1E4E8">    myComponent,           </span><span style="color:#6A737D">// target object</span></span>
+<span class="line"><span style="color:#9ECBFF">    "opacity"</span><span style="color:#E1E4E8">,             </span><span style="color:#6A737D">// property name (String)</span></span>
+<span class="line"><span style="color:#79B8FF">    0.0f</span><span style="color:#E1E4E8">,                  </span><span style="color:#6A737D">// start value</span></span>
+<span class="line"><span style="color:#79B8FF">    1.0f</span><span style="color:#E1E4E8">,                  </span><span style="color:#6A737D">// end value</span></span>
+<span class="line"><span style="color:#79B8FF">    500</span><span style="color:#E1E4E8">,                   </span><span style="color:#6A737D">// duration in milliseconds</span></span>
+<span class="line"><span style="color:#E1E4E8">    Easing.EASE_OUT,       </span><span style="color:#6A737D">// easing function</span></span>
+<span class="line"><span style="color:#F97583">    new</span><span style="color:#E1E4E8"> GuiAnimator.</span><span style="color:#B392F0">AnimationCallback</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">        @</span><span style="color:#F97583">Override</span><span style="color:#F97583"> public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> onUpdate</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">float</span><span style="color:#E1E4E8"> value) {</span></span>
+<span class="line"><span style="color:#6A737D">            // Called each frame with interpolated value</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">        @</span><span style="color:#F97583">Override</span><span style="color:#F97583"> public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> onComplete</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#6A737D">            // Called when animation finishes</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">);</span></span></code></pre>
+<h3 id="easing-functions">Easing Functions</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Easing</th><th>Description</th></tr></thead><tbody><tr><td><code>LINEAR</code></td><td>Constant speed</td></tr><tr><td><code>EASE_IN</code></td><td>Slow start, fast end</td></tr><tr><td><code>EASE_OUT</code></td><td>Fast start, slow end</td></tr><tr><td><code>EASE_IN_OUT</code></td><td>Slow start and end</td></tr></tbody></table>
+<h3 id="important-notes">Important Notes</h3>
+<ul>
+<li><code>GuiAnimator.update()</code> must be called every frame to tick animations.</li>
+<li>Animations on the same target+property are replaced (only one active per property).</li>
+<li>Call <code>GuiAnimator.clearAnimations()</code> to cancel all active animations.</li>
+</ul>
+<h2 id="12-font-width-cache">12. Font Width Cache</h2>
+<p><code>FontWidthCache</code> provides a per-mod LRU cache for <code>FontRenderer.getStringWidth()</code> results. This prevents memory leaks in text-heavy UIs (e.g., <code>GuiMarkdown</code>) by capping cached entries at 10,000 per mod namespace.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.utils.FontWidthCache;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Use in custom components</span></span>
+<span class="line"><span style="color:#F97583">int</span><span style="color:#E1E4E8"> width </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> FontWidthCache.</span><span style="color:#B392F0">getStringWidth</span><span style="color:#E1E4E8">(fontRenderer, </span><span style="color:#9ECBFF">"Hello World"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"mymod"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Clear cache when no longer needed</span></span>
+<span class="line"><span style="color:#E1E4E8">FontWidthCache.</span><span style="color:#B392F0">clearCache</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"mymod"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">FontWidthCache.</span><span style="color:#B392F0">clearAll</span><span style="color:#E1E4E8">();</span></span></code></pre>
+<h2 id="13-scissor-helper">13. Scissor Helper</h2>
+<p><code>ScissorHelper</code> manages nested OpenGL scissor regions. Each <code>pushScissor()</code> intersects with the current scissor region (CSS-like <code>overflow: hidden</code> semantics).</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.utils.ScissorHelper;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">ScissorHelper.</span><span style="color:#B392F0">pushScissor</span><span style="color:#E1E4E8">(x </span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> scale, y </span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> scale, w </span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> scale, h </span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> scale);</span></span>
+<span class="line"><span style="color:#6A737D">// ... render clipped content ...</span></span>
+<span class="line"><span style="color:#E1E4E8">ScissorHelper.</span><span style="color:#B392F0">popScissor</span><span style="color:#E1E4E8">();</span></span></code></pre>
+<p>This is used internally by <code>GuiScrollPanel</code> for scroll clipping. Components that render outside the scissor region are clipped.</p>
+<h2 id="14-delta-time-1">14. Delta Time</h2>
+<p><code>GuiBaseScreen.deltaTime</code> is a static float (in seconds) representing the time between the current and previous frame. It is capped at 0.1s to prevent animation jumps after lag spikes.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">float</span><span style="color:#E1E4E8"> dt </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> GuiBaseScreen.deltaTime;</span></span>
+<span class="line"><span style="color:#F97583">float</span><span style="color:#E1E4E8"> speed </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 10f</span><span style="color:#F97583"> *</span><span style="color:#E1E4E8"> dt; </span><span style="color:#6A737D">// FPS-independent speed</span></span></code></pre>
+<p>All built-in components use delta time for animations (hover lerp, toggle animation, scroll smoothing).
+</p>
+
+</div>
+</div></main><aside class="toc-sidebar" data-astro-cid-gfcwjq6c><nav class="toc" data-astro-cid-lkw5wmmf><h4 class="toc-title" data-astro-cid-lkw5wmmf><span data-i18n="es" data-astro-cid-lkw5wmmf>En esta página</span><span data-i18n="en" data-astro-cid-lkw5wmmf>On this page</span></h4><ul class="toc-list" data-astro-cid-lkw5wmmf><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#1-árbol-de-componentes" data-astro-cid-lkw5wmmf>1. Árbol de Componentes</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#agregar-y-eliminar-hijos" data-astro-cid-lkw5wmmf>Agregar y Eliminar Hijos</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#ciclo-de-vida-del-componente" data-astro-cid-lkw5wmmf>Ciclo de Vida del Componente</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#2-sistema-de-coordenadas" data-astro-cid-lkw5wmmf>2. Sistema de Coordenadas</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#recorte-con-opengl-scissor" data-astro-cid-lkw5wmmf>Recorte con OpenGL Scissor</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#3-diseño-flexbox-flexlayout" data-astro-cid-lkw5wmmf>3. Diseño Flexbox (FlexLayout)</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#flexdirection" data-astro-cid-lkw5wmmf>FlexDirection</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#espaciado-gap" data-astro-cid-lkw5wmmf>Espaciado (Gap)</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#envoltura-flex-flex-wrap" data-astro-cid-lkw5wmmf>Envoltura Flex (Flex Wrap)</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#comportamiento-del-diseño" data-astro-cid-lkw5wmmf>Comportamiento del Diseño</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#ejemplo-completo" data-astro-cid-lkw5wmmf>Ejemplo Completo</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#4-insets-padding-y-margin" data-astro-cid-lkw5wmmf>4. Insets (Padding y Margin)</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#5-sistema-de-eventos" data-astro-cid-lkw5wmmf>5. Sistema de Eventos</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#tipos-de-evento" data-astro-cid-lkw5wmmf>Tipos de Evento</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#orden-de-propagación" data-astro-cid-lkw5wmmf>Orden de Propagación</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#gestión-del-foco" data-astro-cid-lkw5wmmf>Gestión del Foco</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#6-estado-reactivo-statet" data-astro-cid-lkw5wmmf>6. Estado Reactivo (State&lt;T&gt;)</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#estado-derivado-con-map" data-astro-cid-lkw5wmmf>Estado Derivado con map()</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#enlazar-estado-a-componentes" data-astro-cid-lkw5wmmf>Enlazar Estado a Componentes</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#enlazar-estado-mediante-guibuilder" data-astro-cid-lkw5wmmf>Enlazar Estado mediante GuiBuilder</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#estado-en-contenedores" data-astro-cid-lkw5wmmf>Estado en Contenedores</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#7-temas-itheme" data-astro-cid-lkw5wmmf>7. Temas (ITheme)</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#defaulttheme" data-astro-cid-lkw5wmmf>DefaultTheme</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#aplicar-un-tema" data-astro-cid-lkw5wmmf>Aplicar un Tema</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#implementar-un-tema-personalizado" data-astro-cid-lkw5wmmf>Implementar un Tema Personalizado</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#8-tooltips" data-astro-cid-lkw5wmmf>8. Tooltips</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#tooltip-de-texto" data-astro-cid-lkw5wmmf>Tooltip de Texto</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#tooltip-multilínea" data-astro-cid-lkw5wmmf>Tooltip Multilínea</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#componente-tooltip-personalizado" data-astro-cid-lkw5wmmf>Componente Tooltip Personalizado</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#propagación-de-tooltips" data-astro-cid-lkw5wmmf>Propagación de Tooltips</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#9-sistema-de-dirty-flags-rendimiento" data-astro-cid-lkw5wmmf>9. Sistema de Dirty Flags (Rendimiento)</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#10-sistema-de-capas-z-index" data-astro-cid-lkw5wmmf>10. Sistema de Capas (Z-Index)</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#11-motor-de-animación-guianimator" data-astro-cid-lkw5wmmf>11. Motor de Animación (GuiAnimator)</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#funciones-de-aceleración" data-astro-cid-lkw5wmmf>Funciones de Aceleración</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#notas-importantes" data-astro-cid-lkw5wmmf>Notas Importantes</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#12-caché-de-ancho-de-fuente" data-astro-cid-lkw5wmmf>12. Caché de Ancho de Fuente</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#13-scissorhelper" data-astro-cid-lkw5wmmf>13. ScissorHelper</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#14-delta-time" data-astro-cid-lkw5wmmf>14. Delta Time</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#1-component-tree" data-astro-cid-lkw5wmmf>1. Component Tree</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#adding-and-removing-children" data-astro-cid-lkw5wmmf>Adding and Removing Children</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#component-lifecycle" data-astro-cid-lkw5wmmf>Component Lifecycle</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#2-coordinate-system" data-astro-cid-lkw5wmmf>2. Coordinate System</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#opengl-scissor-clipping" data-astro-cid-lkw5wmmf>OpenGL Scissor Clipping</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#3-flexbox-layout-flexlayout" data-astro-cid-lkw5wmmf>3. Flexbox Layout (FlexLayout)</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#flexdirection-1" data-astro-cid-lkw5wmmf>FlexDirection</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#gap" data-astro-cid-lkw5wmmf>Gap</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#flex-wrap" data-astro-cid-lkw5wmmf>Flex Wrap</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#layout-behavior" data-astro-cid-lkw5wmmf>Layout Behavior</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#full-example" data-astro-cid-lkw5wmmf>Full Example</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#4-insets-padding-and-margin" data-astro-cid-lkw5wmmf>4. Insets (Padding and Margin)</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#5-event-system" data-astro-cid-lkw5wmmf>5. Event System</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#event-types" data-astro-cid-lkw5wmmf>Event Types</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#propagation-order" data-astro-cid-lkw5wmmf>Propagation Order</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#focus-management" data-astro-cid-lkw5wmmf>Focus Management</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#6-reactive-state-statet" data-astro-cid-lkw5wmmf>6. Reactive State (State&lt;T&gt;)</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#derived-state-with-map" data-astro-cid-lkw5wmmf>Derived State with map()</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#binding-state-to-components" data-astro-cid-lkw5wmmf>Binding State to Components</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#binding-state-via-guibuilder" data-astro-cid-lkw5wmmf>Binding State via GuiBuilder</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#state-in-containers" data-astro-cid-lkw5wmmf>State in Containers</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#7-theming-itheme" data-astro-cid-lkw5wmmf>7. Theming (ITheme)</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#defaulttheme-1" data-astro-cid-lkw5wmmf>DefaultTheme</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#applying-a-theme" data-astro-cid-lkw5wmmf>Applying a Theme</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#implementing-a-custom-theme" data-astro-cid-lkw5wmmf>Implementing a Custom Theme</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#8-tooltips-1" data-astro-cid-lkw5wmmf>8. Tooltips</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#text-tooltip" data-astro-cid-lkw5wmmf>Text Tooltip</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#multi-line-tooltip" data-astro-cid-lkw5wmmf>Multi-line Tooltip</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#custom-tooltip-component" data-astro-cid-lkw5wmmf>Custom Tooltip Component</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#tooltip-propagation" data-astro-cid-lkw5wmmf>Tooltip Propagation</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#9-dirty-flag-system-performance" data-astro-cid-lkw5wmmf>9. Dirty Flag System (Performance)</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#10-layer-system-z-index" data-astro-cid-lkw5wmmf>10. Layer System (Z-Index)</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#11-animation-engine-guianimator" data-astro-cid-lkw5wmmf>11. Animation Engine (GuiAnimator)</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#easing-functions" data-astro-cid-lkw5wmmf>Easing Functions</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#important-notes" data-astro-cid-lkw5wmmf>Important Notes</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#12-font-width-cache" data-astro-cid-lkw5wmmf>12. Font Width Cache</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#13-scissor-helper" data-astro-cid-lkw5wmmf>13. Scissor Helper</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#14-delta-time-1" data-astro-cid-lkw5wmmf>14. Delta Time</a></li></ul></nav><script>
+  function updateTOCVisibility() {
+    const currentLang = document.documentElement.getAttribute('lang') || 'es';
+    const tocLinks = document.querySelectorAll('.toc-item a');
+    tocLinks.forEach(link => {
+      const targetId = link.getAttribute('href').substring(1);
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        const wrapper = targetElement.closest('[data-i18n]');
+        if (wrapper) {
+          const wrapperLang = wrapper.getAttribute('data-i18n');
+          if (wrapperLang !== currentLang) {
+            link.parentElement.style.display = 'none';
+          } else {
+            link.parentElement.style.display = 'block';
+          }
+        }
+      }
+    });
+  }
+  document.addEventListener('DOMContentLoaded', updateTOCVisibility);
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.attributeName === 'lang') {
+        updateTOCVisibility();
+      }
+    });
+  });
+  observer.observe(document.documentElement, { attributes: true });
+</script><div class="carbon-wrapper carbon-placeholder" aria-hidden="true" data-astro-cid-radvbx7x><div class="carbon-placeholder-inner" data-astro-cid-radvbx7x><div class="placeholder-icon" data-astro-cid-radvbx7x><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-radvbx7x><rect width="20" height="12" x="2" y="6" rx="2" data-astro-cid-radvbx7x></rect><path d="M12 12h.01" data-astro-cid-radvbx7x></path><path d="M17 12h.01" data-astro-cid-radvbx7x></path><path d="M7 12h.01" data-astro-cid-radvbx7x></path></svg></div><span class="placeholder-label" data-astro-cid-radvbx7x>Carbon Ads</span><span class="placeholder-sub" data-astro-cid-radvbx7x>Pending approval</span></div></div></aside></div><footer class="footer" data-astro-cid-jo6i4kqk><div class="footer-container" data-astro-cid-jo6i4kqk><div class="footer-info" data-astro-cid-jo6i4kqk><h3 data-astro-cid-jo6i4kqk>XHub</h3><p data-astro-cid-jo6i4kqk>The cave of X4yi. Proyects, News and Docs.</p></div><div class="footer-contact" data-astro-cid-jo6i4kqk><h4 data-astro-cid-jo6i4kqk>Contacto</h4><p data-astro-cid-jo6i4kqk>Email: <a href="mailto:contactx4yi@gd.&lt;/p&gt;mail.com" data-astro-cid-jo6i4kqk>contactx4yi@gmail.com</a></p><div class="social-links" data-astro-cid-jo6i4kqk><a href="https://github.com/X4yii" data-astro-cid-jo6i4kqk>GitHub</a></div></div></div><div class="footer-bottom" data-astro-cid-jo6i4kqk><p data-astro-cid-jo6i4kqk>&copy; 2026 X4yi. All rights reserved.</p></div></footer><dialog id="search-dialog" class="search-modal" data-astro-cid-e66w4awt><div class="search-container" data-astro-cid-e66w4awt><header class="search-header" data-astro-cid-e66w4awt><span data-i18n="es" data-astro-cid-e66w4awt>Buscar en XHub</span><span data-i18n="en" data-astro-cid-e66w4awt>Search XHub</span><button id="close-search" class="close-btn" data-astro-cid-e66w4awt>&times;</button></header><div class="search-body" data-astro-cid-e66w4awt><input type="text" id="fuse-search-input" placeholder="Search..." autocomplete="off" data-astro-cid-e66w4awt><div id="fuse-results-area" class="results-area" data-astro-cid-e66w4awt></div></div></div></dialog><script type="module" src="/xhub/_astro/SearchDialog.astro_astro_type_script_index_0_lang.C3MsqoGD.js"></script></body></html><script>
+document.addEventListener('astro:page-load', () => {
+  const toggle   = document.getElementById('sidebar-toggle');
+  const overlay  = document.getElementById('sidebar-overlay');
+  const sidebar  = document.querySelector('.sidebar');
+  const closeBtn = document.getElementById('sidebar-close-btn');
+
+  if (!sidebar) return;
+
+  function openSidebar() {
+    sidebar.classList.add('mobile-open');
+    if(overlay) overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeSidebar() {
+    sidebar.classList.remove('mobile-open');
+    if(overlay) overlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  if (toggle) toggle.addEventListener('click', openSidebar);
+  if (overlay) overlay.addEventListener('click', closeSidebar);
+  if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
+
+  document.querySelectorAll('.sidebar .nav-links a').forEach(link => {
+    link.addEventListener('click', closeSidebar);
+  });
+
+  var touchStartX = 0;
+  var touchStartY = 0;
+  var SWIPE_THRESHOLD = 60;
+  var EDGE_ZONE = 32;
+
+  document.addEventListener('touchstart', function (e) {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+
+  document.addEventListener('touchend', function (e) {
+    var dx = e.changedTouches[0].clientX - touchStartX;
+    var dy = e.changedTouches[0].clientY - touchStartY;
+
+    if (Math.abs(dx) < Math.abs(dy)) return;
+
+    var isOpen = sidebar.classList.contains('mobile-open');
+
+    if (!isOpen && touchStartX <= EDGE_ZONE && dx > SWIPE_THRESHOLD) {
+      openSidebar();
+    }
+
+    if (isOpen && dx < -SWIPE_THRESHOLD) {
+      closeSidebar();
+    }
+  }, { passive: true });
+});
+</script>

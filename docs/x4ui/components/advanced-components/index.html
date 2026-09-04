@@ -1,0 +1,878 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" type="image/svg+xml" href="/xhub/favicon.svg"><meta name="generator" content="Astro v7.2.7"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/xhub/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CYDbzu1r.js"></script><title>XHub - Advanced Components</title><meta name="description" content="El cerro de X4yi."><meta property="og:title" content="XHub - Advanced Components"><meta property="og:description" content="El cerro de X4yi."><meta property="og:image" content="/favicon.svg"><meta property="og:type" content="article"><meta property="og:url" content="https://x4yi.github.io/docs/x4ui/components/advanced-components"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="XHub - Advanced Components"><meta name="twitter:description" content="El cerro de X4yi."><meta name="twitter:image" content="/favicon.svg"><link rel="stylesheet" href="/xhub/_astro/Layout.x4fbhSDA.css"><link rel="stylesheet" href="/xhub/_astro/_..DHkhKyNK.css"></head><body><nav class="navbar" data-astro-cid-l7arcky5><div class="nav-container" data-astro-cid-l7arcky5><a href="/xhub/" class="brand" data-astro-cid-l7arcky5>XHub</a><ul class="nav-links" data-astro-cid-l7arcky5><li data-astro-cid-l7arcky5><a href="/xhub/proyectos/" data-astro-cid-l7arcky5>Proyectos</a></li><li data-astro-cid-l7arcky5><a href="/xhub/noticias/" data-astro-cid-l7arcky5>Noticias</a></li><li data-astro-cid-l7arcky5><a href="/xhub/docs/" data-astro-cid-l7arcky5>Docs</a></li><li data-astro-cid-l7arcky5><a href="/xhub/changelogs/" data-astro-cid-l7arcky5>Changelogs</a></li></ul><div class="nav-controls" data-astro-cid-l7arcky5><button class="search-btn" id="open-search" aria-label="Search" data-astro-cid-l7arcky5><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-l7arcky5><circle cx="11" cy="11" r="8" data-astro-cid-l7arcky5></circle><path d="m21 21-4.3-4.3" data-astro-cid-l7arcky5></path></svg><span class="search-text" data-astro-cid-l7arcky5>Buscar...</span><kbd class="search-kbd" data-astro-cid-l7arcky5>Ctrl K</kbd></button><div class="lang-selector" data-astro-cid-l7arcky5><select id="lang-switch" aria-label="Cambiar idioma" data-astro-cid-l7arcky5><option value="es" data-astro-cid-l7arcky5>ES</option><option value="en" data-astro-cid-l7arcky5>EN</option></select></div><button class="hamburger" id="hamburger-btn" aria-label="Abrir menú" aria-expanded="false" data-astro-cid-l7arcky5><span data-astro-cid-l7arcky5></span><span data-astro-cid-l7arcky5></span><span data-astro-cid-l7arcky5></span></button></div></div></nav><div class="mobile-drawer" id="mobile-drawer" aria-hidden="true" data-astro-cid-l7arcky5><div class="drawer-header" data-astro-cid-l7arcky5><span class="brand" data-astro-cid-l7arcky5>XHub</span><button class="drawer-close" id="drawer-close" aria-label="Cerrar menú" data-astro-cid-l7arcky5><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-l7arcky5><path d="M18 6 6 18" data-astro-cid-l7arcky5></path><path d="m6 6 12 12" data-astro-cid-l7arcky5></path></svg></button></div><nav class="drawer-nav" data-astro-cid-l7arcky5><a href="/xhub/proyectos/" class="drawer-link" data-astro-cid-l7arcky5><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-l7arcky5><path d="m7.5 4.27 9 5.15" data-astro-cid-l7arcky5></path><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z" data-astro-cid-l7arcky5></path><path d="m3.3 7 8.7 5 8.7-5" data-astro-cid-l7arcky5></path><path d="M12 22V12" data-astro-cid-l7arcky5></path></svg>Proyectos</a><a href="/xhub/noticias/" class="drawer-link" data-astro-cid-l7arcky5><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-l7arcky5><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 0-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2" data-astro-cid-l7arcky5></path><path d="M18 14h-8" data-astro-cid-l7arcky5></path><path d="M15 18h-5" data-astro-cid-l7arcky5></path><path d="M10 6h8v4h-8V6Z" data-astro-cid-l7arcky5></path></svg>Noticias</a><a href="/xhub/docs/" class="drawer-link" data-astro-cid-l7arcky5><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-l7arcky5><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" data-astro-cid-l7arcky5></path></svg>Docs</a><a href="/xhub/changelogs/" class="drawer-link" data-astro-cid-l7arcky5><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-l7arcky5><path d="M12 20h9" data-astro-cid-l7arcky5></path><path d="M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.854z" data-astro-cid-l7arcky5></path></svg>Changelogs</a></nav><div class="drawer-footer" data-astro-cid-l7arcky5><button class="search-btn-drawer" id="open-search-drawer" aria-label="Buscar" data-astro-cid-l7arcky5><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-l7arcky5><circle cx="11" cy="11" r="8" data-astro-cid-l7arcky5></circle><path d="m21 21-4.3-4.3" data-astro-cid-l7arcky5></path></svg>Buscar...</button><div class="lang-selector-drawer" data-astro-cid-l7arcky5><select id="lang-switch-drawer" aria-label="Cambiar idioma" data-astro-cid-l7arcky5><option value="es" data-astro-cid-l7arcky5>ES</option><option value="en" data-astro-cid-l7arcky5>EN</option></select></div></div></div><div class="drawer-overlay" id="drawer-overlay" data-astro-cid-l7arcky5></div><script>
+document.addEventListener('astro:page-load', () => {
+  const selector = document.getElementById('lang-switch');
+  const selectorDrawer = document.getElementById('lang-switch-drawer');
+  const currentLang = localStorage.getItem('lang') || 'es';
+  
+  if (selector) selector.value = currentLang;
+  if (selectorDrawer) selectorDrawer.value = currentLang;
+  document.documentElement.setAttribute('lang', currentLang);
+
+  function setLang(lang) {
+    localStorage.setItem('lang', lang);
+    document.documentElement.setAttribute('lang', lang);
+    if (selector) selector.value = lang;
+    if (selectorDrawer) selectorDrawer.value = lang;
+  }
+
+  if (selector) selector.addEventListener('change', (e) => setLang(e.target.value));
+  if (selectorDrawer) selectorDrawer.addEventListener('change', (e) => setLang(e.target.value));
+
+  const openSearchBtn = document.getElementById('open-search');
+  const openSearchDrawerBtn = document.getElementById('open-search-drawer');
+  function openSearch() {
+    const dialog = document.getElementById('search-dialog');
+    if (dialog) dialog.showModal();
+    closeDrawer();
+  }
+  if (openSearchBtn) openSearchBtn.addEventListener('click', openSearch);
+  if (openSearchDrawerBtn) openSearchDrawerBtn.addEventListener('click', openSearch);
+
+  const hamburger = document.getElementById('hamburger-btn');
+  const drawer = document.getElementById('mobile-drawer');
+  const overlay = document.getElementById('drawer-overlay');
+  const drawerClose = document.getElementById('drawer-close');
+
+  function openDrawer() {
+    if (!drawer) return;
+    drawer.classList.add('open');
+    overlay.classList.add('open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    hamburger.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeDrawer() {
+    if (!drawer) return;
+    drawer.classList.remove('open');
+    overlay.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    hamburger.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  if (hamburger) {
+    hamburger.addEventListener('click', () => {
+      drawer.classList.contains('open') ? closeDrawer() : openDrawer();
+    });
+  }
+  if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+  if (overlay) overlay.addEventListener('click', closeDrawer);
+});
+</script><div class="docs-layout" data-astro-cid-gfcwjq6c><button class="sidebar-toggle" id="sidebar-toggle" aria-label="Abrir navegación" data-astro-cid-gfcwjq6c><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-gfcwjq6c><path d="M3 12h18" data-astro-cid-gfcwjq6c></path><path d="M3 6h18" data-astro-cid-gfcwjq6c></path><path d="M3 18h18" data-astro-cid-gfcwjq6c></path></svg><span data-astro-cid-gfcwjq6c>X4UI</span></button><div class="sidebar-overlay" id="sidebar-overlay" data-astro-cid-gfcwjq6c></div><aside class="sidebar" data-astro-cid-wv7whodv><div class="sidebar-header" data-astro-cid-wv7whodv><a href="/xhub/docs/" class="back-link" data-astro-cid-wv7whodv><span data-i18n="es" data-astro-cid-wv7whodv>&larr; Volver</span><span data-i18n="en" data-astro-cid-wv7whodv>&larr; Back</span></a><button class="sidebar-close-btn" id="sidebar-close-btn" aria-label="Cerrar" data-astro-cid-wv7whodv><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-wv7whodv><path d="M18 6 6 18" data-astro-cid-wv7whodv></path><path d="m6 6 12 12" data-astro-cid-wv7whodv></path></svg></button><h2 class="project-title" data-astro-cid-wv7whodv>X4UI</h2></div><nav class="sidebar-nav" data-astro-cid-wv7whodv><div class="nav-group" data-astro-cid-wv7whodv><h3 class="nav-category" data-astro-cid-wv7whodv>General</h3><ul class="nav-links" data-astro-cid-wv7whodv><li data-astro-cid-wv7whodv><a href="/xhub/docs/x4ui/x4ui-manual/" class data-astro-cid-wv7whodv>X4UI Framework - Manual de desarrollo</a></li><li data-astro-cid-wv7whodv><a href="/xhub/docs/x4ui/getting-started/" class data-astro-cid-wv7whodv>Getting Started</a></li><li data-astro-cid-wv7whodv><a href="/xhub/docs/x4ui/core-concepts/" class data-astro-cid-wv7whodv>Core Concepts</a></li><li data-astro-cid-wv7whodv><a href="/xhub/docs/x4ui/remote-assets/" class data-astro-cid-wv7whodv>Remote Assets</a></li><li data-astro-cid-wv7whodv><a href="/xhub/docs/x4ui/networking-and-sync/" class data-astro-cid-wv7whodv>Networking &amp; Sync</a></li><li data-astro-cid-wv7whodv><a href="/xhub/docs/x4ui/media-limitations/" class data-astro-cid-wv7whodv>Media Limitations</a></li></ul></div><div class="nav-group" data-astro-cid-wv7whodv><h3 class="nav-category" data-astro-cid-wv7whodv>Components</h3><ul class="nav-links" data-astro-cid-wv7whodv><li data-astro-cid-wv7whodv><a href="/xhub/docs/x4ui/components/advanced-components/" class="active" data-astro-cid-wv7whodv>Advanced Components</a></li><li data-astro-cid-wv7whodv><a href="/xhub/docs/x4ui/components/buttons-and-inputs/" class data-astro-cid-wv7whodv>Buttons And Inputs</a></li><li data-astro-cid-wv7whodv><a href="/xhub/docs/x4ui/components/containers-and-panels/" class data-astro-cid-wv7whodv>Containers And Panels</a></li><li data-astro-cid-wv7whodv><a href="/xhub/docs/x4ui/components/multimedia/" class data-astro-cid-wv7whodv>Multimedia</a></li></ul></div></nav></aside><main class="docs-content-area" data-astro-cid-gfcwjq6c><header class="doc-header" data-astro-cid-gfcwjq6c><span class="category-tag" data-astro-cid-gfcwjq6c>Components</span><h1 data-astro-cid-gfcwjq6c>Advanced Components</h1></header><div class="content-wrapper prose" data-astro-cid-gfcwjq6c>
+<div data-i18n="es">
+
+<h1 id="componentes-avanzados">Componentes Avanzados</h1>
+<p>Este documento cubre los componentes avanzados: <code>GuiMarkdown</code>, <code>GuiModelRender</code>, <code>GuiDropdown</code> y el sistema de tooltips.</p>
+<hr>
+<h2 id="guimarkdown">GuiMarkdown</h2>
+<p>Un parser y renderizador de markdown ligero para documentación dentro del juego. Parsea texto markdown crudo en un árbol de nodos renderizables.</p>
+<p><strong>Paquete:</strong> <code>com.x4yi.x4ui.client.gui.component.GuiMarkdown</code></p>
+<h3 id="constructor">Constructor</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiMarkdown</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> x, </span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> y, </span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> width, String text)</span></span></code></pre>
+<p>La altura se calcula automáticamente basándose en el contenido parseado.</p>
+<h3 id="uso-básico">Uso Básico</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiMarkdown;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">String markdown </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "# Title</span><span style="color:#79B8FF">\n\n</span><span style="color:#9ECBFF">Some **bold** and _italic_ text.</span><span style="color:#79B8FF">\n\n</span><span style="color:#9ECBFF">- Item 1</span><span style="color:#79B8FF">\n</span><span style="color:#9ECBFF">- Item 2</span><span style="color:#79B8FF">\n\n</span><span style="color:#9ECBFF">> This is a blockquote"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">GuiMarkdown display </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> GuiMarkdown</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">300</span><span style="color:#E1E4E8">, markdown);</span></span>
+<span class="line"><span style="color:#E1E4E8">rootPanel.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(display);</span></span></code></pre>
+<h3 id="en-un-panel-de-desplazamiento">En un Panel de Desplazamiento</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiScrollPanel;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">GuiScrollPanel scroll </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> GuiScrollPanel</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">350</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">250</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">GuiMarkdown text </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> GuiMarkdown</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">330</span><span style="color:#E1E4E8">, </span><span style="color:#B392F0">loadMarkdownFile</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">scroll.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(text);</span></span>
+<span class="line"><span style="color:#E1E4E8">rootPanel.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(scroll);</span></span></code></pre>
+<h3 id="actualizar-contenido">Actualizar Contenido</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">display.</span><span style="color:#B392F0">setText</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"# New Title</span><span style="color:#79B8FF">\n\n</span><span style="color:#9ECBFF">Updated content."</span><span style="color:#E1E4E8">);</span></span></code></pre>
+<h3 id="sintaxis-soportada">Sintaxis Soportada</h3>
+<h4 id="encabezados">Encabezados</h4>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#79B8FF;font-weight:bold"># Heading 1</span></span>
+<span class="line"><span style="color:#79B8FF;font-weight:bold">## Heading 2</span></span>
+<span class="line"><span style="color:#79B8FF;font-weight:bold">### Heading 3</span></span></code></pre>
+<p>Los encabezados se renderizan en negrita con colores distintivos:</p>
+<ul>
+<li>H1: <code>0xFF00E5FF</code> (cian)</li>
+<li>H2: <code>0xFF00E676</code> (verde)</li>
+<li>H3: <code>0xFFFFD600</code> (amarillo)</li>
+</ul>
+<h4 id="negrita-y-cursiva">Negrita y Cursiva</h4>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#E1E4E8;font-weight:bold">**bold text**</span></span>
+<span class="line"><span style="color:#E1E4E8;font-weight:bold">__also bold__</span></span>
+<span class="line"><span style="color:#E1E4E8;font-style:italic">*italic text*</span></span>
+<span class="line"><span style="color:#E1E4E8;font-style:italic">_and also italic_</span></span></code></pre>
+<h4 id="código-inline">Código Inline</h4>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#79B8FF">`code snippet`</span></span></code></pre>
+<p>Renderizado en <code>0xFFFFAB40</code> (ámbar).</p>
+<h4 id="enlaces">Enlaces</h4>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#E1E4E8">[</span><span style="color:#DBEDFF;text-decoration:underline">link text</span><span style="color:#E1E4E8">](</span><span style="color:#E1E4E8;text-decoration:underline">https://example.com</span><span style="color:#E1E4E8">)</span></span></code></pre>
+<p>Los enlaces se renderizan en <code>0xFF29B6F6</code> (azul claro) con subrayado. La detección de clics se maneja mediante <code>onLinkClicked</code>.</p>
+<h4 id="citas">Citas</h4>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#85E89D">> This is a blockquote</span></span></code></pre>
+<p>Renderizado con una barra izquierda (<code>0xFFAAAAAA</code>) e texto indentado.</p>
+<h4 id="listas-con-viñetas">Listas con Viñetas</h4>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8"> Item 1</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8"> Item 2</span></span>
+<span class="line"><span style="color:#FFAB70">  -</span><span style="color:#E1E4E8"> Nested item</span></span>
+<span class="line"><span style="color:#FFAB70">    -</span><span style="color:#E1E4E8"> Deeply nested</span></span></code></pre>
+<p>Soporta hasta 3 niveles de anidación con marcadores de viñeta coloreados:</p>
+<ul>
+<li>Nivel 0: <code>0xFF00C853</code> (verde)</li>
+<li>Nivel 1: <code>0xFF888892</code> (gris)</li>
+<li>Nivel 2: <code>0xFF555560</code> (gris oscuro)</li>
+</ul>
+<h4 id="separadores">Separadores</h4>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#79B8FF;font-weight:bold">---</span></span>
+<span class="line"><span style="color:#79B8FF;font-weight:bold">***</span></span>
+<span class="line"><span style="color:#79B8FF;font-weight:bold">___</span></span></code></pre>
+<p>Renderizado como una línea horizontal en <code>0xFF444450</code>.</p>
+<h4 id="imágenes">Imágenes</h4>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#E1E4E8">![</span><span style="color:#DBEDFF;text-decoration:underline">alt text</span><span style="color:#E1E4E8">](</span><span style="color:#E1E4E8;text-decoration:underline">mymod:textures/gui/image.png</span><span style="color:#E1E4E8">)</span></span></code></pre>
+<p>El texto <code>alt</code> puede especificar dimensiones: <code>![64x64](mymod:textures/icon.png)</code>. El tamaño predeterminado es 64x64.</p>
+<h3 id="manejo-de-clics-en-enlaces">Manejo de Clics en Enlaces</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiMarkdown;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">GuiMarkdown md </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> GuiMarkdown</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">300</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Click [here](https://example.com) to learn more."</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">md.onLinkClicked </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> url </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">    System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Link clicked: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> url);</span></span>
+<span class="line"><span style="color:#6A737D">    // Abrir URL, navegar, etc.</span></span>
+<span class="line"><span style="color:#E1E4E8">};</span></span></code></pre>
+<h3 id="navegación-de-anclas">Navegación de Anclas</h3>
+<p>Los encabezados se registran automáticamente como anclas. El ID de la ancla es el texto del encabezado en minúsculas con caracteres no alfanuméricos reemplazados por guiones.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#6A737D">// Para el encabezado: ## Getting Started</span></span>
+<span class="line"><span style="color:#F97583">int</span><span style="color:#E1E4E8"> yPosition </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> md.</span><span style="color:#B392F0">getAnchorY</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"getting-started"</span><span style="color:#E1E4E8">);</span></span></code></pre>
+<h3 id="campos-públicos">Campos Públicos</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Campo</th><th>Tipo</th><th>Descripción</th></tr></thead><tbody><tr><td><code>onLinkClicked</code></td><td><code>Consumer&#x3C;String></code></td><td>Callback para clics en enlaces</td></tr><tr><td><code>textColor</code></td><td><code>int</code></td><td>Color de texto predeterminado (0xFFE0E0E6)</td></tr><tr><td><code>colorH1</code></td><td><code>int</code></td><td>Color H1 (0xFF00E5FF)</td></tr><tr><td><code>colorH2</code></td><td><code>int</code></td><td>Color H2 (0xFF00E676)</td></tr><tr><td><code>colorH3</code></td><td><code>int</code></td><td>Color H3 (0xFFFFD600)</td></tr></tbody></table>
+<h3 id="renderizado">Renderizado</h3>
+<ul>
+<li>El texto se ajusta por palabras en los límites de las palabras</li>
+<li>Cada palabra se mide mediante <code>FontWidthCache</code> para rendimiento</li>
+<li>Los enlaces se subrayan con una línea de 1px</li>
+<li>Las líneas vacías agregan 6px de espaciado vertical</li>
+<li>La altura de línea es de 10px</li>
+</ul>
+<hr>
+<h2 id="guimodelrender">GuiModelRender</h2>
+<p>Renderiza una entidad 3D o pila de objetos dentro de la GUI 2D. Soporta rotación por arrastre, rotación siguiendo el cursor y escala/desplazamiento configurable.</p>
+<blockquote>
+<p><strong>Nota:</strong> Este componente se encuentra en una fase muy temprana de desarrollo. Su API puede cambiar sin previo aviso en futuras versiones.</p>
+</blockquote>
+<p><strong>Paquete:</strong> <code>com.x4yi.x4ui.client.gui.component.GuiModelRender</code></p>
+<h3 id="constructor-1">Constructor</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiModelRender</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> x, </span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> y, </span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> width, </span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> height)</span></span></code></pre>
+<h3 id="renderizar-una-entidad">Renderizar una Entidad</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiModelRender;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> net.minecraft.client.Minecraft;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> net.minecraft.entity.passive.EntitySheep;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">GuiModelRender entityRender </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> GuiModelRender</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">50</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">50</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">100</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">100</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">EntitySheep sheep </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> EntitySheep</span><span style="color:#E1E4E8">(Minecraft.</span><span style="color:#B392F0">getMinecraft</span><span style="color:#E1E4E8">().world);</span></span>
+<span class="line"><span style="color:#E1E4E8">entityRender.</span><span style="color:#B392F0">setEntity</span><span style="color:#E1E4E8">(sheep);</span></span>
+<span class="line"><span style="color:#E1E4E8">entityRender.</span><span style="color:#B392F0">setScale</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">30f</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">rootPanel.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(entityRender);</span></span></code></pre>
+<h3 id="renderizar-una-pila-de-objetos">Renderizar una Pila de Objetos</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiModelRender;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> net.minecraft.init.Items;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">GuiModelRender itemRender </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> GuiModelRender</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">200</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">50</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">64</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">64</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">itemRender.</span><span style="color:#B392F0">setItemStack</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> ItemStack</span><span style="color:#E1E4E8">(Items.DIAMOND_SWORD));</span></span>
+<span class="line"><span style="color:#E1E4E8">itemRender.</span><span style="color:#B392F0">setScale</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">25f</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">rootPanel.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(itemRender);</span></span></code></pre>
+<h3 id="rotación-siguiendo-el-cursor">Rotación Siguiendo el Cursor</h3>
+<p>La entidad rota para mirar el cursor del mouse:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">entityRender.</span><span style="color:#B392F0">setLookAtCursor</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">);</span></span></code></pre>
+<h3 id="rotación-por-arrastre">Rotación por Arrastre</h3>
+<p>El usuario puede hacer clic y arrastrar para rotar la entidad:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">entityRender.</span><span style="color:#B392F0">setAllowDragRotation</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">);</span></span></code></pre>
+<h3 id="rotación-estática">Rotación Estática</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">entityRender.</span><span style="color:#B392F0">setRotation</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0f</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">45f</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0f</span><span style="color:#E1E4E8">);  </span><span style="color:#6A737D">// yaw, pitch, roll</span></span></code></pre>
+<h3 id="desplazamiento-de-traslación">Desplazamiento de Traslación</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">entityRender.</span><span style="color:#B392F0">setTranslation</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0f</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">-</span><span style="color:#79B8FF">10f</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0f</span><span style="color:#E1E4E8">);  </span><span style="color:#6A737D">// desplazamiento x, y, z en píxeles</span></span></code></pre>
+<h3 id="deshabilitar-animaciones-de-entidad">Deshabilitar Animaciones de Entidad</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">entityRender.</span><span style="color:#B392F0">setEnableEntityAnimations</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">false</span><span style="color:#E1E4E8">);</span></span></code></pre>
+<p>Cuando está deshabilitado, las animaciones de reposo de la entidad (respiración, parpadeo) se congelan.</p>
+<h3 id="api-fluent">API Fluent</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.utils.GuiBuilder;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">GuiModelRender render </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> GuiBuilder.</span><span style="color:#B392F0">createModelRender</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">position</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">50</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">50</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">size</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">100</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">100</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">entity</span><span style="color:#E1E4E8">(sheep)</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">modelScale</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">30f</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">modelRotation</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0f</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">45f</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0f</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">modelDragRotation</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">modelLookAtCursor</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">false</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">build</span><span style="color:#E1E4E8">();</span></span></code></pre>
+<h3 id="propiedades">Propiedades</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Método</th><th>Tipo</th><th>Descripción</th></tr></thead><tbody><tr><td><code>setEntity(EntityLivingBase)</code></td><td><code>GuiModelRender</code></td><td>Establece la entidad a renderizar (limpia itemStack)</td></tr><tr><td><code>setItemStack(ItemStack)</code></td><td><code>GuiModelRender</code></td><td>Establece el objeto a renderizar (limpia entity)</td></tr><tr><td><code>setScale(float)</code></td><td><code>GuiModelRender</code></td><td>Establece la escala de renderizado (predeterminada: 30)</td></tr><tr><td><code>setRotation(float, float, float)</code></td><td><code>GuiModelRender</code></td><td>Establece yaw, pitch, roll</td></tr><tr><td><code>setTranslation(float, float, float)</code></td><td><code>GuiModelRender</code></td><td>Establece el desplazamiento x, y, z</td></tr><tr><td><code>setEnableEntityAnimations(boolean)</code></td><td><code>GuiModelRender</code></td><td>Habilita/deshabilita animaciones de entidad</td></tr><tr><td><code>setAllowDragRotation(boolean)</code></td><td><code>GuiModelRender</code></td><td>Habilita rotación por arrastre</td></tr><tr><td><code>setLookAtCursor(boolean)</code></td><td><code>GuiModelRender</code></td><td>Habilita rotación siguiendo el cursor</td></tr></tbody></table>
+<h3 id="detalles-de-renderizado">Detalles de Renderizado</h3>
+<ul>
+<li>Usa <code>RenderManager.renderEntity()</code> para entidades</li>
+<li>Usa <code>RenderItem.renderItemIntoGUI()</code> para objetos</li>
+<li>Guarda y restaura correctamente el estado de rotación de la entidad para prevenir efectos secundarios</li>
+<li>Aplica iluminación estándar de objetos mediante <code>RenderHelper.enableStandardItemLighting()</code></li>
+<li>La sombra se deshabilita durante el renderizado (<code>setRenderShadow(false)</code>)</li>
+</ul>
+<hr>
+<h2 id="guidropdown">GuiDropdown</h2>
+<p>Un componente genérico de desplegable/selección. Abre una lista emergente de opciones debajo del botón al hacer clic.</p>
+<p><strong>Paquete:</strong> <code>com.x4yi.x4ui.client.gui.component.GuiDropdown</code></p>
+<h3 id="constructor-2">Constructor</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">new</span><span style="color:#E1E4E8"> GuiDropdown&#x3C;</span><span style="color:#F97583">T</span><span style="color:#E1E4E8">>(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> x, </span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> y, </span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> width, </span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> height, State</span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">T</span><span style="color:#F97583">></span><span style="color:#E1E4E8"> state, List</span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">T</span><span style="color:#F97583">></span><span style="color:#E1E4E8"> options)</span></span></code></pre>
+<h3 id="uso-básico-1">Uso Básico</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiDropdown;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.common.State;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.util.Arrays;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">State&#x3C;</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">> selected </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> State&#x3C;>(</span><span style="color:#9ECBFF">"Option 1"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">GuiDropdown&#x3C;</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">> dropdown </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> GuiDropdown&#x3C;>(</span></span>
+<span class="line"><span style="color:#79B8FF">    10</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">150</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">    selected,</span></span>
+<span class="line"><span style="color:#E1E4E8">    Arrays.</span><span style="color:#B392F0">asList</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Option 1"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Option 2"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Option 3"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">rootPanel.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(dropdown);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Escuchar cambios de selección</span></span>
+<span class="line"><span style="color:#E1E4E8">selected.</span><span style="color:#B392F0">addListener</span><span style="color:#E1E4E8">(value </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Selected: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> value));</span></span></code></pre>
+<h3 id="desplegable-de-enum">Desplegable de Enum</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiDropdown;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.common.State;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">enum</span><span style="color:#B392F0"> Difficulty</span><span style="color:#E1E4E8"> { </span><span style="color:#79B8FF">EASY</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">NORMAL</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">HARD</span><span style="color:#E1E4E8"> }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">State&#x3C;</span><span style="color:#F97583">Difficulty</span><span style="color:#E1E4E8">> difficulty </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> State&#x3C;>(Difficulty.NORMAL);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">GuiDropdown&#x3C;</span><span style="color:#F97583">Difficulty</span><span style="color:#E1E4E8">> diffDropdown </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> GuiDropdown&#x3C;>(</span></span>
+<span class="line"><span style="color:#79B8FF">    10</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">40</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">150</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">    difficulty,</span></span>
+<span class="line"><span style="color:#E1E4E8">    Arrays.</span><span style="color:#B392F0">asList</span><span style="color:#E1E4E8">(Difficulty.</span><span style="color:#B392F0">values</span><span style="color:#E1E4E8">())</span></span>
+<span class="line"><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">rootPanel.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(diffDropdown);</span></span></code></pre>
+<h3 id="actualizar-opciones">Actualizar Opciones</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">dropdown.</span><span style="color:#B392F0">setOptions</span><span style="color:#E1E4E8">(Arrays.</span><span style="color:#B392F0">asList</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"New A"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"New B"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"New C"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"New D"</span><span style="color:#E1E4E8">));</span></span></code></pre>
+<h3 id="comportamiento">Comportamiento</h3>
+<ul>
+<li>Hacer clic en el botón alterna la apertura/cierre de la ventana emergente</li>
+<li>Hacer clic en una opción la selecciona y cierra la ventana emergente</li>
+<li>Hacer clic fuera de la ventana emergente la cierra</li>
+<li>La ventana emergente deshabilita temporalmente OpenGL scissor para renderizar fuera de los límites del padre</li>
+<li>Máximo 5 elementos visibles en la ventana emergente (el desplazamiento no está soportado en la ventana emergente)</li>
+<li>La ventana emergente se renderiza en <code>layer = 100</code> por defecto (encima de la mayoría de los componentes)</li>
+</ul>
+<h3 id="renderizado-1">Renderizado</h3>
+<ul>
+<li>Botón: Fondo oscuro (<code>0xFF16161E</code>) con borde (<code>0xFF2C2C36</code>)</li>
+<li>Valor actual: Dibujado a la izquierda del botón</li>
+<li>Flecha: Carácter de flecha Unicode a la derecha (”▼” cuando está cerrado, ”▲” cuando está abierto)</li>
+<li>Ventana emergente: Mismo estilo que el botón, con resaltado de hover (<code>0xFF2C2C36</code>)</li>
+<li>Color de texto: <code>0xFFFFFFFF</code></li>
+</ul>
+<h3 id="propiedades-1">Propiedades</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Método</th><th>Tipo</th><th>Descripción</th></tr></thead><tbody><tr><td><code>setOptions(List&#x3C;T>)</code></td><td><code>void</code></td><td>Reemplaza la lista de opciones</td></tr><tr><td><code>state</code></td><td><code>State&#x3C;T></code></td><td>El estado enlazado (campo público)</td></tr></tbody></table>
+<hr>
+<h2 id="sistema-de-tooltips">Sistema de Tooltips</h2>
+<p>Los tooltips se renderizan mediante el tema y soportan tanto tooltips de texto como de componentes personalizados.</p>
+<h3 id="tooltips-de-texto">Tooltips de Texto</h3>
+<p>Cualquier componente puede mostrar un tooltip de texto al pasar el cursor:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">button.</span><span style="color:#B392F0">setTooltip</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Click to save"</span><span style="color:#E1E4E8">);</span></span></code></pre>
+<p>Los tooltips de múltiples líneas usan <code>\n</code>:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">button.</span><span style="color:#B392F0">setTooltip</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Line 1</span><span style="color:#79B8FF">\n</span><span style="color:#9ECBFF">Line 2</span><span style="color:#79B8FF">\n</span><span style="color:#9ECBFF">Line 3"</span><span style="color:#E1E4E8">);</span></span></code></pre>
+<h3 id="tooltips-de-componentes-personalizados">Tooltips de Componentes Personalizados</h3>
+<p>Para tooltips enriquecidos con formato, iconos o elementos interactivos:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiPanel;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiLabel;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiImage;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.layout.FlexDirection;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">GuiPanel tooltip </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> GuiPanel</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">180</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">60</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">tooltip.</span><span style="color:#B392F0">setFlexDirection</span><span style="color:#E1E4E8">(FlexDirection.VERTICAL);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">tooltip.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiLabel</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Diamond Sword"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0xFF00E5FF</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"><span style="color:#E1E4E8">tooltip.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiLabel</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Damage: 7"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0xFFAAAAAA</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"><span style="color:#E1E4E8">tooltip.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiLabel</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Durability: 1561"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0xFFAAAAAA</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">button.</span><span style="color:#B392F0">setTooltipComponent</span><span style="color:#E1E4E8">(tooltip);</span></span></code></pre>
+<h3 id="resolución-de-tooltips">Resolución de Tooltips</h3>
+<p>Los tooltips se resuelven subiendo por la cadena de padres. Si un hijo no tiene un tooltip, se usa el tooltip del padre:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">GuiPanel panel </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> GuiPanel</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">200</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">200</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">panel.</span><span style="color:#B392F0">setTooltip</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Panel tooltip"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">GuiButton btn </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> GuiButton</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">100</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Button"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">null</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#6A737D">// btn no tiene tooltip, por lo que se muestra el tooltip del panel al pasar el cursor sobre btn</span></span>
+<span class="line"><span style="color:#E1E4E8">panel.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(btn);</span></span></code></pre>
+<h3 id="integración-con-el-tema">Integración con el Tema</h3>
+<p>Los tooltips se renderizan mediante <code>ITheme.drawTooltip()</code> e <code>ITheme.drawTooltipComponent()</code>. La implementación <code>DefaultTheme</code>:</p>
+<ul>
+<li>Dibuja un fondo oscuro con borde</li>
+<li>Posiciona el tooltip cerca del cursor</li>
+<li>Limita a los bordes de la pantalla para prevenir renderizado fuera de pantalla</li>
+<li>Almacena en caché y reutiliza un panel <code>GuiTooltip</code> para tooltips de texto
+</li>
+</ul>
+
+</div>
+
+
+<div data-i18n="en">
+
+<h1 id="advanced-components">Advanced Components</h1>
+<p>This document covers the advanced components: <code>GuiMarkdown</code>, <code>GuiModelRender</code>, <code>GuiDropdown</code>, and the tooltip system.</p>
+<hr>
+<h2 id="guimarkdown-1">GuiMarkdown</h2>
+<p>A lightweight markdown parser and renderer for in-game documentation. Parses raw markdown text into a tree of renderable nodes.</p>
+<p><strong>Package:</strong> <code>com.x4yi.x4ui.client.gui.component.GuiMarkdown</code></p>
+<h3 id="constructor-3">Constructor</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiMarkdown</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> x, </span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> y, </span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> width, String text)</span></span></code></pre>
+<p>The height is automatically calculated based on the parsed content.</p>
+<h3 id="basic-usage">Basic Usage</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiMarkdown;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">String markdown </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "# Title</span><span style="color:#79B8FF">\n\n</span><span style="color:#9ECBFF">Some **bold** and _italic_ text.</span><span style="color:#79B8FF">\n\n</span><span style="color:#9ECBFF">- Item 1</span><span style="color:#79B8FF">\n</span><span style="color:#9ECBFF">- Item 2</span><span style="color:#79B8FF">\n\n</span><span style="color:#9ECBFF">> This is a blockquote"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">GuiMarkdown display </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> GuiMarkdown</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">300</span><span style="color:#E1E4E8">, markdown);</span></span>
+<span class="line"><span style="color:#E1E4E8">rootPanel.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(display);</span></span></code></pre>
+<h3 id="in-a-scroll-panel">In a Scroll Panel</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiScrollPanel;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">GuiScrollPanel scroll </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> GuiScrollPanel</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">350</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">250</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">GuiMarkdown text </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> GuiMarkdown</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">330</span><span style="color:#E1E4E8">, </span><span style="color:#B392F0">loadMarkdownFile</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">scroll.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(text);</span></span>
+<span class="line"><span style="color:#E1E4E8">rootPanel.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(scroll);</span></span></code></pre>
+<h3 id="updating-content">Updating Content</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">display.</span><span style="color:#B392F0">setText</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"# New Title</span><span style="color:#79B8FF">\n\n</span><span style="color:#9ECBFF">Updated content."</span><span style="color:#E1E4E8">);</span></span></code></pre>
+<h3 id="supported-syntax">Supported Syntax</h3>
+<h4 id="headings">Headings</h4>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#79B8FF;font-weight:bold"># Heading 1</span></span>
+<span class="line"><span style="color:#79B8FF;font-weight:bold">## Heading 2</span></span>
+<span class="line"><span style="color:#79B8FF;font-weight:bold">### Heading 3</span></span></code></pre>
+<p>Headings are rendered in bold with distinct colors:</p>
+<ul>
+<li>H1: <code>0xFF00E5FF</code> (cyan)</li>
+<li>H2: <code>0xFF00E676</code> (green)</li>
+<li>H3: <code>0xFFFFD600</code> (yellow)</li>
+</ul>
+<h4 id="bold-and-italic">Bold and Italic</h4>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#E1E4E8;font-weight:bold">**bold text**</span></span>
+<span class="line"><span style="color:#E1E4E8;font-weight:bold">__also bold__</span></span>
+<span class="line"><span style="color:#E1E4E8;font-style:italic">*italic text*</span></span>
+<span class="line"><span style="color:#E1E4E8;font-style:italic">_and also italic_</span></span></code></pre>
+<h4 id="inline-code">Inline Code</h4>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#79B8FF">`code snippet`</span></span></code></pre>
+<p>Rendered in <code>0xFFFFAB40</code> (amber).</p>
+<h4 id="links">Links</h4>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#E1E4E8">[</span><span style="color:#DBEDFF;text-decoration:underline">link text</span><span style="color:#E1E4E8">](</span><span style="color:#E1E4E8;text-decoration:underline">https://example.com</span><span style="color:#E1E4E8">)</span></span></code></pre>
+<p>Links are rendered in <code>0xFF29B6F6</code> (light blue) with an underline. Click detection is handled via <code>onLinkClicked</code>.</p>
+<h4 id="blockquotes">Blockquotes</h4>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#85E89D">> This is a blockquote</span></span></code></pre>
+<p>Rendered with a left bar (<code>0xFFAAAAAA</code>) and indented text.</p>
+<h4 id="bullet-lists">Bullet Lists</h4>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8"> Item 1</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8"> Item 2</span></span>
+<span class="line"><span style="color:#FFAB70">  -</span><span style="color:#E1E4E8"> Nested item</span></span>
+<span class="line"><span style="color:#FFAB70">    -</span><span style="color:#E1E4E8"> Deeply nested</span></span></code></pre>
+<p>Supports up to 3 levels of nesting with colored bullet markers:</p>
+<ul>
+<li>Level 0: <code>0xFF00C853</code> (green)</li>
+<li>Level 1: <code>0xFF888892</code> (gray)</li>
+<li>Level 2: <code>0xFF555560</code> (dark gray)</li>
+</ul>
+<h4 id="separators">Separators</h4>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#79B8FF;font-weight:bold">---</span></span>
+<span class="line"><span style="color:#79B8FF;font-weight:bold">***</span></span>
+<span class="line"><span style="color:#79B8FF;font-weight:bold">___</span></span></code></pre>
+<p>Rendered as a horizontal line in <code>0xFF444450</code>.</p>
+<h4 id="images">Images</h4>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#E1E4E8">![</span><span style="color:#DBEDFF;text-decoration:underline">alt text</span><span style="color:#E1E4E8">](</span><span style="color:#E1E4E8;text-decoration:underline">mymod:textures/gui/image.png</span><span style="color:#E1E4E8">)</span></span></code></pre>
+<p>The <code>alt</code> text can specify dimensions: <code>![64x64](mymod:textures/icon.png)</code>. Default size is 64x64.</p>
+<h3 id="link-click-handling">Link Click Handling</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiMarkdown;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">GuiMarkdown md </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> GuiMarkdown</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">300</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Click [here](https://example.com) to learn more."</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">md.onLinkClicked </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> url </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">    System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Link clicked: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> url);</span></span>
+<span class="line"><span style="color:#6A737D">    // Open URL, navigate, etc.</span></span>
+<span class="line"><span style="color:#E1E4E8">};</span></span></code></pre>
+<h3 id="anchor-navigation">Anchor Navigation</h3>
+<p>Headings are automatically registered as anchors. The anchor ID is the heading text lowercased with non-alphanumeric characters replaced by hyphens.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#6A737D">// For heading: ## Getting Started</span></span>
+<span class="line"><span style="color:#F97583">int</span><span style="color:#E1E4E8"> yPosition </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> md.</span><span style="color:#B392F0">getAnchorY</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"getting-started"</span><span style="color:#E1E4E8">);</span></span></code></pre>
+<h3 id="public-fields">Public Fields</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>onLinkClicked</code></td><td><code>Consumer&#x3C;String></code></td><td>Callback for link clicks</td></tr><tr><td><code>textColor</code></td><td><code>int</code></td><td>Default text color (0xFFE0E0E6)</td></tr><tr><td><code>colorH1</code></td><td><code>int</code></td><td>H1 color (0xFF00E5FF)</td></tr><tr><td><code>colorH2</code></td><td><code>int</code></td><td>H2 color (0xFF00E676)</td></tr><tr><td><code>colorH3</code></td><td><code>int</code></td><td>H3 color (0xFFFFD600)</td></tr></tbody></table>
+<h3 id="rendering">Rendering</h3>
+<ul>
+<li>Text is word-wrapped at word boundaries</li>
+<li>Each word is measured via <code>FontWidthCache</code> for performance</li>
+<li>Links are underlined with a 1px line</li>
+<li>Empty lines add 6px vertical spacing</li>
+<li>Line height is 10px</li>
+</ul>
+<hr>
+<h2 id="guimodelrender-1">GuiModelRender</h2>
+<p>Renders a 3D entity or item stack inside the 2D GUI. Supports drag rotation, cursor-following rotation, and configurable scale/offset.</p>
+<blockquote>
+<p><strong>Note:</strong> This component is in a very early stage of development. Its API may change without notice in future versions.</p>
+</blockquote>
+<p><strong>Package:</strong> <code>com.x4yi.x4ui.client.gui.component.GuiModelRender</code></p>
+<h3 id="constructor-4">Constructor</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiModelRender</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> x, </span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> y, </span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> width, </span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> height)</span></span></code></pre>
+<h3 id="rendering-an-entity">Rendering an Entity</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiModelRender;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> net.minecraft.client.Minecraft;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> net.minecraft.entity.passive.EntitySheep;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">GuiModelRender entityRender </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> GuiModelRender</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">50</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">50</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">100</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">100</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">EntitySheep sheep </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> EntitySheep</span><span style="color:#E1E4E8">(Minecraft.</span><span style="color:#B392F0">getMinecraft</span><span style="color:#E1E4E8">().world);</span></span>
+<span class="line"><span style="color:#E1E4E8">entityRender.</span><span style="color:#B392F0">setEntity</span><span style="color:#E1E4E8">(sheep);</span></span>
+<span class="line"><span style="color:#E1E4E8">entityRender.</span><span style="color:#B392F0">setScale</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">30f</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">rootPanel.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(entityRender);</span></span></code></pre>
+<h3 id="rendering-an-item-stack">Rendering an Item Stack</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiModelRender;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> net.minecraft.init.Items;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">GuiModelRender itemRender </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> GuiModelRender</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">200</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">50</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">64</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">64</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">itemRender.</span><span style="color:#B392F0">setItemStack</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> ItemStack</span><span style="color:#E1E4E8">(Items.DIAMOND_SWORD));</span></span>
+<span class="line"><span style="color:#E1E4E8">itemRender.</span><span style="color:#B392F0">setScale</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">25f</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">rootPanel.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(itemRender);</span></span></code></pre>
+<h3 id="cursor-following-rotation">Cursor-Following Rotation</h3>
+<p>The entity rotates to face the mouse cursor:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">entityRender.</span><span style="color:#B392F0">setLookAtCursor</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">);</span></span></code></pre>
+<h3 id="drag-rotation">Drag Rotation</h3>
+<p>The user can click and drag to rotate the entity:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">entityRender.</span><span style="color:#B392F0">setAllowDragRotation</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">);</span></span></code></pre>
+<h3 id="static-rotation">Static Rotation</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">entityRender.</span><span style="color:#B392F0">setRotation</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0f</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">45f</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0f</span><span style="color:#E1E4E8">);  </span><span style="color:#6A737D">// yaw, pitch, roll</span></span></code></pre>
+<h3 id="translation-offset">Translation Offset</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">entityRender.</span><span style="color:#B392F0">setTranslation</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0f</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">-</span><span style="color:#79B8FF">10f</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0f</span><span style="color:#E1E4E8">);  </span><span style="color:#6A737D">// x, y, z offset in pixels</span></span></code></pre>
+<h3 id="disabling-entity-animations">Disabling Entity Animations</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">entityRender.</span><span style="color:#B392F0">setEnableEntityAnimations</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">false</span><span style="color:#E1E4E8">);</span></span></code></pre>
+<p>When disabled, the entity’s idle animations (breathing, blinking) are frozen.</p>
+<h3 id="fluent-api">Fluent API</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.utils.GuiBuilder;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">GuiModelRender render </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> GuiBuilder.</span><span style="color:#B392F0">createModelRender</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">position</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">50</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">50</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">size</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">100</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">100</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">entity</span><span style="color:#E1E4E8">(sheep)</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">modelScale</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">30f</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">modelRotation</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0f</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">45f</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0f</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">modelDragRotation</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">modelLookAtCursor</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">false</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">build</span><span style="color:#E1E4E8">();</span></span></code></pre>
+<h3 id="properties">Properties</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Method</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>setEntity(EntityLivingBase)</code></td><td><code>GuiModelRender</code></td><td>Sets entity to render (clears itemStack)</td></tr><tr><td><code>setItemStack(ItemStack)</code></td><td><code>GuiModelRender</code></td><td>Sets item to render (clears entity)</td></tr><tr><td><code>setScale(float)</code></td><td><code>GuiModelRender</code></td><td>Sets render scale (default: 30)</td></tr><tr><td><code>setRotation(float, float, float)</code></td><td><code>GuiModelRender</code></td><td>Sets yaw, pitch, roll</td></tr><tr><td><code>setTranslation(float, float, float)</code></td><td><code>GuiModelRender</code></td><td>Sets x, y, z offset</td></tr><tr><td><code>setEnableEntityAnimations(boolean)</code></td><td><code>GuiModelRender</code></td><td>Enables/disables entity animations</td></tr><tr><td><code>setAllowDragRotation(boolean)</code></td><td><code>GuiModelRender</code></td><td>Enables drag-to-rotate</td></tr><tr><td><code>setLookAtCursor(boolean)</code></td><td><code>GuiModelRender</code></td><td>Enables cursor-following rotation</td></tr></tbody></table>
+<h3 id="rendering-details">Rendering Details</h3>
+<ul>
+<li>Uses <code>RenderManager.renderEntity()</code> for entities</li>
+<li>Uses <code>RenderItem.renderItemIntoGUI()</code> for items</li>
+<li>Properly saves and restores entity rotation state to prevent side effects</li>
+<li>Applies standard item lighting via <code>RenderHelper.enableStandardItemLighting()</code></li>
+<li>Shadow is disabled during render (<code>setRenderShadow(false)</code>)</li>
+</ul>
+<hr>
+<h2 id="guidropdown-1">GuiDropdown</h2>
+<p>A generic dropdown/select component. Opens a popup list of options below the button when clicked.</p>
+<p><strong>Package:</strong> <code>com.x4yi.x4ui.client.gui.component.GuiDropdown</code></p>
+<h3 id="constructor-5">Constructor</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">new</span><span style="color:#E1E4E8"> GuiDropdown&#x3C;</span><span style="color:#F97583">T</span><span style="color:#E1E4E8">>(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> x, </span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> y, </span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> width, </span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> height, State</span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">T</span><span style="color:#F97583">></span><span style="color:#E1E4E8"> state, List</span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">T</span><span style="color:#F97583">></span><span style="color:#E1E4E8"> options)</span></span></code></pre>
+<h3 id="basic-usage-1">Basic Usage</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiDropdown;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.common.State;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.util.Arrays;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">State&#x3C;</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">> selected </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> State&#x3C;>(</span><span style="color:#9ECBFF">"Option 1"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">GuiDropdown&#x3C;</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">> dropdown </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> GuiDropdown&#x3C;>(</span></span>
+<span class="line"><span style="color:#79B8FF">    10</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">150</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">    selected,</span></span>
+<span class="line"><span style="color:#E1E4E8">    Arrays.</span><span style="color:#B392F0">asList</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Option 1"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Option 2"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Option 3"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">rootPanel.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(dropdown);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Listen for selection changes</span></span>
+<span class="line"><span style="color:#E1E4E8">selected.</span><span style="color:#B392F0">addListener</span><span style="color:#E1E4E8">(value </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Selected: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> value));</span></span></code></pre>
+<h3 id="enum-dropdown">Enum Dropdown</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiDropdown;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.common.State;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">enum</span><span style="color:#B392F0"> Difficulty</span><span style="color:#E1E4E8"> { </span><span style="color:#79B8FF">EASY</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">NORMAL</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">HARD</span><span style="color:#E1E4E8"> }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">State&#x3C;</span><span style="color:#F97583">Difficulty</span><span style="color:#E1E4E8">> difficulty </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> State&#x3C;>(Difficulty.NORMAL);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">GuiDropdown&#x3C;</span><span style="color:#F97583">Difficulty</span><span style="color:#E1E4E8">> diffDropdown </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> GuiDropdown&#x3C;>(</span></span>
+<span class="line"><span style="color:#79B8FF">    10</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">40</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">150</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">    difficulty,</span></span>
+<span class="line"><span style="color:#E1E4E8">    Arrays.</span><span style="color:#B392F0">asList</span><span style="color:#E1E4E8">(Difficulty.</span><span style="color:#B392F0">values</span><span style="color:#E1E4E8">())</span></span>
+<span class="line"><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">rootPanel.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(diffDropdown);</span></span></code></pre>
+<h3 id="updating-options">Updating Options</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">dropdown.</span><span style="color:#B392F0">setOptions</span><span style="color:#E1E4E8">(Arrays.</span><span style="color:#B392F0">asList</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"New A"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"New B"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"New C"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"New D"</span><span style="color:#E1E4E8">));</span></span></code></pre>
+<h3 id="behavior">Behavior</h3>
+<ul>
+<li>Clicking the button toggles the popup open/closed</li>
+<li>Clicking an option selects it and closes the popup</li>
+<li>Clicking outside the popup closes it</li>
+<li>The popup temporarily disables OpenGL scissor to render outside parent bounds</li>
+<li>Maximum 5 visible items in the popup (scrolling not supported in popup)</li>
+<li>The popup is rendered at <code>layer = 100</code> by default (above most components)</li>
+</ul>
+<h3 id="rendering-1">Rendering</h3>
+<ul>
+<li>Button: Dark background (<code>0xFF16161E</code>) with border (<code>0xFF2C2C36</code>)</li>
+<li>Current value: Drawn at the left of the button</li>
+<li>Arrow: Unicode arrow character at the right (”▼” when closed, ”▲” when open)</li>
+<li>Popup: Same styling as button, with hover highlight (<code>0xFF2C2C36</code>)</li>
+<li>Text color: <code>0xFFFFFFFF</code></li>
+</ul>
+<h3 id="properties-1">Properties</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Method</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>setOptions(List&#x3C;T>)</code></td><td><code>void</code></td><td>Replaces the option list</td></tr><tr><td><code>state</code></td><td><code>State&#x3C;T></code></td><td>The bound state (public field)</td></tr></tbody></table>
+<hr>
+<h2 id="tooltip-system">Tooltip System</h2>
+<p>Tooltips are rendered by the theme and support both text and custom component tooltips.</p>
+<h3 id="text-tooltips">Text Tooltips</h3>
+<p>Any component can display a text tooltip on hover:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">button.</span><span style="color:#B392F0">setTooltip</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Click to save"</span><span style="color:#E1E4E8">);</span></span></code></pre>
+<p>Multi-line tooltips use <code>\n</code>:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">button.</span><span style="color:#B392F0">setTooltip</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Line 1</span><span style="color:#79B8FF">\n</span><span style="color:#9ECBFF">Line 2</span><span style="color:#79B8FF">\n</span><span style="color:#9ECBFF">Line 3"</span><span style="color:#E1E4E8">);</span></span></code></pre>
+<h3 id="custom-component-tooltips">Custom Component Tooltips</h3>
+<p>For rich tooltips with formatting, icons, or interactive elements:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiPanel;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiLabel;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiImage;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.layout.FlexDirection;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">GuiPanel tooltip </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> GuiPanel</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">180</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">60</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">tooltip.</span><span style="color:#B392F0">setFlexDirection</span><span style="color:#E1E4E8">(FlexDirection.VERTICAL);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">tooltip.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiLabel</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Diamond Sword"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0xFF00E5FF</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"><span style="color:#E1E4E8">tooltip.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiLabel</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Damage: 7"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0xFFAAAAAA</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"><span style="color:#E1E4E8">tooltip.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiLabel</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Durability: 1561"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0xFFAAAAAA</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">button.</span><span style="color:#B392F0">setTooltipComponent</span><span style="color:#E1E4E8">(tooltip);</span></span></code></pre>
+<h3 id="tooltip-resolution">Tooltip Resolution</h3>
+<p>Tooltips are resolved by walking up the parent chain. If a child does not have a tooltip, the parent’s tooltip is used:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">GuiPanel panel </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> GuiPanel</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">200</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">200</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">panel.</span><span style="color:#B392F0">setTooltip</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Panel tooltip"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">GuiButton btn </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> GuiButton</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">100</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Button"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">null</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#6A737D">// btn has no tooltip, so panel's tooltip is displayed when hovering btn</span></span>
+<span class="line"><span style="color:#E1E4E8">panel.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(btn);</span></span></code></pre>
+<h3 id="theme-integration">Theme Integration</h3>
+<p>Tooltips are rendered via <code>ITheme.drawTooltip()</code> and <code>ITheme.drawTooltipComponent()</code>. The <code>DefaultTheme</code> implementation:</p>
+<ul>
+<li>Draws a dark background with border</li>
+<li>Positions the tooltip near the cursor</li>
+<li>Clamps to screen edges to prevent off-screen rendering</li>
+<li>Caches and reuses a <code>GuiTooltip</code> panel for text tooltips
+</li>
+</ul>
+
+</div>
+</div></main><aside class="toc-sidebar" data-astro-cid-gfcwjq6c><nav class="toc" data-astro-cid-lkw5wmmf><h4 class="toc-title" data-astro-cid-lkw5wmmf><span data-i18n="es" data-astro-cid-lkw5wmmf>En esta página</span><span data-i18n="en" data-astro-cid-lkw5wmmf>On this page</span></h4><ul class="toc-list" data-astro-cid-lkw5wmmf><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#guimarkdown" data-astro-cid-lkw5wmmf>GuiMarkdown</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#constructor" data-astro-cid-lkw5wmmf>Constructor</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#uso-básico" data-astro-cid-lkw5wmmf>Uso Básico</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#en-un-panel-de-desplazamiento" data-astro-cid-lkw5wmmf>En un Panel de Desplazamiento</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#actualizar-contenido" data-astro-cid-lkw5wmmf>Actualizar Contenido</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#sintaxis-soportada" data-astro-cid-lkw5wmmf>Sintaxis Soportada</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#manejo-de-clics-en-enlaces" data-astro-cid-lkw5wmmf>Manejo de Clics en Enlaces</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#navegación-de-anclas" data-astro-cid-lkw5wmmf>Navegación de Anclas</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#campos-públicos" data-astro-cid-lkw5wmmf>Campos Públicos</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#renderizado" data-astro-cid-lkw5wmmf>Renderizado</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#guimodelrender" data-astro-cid-lkw5wmmf>GuiModelRender</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#constructor-1" data-astro-cid-lkw5wmmf>Constructor</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#renderizar-una-entidad" data-astro-cid-lkw5wmmf>Renderizar una Entidad</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#renderizar-una-pila-de-objetos" data-astro-cid-lkw5wmmf>Renderizar una Pila de Objetos</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#rotación-siguiendo-el-cursor" data-astro-cid-lkw5wmmf>Rotación Siguiendo el Cursor</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#rotación-por-arrastre" data-astro-cid-lkw5wmmf>Rotación por Arrastre</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#rotación-estática" data-astro-cid-lkw5wmmf>Rotación Estática</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#desplazamiento-de-traslación" data-astro-cid-lkw5wmmf>Desplazamiento de Traslación</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#deshabilitar-animaciones-de-entidad" data-astro-cid-lkw5wmmf>Deshabilitar Animaciones de Entidad</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#api-fluent" data-astro-cid-lkw5wmmf>API Fluent</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#propiedades" data-astro-cid-lkw5wmmf>Propiedades</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#detalles-de-renderizado" data-astro-cid-lkw5wmmf>Detalles de Renderizado</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#guidropdown" data-astro-cid-lkw5wmmf>GuiDropdown</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#constructor-2" data-astro-cid-lkw5wmmf>Constructor</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#uso-básico-1" data-astro-cid-lkw5wmmf>Uso Básico</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#desplegable-de-enum" data-astro-cid-lkw5wmmf>Desplegable de Enum</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#actualizar-opciones" data-astro-cid-lkw5wmmf>Actualizar Opciones</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#comportamiento" data-astro-cid-lkw5wmmf>Comportamiento</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#renderizado-1" data-astro-cid-lkw5wmmf>Renderizado</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#propiedades-1" data-astro-cid-lkw5wmmf>Propiedades</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#sistema-de-tooltips" data-astro-cid-lkw5wmmf>Sistema de Tooltips</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#tooltips-de-texto" data-astro-cid-lkw5wmmf>Tooltips de Texto</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#tooltips-de-componentes-personalizados" data-astro-cid-lkw5wmmf>Tooltips de Componentes Personalizados</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#resolución-de-tooltips" data-astro-cid-lkw5wmmf>Resolución de Tooltips</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#integración-con-el-tema" data-astro-cid-lkw5wmmf>Integración con el Tema</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#guimarkdown-1" data-astro-cid-lkw5wmmf>GuiMarkdown</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#constructor-3" data-astro-cid-lkw5wmmf>Constructor</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#basic-usage" data-astro-cid-lkw5wmmf>Basic Usage</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#in-a-scroll-panel" data-astro-cid-lkw5wmmf>In a Scroll Panel</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#updating-content" data-astro-cid-lkw5wmmf>Updating Content</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#supported-syntax" data-astro-cid-lkw5wmmf>Supported Syntax</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#link-click-handling" data-astro-cid-lkw5wmmf>Link Click Handling</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#anchor-navigation" data-astro-cid-lkw5wmmf>Anchor Navigation</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#public-fields" data-astro-cid-lkw5wmmf>Public Fields</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#rendering" data-astro-cid-lkw5wmmf>Rendering</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#guimodelrender-1" data-astro-cid-lkw5wmmf>GuiModelRender</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#constructor-4" data-astro-cid-lkw5wmmf>Constructor</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#rendering-an-entity" data-astro-cid-lkw5wmmf>Rendering an Entity</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#rendering-an-item-stack" data-astro-cid-lkw5wmmf>Rendering an Item Stack</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#cursor-following-rotation" data-astro-cid-lkw5wmmf>Cursor-Following Rotation</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#drag-rotation" data-astro-cid-lkw5wmmf>Drag Rotation</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#static-rotation" data-astro-cid-lkw5wmmf>Static Rotation</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#translation-offset" data-astro-cid-lkw5wmmf>Translation Offset</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#disabling-entity-animations" data-astro-cid-lkw5wmmf>Disabling Entity Animations</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#fluent-api" data-astro-cid-lkw5wmmf>Fluent API</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#properties" data-astro-cid-lkw5wmmf>Properties</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#rendering-details" data-astro-cid-lkw5wmmf>Rendering Details</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#guidropdown-1" data-astro-cid-lkw5wmmf>GuiDropdown</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#constructor-5" data-astro-cid-lkw5wmmf>Constructor</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#basic-usage-1" data-astro-cid-lkw5wmmf>Basic Usage</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#enum-dropdown" data-astro-cid-lkw5wmmf>Enum Dropdown</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#updating-options" data-astro-cid-lkw5wmmf>Updating Options</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#behavior" data-astro-cid-lkw5wmmf>Behavior</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#rendering-1" data-astro-cid-lkw5wmmf>Rendering</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#properties-1" data-astro-cid-lkw5wmmf>Properties</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#tooltip-system" data-astro-cid-lkw5wmmf>Tooltip System</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#text-tooltips" data-astro-cid-lkw5wmmf>Text Tooltips</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#custom-component-tooltips" data-astro-cid-lkw5wmmf>Custom Component Tooltips</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#tooltip-resolution" data-astro-cid-lkw5wmmf>Tooltip Resolution</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#theme-integration" data-astro-cid-lkw5wmmf>Theme Integration</a></li></ul></nav><script>
+  function updateTOCVisibility() {
+    const currentLang = document.documentElement.getAttribute('lang') || 'es';
+    const tocLinks = document.querySelectorAll('.toc-item a');
+    tocLinks.forEach(link => {
+      const targetId = link.getAttribute('href').substring(1);
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        const wrapper = targetElement.closest('[data-i18n]');
+        if (wrapper) {
+          const wrapperLang = wrapper.getAttribute('data-i18n');
+          if (wrapperLang !== currentLang) {
+            link.parentElement.style.display = 'none';
+          } else {
+            link.parentElement.style.display = 'block';
+          }
+        }
+      }
+    });
+  }
+  document.addEventListener('DOMContentLoaded', updateTOCVisibility);
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.attributeName === 'lang') {
+        updateTOCVisibility();
+      }
+    });
+  });
+  observer.observe(document.documentElement, { attributes: true });
+</script><div class="carbon-wrapper carbon-placeholder" aria-hidden="true" data-astro-cid-radvbx7x><div class="carbon-placeholder-inner" data-astro-cid-radvbx7x><div class="placeholder-icon" data-astro-cid-radvbx7x><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-radvbx7x><rect width="20" height="12" x="2" y="6" rx="2" data-astro-cid-radvbx7x></rect><path d="M12 12h.01" data-astro-cid-radvbx7x></path><path d="M17 12h.01" data-astro-cid-radvbx7x></path><path d="M7 12h.01" data-astro-cid-radvbx7x></path></svg></div><span class="placeholder-label" data-astro-cid-radvbx7x>Carbon Ads</span><span class="placeholder-sub" data-astro-cid-radvbx7x>Pending approval</span></div></div></aside></div><footer class="footer" data-astro-cid-jo6i4kqk><div class="footer-container" data-astro-cid-jo6i4kqk><div class="footer-info" data-astro-cid-jo6i4kqk><h3 data-astro-cid-jo6i4kqk>XHub</h3><p data-astro-cid-jo6i4kqk>The cave of X4yi. Proyects, News and Docs.</p></div><div class="footer-contact" data-astro-cid-jo6i4kqk><h4 data-astro-cid-jo6i4kqk>Contacto</h4><p data-astro-cid-jo6i4kqk>Email: <a href="mailto:contactx4yi@gd.&lt;/p&gt;mail.com" data-astro-cid-jo6i4kqk>contactx4yi@gmail.com</a></p><div class="social-links" data-astro-cid-jo6i4kqk><a href="https://github.com/X4yii" data-astro-cid-jo6i4kqk>GitHub</a></div></div></div><div class="footer-bottom" data-astro-cid-jo6i4kqk><p data-astro-cid-jo6i4kqk>&copy; 2026 X4yi. All rights reserved.</p></div></footer><dialog id="search-dialog" class="search-modal" data-astro-cid-e66w4awt><div class="search-container" data-astro-cid-e66w4awt><header class="search-header" data-astro-cid-e66w4awt><span data-i18n="es" data-astro-cid-e66w4awt>Buscar en XHub</span><span data-i18n="en" data-astro-cid-e66w4awt>Search XHub</span><button id="close-search" class="close-btn" data-astro-cid-e66w4awt>&times;</button></header><div class="search-body" data-astro-cid-e66w4awt><input type="text" id="fuse-search-input" placeholder="Search..." autocomplete="off" data-astro-cid-e66w4awt><div id="fuse-results-area" class="results-area" data-astro-cid-e66w4awt></div></div></div></dialog><script type="module" src="/xhub/_astro/SearchDialog.astro_astro_type_script_index_0_lang.C3MsqoGD.js"></script></body></html><script>
+document.addEventListener('astro:page-load', () => {
+  const toggle   = document.getElementById('sidebar-toggle');
+  const overlay  = document.getElementById('sidebar-overlay');
+  const sidebar  = document.querySelector('.sidebar');
+  const closeBtn = document.getElementById('sidebar-close-btn');
+
+  if (!sidebar) return;
+
+  function openSidebar() {
+    sidebar.classList.add('mobile-open');
+    if(overlay) overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeSidebar() {
+    sidebar.classList.remove('mobile-open');
+    if(overlay) overlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  if (toggle) toggle.addEventListener('click', openSidebar);
+  if (overlay) overlay.addEventListener('click', closeSidebar);
+  if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
+
+  document.querySelectorAll('.sidebar .nav-links a').forEach(link => {
+    link.addEventListener('click', closeSidebar);
+  });
+
+  var touchStartX = 0;
+  var touchStartY = 0;
+  var SWIPE_THRESHOLD = 60;
+  var EDGE_ZONE = 32;
+
+  document.addEventListener('touchstart', function (e) {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+
+  document.addEventListener('touchend', function (e) {
+    var dx = e.changedTouches[0].clientX - touchStartX;
+    var dy = e.changedTouches[0].clientY - touchStartY;
+
+    if (Math.abs(dx) < Math.abs(dy)) return;
+
+    var isOpen = sidebar.classList.contains('mobile-open');
+
+    if (!isOpen && touchStartX <= EDGE_ZONE && dx > SWIPE_THRESHOLD) {
+      openSidebar();
+    }
+
+    if (isOpen && dx < -SWIPE_THRESHOLD) {
+      closeSidebar();
+    }
+  }, { passive: true });
+});
+</script>

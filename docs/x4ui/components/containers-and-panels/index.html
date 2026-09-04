@@ -1,0 +1,644 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" type="image/svg+xml" href="/xhub/favicon.svg"><meta name="generator" content="Astro v7.2.7"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/xhub/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CYDbzu1r.js"></script><title>XHub - Containers And Panels</title><meta name="description" content="El cerro de X4yi."><meta property="og:title" content="XHub - Containers And Panels"><meta property="og:description" content="El cerro de X4yi."><meta property="og:image" content="/favicon.svg"><meta property="og:type" content="article"><meta property="og:url" content="https://x4yi.github.io/docs/x4ui/components/containers-and-panels"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="XHub - Containers And Panels"><meta name="twitter:description" content="El cerro de X4yi."><meta name="twitter:image" content="/favicon.svg"><link rel="stylesheet" href="/xhub/_astro/Layout.x4fbhSDA.css"><link rel="stylesheet" href="/xhub/_astro/_..DHkhKyNK.css"></head><body><nav class="navbar" data-astro-cid-l7arcky5><div class="nav-container" data-astro-cid-l7arcky5><a href="/xhub/" class="brand" data-astro-cid-l7arcky5>XHub</a><ul class="nav-links" data-astro-cid-l7arcky5><li data-astro-cid-l7arcky5><a href="/xhub/proyectos/" data-astro-cid-l7arcky5>Proyectos</a></li><li data-astro-cid-l7arcky5><a href="/xhub/noticias/" data-astro-cid-l7arcky5>Noticias</a></li><li data-astro-cid-l7arcky5><a href="/xhub/docs/" data-astro-cid-l7arcky5>Docs</a></li><li data-astro-cid-l7arcky5><a href="/xhub/changelogs/" data-astro-cid-l7arcky5>Changelogs</a></li></ul><div class="nav-controls" data-astro-cid-l7arcky5><button class="search-btn" id="open-search" aria-label="Search" data-astro-cid-l7arcky5><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-l7arcky5><circle cx="11" cy="11" r="8" data-astro-cid-l7arcky5></circle><path d="m21 21-4.3-4.3" data-astro-cid-l7arcky5></path></svg><span class="search-text" data-astro-cid-l7arcky5>Buscar...</span><kbd class="search-kbd" data-astro-cid-l7arcky5>Ctrl K</kbd></button><div class="lang-selector" data-astro-cid-l7arcky5><select id="lang-switch" aria-label="Cambiar idioma" data-astro-cid-l7arcky5><option value="es" data-astro-cid-l7arcky5>ES</option><option value="en" data-astro-cid-l7arcky5>EN</option></select></div><button class="hamburger" id="hamburger-btn" aria-label="Abrir menú" aria-expanded="false" data-astro-cid-l7arcky5><span data-astro-cid-l7arcky5></span><span data-astro-cid-l7arcky5></span><span data-astro-cid-l7arcky5></span></button></div></div></nav><div class="mobile-drawer" id="mobile-drawer" aria-hidden="true" data-astro-cid-l7arcky5><div class="drawer-header" data-astro-cid-l7arcky5><span class="brand" data-astro-cid-l7arcky5>XHub</span><button class="drawer-close" id="drawer-close" aria-label="Cerrar menú" data-astro-cid-l7arcky5><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-l7arcky5><path d="M18 6 6 18" data-astro-cid-l7arcky5></path><path d="m6 6 12 12" data-astro-cid-l7arcky5></path></svg></button></div><nav class="drawer-nav" data-astro-cid-l7arcky5><a href="/xhub/proyectos/" class="drawer-link" data-astro-cid-l7arcky5><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-l7arcky5><path d="m7.5 4.27 9 5.15" data-astro-cid-l7arcky5></path><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z" data-astro-cid-l7arcky5></path><path d="m3.3 7 8.7 5 8.7-5" data-astro-cid-l7arcky5></path><path d="M12 22V12" data-astro-cid-l7arcky5></path></svg>Proyectos</a><a href="/xhub/noticias/" class="drawer-link" data-astro-cid-l7arcky5><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-l7arcky5><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 0-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2" data-astro-cid-l7arcky5></path><path d="M18 14h-8" data-astro-cid-l7arcky5></path><path d="M15 18h-5" data-astro-cid-l7arcky5></path><path d="M10 6h8v4h-8V6Z" data-astro-cid-l7arcky5></path></svg>Noticias</a><a href="/xhub/docs/" class="drawer-link" data-astro-cid-l7arcky5><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-l7arcky5><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" data-astro-cid-l7arcky5></path></svg>Docs</a><a href="/xhub/changelogs/" class="drawer-link" data-astro-cid-l7arcky5><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-l7arcky5><path d="M12 20h9" data-astro-cid-l7arcky5></path><path d="M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.854z" data-astro-cid-l7arcky5></path></svg>Changelogs</a></nav><div class="drawer-footer" data-astro-cid-l7arcky5><button class="search-btn-drawer" id="open-search-drawer" aria-label="Buscar" data-astro-cid-l7arcky5><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-l7arcky5><circle cx="11" cy="11" r="8" data-astro-cid-l7arcky5></circle><path d="m21 21-4.3-4.3" data-astro-cid-l7arcky5></path></svg>Buscar...</button><div class="lang-selector-drawer" data-astro-cid-l7arcky5><select id="lang-switch-drawer" aria-label="Cambiar idioma" data-astro-cid-l7arcky5><option value="es" data-astro-cid-l7arcky5>ES</option><option value="en" data-astro-cid-l7arcky5>EN</option></select></div></div></div><div class="drawer-overlay" id="drawer-overlay" data-astro-cid-l7arcky5></div><script>
+document.addEventListener('astro:page-load', () => {
+  const selector = document.getElementById('lang-switch');
+  const selectorDrawer = document.getElementById('lang-switch-drawer');
+  const currentLang = localStorage.getItem('lang') || 'es';
+  
+  if (selector) selector.value = currentLang;
+  if (selectorDrawer) selectorDrawer.value = currentLang;
+  document.documentElement.setAttribute('lang', currentLang);
+
+  function setLang(lang) {
+    localStorage.setItem('lang', lang);
+    document.documentElement.setAttribute('lang', lang);
+    if (selector) selector.value = lang;
+    if (selectorDrawer) selectorDrawer.value = lang;
+  }
+
+  if (selector) selector.addEventListener('change', (e) => setLang(e.target.value));
+  if (selectorDrawer) selectorDrawer.addEventListener('change', (e) => setLang(e.target.value));
+
+  const openSearchBtn = document.getElementById('open-search');
+  const openSearchDrawerBtn = document.getElementById('open-search-drawer');
+  function openSearch() {
+    const dialog = document.getElementById('search-dialog');
+    if (dialog) dialog.showModal();
+    closeDrawer();
+  }
+  if (openSearchBtn) openSearchBtn.addEventListener('click', openSearch);
+  if (openSearchDrawerBtn) openSearchDrawerBtn.addEventListener('click', openSearch);
+
+  const hamburger = document.getElementById('hamburger-btn');
+  const drawer = document.getElementById('mobile-drawer');
+  const overlay = document.getElementById('drawer-overlay');
+  const drawerClose = document.getElementById('drawer-close');
+
+  function openDrawer() {
+    if (!drawer) return;
+    drawer.classList.add('open');
+    overlay.classList.add('open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    hamburger.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeDrawer() {
+    if (!drawer) return;
+    drawer.classList.remove('open');
+    overlay.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    hamburger.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  if (hamburger) {
+    hamburger.addEventListener('click', () => {
+      drawer.classList.contains('open') ? closeDrawer() : openDrawer();
+    });
+  }
+  if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+  if (overlay) overlay.addEventListener('click', closeDrawer);
+});
+</script><div class="docs-layout" data-astro-cid-gfcwjq6c><button class="sidebar-toggle" id="sidebar-toggle" aria-label="Abrir navegación" data-astro-cid-gfcwjq6c><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-gfcwjq6c><path d="M3 12h18" data-astro-cid-gfcwjq6c></path><path d="M3 6h18" data-astro-cid-gfcwjq6c></path><path d="M3 18h18" data-astro-cid-gfcwjq6c></path></svg><span data-astro-cid-gfcwjq6c>X4UI</span></button><div class="sidebar-overlay" id="sidebar-overlay" data-astro-cid-gfcwjq6c></div><aside class="sidebar" data-astro-cid-wv7whodv><div class="sidebar-header" data-astro-cid-wv7whodv><a href="/xhub/docs/" class="back-link" data-astro-cid-wv7whodv><span data-i18n="es" data-astro-cid-wv7whodv>&larr; Volver</span><span data-i18n="en" data-astro-cid-wv7whodv>&larr; Back</span></a><button class="sidebar-close-btn" id="sidebar-close-btn" aria-label="Cerrar" data-astro-cid-wv7whodv><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-wv7whodv><path d="M18 6 6 18" data-astro-cid-wv7whodv></path><path d="m6 6 12 12" data-astro-cid-wv7whodv></path></svg></button><h2 class="project-title" data-astro-cid-wv7whodv>X4UI</h2></div><nav class="sidebar-nav" data-astro-cid-wv7whodv><div class="nav-group" data-astro-cid-wv7whodv><h3 class="nav-category" data-astro-cid-wv7whodv>General</h3><ul class="nav-links" data-astro-cid-wv7whodv><li data-astro-cid-wv7whodv><a href="/xhub/docs/x4ui/x4ui-manual/" class data-astro-cid-wv7whodv>X4UI Framework - Manual de desarrollo</a></li><li data-astro-cid-wv7whodv><a href="/xhub/docs/x4ui/getting-started/" class data-astro-cid-wv7whodv>Getting Started</a></li><li data-astro-cid-wv7whodv><a href="/xhub/docs/x4ui/core-concepts/" class data-astro-cid-wv7whodv>Core Concepts</a></li><li data-astro-cid-wv7whodv><a href="/xhub/docs/x4ui/remote-assets/" class data-astro-cid-wv7whodv>Remote Assets</a></li><li data-astro-cid-wv7whodv><a href="/xhub/docs/x4ui/networking-and-sync/" class data-astro-cid-wv7whodv>Networking &amp; Sync</a></li><li data-astro-cid-wv7whodv><a href="/xhub/docs/x4ui/media-limitations/" class data-astro-cid-wv7whodv>Media Limitations</a></li></ul></div><div class="nav-group" data-astro-cid-wv7whodv><h3 class="nav-category" data-astro-cid-wv7whodv>Components</h3><ul class="nav-links" data-astro-cid-wv7whodv><li data-astro-cid-wv7whodv><a href="/xhub/docs/x4ui/components/advanced-components/" class data-astro-cid-wv7whodv>Advanced Components</a></li><li data-astro-cid-wv7whodv><a href="/xhub/docs/x4ui/components/buttons-and-inputs/" class data-astro-cid-wv7whodv>Buttons And Inputs</a></li><li data-astro-cid-wv7whodv><a href="/xhub/docs/x4ui/components/containers-and-panels/" class="active" data-astro-cid-wv7whodv>Containers And Panels</a></li><li data-astro-cid-wv7whodv><a href="/xhub/docs/x4ui/components/multimedia/" class data-astro-cid-wv7whodv>Multimedia</a></li></ul></div></nav></aside><main class="docs-content-area" data-astro-cid-gfcwjq6c><header class="doc-header" data-astro-cid-gfcwjq6c><span class="category-tag" data-astro-cid-gfcwjq6c>Components</span><h1 data-astro-cid-gfcwjq6c>Containers And Panels</h1></header><div class="content-wrapper prose" data-astro-cid-gfcwjq6c>
+<div data-i18n="es">
+
+<h1 id="contenedores-y-paneles">Contenedores y Paneles</h1>
+<p>Este documento cubre los componentes contenedor: <code>GuiPanel</code>, <code>GuiScrollPanel</code>, <code>GuiVirtualList</code> y <code>GuiSlot</code>.</p>
+<hr>
+<h2 id="guipanel">GuiPanel</h2>
+<p>El componente contenedor principal. Actúa como una caja de diseño que contiene componentes hijos y delega el posicionamiento a un gestor de <code>FlexLayout</code>.</p>
+<p><strong>Paquete:</strong> <code>com.x4yi.x4ui.client.gui.component.GuiPanel</code></p>
+<h3 id="constructor">Constructor</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiPanel</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> x, </span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> y, </span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> width, </span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> height)</span></span></code></pre>
+<p>El layout predeterminado es <code>FlexDirection.ABSOLUTE</code> (los hijos usan sus propios valores de <code>x/y</code>).</p>
+<h3 id="uso-básico">Uso Básico</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiPanel;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiButton;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">GuiPanel panel </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> GuiPanel</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">200</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">200</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">panel.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiButton</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">80</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Button A"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">null</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"><span style="color:#E1E4E8">panel.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiButton</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">40</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">80</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Button B"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">null</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">rootPanel.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(panel);</span></span></code></pre>
+<h3 id="layout-flex">Layout Flex</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.layout.FlexDirection;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.utils.Insets;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">GuiPanel sidebar </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> GuiPanel</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">200</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">400</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">sidebar.</span><span style="color:#B392F0">setFlexDirection</span><span style="color:#E1E4E8">(FlexDirection.VERTICAL);</span></span>
+<span class="line"><span style="color:#E1E4E8">sidebar.</span><span style="color:#B392F0">setGap</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">4</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">sidebar.</span><span style="color:#B392F0">setPadding</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> Insets</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">8</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">sidebar.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiButton</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">180</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Home"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">null</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"><span style="color:#E1E4E8">sidebar.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiButton</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">180</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Settings"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">null</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"><span style="color:#E1E4E8">sidebar.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiButton</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">180</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"About"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">null</span><span style="color:#E1E4E8">));</span></span></code></pre>
+<p>Los hijos se apilan de arriba a abajo con espacios de 4px dentro de un área con padding de 8px.</p>
+<h3 id="layout-horizontal">Layout Horizontal</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.layout.FlexDirection;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">GuiPanel toolbar </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> GuiPanel</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">400</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">30</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">toolbar.</span><span style="color:#B392F0">setFlexDirection</span><span style="color:#E1E4E8">(FlexDirection.HORIZONTAL);</span></span>
+<span class="line"><span style="color:#E1E4E8">toolbar.</span><span style="color:#B392F0">setGap</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">toolbar.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiButton</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">80</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Bold"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">null</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"><span style="color:#E1E4E8">toolbar.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiButton</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">80</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Italic"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">null</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"><span style="color:#E1E4E8">toolbar.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiButton</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">80</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Underline"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">null</span><span style="color:#E1E4E8">));</span></span></code></pre>
+<h3 id="flex-wrap">Flex Wrap</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">GuiPanel grid </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> GuiPanel</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">400</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">300</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">grid.</span><span style="color:#B392F0">setFlexDirection</span><span style="color:#E1E4E8">(FlexDirection.HORIZONTAL);</span></span>
+<span class="line"><span style="color:#E1E4E8">grid.</span><span style="color:#B392F0">setFlexWrap</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">grid.</span><span style="color:#B392F0">setGap</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">5</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">for</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> i </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">; i </span><span style="color:#F97583">&#x3C;</span><span style="color:#79B8FF"> 20</span><span style="color:#E1E4E8">; i</span><span style="color:#F97583">++</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">    grid.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiButton</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">80</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Item "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> i, </span><span style="color:#79B8FF">null</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>Los hijos saltan a la siguiente fila cuando exceden el ancho del panel.</p>
+<h3 id="tema-personalizado">Tema Personalizado</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">panel.</span><span style="color:#B392F0">setTheme</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> ITheme</span><span style="color:#E1E4E8">() { </span><span style="color:#6A737D">/* ... */</span><span style="color:#E1E4E8"> });</span></span></code></pre>
+<p>Los temas se propagan a todos los hijos. Si un hijo no tiene un tema explícito, hereda del padre.</p>
+<h3 id="propiedades">Propiedades</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Método</th><th>Tipo</th><th>Descripción</th></tr></thead><tbody><tr><td><code>setFlexDirection(FlexDirection)</code></td><td><code>void</code></td><td>Establece la dirección del layout</td></tr><tr><td><code>getFlexDirection()</code></td><td><code>FlexDirection</code></td><td>Devuelve la dirección actual</td></tr><tr><td><code>setGap(int)</code></td><td><code>void</code></td><td>Establece el espaciado entre hijos</td></tr><tr><td><code>setFlexWrap(boolean)</code></td><td><code>void</code></td><td>Habilita el envolvimiento</td></tr></tbody></table>
+<hr>
+<h2 id="guiscrollpanel">GuiScrollPanel</h2>
+<p>Un contenedor desplazable con desplazamiento animado suave, barra de desplazamiento vertical y recorte OpenGL scissor.</p>
+<p><strong>Paquete:</strong> <code>com.x4yi.x4ui.client.gui.component.GuiScrollPanel</code></p>
+<h3 id="constructor-1">Constructor</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiScrollPanel</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> x, </span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> y, </span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> width, </span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> height)</span></span></code></pre>
+<h3 id="uso-básico-1">Uso Básico</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiScrollPanel;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiButton;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">GuiScrollPanel scrollList </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> GuiScrollPanel</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">200</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">150</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">for</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> i </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">; i </span><span style="color:#F97583">&#x3C;</span><span style="color:#79B8FF"> 30</span><span style="color:#E1E4E8">; i</span><span style="color:#F97583">++</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">    final</span><span style="color:#F97583"> int</span><span style="color:#E1E4E8"> index </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> i;</span></span>
+<span class="line"><span style="color:#E1E4E8">    scrollList.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiButton</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">180</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Item "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> index, () </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Clicked item "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> index);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }));</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">rootPanel.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(scrollList);</span></span></code></pre>
+<h3 id="agregar-y-eliminar-hijos">Agregar y Eliminar Hijos</h3>
+<p><code>addChild()</code>, <code>removeChild()</code> y <code>clearChildren()</code> delegan al <code>contentPanel</code> interno:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">scrollList.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiButton</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">180</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"New Item"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">null</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"><span style="color:#E1E4E8">scrollList.</span><span style="color:#B392F0">clearChildren</span><span style="color:#E1E4E8">();</span></span></code></pre>
+<h3 id="desplazamiento-programático">Desplazamiento Programático</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">scrollList.</span><span style="color:#B392F0">scrollToBottom</span><span style="color:#E1E4E8">();                    </span><span style="color:#6A737D">// Desplazamiento suave al fondo</span></span>
+<span class="line"><span style="color:#E1E4E8">scrollList.</span><span style="color:#B392F0">setScrollY</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">100</span><span style="color:#E1E4E8">);                     </span><span style="color:#6A737D">// Salto instantáneo a Y=100</span></span>
+<span class="line"><span style="color:#E1E4E8">scrollList.</span><span style="color:#B392F0">setTargetScrollY</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">200</span><span style="color:#E1E4E8">);               </span><span style="color:#6A737D">// Desplazamiento suave a Y=200</span></span>
+<span class="line"><span style="color:#F97583">float</span><span style="color:#E1E4E8"> currentScroll </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> scrollList.</span><span style="color:#B392F0">getScrollY</span><span style="color:#E1E4E8">();   </span><span style="color:#6A737D">// Posición actual de desplazamiento</span></span>
+<span class="line"><span style="color:#F97583">int</span><span style="color:#E1E4E8"> maxScroll </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> scrollList.</span><span style="color:#B392F0">getMaxScrollY</span><span style="color:#E1E4E8">();      </span><span style="color:#6A737D">// Rango máximo de desplazamiento</span></span></code></pre>
+<h3 id="comportamiento-de-desplazamiento">Comportamiento de Desplazamiento</h3>
+<ul>
+<li>La rueda del mouse desplaza por <code>scrollStep</code> píxeles (predeterminado: 22)</li>
+<li>El desplazamiento es animado con <code>scrollSpeed</code> (predeterminado: 0.2)</li>
+<li>El contenido se recorta mediante OpenGL scissor</li>
+<li>Se dibuja una barra de desplazamiento temática en el borde derecho</li>
+</ul>
+<h3 id="renderizado">Renderizado</h3>
+<ul>
+<li>El contenido se renderiza dentro de una región scissor que coincide con los límites del panel</li>
+<li>Solo se renderizan los hijos visibles (los hijos fuera de pantalla se omiten)</li>
+<li>Pista de la barra de desplazamiento: <code>theme.getScrollbarTrackColor()</code></li>
+<li>Pulgar de la barra de desplazamiento: <code>theme.getScrollbarThumbColor()</code></li>
+</ul>
+<h3 id="interacción-con-guivideo-y-guiimage">Interacción con GuiVideo y GuiImage</h3>
+<p>Los componentes como <code>GuiVideo</code> o <code>GuiImage</code> dentro de un <code>GuiScrollPanel</code> se recortan por la región scissor. Cuando se desplazan fuera de la vista, no se renderizan.</p>
+<hr>
+<h2 id="guivirtuallist">GuiVirtualList</h2>
+<p>Una lista virtualizada de alto rendimiento que solo instancia componentes para los elementos actualmente visibles en el viewport de desplazamiento. Ideal para conjuntos de datos grandes (cientos o miles de elementos).</p>
+<p><strong>Paquete:</strong> <code>com.x4yi.x4ui.client.gui.component.GuiVirtualList</code></p>
+<h3 id="constructor-2">Constructor</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiVirtualList</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> x, </span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> y, </span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> width, </span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> height, </span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> itemHeight, Function</span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">T, GuiComponent</span><span style="color:#F97583">></span><span style="color:#E1E4E8"> builder)</span></span></code></pre>
+<ul>
+<li><code>itemHeight</code> — Altura fija de cada elemento en píxeles</li>
+<li><code>builder</code> — Función que crea un <code>GuiComponent</code> para cada elemento</li>
+</ul>
+<h3 id="uso-básico-2">Uso Básico</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiVirtualList;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiButton;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">List&#x3C;</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">> items </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> ArrayList&#x3C;>();</span></span>
+<span class="line"><span style="color:#F97583">for</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> i </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">; i </span><span style="color:#F97583">&#x3C;</span><span style="color:#79B8FF"> 1000</span><span style="color:#E1E4E8">; i</span><span style="color:#F97583">++</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">    items.</span><span style="color:#B392F0">add</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Item "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> i);</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">GuiVirtualList&#x3C;</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">> list </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> GuiVirtualList&#x3C;>(</span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">200</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">300</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">25</span><span style="color:#E1E4E8">, item </span><span style="color:#F97583">-></span></span>
+<span class="line"><span style="color:#F97583">    new</span><span style="color:#B392F0"> GuiButton</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">180</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">, item, () </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Clicked: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> item))</span></span>
+<span class="line"><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">list.</span><span style="color:#B392F0">setItems</span><span style="color:#E1E4E8">(items);</span></span>
+<span class="line"><span style="color:#E1E4E8">rootPanel.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(list);</span></span></code></pre>
+<h3 id="actualizar-elementos">Actualizar Elementos</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#6A737D">// Reemplazar todos los elementos</span></span>
+<span class="line"><span style="color:#E1E4E8">List&#x3C;</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">> newItems </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Arrays.</span><span style="color:#B392F0">asList</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"A"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"B"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"C"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">list.</span><span style="color:#B392F0">setItems</span><span style="color:#E1E4E8">(newItems);</span></span></code></pre>
+<h3 id="cómo-funciona">Cómo Funciona</h3>
+<ol>
+<li>Solo los elementos dentro del rango de desplazamiento visible (más 2 extra para desplazamiento suave) se instancian.</li>
+<li>Cuando los elementos se desplazan fuera de la vista, sus componentes se eliminan del árbol y se destruyen.</li>
+<li>Cuando los elementos se desplazan a la vista, se crean nuevos componentes mediante la función <code>builder</code>.</li>
+<li>El <code>contentPanel</code> usa layout <code>FlexDirection.ABSOLUTE</code>, con cada elemento posicionado en <code>index * itemHeight</code>.</li>
+</ol>
+<h3 id="características-de-rendimiento">Características de Rendimiento</h3>
+<ul>
+<li><strong>Memoria</strong>: O(elementos visibles) en lugar de O(total de elementos)</li>
+<li><strong>Renderizado</strong>: Solo se renderizan los elementos visibles cada frame</li>
+<li><strong>Layout</strong>: Solo los elementos visibles participan en cálculos de layout</li>
+<li><strong>Creación</strong>: Los componentes se crean/destruyen durante el desplazamiento (reciclados)</li>
+</ul>
+<h3 id="comparación-con-guiscrollpanel">Comparación con GuiScrollPanel</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Característica</th><th>GuiScrollPanel</th><th>GuiVirtualList</th></tr></thead><tbody><tr><td>Hijos</td><td>Todos instanciados</td><td>Solo los visibles</td></tr><tr><td>Memoria</td><td>O(n)</td><td>O(visibles)</td></tr><tr><td>Agregar/eliminar</td><td>Inmediato</td><td>Diferido (basado en desplazamiento)</td></tr><tr><td>Caso de uso</td><td>Listas pequeñas (&#x3C; 100)</td><td>Listas grandes (100+)</td></tr></tbody></table>
+<hr>
+<h2 id="guislot">GuiSlot</h2>
+<p>Envuelve un <code>Slot</code> de Minecraft para posicionarlo dentro del árbol de componentes de X4UI. La posición del slot se sincroniza cada tick para coincidir con la posición absoluta del componente.</p>
+<p><strong>Paquete:</strong> <code>com.x4yi.x4ui.client.gui.component.GuiSlot</code></p>
+<h3 id="constructor-3">Constructor</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiSlot</span><span style="color:#E1E4E8">(Slot slot, GuiBaseContainer containerScreen)</span></span></code></pre>
+<h3 id="uso">Uso</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiSlot;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiPanel;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.layout.FlexDirection;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Dentro del initComponents() de un GuiBaseContainer</span></span>
+<span class="line"><span style="color:#E1E4E8">GuiPanel inventoryPanel </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> GuiPanel</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">200</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">150</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">inventoryPanel.</span><span style="color:#B392F0">setFlexDirection</span><span style="color:#E1E4E8">(FlexDirection.VERTICAL);</span></span>
+<span class="line"><span style="color:#E1E4E8">inventoryPanel.</span><span style="color:#B392F0">setGap</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">for</span><span style="color:#E1E4E8"> (Slot slot </span><span style="color:#F97583">:</span><span style="color:#E1E4E8"> inventorySlots.inventorySlots) {</span></span>
+<span class="line"><span style="color:#E1E4E8">    inventoryPanel.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiSlot</span><span style="color:#E1E4E8">(slot, </span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">rootPanel.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(inventoryPanel);</span></span></code></pre>
+<h3 id="comportamiento">Comportamiento</h3>
+<ul>
+<li>Tamaño fijo: 18x18 píxeles</li>
+<li>Cada tick, <code>slot.xPos</code> y <code>slot.yPos</code> se actualizan para coincidir con la posición absoluta del componente menos el <code>guiLeft</code>/<code>guiTop</code> del contenedor</li>
+<li>Renderiza un fondo semitransparente (<code>0x55000000</code>) y borde (<code>0xFF333333</code>)</li>
+</ul>
+<h3 id="integración-con-guibasecontainer">Integración con GuiBaseContainer</h3>
+<p><code>GuiSlot</code> requiere una referencia a <code>GuiBaseContainer</code> para acceder a <code>getGuiLeft()</code> y <code>getGuiTop()</code>. Esto asegura que la posición del slot sea correcta en relación con el fondo del contenedor vanilla.</p>
+<h3 id="integración-con-jei">Integración con JEI</h3>
+<p><code>GuiBaseContainer</code> provee <code>getJeiRecipeAreas()</code> para registrar áreas de transferencia de recetas compatibles con Just Enough Items (JEI).</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Override</span></span>
+<span class="line"><span style="color:#F97583">protected</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> initComponents</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#6A737D">    // Agregar áreas de transferencia de recetas para JEI</span></span>
+<span class="line"><span style="color:#E1E4E8">    jeiRecipeAreas.</span><span style="color:#B392F0">add</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> Rectangle</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">50</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">80</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">80</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+
+</div>
+
+
+<div data-i18n="en">
+
+<h1 id="containers-and-panels">Containers and Panels</h1>
+<p>This document covers the container components: <code>GuiPanel</code>, <code>GuiScrollPanel</code>, <code>GuiVirtualList</code>, and <code>GuiSlot</code>.</p>
+<hr>
+<h2 id="guipanel-1">GuiPanel</h2>
+<p>The primary container component. Acts as a layout box that holds child components and delegates positioning to a <code>FlexLayout</code> manager.</p>
+<p><strong>Package:</strong> <code>com.x4yi.x4ui.client.gui.component.GuiPanel</code></p>
+<h3 id="constructor-4">Constructor</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiPanel</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> x, </span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> y, </span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> width, </span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> height)</span></span></code></pre>
+<p>The default layout is <code>FlexDirection.ABSOLUTE</code> (children use their own <code>x/y</code> values).</p>
+<h3 id="basic-usage">Basic Usage</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiPanel;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiButton;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">GuiPanel panel </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> GuiPanel</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">200</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">200</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">panel.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiButton</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">80</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Button A"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">null</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"><span style="color:#E1E4E8">panel.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiButton</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">40</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">80</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Button B"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">null</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">rootPanel.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(panel);</span></span></code></pre>
+<h3 id="flex-layout">Flex Layout</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.layout.FlexDirection;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.utils.Insets;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">GuiPanel sidebar </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> GuiPanel</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">200</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">400</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">sidebar.</span><span style="color:#B392F0">setFlexDirection</span><span style="color:#E1E4E8">(FlexDirection.VERTICAL);</span></span>
+<span class="line"><span style="color:#E1E4E8">sidebar.</span><span style="color:#B392F0">setGap</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">4</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">sidebar.</span><span style="color:#B392F0">setPadding</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> Insets</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">8</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">sidebar.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiButton</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">180</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Home"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">null</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"><span style="color:#E1E4E8">sidebar.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiButton</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">180</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Settings"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">null</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"><span style="color:#E1E4E8">sidebar.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiButton</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">180</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"About"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">null</span><span style="color:#E1E4E8">));</span></span></code></pre>
+<p>Children are stacked top-to-bottom with 4px gaps inside an 8px padding area.</p>
+<h3 id="horizontal-layout">Horizontal Layout</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.layout.FlexDirection;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">GuiPanel toolbar </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> GuiPanel</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">400</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">30</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">toolbar.</span><span style="color:#B392F0">setFlexDirection</span><span style="color:#E1E4E8">(FlexDirection.HORIZONTAL);</span></span>
+<span class="line"><span style="color:#E1E4E8">toolbar.</span><span style="color:#B392F0">setGap</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">toolbar.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiButton</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">80</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Bold"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">null</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"><span style="color:#E1E4E8">toolbar.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiButton</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">80</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Italic"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">null</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"><span style="color:#E1E4E8">toolbar.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiButton</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">80</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Underline"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">null</span><span style="color:#E1E4E8">));</span></span></code></pre>
+<h3 id="flex-wrap-1">Flex Wrap</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">GuiPanel grid </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> GuiPanel</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">400</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">300</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">grid.</span><span style="color:#B392F0">setFlexDirection</span><span style="color:#E1E4E8">(FlexDirection.HORIZONTAL);</span></span>
+<span class="line"><span style="color:#E1E4E8">grid.</span><span style="color:#B392F0">setFlexWrap</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">grid.</span><span style="color:#B392F0">setGap</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">5</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">for</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> i </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">; i </span><span style="color:#F97583">&#x3C;</span><span style="color:#79B8FF"> 20</span><span style="color:#E1E4E8">; i</span><span style="color:#F97583">++</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">    grid.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiButton</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">80</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Item "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> i, </span><span style="color:#79B8FF">null</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>Children wrap to the next row when they exceed the panel’s width.</p>
+<h3 id="custom-theme">Custom Theme</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">panel.</span><span style="color:#B392F0">setTheme</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> ITheme</span><span style="color:#E1E4E8">() { </span><span style="color:#6A737D">/* ... */</span><span style="color:#E1E4E8"> });</span></span></code></pre>
+<p>Themes cascade to all children. If a child has no explicit theme, it inherits from its parent.</p>
+<h3 id="properties">Properties</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Method</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>setFlexDirection(FlexDirection)</code></td><td><code>void</code></td><td>Sets layout direction</td></tr><tr><td><code>getFlexDirection()</code></td><td><code>FlexDirection</code></td><td>Returns current direction</td></tr><tr><td><code>setGap(int)</code></td><td><code>void</code></td><td>Sets spacing between children</td></tr><tr><td><code>setFlexWrap(boolean)</code></td><td><code>void</code></td><td>Enables wrapping</td></tr></tbody></table>
+<hr>
+<h2 id="guiscrollpanel-1">GuiScrollPanel</h2>
+<p>A scrollable container with smooth animated scrolling, vertical scrollbar, and OpenGL scissor clipping.</p>
+<p><strong>Package:</strong> <code>com.x4yi.x4ui.client.gui.component.GuiScrollPanel</code></p>
+<h3 id="constructor-5">Constructor</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiScrollPanel</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> x, </span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> y, </span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> width, </span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> height)</span></span></code></pre>
+<h3 id="basic-usage-1">Basic Usage</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiScrollPanel;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiButton;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">GuiScrollPanel scrollList </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> GuiScrollPanel</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">200</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">150</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">for</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> i </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">; i </span><span style="color:#F97583">&#x3C;</span><span style="color:#79B8FF"> 30</span><span style="color:#E1E4E8">; i</span><span style="color:#F97583">++</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">    final</span><span style="color:#F97583"> int</span><span style="color:#E1E4E8"> index </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> i;</span></span>
+<span class="line"><span style="color:#E1E4E8">    scrollList.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiButton</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">180</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Item "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> index, () </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Clicked item "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> index);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }));</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">rootPanel.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(scrollList);</span></span></code></pre>
+<h3 id="adding-and-removing-children">Adding and Removing Children</h3>
+<p><code>addChild()</code>, <code>removeChild()</code>, and <code>clearChildren()</code> delegate to the internal <code>contentPanel</code>:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">scrollList.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiButton</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">180</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"New Item"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">null</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"><span style="color:#E1E4E8">scrollList.</span><span style="color:#B392F0">clearChildren</span><span style="color:#E1E4E8">();</span></span></code></pre>
+<h3 id="programmatic-scrolling">Programmatic Scrolling</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">scrollList.</span><span style="color:#B392F0">scrollToBottom</span><span style="color:#E1E4E8">();                    </span><span style="color:#6A737D">// Smooth scroll to bottom</span></span>
+<span class="line"><span style="color:#E1E4E8">scrollList.</span><span style="color:#B392F0">setScrollY</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">100</span><span style="color:#E1E4E8">);                     </span><span style="color:#6A737D">// Instant jump to Y=100</span></span>
+<span class="line"><span style="color:#E1E4E8">scrollList.</span><span style="color:#B392F0">setTargetScrollY</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">200</span><span style="color:#E1E4E8">);               </span><span style="color:#6A737D">// Smooth scroll to Y=200</span></span>
+<span class="line"><span style="color:#F97583">float</span><span style="color:#E1E4E8"> currentScroll </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> scrollList.</span><span style="color:#B392F0">getScrollY</span><span style="color:#E1E4E8">();   </span><span style="color:#6A737D">// Current scroll position</span></span>
+<span class="line"><span style="color:#F97583">int</span><span style="color:#E1E4E8"> maxScroll </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> scrollList.</span><span style="color:#B392F0">getMaxScrollY</span><span style="color:#E1E4E8">();      </span><span style="color:#6A737D">// Maximum scroll range</span></span></code></pre>
+<h3 id="scroll-behavior">Scroll Behavior</h3>
+<ul>
+<li>Mouse wheel scrolls by <code>scrollStep</code> pixels (default: 22)</li>
+<li>Scrolling is animated with <code>scrollSpeed</code> (default: 0.2)</li>
+<li>Content is clipped via OpenGL scissor</li>
+<li>A themed scrollbar is drawn on the right edge</li>
+</ul>
+<h3 id="rendering">Rendering</h3>
+<ul>
+<li>Content is rendered inside a scissor region matching the panel’s bounds</li>
+<li>Only visible children are rendered (off-screen children are skipped)</li>
+<li>Scrollbar track: <code>theme.getScrollbarTrackColor()</code></li>
+<li>Scrollbar thumb: <code>theme.getScrollbarThumbColor()</code></li>
+</ul>
+<h3 id="interaction-with-guivideo-and-guiimage">Interaction with GuiVideo and GuiImage</h3>
+<p>Components like <code>GuiVideo</code> or <code>GuiImage</code> inside a <code>GuiScrollPanel</code> are clipped by the scissor region. When scrolled out of view, they are not rendered.</p>
+<hr>
+<h2 id="guivirtuallist-1">GuiVirtualList</h2>
+<p>A high-performance virtualized list that only instantiates components for items currently visible in the scroll viewport. Ideal for large datasets (hundreds or thousands of items).</p>
+<p><strong>Package:</strong> <code>com.x4yi.x4ui.client.gui.component.GuiVirtualList</code></p>
+<h3 id="constructor-6">Constructor</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiVirtualList</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> x, </span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> y, </span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> width, </span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> height, </span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> itemHeight, Function</span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">T, GuiComponent</span><span style="color:#F97583">></span><span style="color:#E1E4E8"> builder)</span></span></code></pre>
+<ul>
+<li><code>itemHeight</code> — Fixed height of each item in pixels</li>
+<li><code>builder</code> — Function that creates a <code>GuiComponent</code> for each item</li>
+</ul>
+<h3 id="basic-usage-2">Basic Usage</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiVirtualList;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiButton;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">List&#x3C;</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">> items </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> ArrayList&#x3C;>();</span></span>
+<span class="line"><span style="color:#F97583">for</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> i </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">; i </span><span style="color:#F97583">&#x3C;</span><span style="color:#79B8FF"> 1000</span><span style="color:#E1E4E8">; i</span><span style="color:#F97583">++</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">    items.</span><span style="color:#B392F0">add</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Item "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> i);</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">GuiVirtualList&#x3C;</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">> list </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> GuiVirtualList&#x3C;>(</span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">200</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">300</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">25</span><span style="color:#E1E4E8">, item </span><span style="color:#F97583">-></span></span>
+<span class="line"><span style="color:#F97583">    new</span><span style="color:#B392F0"> GuiButton</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">180</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">, item, () </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Clicked: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> item))</span></span>
+<span class="line"><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">list.</span><span style="color:#B392F0">setItems</span><span style="color:#E1E4E8">(items);</span></span>
+<span class="line"><span style="color:#E1E4E8">rootPanel.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(list);</span></span></code></pre>
+<h3 id="updating-items">Updating Items</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#6A737D">// Replace all items</span></span>
+<span class="line"><span style="color:#E1E4E8">List&#x3C;</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">> newItems </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Arrays.</span><span style="color:#B392F0">asList</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"A"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"B"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"C"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">list.</span><span style="color:#B392F0">setItems</span><span style="color:#E1E4E8">(newItems);</span></span></code></pre>
+<h3 id="how-it-works">How It Works</h3>
+<ol>
+<li>Only items within the visible scroll range (plus 2 extra for smooth scrolling) are instantiated.</li>
+<li>When items scroll out of view, their components are removed from the tree and destroyed.</li>
+<li>When items scroll into view, new components are created via the <code>builder</code> function.</li>
+<li>The <code>contentPanel</code> uses <code>FlexDirection.ABSOLUTE</code> layout, with each item positioned at <code>index * itemHeight</code>.</li>
+</ol>
+<h3 id="performance-characteristics">Performance Characteristics</h3>
+<ul>
+<li><strong>Memory</strong>: O(visible items) instead of O(total items)</li>
+<li><strong>Render</strong>: Only visible items are rendered each frame</li>
+<li><strong>Layout</strong>: Only visible items participate in layout calculations</li>
+<li><strong>Creation</strong>: Components are created/destroyed during scrolling (recycled)</li>
+</ul>
+<h3 id="comparison-with-guiscrollpanel">Comparison with GuiScrollPanel</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Feature</th><th>GuiScrollPanel</th><th>GuiVirtualList</th></tr></thead><tbody><tr><td>Children</td><td>All instantiated</td><td>Only visible ones</td></tr><tr><td>Memory</td><td>O(n)</td><td>O(visible)</td></tr><tr><td>Add/remove</td><td>Immediate</td><td>Deferred (scroll-based)</td></tr><tr><td>Use case</td><td>Small lists (&#x3C; 100)</td><td>Large lists (100+)</td></tr></tbody></table>
+<hr>
+<h2 id="guislot-1">GuiSlot</h2>
+<p>Wraps a Minecraft <code>Slot</code> to position it within the X4UI component tree. The slot’s position is synced each tick to match the component’s absolute position.</p>
+<p><strong>Package:</strong> <code>com.x4yi.x4ui.client.gui.component.GuiSlot</code></p>
+<h3 id="constructor-7">Constructor</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiSlot</span><span style="color:#E1E4E8">(Slot slot, GuiBaseContainer containerScreen)</span></span></code></pre>
+<h3 id="usage">Usage</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiSlot;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiPanel;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.layout.FlexDirection;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Inside a GuiBaseContainer's initComponents()</span></span>
+<span class="line"><span style="color:#E1E4E8">GuiPanel inventoryPanel </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> GuiPanel</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">200</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">150</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">inventoryPanel.</span><span style="color:#B392F0">setFlexDirection</span><span style="color:#E1E4E8">(FlexDirection.VERTICAL);</span></span>
+<span class="line"><span style="color:#E1E4E8">inventoryPanel.</span><span style="color:#B392F0">setGap</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">for</span><span style="color:#E1E4E8"> (Slot slot </span><span style="color:#F97583">:</span><span style="color:#E1E4E8"> inventorySlots.inventorySlots) {</span></span>
+<span class="line"><span style="color:#E1E4E8">    inventoryPanel.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiSlot</span><span style="color:#E1E4E8">(slot, </span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">rootPanel.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(inventoryPanel);</span></span></code></pre>
+<h3 id="behavior">Behavior</h3>
+<ul>
+<li>Fixed size: 18x18 pixels</li>
+<li>Each tick, <code>slot.xPos</code> and <code>slot.yPos</code> are updated to match the component’s absolute position minus the container’s <code>guiLeft</code>/<code>guiTop</code></li>
+<li>Renders a semi-transparent background (<code>0x55000000</code>) and border (<code>0xFF333333</code>)</li>
+</ul>
+<h3 id="integration-with-guibasecontainer">Integration with GuiBaseContainer</h3>
+<p><code>GuiSlot</code> requires a <code>GuiBaseContainer</code> reference to access <code>getGuiLeft()</code> and <code>getGuiTop()</code>. This ensures the slot position is correct relative to the vanilla container background.</p>
+<h3 id="jei-integration">JEI Integration</h3>
+<p><code>GuiBaseContainer</code> provides <code>getJeiRecipeAreas()</code> for registering recipe transfer areas compatible with Just Enough Items (JEI).</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Override</span></span>
+<span class="line"><span style="color:#F97583">protected</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> initComponents</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#6A737D">    // Add recipe transfer areas for JEI</span></span>
+<span class="line"><span style="color:#E1E4E8">    jeiRecipeAreas.</span><span style="color:#B392F0">add</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> Rectangle</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">50</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">80</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">80</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+
+</div>
+</div></main><aside class="toc-sidebar" data-astro-cid-gfcwjq6c><nav class="toc" data-astro-cid-lkw5wmmf><h4 class="toc-title" data-astro-cid-lkw5wmmf><span data-i18n="es" data-astro-cid-lkw5wmmf>En esta página</span><span data-i18n="en" data-astro-cid-lkw5wmmf>On this page</span></h4><ul class="toc-list" data-astro-cid-lkw5wmmf><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#guipanel" data-astro-cid-lkw5wmmf>GuiPanel</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#constructor" data-astro-cid-lkw5wmmf>Constructor</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#uso-básico" data-astro-cid-lkw5wmmf>Uso Básico</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#layout-flex" data-astro-cid-lkw5wmmf>Layout Flex</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#layout-horizontal" data-astro-cid-lkw5wmmf>Layout Horizontal</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#flex-wrap" data-astro-cid-lkw5wmmf>Flex Wrap</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#tema-personalizado" data-astro-cid-lkw5wmmf>Tema Personalizado</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#propiedades" data-astro-cid-lkw5wmmf>Propiedades</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#guiscrollpanel" data-astro-cid-lkw5wmmf>GuiScrollPanel</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#constructor-1" data-astro-cid-lkw5wmmf>Constructor</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#uso-básico-1" data-astro-cid-lkw5wmmf>Uso Básico</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#agregar-y-eliminar-hijos" data-astro-cid-lkw5wmmf>Agregar y Eliminar Hijos</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#desplazamiento-programático" data-astro-cid-lkw5wmmf>Desplazamiento Programático</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#comportamiento-de-desplazamiento" data-astro-cid-lkw5wmmf>Comportamiento de Desplazamiento</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#renderizado" data-astro-cid-lkw5wmmf>Renderizado</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#interacción-con-guivideo-y-guiimage" data-astro-cid-lkw5wmmf>Interacción con GuiVideo y GuiImage</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#guivirtuallist" data-astro-cid-lkw5wmmf>GuiVirtualList</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#constructor-2" data-astro-cid-lkw5wmmf>Constructor</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#uso-básico-2" data-astro-cid-lkw5wmmf>Uso Básico</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#actualizar-elementos" data-astro-cid-lkw5wmmf>Actualizar Elementos</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#cómo-funciona" data-astro-cid-lkw5wmmf>Cómo Funciona</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#características-de-rendimiento" data-astro-cid-lkw5wmmf>Características de Rendimiento</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#comparación-con-guiscrollpanel" data-astro-cid-lkw5wmmf>Comparación con GuiScrollPanel</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#guislot" data-astro-cid-lkw5wmmf>GuiSlot</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#constructor-3" data-astro-cid-lkw5wmmf>Constructor</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#uso" data-astro-cid-lkw5wmmf>Uso</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#comportamiento" data-astro-cid-lkw5wmmf>Comportamiento</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#integración-con-guibasecontainer" data-astro-cid-lkw5wmmf>Integración con GuiBaseContainer</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#integración-con-jei" data-astro-cid-lkw5wmmf>Integración con JEI</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#guipanel-1" data-astro-cid-lkw5wmmf>GuiPanel</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#constructor-4" data-astro-cid-lkw5wmmf>Constructor</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#basic-usage" data-astro-cid-lkw5wmmf>Basic Usage</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#flex-layout" data-astro-cid-lkw5wmmf>Flex Layout</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#horizontal-layout" data-astro-cid-lkw5wmmf>Horizontal Layout</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#flex-wrap-1" data-astro-cid-lkw5wmmf>Flex Wrap</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#custom-theme" data-astro-cid-lkw5wmmf>Custom Theme</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#properties" data-astro-cid-lkw5wmmf>Properties</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#guiscrollpanel-1" data-astro-cid-lkw5wmmf>GuiScrollPanel</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#constructor-5" data-astro-cid-lkw5wmmf>Constructor</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#basic-usage-1" data-astro-cid-lkw5wmmf>Basic Usage</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#adding-and-removing-children" data-astro-cid-lkw5wmmf>Adding and Removing Children</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#programmatic-scrolling" data-astro-cid-lkw5wmmf>Programmatic Scrolling</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#scroll-behavior" data-astro-cid-lkw5wmmf>Scroll Behavior</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#rendering" data-astro-cid-lkw5wmmf>Rendering</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#interaction-with-guivideo-and-guiimage" data-astro-cid-lkw5wmmf>Interaction with GuiVideo and GuiImage</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#guivirtuallist-1" data-astro-cid-lkw5wmmf>GuiVirtualList</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#constructor-6" data-astro-cid-lkw5wmmf>Constructor</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#basic-usage-2" data-astro-cid-lkw5wmmf>Basic Usage</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#updating-items" data-astro-cid-lkw5wmmf>Updating Items</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#how-it-works" data-astro-cid-lkw5wmmf>How It Works</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#performance-characteristics" data-astro-cid-lkw5wmmf>Performance Characteristics</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#comparison-with-guiscrollpanel" data-astro-cid-lkw5wmmf>Comparison with GuiScrollPanel</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#guislot-1" data-astro-cid-lkw5wmmf>GuiSlot</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#constructor-7" data-astro-cid-lkw5wmmf>Constructor</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#usage" data-astro-cid-lkw5wmmf>Usage</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#behavior" data-astro-cid-lkw5wmmf>Behavior</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#integration-with-guibasecontainer" data-astro-cid-lkw5wmmf>Integration with GuiBaseContainer</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#jei-integration" data-astro-cid-lkw5wmmf>JEI Integration</a></li></ul></nav><script>
+  function updateTOCVisibility() {
+    const currentLang = document.documentElement.getAttribute('lang') || 'es';
+    const tocLinks = document.querySelectorAll('.toc-item a');
+    tocLinks.forEach(link => {
+      const targetId = link.getAttribute('href').substring(1);
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        const wrapper = targetElement.closest('[data-i18n]');
+        if (wrapper) {
+          const wrapperLang = wrapper.getAttribute('data-i18n');
+          if (wrapperLang !== currentLang) {
+            link.parentElement.style.display = 'none';
+          } else {
+            link.parentElement.style.display = 'block';
+          }
+        }
+      }
+    });
+  }
+  document.addEventListener('DOMContentLoaded', updateTOCVisibility);
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.attributeName === 'lang') {
+        updateTOCVisibility();
+      }
+    });
+  });
+  observer.observe(document.documentElement, { attributes: true });
+</script><div class="carbon-wrapper carbon-placeholder" aria-hidden="true" data-astro-cid-radvbx7x><div class="carbon-placeholder-inner" data-astro-cid-radvbx7x><div class="placeholder-icon" data-astro-cid-radvbx7x><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-radvbx7x><rect width="20" height="12" x="2" y="6" rx="2" data-astro-cid-radvbx7x></rect><path d="M12 12h.01" data-astro-cid-radvbx7x></path><path d="M17 12h.01" data-astro-cid-radvbx7x></path><path d="M7 12h.01" data-astro-cid-radvbx7x></path></svg></div><span class="placeholder-label" data-astro-cid-radvbx7x>Carbon Ads</span><span class="placeholder-sub" data-astro-cid-radvbx7x>Pending approval</span></div></div></aside></div><footer class="footer" data-astro-cid-jo6i4kqk><div class="footer-container" data-astro-cid-jo6i4kqk><div class="footer-info" data-astro-cid-jo6i4kqk><h3 data-astro-cid-jo6i4kqk>XHub</h3><p data-astro-cid-jo6i4kqk>The cave of X4yi. Proyects, News and Docs.</p></div><div class="footer-contact" data-astro-cid-jo6i4kqk><h4 data-astro-cid-jo6i4kqk>Contacto</h4><p data-astro-cid-jo6i4kqk>Email: <a href="mailto:contactx4yi@gd.&lt;/p&gt;mail.com" data-astro-cid-jo6i4kqk>contactx4yi@gmail.com</a></p><div class="social-links" data-astro-cid-jo6i4kqk><a href="https://github.com/X4yii" data-astro-cid-jo6i4kqk>GitHub</a></div></div></div><div class="footer-bottom" data-astro-cid-jo6i4kqk><p data-astro-cid-jo6i4kqk>&copy; 2026 X4yi. All rights reserved.</p></div></footer><dialog id="search-dialog" class="search-modal" data-astro-cid-e66w4awt><div class="search-container" data-astro-cid-e66w4awt><header class="search-header" data-astro-cid-e66w4awt><span data-i18n="es" data-astro-cid-e66w4awt>Buscar en XHub</span><span data-i18n="en" data-astro-cid-e66w4awt>Search XHub</span><button id="close-search" class="close-btn" data-astro-cid-e66w4awt>&times;</button></header><div class="search-body" data-astro-cid-e66w4awt><input type="text" id="fuse-search-input" placeholder="Search..." autocomplete="off" data-astro-cid-e66w4awt><div id="fuse-results-area" class="results-area" data-astro-cid-e66w4awt></div></div></div></dialog><script type="module" src="/xhub/_astro/SearchDialog.astro_astro_type_script_index_0_lang.C3MsqoGD.js"></script></body></html><script>
+document.addEventListener('astro:page-load', () => {
+  const toggle   = document.getElementById('sidebar-toggle');
+  const overlay  = document.getElementById('sidebar-overlay');
+  const sidebar  = document.querySelector('.sidebar');
+  const closeBtn = document.getElementById('sidebar-close-btn');
+
+  if (!sidebar) return;
+
+  function openSidebar() {
+    sidebar.classList.add('mobile-open');
+    if(overlay) overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeSidebar() {
+    sidebar.classList.remove('mobile-open');
+    if(overlay) overlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  if (toggle) toggle.addEventListener('click', openSidebar);
+  if (overlay) overlay.addEventListener('click', closeSidebar);
+  if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
+
+  document.querySelectorAll('.sidebar .nav-links a').forEach(link => {
+    link.addEventListener('click', closeSidebar);
+  });
+
+  var touchStartX = 0;
+  var touchStartY = 0;
+  var SWIPE_THRESHOLD = 60;
+  var EDGE_ZONE = 32;
+
+  document.addEventListener('touchstart', function (e) {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+
+  document.addEventListener('touchend', function (e) {
+    var dx = e.changedTouches[0].clientX - touchStartX;
+    var dy = e.changedTouches[0].clientY - touchStartY;
+
+    if (Math.abs(dx) < Math.abs(dy)) return;
+
+    var isOpen = sidebar.classList.contains('mobile-open');
+
+    if (!isOpen && touchStartX <= EDGE_ZONE && dx > SWIPE_THRESHOLD) {
+      openSidebar();
+    }
+
+    if (isOpen && dx < -SWIPE_THRESHOLD) {
+      closeSidebar();
+    }
+  }, { passive: true });
+});
+</script>

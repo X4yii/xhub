@@ -1,0 +1,611 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" type="image/svg+xml" href="/xhub/favicon.svg"><meta name="generator" content="Astro v7.2.7"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/xhub/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CYDbzu1r.js"></script><title>XHub - Getting Started</title><meta name="description" content="El cerro de X4yi."><meta property="og:title" content="XHub - Getting Started"><meta property="og:description" content="El cerro de X4yi."><meta property="og:image" content="/favicon.svg"><meta property="og:type" content="article"><meta property="og:url" content="https://x4yi.github.io/docs/x4ui/getting-started"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="XHub - Getting Started"><meta name="twitter:description" content="El cerro de X4yi."><meta name="twitter:image" content="/favicon.svg"><link rel="stylesheet" href="/xhub/_astro/Layout.x4fbhSDA.css"><link rel="stylesheet" href="/xhub/_astro/_..DHkhKyNK.css"></head><body><nav class="navbar" data-astro-cid-l7arcky5><div class="nav-container" data-astro-cid-l7arcky5><a href="/xhub/" class="brand" data-astro-cid-l7arcky5>XHub</a><ul class="nav-links" data-astro-cid-l7arcky5><li data-astro-cid-l7arcky5><a href="/xhub/proyectos/" data-astro-cid-l7arcky5>Proyectos</a></li><li data-astro-cid-l7arcky5><a href="/xhub/noticias/" data-astro-cid-l7arcky5>Noticias</a></li><li data-astro-cid-l7arcky5><a href="/xhub/docs/" data-astro-cid-l7arcky5>Docs</a></li><li data-astro-cid-l7arcky5><a href="/xhub/changelogs/" data-astro-cid-l7arcky5>Changelogs</a></li></ul><div class="nav-controls" data-astro-cid-l7arcky5><button class="search-btn" id="open-search" aria-label="Search" data-astro-cid-l7arcky5><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-l7arcky5><circle cx="11" cy="11" r="8" data-astro-cid-l7arcky5></circle><path d="m21 21-4.3-4.3" data-astro-cid-l7arcky5></path></svg><span class="search-text" data-astro-cid-l7arcky5>Buscar...</span><kbd class="search-kbd" data-astro-cid-l7arcky5>Ctrl K</kbd></button><div class="lang-selector" data-astro-cid-l7arcky5><select id="lang-switch" aria-label="Cambiar idioma" data-astro-cid-l7arcky5><option value="es" data-astro-cid-l7arcky5>ES</option><option value="en" data-astro-cid-l7arcky5>EN</option></select></div><button class="hamburger" id="hamburger-btn" aria-label="Abrir menú" aria-expanded="false" data-astro-cid-l7arcky5><span data-astro-cid-l7arcky5></span><span data-astro-cid-l7arcky5></span><span data-astro-cid-l7arcky5></span></button></div></div></nav><div class="mobile-drawer" id="mobile-drawer" aria-hidden="true" data-astro-cid-l7arcky5><div class="drawer-header" data-astro-cid-l7arcky5><span class="brand" data-astro-cid-l7arcky5>XHub</span><button class="drawer-close" id="drawer-close" aria-label="Cerrar menú" data-astro-cid-l7arcky5><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-l7arcky5><path d="M18 6 6 18" data-astro-cid-l7arcky5></path><path d="m6 6 12 12" data-astro-cid-l7arcky5></path></svg></button></div><nav class="drawer-nav" data-astro-cid-l7arcky5><a href="/xhub/proyectos/" class="drawer-link" data-astro-cid-l7arcky5><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-l7arcky5><path d="m7.5 4.27 9 5.15" data-astro-cid-l7arcky5></path><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z" data-astro-cid-l7arcky5></path><path d="m3.3 7 8.7 5 8.7-5" data-astro-cid-l7arcky5></path><path d="M12 22V12" data-astro-cid-l7arcky5></path></svg>Proyectos</a><a href="/xhub/noticias/" class="drawer-link" data-astro-cid-l7arcky5><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-l7arcky5><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 0-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2" data-astro-cid-l7arcky5></path><path d="M18 14h-8" data-astro-cid-l7arcky5></path><path d="M15 18h-5" data-astro-cid-l7arcky5></path><path d="M10 6h8v4h-8V6Z" data-astro-cid-l7arcky5></path></svg>Noticias</a><a href="/xhub/docs/" class="drawer-link" data-astro-cid-l7arcky5><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-l7arcky5><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" data-astro-cid-l7arcky5></path></svg>Docs</a><a href="/xhub/changelogs/" class="drawer-link" data-astro-cid-l7arcky5><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-l7arcky5><path d="M12 20h9" data-astro-cid-l7arcky5></path><path d="M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.854z" data-astro-cid-l7arcky5></path></svg>Changelogs</a></nav><div class="drawer-footer" data-astro-cid-l7arcky5><button class="search-btn-drawer" id="open-search-drawer" aria-label="Buscar" data-astro-cid-l7arcky5><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-l7arcky5><circle cx="11" cy="11" r="8" data-astro-cid-l7arcky5></circle><path d="m21 21-4.3-4.3" data-astro-cid-l7arcky5></path></svg>Buscar...</button><div class="lang-selector-drawer" data-astro-cid-l7arcky5><select id="lang-switch-drawer" aria-label="Cambiar idioma" data-astro-cid-l7arcky5><option value="es" data-astro-cid-l7arcky5>ES</option><option value="en" data-astro-cid-l7arcky5>EN</option></select></div></div></div><div class="drawer-overlay" id="drawer-overlay" data-astro-cid-l7arcky5></div><script>
+document.addEventListener('astro:page-load', () => {
+  const selector = document.getElementById('lang-switch');
+  const selectorDrawer = document.getElementById('lang-switch-drawer');
+  const currentLang = localStorage.getItem('lang') || 'es';
+  
+  if (selector) selector.value = currentLang;
+  if (selectorDrawer) selectorDrawer.value = currentLang;
+  document.documentElement.setAttribute('lang', currentLang);
+
+  function setLang(lang) {
+    localStorage.setItem('lang', lang);
+    document.documentElement.setAttribute('lang', lang);
+    if (selector) selector.value = lang;
+    if (selectorDrawer) selectorDrawer.value = lang;
+  }
+
+  if (selector) selector.addEventListener('change', (e) => setLang(e.target.value));
+  if (selectorDrawer) selectorDrawer.addEventListener('change', (e) => setLang(e.target.value));
+
+  const openSearchBtn = document.getElementById('open-search');
+  const openSearchDrawerBtn = document.getElementById('open-search-drawer');
+  function openSearch() {
+    const dialog = document.getElementById('search-dialog');
+    if (dialog) dialog.showModal();
+    closeDrawer();
+  }
+  if (openSearchBtn) openSearchBtn.addEventListener('click', openSearch);
+  if (openSearchDrawerBtn) openSearchDrawerBtn.addEventListener('click', openSearch);
+
+  const hamburger = document.getElementById('hamburger-btn');
+  const drawer = document.getElementById('mobile-drawer');
+  const overlay = document.getElementById('drawer-overlay');
+  const drawerClose = document.getElementById('drawer-close');
+
+  function openDrawer() {
+    if (!drawer) return;
+    drawer.classList.add('open');
+    overlay.classList.add('open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    hamburger.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeDrawer() {
+    if (!drawer) return;
+    drawer.classList.remove('open');
+    overlay.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    hamburger.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  if (hamburger) {
+    hamburger.addEventListener('click', () => {
+      drawer.classList.contains('open') ? closeDrawer() : openDrawer();
+    });
+  }
+  if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+  if (overlay) overlay.addEventListener('click', closeDrawer);
+});
+</script><div class="docs-layout" data-astro-cid-gfcwjq6c><button class="sidebar-toggle" id="sidebar-toggle" aria-label="Abrir navegación" data-astro-cid-gfcwjq6c><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-gfcwjq6c><path d="M3 12h18" data-astro-cid-gfcwjq6c></path><path d="M3 6h18" data-astro-cid-gfcwjq6c></path><path d="M3 18h18" data-astro-cid-gfcwjq6c></path></svg><span data-astro-cid-gfcwjq6c>X4UI</span></button><div class="sidebar-overlay" id="sidebar-overlay" data-astro-cid-gfcwjq6c></div><aside class="sidebar" data-astro-cid-wv7whodv><div class="sidebar-header" data-astro-cid-wv7whodv><a href="/xhub/docs/" class="back-link" data-astro-cid-wv7whodv><span data-i18n="es" data-astro-cid-wv7whodv>&larr; Volver</span><span data-i18n="en" data-astro-cid-wv7whodv>&larr; Back</span></a><button class="sidebar-close-btn" id="sidebar-close-btn" aria-label="Cerrar" data-astro-cid-wv7whodv><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-wv7whodv><path d="M18 6 6 18" data-astro-cid-wv7whodv></path><path d="m6 6 12 12" data-astro-cid-wv7whodv></path></svg></button><h2 class="project-title" data-astro-cid-wv7whodv>X4UI</h2></div><nav class="sidebar-nav" data-astro-cid-wv7whodv><div class="nav-group" data-astro-cid-wv7whodv><h3 class="nav-category" data-astro-cid-wv7whodv>General</h3><ul class="nav-links" data-astro-cid-wv7whodv><li data-astro-cid-wv7whodv><a href="/xhub/docs/x4ui/x4ui-manual/" class data-astro-cid-wv7whodv>X4UI Framework - Manual de desarrollo</a></li><li data-astro-cid-wv7whodv><a href="/xhub/docs/x4ui/getting-started/" class="active" data-astro-cid-wv7whodv>Getting Started</a></li><li data-astro-cid-wv7whodv><a href="/xhub/docs/x4ui/core-concepts/" class data-astro-cid-wv7whodv>Core Concepts</a></li><li data-astro-cid-wv7whodv><a href="/xhub/docs/x4ui/remote-assets/" class data-astro-cid-wv7whodv>Remote Assets</a></li><li data-astro-cid-wv7whodv><a href="/xhub/docs/x4ui/networking-and-sync/" class data-astro-cid-wv7whodv>Networking &amp; Sync</a></li><li data-astro-cid-wv7whodv><a href="/xhub/docs/x4ui/media-limitations/" class data-astro-cid-wv7whodv>Media Limitations</a></li></ul></div><div class="nav-group" data-astro-cid-wv7whodv><h3 class="nav-category" data-astro-cid-wv7whodv>Components</h3><ul class="nav-links" data-astro-cid-wv7whodv><li data-astro-cid-wv7whodv><a href="/xhub/docs/x4ui/components/advanced-components/" class data-astro-cid-wv7whodv>Advanced Components</a></li><li data-astro-cid-wv7whodv><a href="/xhub/docs/x4ui/components/buttons-and-inputs/" class data-astro-cid-wv7whodv>Buttons And Inputs</a></li><li data-astro-cid-wv7whodv><a href="/xhub/docs/x4ui/components/containers-and-panels/" class data-astro-cid-wv7whodv>Containers And Panels</a></li><li data-astro-cid-wv7whodv><a href="/xhub/docs/x4ui/components/multimedia/" class data-astro-cid-wv7whodv>Multimedia</a></li></ul></div></nav></aside><main class="docs-content-area" data-astro-cid-gfcwjq6c><header class="doc-header" data-astro-cid-gfcwjq6c><span class="category-tag" data-astro-cid-gfcwjq6c>General</span><h1 data-astro-cid-gfcwjq6c>Getting Started</h1></header><div class="content-wrapper prose" data-astro-cid-gfcwjq6c>
+<div data-i18n="es">
+
+<h1 id="primeros-pasos">Primeros Pasos</h1>
+<p>X4UI es un framework de interfaz gráfica de modo retenido para Minecraft Forge 1.12.2. Reemplaza el renderizado de modo inmediato de <code>GuiScreen</code> nativo con una arquitectura basada en árbol de componentes, diseños flexbox, propagación de eventos, enlace reactivo de estado y soporte de temas.</p>
+<h2 id="requisitos">Requisitos</h2>
+<ul>
+<li>Minecraft Forge 1.12.2 (<code>1.12.2-14.23.5.2847</code>)</li>
+<li>Java 8</li>
+</ul>
+<h2 id="instalación">Instalación</h2>
+<p>Agregue la dependencia de X4UI en <code>build.gradle</code> usando uno de los siguientes repositorios:</p>
+<h3 id="modrinth-recomendado">Modrinth (Recomendado)</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>repositories {</span></span>
+<span class="line"><span>    maven { url "https://api.modrinth.com/maven" }</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>dependencies {</span></span>
+<span class="line"><span>    deobfCompile "maven.modrinth:x4ui:1.0b4"</span></span>
+<span class="line"><span>}</span></span></code></pre>
+<h3 id="curseforge">CurseForge</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>repositories {</span></span>
+<span class="line"><span>    maven { url "https://cursemaven.com" }</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>dependencies {</span></span>
+<span class="line"><span>    // Replace FILE_ID with the actual file ID from the CurseForge project page for latest release.</span></span>
+<span class="line"><span>    deobfCompile "curse.maven:x4ui-PROJECT_ID:FILE_ID"</span></span>
+<span class="line"><span>}</span></span></code></pre>
+<h3 id="github-packages--jitpack">GitHub Packages / JitPack</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>repositories {</span></span>
+<span class="line"><span>    maven { url "https://jitpack.io" }</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>dependencies {</span></span>
+<span class="line"><span>    deobfCompile "com.github.x4yi:X4UI:1.0b4"</span></span>
+<span class="line"><span>}</span></span></code></pre>
+<h2 id="estructura-de-paquetes">Estructura de Paquetes</h2>
+<p>Todas las clases de X4UI se encuentran bajo <code>com.x4yi.x4ui</code>. Los paquetes relevantes para el desarrollo de GUI del lado del cliente son:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Paquete</th><th>Propósito</th></tr></thead><tbody><tr><td><code>com.x4yi.x4ui.client.gui.base</code></td><td>Clases abstractas base de pantalla (<code>GuiBaseScreen</code>, <code>GuiBaseContainer</code>)</td></tr><tr><td><code>com.x4yi.x4ui.client.gui.component</code></td><td>Todos los componentes UI (<code>GuiPanel</code>, <code>GuiButton</code>, <code>GuiLabel</code>, etc.)</td></tr><tr><td><code>com.x4yi.x4ui.client.gui.component.layout</code></td><td>Motores de diseño (<code>FlexLayout</code>, <code>FlexDirection</code>)</td></tr><tr><td><code>com.x4yi.x4ui.client.gui.component.slider</code></td><td>Deslizadores tipados (<code>GuiSliderInt</code>, <code>GuiSliderFloat</code>, <code>GuiSliderDouble</code>)</td></tr><tr><td><code>com.x4yi.x4ui.client.gui.utils</code></td><td>Utilidades (<code>GuiBuilder</code>, <code>ITheme</code>, <code>DefaultTheme</code>, <code>Insets</code>)</td></tr><tr><td><code>com.x4yi.x4ui.common</code></td><td>Primitivas de estado compartidas (<code>State&#x3C;T></code>)</td></tr><tr><td><code>com.x4yi.x4ui.api.client.resource</code></td><td>Gestión de recursos remotos (<code>RemoteResourceManager</code>)</td></tr></tbody></table>
+<h2 id="crear-una-pantalla-standalone">Crear una Pantalla Standalone</h2>
+<p>Extienda <code>GuiBaseScreen</code> para pantallas que no interactúan con contenedores de inventario (por ejemplo, menús de configuración, paneles de información, reproductores de video).</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">package</span><span style="color:#E1E4E8"> com.example.mymod.client.gui;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.base.GuiBaseScreen;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiPanel;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiLabel;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiButton;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.layout.FlexDirection;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> net.minecraft.client.gui.GuiScreen;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> MySettingsScreen</span><span style="color:#F97583"> extends</span><span style="color:#B392F0"> GuiBaseScreen</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#B392F0"> MySettingsScreen</span><span style="color:#E1E4E8">(GuiScreen </span><span style="color:#FFAB70">parent</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#79B8FF">        super</span><span style="color:#E1E4E8">(parent, </span><span style="color:#9ECBFF">"Settings"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span></span>
+<span class="line"><span style="color:#F97583">    protected</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> initComponents</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">        rootPanel.</span><span style="color:#B392F0">setFlexDirection</span><span style="color:#E1E4E8">(FlexDirection.VERTICAL);</span></span>
+<span class="line"><span style="color:#E1E4E8">        rootPanel.</span><span style="color:#B392F0">setGap</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">5</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        rootPanel.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiLabel</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Settings"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0xFFFFFFFF</span><span style="color:#E1E4E8">).</span><span style="color:#B392F0">setCentered</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        rootPanel.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiButton</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">150</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Option A"</span><span style="color:#E1E4E8">, () </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">            System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Option A clicked"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        }));</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        rootPanel.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiButton</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">150</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Option B"</span><span style="color:#E1E4E8">, () </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">            System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Option B clicked"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        }));</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        rootPanel.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiButton</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">150</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Close"</span><span style="color:#E1E4E8">, () </span><span style="color:#F97583">-></span><span style="color:#79B8FF"> this</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">closeScreen</span><span style="color:#E1E4E8">()));</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>Puntos clave:</p>
+<ul>
+<li><code>rootPanel</code> se crea automáticamente en <code>initGui()</code> y ocupa toda la pantalla (<code>width</code> x <code>height</code>).</li>
+<li><code>initComponents()</code> se llama después de que <code>rootPanel</code> se haya creado. Toda la configuración de componentes ocurre aquí.</li>
+<li><code>closeScreen()</code> regresa a la pantalla padre pasada en el constructor.</li>
+</ul>
+<h3 id="abrir-la-pantalla">Abrir la Pantalla</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">Minecraft.</span><span style="color:#B392F0">getMinecraft</span><span style="color:#E1E4E8">().</span><span style="color:#B392F0">displayGuiScreen</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> MySettingsScreen</span><span style="color:#E1E4E8">(Minecraft.</span><span style="color:#B392F0">getMinecraft</span><span style="color:#E1E4E8">().currentScreen));</span></span></code></pre>
+<h3 id="sobrescribir-el-renderizado-de-fondo">Sobrescribir el Renderizado de Fondo</h3>
+<p>Sobrescriba <code>drawBackground</code> para renderizar fondos personalizados antes del árbol de componentes:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Override</span></span>
+<span class="line"><span style="color:#F97583">protected</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> drawBackground</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> mouseX, </span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> mouseY, </span><span style="color:#F97583">float</span><span style="color:#E1E4E8"> partialTicks) {</span></span>
+<span class="line"><span style="color:#B392F0">    drawDefaultBackground</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h2 id="crear-una-pantalla-de-contenedor">Crear una Pantalla de Contenedor</h2>
+<p>Extienda <code>GuiBaseContainer</code> para pantallas que envuelven un <code>Container</code> de Minecraft (por ejemplo, GUIs de cofres, mesas de trabajo, inventarios personalizados).</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">package</span><span style="color:#E1E4E8"> com.example.mymod.client.gui;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.base.GuiBaseContainer;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiPanel;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiLabel;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiSlot;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.layout.FlexDirection;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> net.minecraft.inventory.Container;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> net.minecraft.inventory.Slot;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> MyContainerScreen</span><span style="color:#F97583"> extends</span><span style="color:#B392F0"> GuiBaseContainer</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#B392F0"> MyContainerScreen</span><span style="color:#E1E4E8">(Container </span><span style="color:#FFAB70">container</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#79B8FF">        super</span><span style="color:#E1E4E8">(container);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span></span>
+<span class="line"><span style="color:#F97583">    protected</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> initComponents</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">        rootPanel.</span><span style="color:#B392F0">setFlexDirection</span><span style="color:#E1E4E8">(FlexDirection.VERTICAL);</span></span>
+<span class="line"><span style="color:#E1E4E8">        rootPanel.</span><span style="color:#B392F0">setGap</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        rootPanel.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiLabel</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"My Inventory"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0xFFFFFFFF</span><span style="color:#E1E4E8">).</span><span style="color:#B392F0">setCentered</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">        for</span><span style="color:#E1E4E8"> (Slot slot </span><span style="color:#F97583">:</span><span style="color:#E1E4E8"> inventorySlots.inventorySlots) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            rootPanel.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiSlot</span><span style="color:#E1E4E8">(slot, </span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>Puntos clave:</p>
+<ul>
+<li>El constructor recibe una instancia de <code>Container</code>, que se pasa al super-constructor de <code>GuiContainer</code>.</li>
+<li><code>getGuiLeft()</code> y <code>getGuiTop()</code> exponen los offsets del contenedor vanilla para el posicionamiento de slots.</li>
+<li><code>GuiSlot</code> sincroniza automáticamente su posición con <code>Slot.xPos</code>/<code>Slot.yPos</code> de vanilla cada tick.</li>
+<li>Las áreas de recetas JEI se pueden registrar mediante <code>getJeiRecipeAreas()</code>.</li>
+</ul>
+<h2 id="uso-de-la-api-builder">Uso de la API Builder</h2>
+<p><code>GuiBuilder&#x3C;T></code> proporciona una API fluida para construir componentes sin constructores verbosos:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.utils.GuiBuilder;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.layout.FlexDirection;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.common.State;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Panel con diseño flex</span></span>
+<span class="line"><span style="color:#E1E4E8">GuiPanel panel </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> GuiBuilder.</span><span style="color:#B392F0">createPanel</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">position</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">size</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">200</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">300</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">flexDirection</span><span style="color:#E1E4E8">(FlexDirection.VERTICAL)</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">gap</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">5</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">padding</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> Insets</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">))</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">build</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Botón con tooltip y manejador de clics</span></span>
+<span class="line"><span style="color:#E1E4E8">GuiButton btn </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> GuiBuilder.</span><span style="color:#B392F0">createButton</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Save"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">position</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">size</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">120</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">25</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">tooltip</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Save configuration"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">onClick</span><span style="color:#E1E4E8">(() </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Saved!"</span><span style="color:#E1E4E8">))</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">build</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Etiqueta enlazada a un State reactivo</span></span>
+<span class="line"><span style="color:#E1E4E8">State&#x3C;</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">> nameState </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> State&#x3C;>(</span><span style="color:#9ECBFF">"Player"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">GuiLabel label </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> GuiBuilder.</span><span style="color:#B392F0">createLabel</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">position</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">bindLabelText</span><span style="color:#E1E4E8">(nameState)</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">build</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Deslizador con estado reactivo</span></span>
+<span class="line"><span style="color:#E1E4E8">State&#x3C;</span><span style="color:#F97583">Integer</span><span style="color:#E1E4E8">> volume </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> State&#x3C;>(</span><span style="color:#79B8FF">50</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">GuiSliderInt slider </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> GuiBuilder.</span><span style="color:#B392F0">createSliderInt</span><span style="color:#E1E4E8">(volume, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">100</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">5</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">position</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">size</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">150</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">15</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">build</span><span style="color:#E1E4E8">();</span></span></code></pre>
+<h2 id="aplicar-un-tema">Aplicar un Tema</h2>
+<p>Los temas controlan todos los estilos visuales (colores, bordes, tooltips). Aplique un tema al panel raíz para dar estilo a toda la pantalla:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.utils.DefaultTheme;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Override</span></span>
+<span class="line"><span style="color:#F97583">protected</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> initComponents</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#B392F0">    setTheme</span><span style="color:#E1E4E8">(DefaultTheme.INSTANCE);</span></span>
+<span class="line"><span style="color:#6A737D">    // ... agregar componentes</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>Los temas personalizados implementan <code>ITheme</code> y se pueden aplicar por componente o por subárbol:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.utils.ITheme;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">ITheme myTheme </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> ITheme</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span><span style="color:#F97583"> public</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> getPrimaryColor</span><span style="color:#E1E4E8">() { </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> 0xFFFF5722</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span><span style="color:#F97583"> public</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> getBackgroundColor</span><span style="color:#E1E4E8">() { </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> 0xFF263238</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span><span style="color:#F97583"> public</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> getTextColor</span><span style="color:#E1E4E8">() { </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> 0xFFFFFFFF</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"><span style="color:#6A737D">    // ... implementar todos los métodos</span></span>
+<span class="line"><span style="color:#E1E4E8">};</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">panel.</span><span style="color:#B392F0">setTheme</span><span style="color:#E1E4E8">(myTheme);</span></span></code></pre>
+<h2 id="enviar-acciones-al-servidor">Enviar Acciones al Servidor</h2>
+<p>Para la comunicación cliente-a-servidor, configure un <code>IGuiActionSender</code> en la pantalla:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.common.sync.IGuiActionSender;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> net.minecraft.nbt.NBTTagCompound;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">IGuiActionSender sender </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> (actionId, data) </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">    // Enviar paquete de red al servidor</span></span>
+<span class="line"><span style="color:#E1E4E8">    MyModNetwork.CHANNEL.</span><span style="color:#B392F0">sendToServer</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> MyPacket</span><span style="color:#E1E4E8">(actionId, data));</span></span>
+<span class="line"><span style="color:#E1E4E8">};</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">setActionSender</span><span style="color:#E1E4E8">(sender);</span></span></code></pre>
+
+</div>
+
+
+<div data-i18n="en">
+
+<h1 id="getting-started">Getting Started</h1>
+<p>X4UI is a retained-mode GUI framework for Minecraft Forge 1.12.2. It replaces vanilla’s immediate-mode <code>GuiScreen</code> rendering with a component tree architecture, flexbox layouts, event bubbling, reactive state binding, and theme support.</p>
+<h2 id="requirements">Requirements</h2>
+<ul>
+<li>Minecraft Forge 1.12.2 (<code>1.12.2-14.23.5.2847</code>)</li>
+<li>Java 8</li>
+</ul>
+<h2 id="installation">Installation</h2>
+<p>Add the X4UI dependency to <code>build.gradle</code> using one of the following repositories:</p>
+<h3 id="modrinth-recommended">Modrinth (Recommended)</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>repositories {</span></span>
+<span class="line"><span>    maven { url "https://api.modrinth.com/maven" }</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>dependencies {</span></span>
+<span class="line"><span>    deobfCompile "maven.modrinth:x4ui:1.0b4"</span></span>
+<span class="line"><span>}</span></span></code></pre>
+<h3 id="curseforge-1">CurseForge</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>repositories {</span></span>
+<span class="line"><span>    maven { url "https://cursemaven.com" }</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>dependencies {</span></span>
+<span class="line"><span>    deobfCompile "curse.maven:x4ui-PROJECT_ID:FILE_ID"</span></span>
+<span class="line"><span>}</span></span></code></pre>
+<h3 id="github-packages--jitpack-1">GitHub Packages / JitPack</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>repositories {</span></span>
+<span class="line"><span>    maven { url "https://jitpack.io" }</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>dependencies {</span></span>
+<span class="line"><span>    deobfCompile "com.github.x4yi:X4UI:1.0b4"</span></span>
+<span class="line"><span>}</span></span></code></pre>
+<h2 id="package-structure">Package Structure</h2>
+<p>All X4UI classes reside under <code>com.x4yi.x4ui</code>. The relevant packages for client-side GUI development are:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Package</th><th>Purpose</th></tr></thead><tbody><tr><td><code>com.x4yi.x4ui.client.gui.base</code></td><td>Abstract screen base classes (<code>GuiBaseScreen</code>, <code>GuiBaseContainer</code>)</td></tr><tr><td><code>com.x4yi.x4ui.client.gui.component</code></td><td>All UI components (<code>GuiPanel</code>, <code>GuiButton</code>, <code>GuiLabel</code>, etc.)</td></tr><tr><td><code>com.x4yi.x4ui.client.gui.component.layout</code></td><td>Layout engines (<code>FlexLayout</code>, <code>FlexDirection</code>)</td></tr><tr><td><code>com.x4yi.x4ui.client.gui.component.slider</code></td><td>Typed sliders (<code>GuiSliderInt</code>, <code>GuiSliderFloat</code>, <code>GuiSliderDouble</code>)</td></tr><tr><td><code>com.x4yi.x4ui.client.gui.utils</code></td><td>Utilities (<code>GuiBuilder</code>, <code>ITheme</code>, <code>DefaultTheme</code>, <code>Insets</code>)</td></tr><tr><td><code>com.x4yi.x4ui.common</code></td><td>Shared state primitives (<code>State&#x3C;T></code>)</td></tr><tr><td><code>com.x4yi.x4ui.api.client.resource</code></td><td>Remote asset management (<code>RemoteResourceManager</code>)</td></tr></tbody></table>
+<h2 id="creating-a-standalone-screen">Creating a Standalone Screen</h2>
+<p>Extend <code>GuiBaseScreen</code> for screens that do not interact with inventory containers (e.g., settings menus, info panels, video players).</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">package</span><span style="color:#E1E4E8"> com.example.mymod.client.gui;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.base.GuiBaseScreen;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiPanel;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiLabel;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiButton;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.layout.FlexDirection;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> net.minecraft.client.gui.GuiScreen;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> MySettingsScreen</span><span style="color:#F97583"> extends</span><span style="color:#B392F0"> GuiBaseScreen</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#B392F0"> MySettingsScreen</span><span style="color:#E1E4E8">(GuiScreen </span><span style="color:#FFAB70">parent</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#79B8FF">        super</span><span style="color:#E1E4E8">(parent, </span><span style="color:#9ECBFF">"Settings"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span></span>
+<span class="line"><span style="color:#F97583">    protected</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> initComponents</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">        rootPanel.</span><span style="color:#B392F0">setFlexDirection</span><span style="color:#E1E4E8">(FlexDirection.VERTICAL);</span></span>
+<span class="line"><span style="color:#E1E4E8">        rootPanel.</span><span style="color:#B392F0">setGap</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">5</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        rootPanel.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiLabel</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Settings"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0xFFFFFFFF</span><span style="color:#E1E4E8">).</span><span style="color:#B392F0">setCentered</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        rootPanel.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiButton</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">150</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Option A"</span><span style="color:#E1E4E8">, () </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">            System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Option A clicked"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        }));</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        rootPanel.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiButton</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">150</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Option B"</span><span style="color:#E1E4E8">, () </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">            System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Option B clicked"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        }));</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        rootPanel.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiButton</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">150</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Close"</span><span style="color:#E1E4E8">, () </span><span style="color:#F97583">-></span><span style="color:#79B8FF"> this</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">closeScreen</span><span style="color:#E1E4E8">()));</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>Key points:</p>
+<ul>
+<li><code>rootPanel</code> is created automatically in <code>initGui()</code> and fills the entire screen (<code>width</code> x <code>height</code>).</li>
+<li><code>initComponents()</code> is called after <code>rootPanel</code> is created. All component setup happens here.</li>
+<li><code>closeScreen()</code> returns to the parent screen passed in the constructor.</li>
+</ul>
+<h3 id="opening-the-screen">Opening the Screen</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">Minecraft.</span><span style="color:#B392F0">getMinecraft</span><span style="color:#E1E4E8">().</span><span style="color:#B392F0">displayGuiScreen</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> MySettingsScreen</span><span style="color:#E1E4E8">(Minecraft.</span><span style="color:#B392F0">getMinecraft</span><span style="color:#E1E4E8">().currentScreen));</span></span></code></pre>
+<h3 id="overriding-background-rendering">Overriding Background Rendering</h3>
+<p>Override <code>drawBackground</code> to render custom backgrounds before the component tree:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Override</span></span>
+<span class="line"><span style="color:#F97583">protected</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> drawBackground</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> mouseX, </span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> mouseY, </span><span style="color:#F97583">float</span><span style="color:#E1E4E8"> partialTicks) {</span></span>
+<span class="line"><span style="color:#B392F0">    drawDefaultBackground</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h2 id="creating-a-container-screen">Creating a Container Screen</h2>
+<p>Extend <code>GuiBaseContainer</code> for screens that wrap a Minecraft <code>Container</code> (e.g., chest GUIs, crafting tables, custom inventories).</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">package</span><span style="color:#E1E4E8"> com.example.mymod.client.gui;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.base.GuiBaseContainer;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiPanel;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiLabel;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.GuiSlot;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.layout.FlexDirection;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> net.minecraft.inventory.Container;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> net.minecraft.inventory.Slot;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> MyContainerScreen</span><span style="color:#F97583"> extends</span><span style="color:#B392F0"> GuiBaseContainer</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#B392F0"> MyContainerScreen</span><span style="color:#E1E4E8">(Container </span><span style="color:#FFAB70">container</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#79B8FF">        super</span><span style="color:#E1E4E8">(container);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span></span>
+<span class="line"><span style="color:#F97583">    protected</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> initComponents</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">        rootPanel.</span><span style="color:#B392F0">setFlexDirection</span><span style="color:#E1E4E8">(FlexDirection.VERTICAL);</span></span>
+<span class="line"><span style="color:#E1E4E8">        rootPanel.</span><span style="color:#B392F0">setGap</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        rootPanel.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiLabel</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"My Inventory"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0xFFFFFFFF</span><span style="color:#E1E4E8">).</span><span style="color:#B392F0">setCentered</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">        for</span><span style="color:#E1E4E8"> (Slot slot </span><span style="color:#F97583">:</span><span style="color:#E1E4E8"> inventorySlots.inventorySlots) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            rootPanel.</span><span style="color:#B392F0">addChild</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> GuiSlot</span><span style="color:#E1E4E8">(slot, </span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>Key points:</p>
+<ul>
+<li>The constructor receives a <code>Container</code> instance, passed to <code>GuiContainer</code>’s super constructor.</li>
+<li><code>getGuiLeft()</code> and <code>getGuiTop()</code> expose the vanilla container offsets for slot positioning.</li>
+<li><code>GuiSlot</code> automatically syncs its position with the vanilla <code>Slot.xPos</code>/<code>Slot.yPos</code> each tick.</li>
+<li>JEI recipe areas can be registered via <code>getJeiRecipeAreas()</code>.</li>
+</ul>
+<h2 id="using-the-builder-api">Using the Builder API</h2>
+<p><code>GuiBuilder&#x3C;T></code> provides a fluent API for constructing components without verbose constructors:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.utils.GuiBuilder;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.component.layout.FlexDirection;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.common.State;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Panel with flex layout</span></span>
+<span class="line"><span style="color:#E1E4E8">GuiPanel panel </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> GuiBuilder.</span><span style="color:#B392F0">createPanel</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">position</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">size</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">200</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">300</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">flexDirection</span><span style="color:#E1E4E8">(FlexDirection.VERTICAL)</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">gap</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">5</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">padding</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> Insets</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">))</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">build</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Button with tooltip and click handler</span></span>
+<span class="line"><span style="color:#E1E4E8">GuiButton btn </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> GuiBuilder.</span><span style="color:#B392F0">createButton</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Save"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">position</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">size</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">120</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">25</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">tooltip</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Save configuration"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">onClick</span><span style="color:#E1E4E8">(() </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Saved!"</span><span style="color:#E1E4E8">))</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">build</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Label bound to a reactive State</span></span>
+<span class="line"><span style="color:#E1E4E8">State&#x3C;</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">> nameState </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> State&#x3C;>(</span><span style="color:#9ECBFF">"Player"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">GuiLabel label </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> GuiBuilder.</span><span style="color:#B392F0">createLabel</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">position</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">bindLabelText</span><span style="color:#E1E4E8">(nameState)</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">build</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Slider with reactive state</span></span>
+<span class="line"><span style="color:#E1E4E8">State&#x3C;</span><span style="color:#F97583">Integer</span><span style="color:#E1E4E8">> volume </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> State&#x3C;>(</span><span style="color:#79B8FF">50</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">GuiSliderInt slider </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> GuiBuilder.</span><span style="color:#B392F0">createSliderInt</span><span style="color:#E1E4E8">(volume, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">100</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">5</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">position</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">size</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">150</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">15</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">build</span><span style="color:#E1E4E8">();</span></span></code></pre>
+<h2 id="applying-a-theme">Applying a Theme</h2>
+<p>Themes control all visual styles (colors, borders, tooltips). Apply a theme to the root panel to style the entire screen:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.utils.DefaultTheme;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Override</span></span>
+<span class="line"><span style="color:#F97583">protected</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> initComponents</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#B392F0">    setTheme</span><span style="color:#E1E4E8">(DefaultTheme.INSTANCE);</span></span>
+<span class="line"><span style="color:#6A737D">    // ... add components</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>Custom themes implement <code>ITheme</code> and can be applied per-component or per-subtree:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.client.gui.utils.ITheme;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">ITheme myTheme </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> ITheme</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span><span style="color:#F97583"> public</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> getPrimaryColor</span><span style="color:#E1E4E8">() { </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> 0xFFFF5722</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span><span style="color:#F97583"> public</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> getBackgroundColor</span><span style="color:#E1E4E8">() { </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> 0xFF263238</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span><span style="color:#F97583"> public</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> getTextColor</span><span style="color:#E1E4E8">() { </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> 0xFFFFFFFF</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"><span style="color:#6A737D">    // ... implement all methods</span></span>
+<span class="line"><span style="color:#E1E4E8">};</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">panel.</span><span style="color:#B392F0">setTheme</span><span style="color:#E1E4E8">(myTheme);</span></span></code></pre>
+<h2 id="sending-actions-to-the-server">Sending Actions to the Server</h2>
+<p>For client-to-server communication, set an <code>IGuiActionSender</code> on the screen:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.common.sync.IGuiActionSender;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> net.minecraft.nbt.NBTTagCompound;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">IGuiActionSender sender </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> (actionId, data) </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">    // Send network packet to server</span></span>
+<span class="line"><span style="color:#E1E4E8">    MyModNetwork.CHANNEL.</span><span style="color:#B392F0">sendToServer</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> MyPacket</span><span style="color:#E1E4E8">(actionId, data));</span></span>
+<span class="line"><span style="color:#E1E4E8">};</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">setActionSender</span><span style="color:#E1E4E8">(sender);</span></span></code></pre>
+
+</div>
+</div></main><aside class="toc-sidebar" data-astro-cid-gfcwjq6c><nav class="toc" data-astro-cid-lkw5wmmf><h4 class="toc-title" data-astro-cid-lkw5wmmf><span data-i18n="es" data-astro-cid-lkw5wmmf>En esta página</span><span data-i18n="en" data-astro-cid-lkw5wmmf>On this page</span></h4><ul class="toc-list" data-astro-cid-lkw5wmmf><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#requisitos" data-astro-cid-lkw5wmmf>Requisitos</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#instalación" data-astro-cid-lkw5wmmf>Instalación</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#modrinth-recomendado" data-astro-cid-lkw5wmmf>Modrinth (Recomendado)</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#curseforge" data-astro-cid-lkw5wmmf>CurseForge</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#github-packages--jitpack" data-astro-cid-lkw5wmmf>GitHub Packages / JitPack</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#estructura-de-paquetes" data-astro-cid-lkw5wmmf>Estructura de Paquetes</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#crear-una-pantalla-standalone" data-astro-cid-lkw5wmmf>Crear una Pantalla Standalone</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#abrir-la-pantalla" data-astro-cid-lkw5wmmf>Abrir la Pantalla</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#sobrescribir-el-renderizado-de-fondo" data-astro-cid-lkw5wmmf>Sobrescribir el Renderizado de Fondo</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#crear-una-pantalla-de-contenedor" data-astro-cid-lkw5wmmf>Crear una Pantalla de Contenedor</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#uso-de-la-api-builder" data-astro-cid-lkw5wmmf>Uso de la API Builder</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#aplicar-un-tema" data-astro-cid-lkw5wmmf>Aplicar un Tema</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#enviar-acciones-al-servidor" data-astro-cid-lkw5wmmf>Enviar Acciones al Servidor</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#requirements" data-astro-cid-lkw5wmmf>Requirements</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#installation" data-astro-cid-lkw5wmmf>Installation</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#modrinth-recommended" data-astro-cid-lkw5wmmf>Modrinth (Recommended)</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#curseforge-1" data-astro-cid-lkw5wmmf>CurseForge</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#github-packages--jitpack-1" data-astro-cid-lkw5wmmf>GitHub Packages / JitPack</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#package-structure" data-astro-cid-lkw5wmmf>Package Structure</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#creating-a-standalone-screen" data-astro-cid-lkw5wmmf>Creating a Standalone Screen</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#opening-the-screen" data-astro-cid-lkw5wmmf>Opening the Screen</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#overriding-background-rendering" data-astro-cid-lkw5wmmf>Overriding Background Rendering</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#creating-a-container-screen" data-astro-cid-lkw5wmmf>Creating a Container Screen</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#using-the-builder-api" data-astro-cid-lkw5wmmf>Using the Builder API</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#applying-a-theme" data-astro-cid-lkw5wmmf>Applying a Theme</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#sending-actions-to-the-server" data-astro-cid-lkw5wmmf>Sending Actions to the Server</a></li></ul></nav><script>
+  function updateTOCVisibility() {
+    const currentLang = document.documentElement.getAttribute('lang') || 'es';
+    const tocLinks = document.querySelectorAll('.toc-item a');
+    tocLinks.forEach(link => {
+      const targetId = link.getAttribute('href').substring(1);
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        const wrapper = targetElement.closest('[data-i18n]');
+        if (wrapper) {
+          const wrapperLang = wrapper.getAttribute('data-i18n');
+          if (wrapperLang !== currentLang) {
+            link.parentElement.style.display = 'none';
+          } else {
+            link.parentElement.style.display = 'block';
+          }
+        }
+      }
+    });
+  }
+  document.addEventListener('DOMContentLoaded', updateTOCVisibility);
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.attributeName === 'lang') {
+        updateTOCVisibility();
+      }
+    });
+  });
+  observer.observe(document.documentElement, { attributes: true });
+</script><div class="carbon-wrapper carbon-placeholder" aria-hidden="true" data-astro-cid-radvbx7x><div class="carbon-placeholder-inner" data-astro-cid-radvbx7x><div class="placeholder-icon" data-astro-cid-radvbx7x><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-radvbx7x><rect width="20" height="12" x="2" y="6" rx="2" data-astro-cid-radvbx7x></rect><path d="M12 12h.01" data-astro-cid-radvbx7x></path><path d="M17 12h.01" data-astro-cid-radvbx7x></path><path d="M7 12h.01" data-astro-cid-radvbx7x></path></svg></div><span class="placeholder-label" data-astro-cid-radvbx7x>Carbon Ads</span><span class="placeholder-sub" data-astro-cid-radvbx7x>Pending approval</span></div></div></aside></div><footer class="footer" data-astro-cid-jo6i4kqk><div class="footer-container" data-astro-cid-jo6i4kqk><div class="footer-info" data-astro-cid-jo6i4kqk><h3 data-astro-cid-jo6i4kqk>XHub</h3><p data-astro-cid-jo6i4kqk>The cave of X4yi. Proyects, News and Docs.</p></div><div class="footer-contact" data-astro-cid-jo6i4kqk><h4 data-astro-cid-jo6i4kqk>Contacto</h4><p data-astro-cid-jo6i4kqk>Email: <a href="mailto:contactx4yi@gd.&lt;/p&gt;mail.com" data-astro-cid-jo6i4kqk>contactx4yi@gmail.com</a></p><div class="social-links" data-astro-cid-jo6i4kqk><a href="https://github.com/X4yii" data-astro-cid-jo6i4kqk>GitHub</a></div></div></div><div class="footer-bottom" data-astro-cid-jo6i4kqk><p data-astro-cid-jo6i4kqk>&copy; 2026 X4yi. All rights reserved.</p></div></footer><dialog id="search-dialog" class="search-modal" data-astro-cid-e66w4awt><div class="search-container" data-astro-cid-e66w4awt><header class="search-header" data-astro-cid-e66w4awt><span data-i18n="es" data-astro-cid-e66w4awt>Buscar en XHub</span><span data-i18n="en" data-astro-cid-e66w4awt>Search XHub</span><button id="close-search" class="close-btn" data-astro-cid-e66w4awt>&times;</button></header><div class="search-body" data-astro-cid-e66w4awt><input type="text" id="fuse-search-input" placeholder="Search..." autocomplete="off" data-astro-cid-e66w4awt><div id="fuse-results-area" class="results-area" data-astro-cid-e66w4awt></div></div></div></dialog><script type="module" src="/xhub/_astro/SearchDialog.astro_astro_type_script_index_0_lang.C3MsqoGD.js"></script></body></html><script>
+document.addEventListener('astro:page-load', () => {
+  const toggle   = document.getElementById('sidebar-toggle');
+  const overlay  = document.getElementById('sidebar-overlay');
+  const sidebar  = document.querySelector('.sidebar');
+  const closeBtn = document.getElementById('sidebar-close-btn');
+
+  if (!sidebar) return;
+
+  function openSidebar() {
+    sidebar.classList.add('mobile-open');
+    if(overlay) overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeSidebar() {
+    sidebar.classList.remove('mobile-open');
+    if(overlay) overlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  if (toggle) toggle.addEventListener('click', openSidebar);
+  if (overlay) overlay.addEventListener('click', closeSidebar);
+  if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
+
+  document.querySelectorAll('.sidebar .nav-links a').forEach(link => {
+    link.addEventListener('click', closeSidebar);
+  });
+
+  var touchStartX = 0;
+  var touchStartY = 0;
+  var SWIPE_THRESHOLD = 60;
+  var EDGE_ZONE = 32;
+
+  document.addEventListener('touchstart', function (e) {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+
+  document.addEventListener('touchend', function (e) {
+    var dx = e.changedTouches[0].clientX - touchStartX;
+    var dy = e.changedTouches[0].clientY - touchStartY;
+
+    if (Math.abs(dx) < Math.abs(dy)) return;
+
+    var isOpen = sidebar.classList.contains('mobile-open');
+
+    if (!isOpen && touchStartX <= EDGE_ZONE && dx > SWIPE_THRESHOLD) {
+      openSidebar();
+    }
+
+    if (isOpen && dx < -SWIPE_THRESHOLD) {
+      closeSidebar();
+    }
+  }, { passive: true });
+});
+</script>

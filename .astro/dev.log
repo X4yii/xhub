@@ -1,0 +1,28 @@
+[astro] `markdown.remarkPlugins`, `markdown.rehypePlugins`, and `markdown.remarkRehype` are deprecated. Pass them to `unified({...})` from `@astrojs/markdown-remark` directly instead.
+{"message":"connected.","label":"vite","level":"info"}
+{"message":"Generated 0ms","label":"types","level":"info"}
+{"message":"connected.","label":"vite","level":"info"}
+{"message":"Syncing content","label":"content","level":"info"}
+{"message":"Astro config changed","label":"content","level":"info"}
+{"message":"Clearing content store","label":"content","level":"info"}
+[Shiki] The language "gradle" doesn't exist, falling back to "plaintext".
+[Shiki] The language "gradle" doesn't exist, falling back to "plaintext".
+{"message":"Synced content","label":"content","level":"info"}
+{"message":"Re-optimizing dependencies because lockfile has changed","label":"vite","level":"info"}
+{"message":" astro  v7.2.7 ready in 3514 ms\n┃ Local    http://localhost:4321/xhub/\n┃ Network  use --host to expose","label":"SKIP_FORMAT","level":"info"}
+{"message":"watching for file changes...","label":null,"level":"info"}
+{"message":"Request URLs for public/ assets must also include your base. \"/xhub//favicon.ico\" expected, but received \"/favicon.ico\".","label":"router","level":"error"}
+{"message":"[200] / 240ms","label":null,"level":"info"}
+{"message":"[200] / 24ms","label":null,"level":"info"}
+{"message":"dependency optimized: fuse.js","label":"vite","level":"info"}
+{"message":"[200] /docs/ 12ms","label":null,"level":"info"}
+{"message":"[200] /changelogs/x4ui/ 13ms","label":null,"level":"info"}
+{"message":"Configuration file updated. Restarting...","label":null,"level":"info"}
+{"message":"connected.","label":"vite","level":"info"}
+{"message":"connected.","label":"vite","level":"info"}
+{"message":"server restarted.","label":"vite","level":"info"}
+{"message":"[200] / 83ms","label":null,"level":"info"}
+{"message":"[200] /proyectos/ 22ms","label":null,"level":"info"}
+{"message":"[200] /noticias/ 16ms","label":null,"level":"info"}
+{"message":"[200] /changelogs/ 20ms","label":null,"level":"info"}
+{"message":"[200] /changelogs/x4ui 18ms","label":null,"level":"info"}

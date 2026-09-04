@@ -1,0 +1,458 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" type="image/svg+xml" href="/xhub/favicon.svg"><meta name="generator" content="Astro v7.2.7"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/xhub/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CYDbzu1r.js"></script><title>XHub - Networking &amp; Sync</title><meta name="description" content="El cerro de X4yi."><meta property="og:title" content="XHub - Networking &amp; Sync"><meta property="og:description" content="El cerro de X4yi."><meta property="og:image" content="/favicon.svg"><meta property="og:type" content="article"><meta property="og:url" content="https://x4yi.github.io/docs/x4ui/networking-and-sync"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="XHub - Networking &amp; Sync"><meta name="twitter:description" content="El cerro de X4yi."><meta name="twitter:image" content="/favicon.svg"><link rel="stylesheet" href="/xhub/_astro/Layout.x4fbhSDA.css"><link rel="stylesheet" href="/xhub/_astro/_..DHkhKyNK.css"></head><body><nav class="navbar" data-astro-cid-l7arcky5><div class="nav-container" data-astro-cid-l7arcky5><a href="/xhub/" class="brand" data-astro-cid-l7arcky5>XHub</a><ul class="nav-links" data-astro-cid-l7arcky5><li data-astro-cid-l7arcky5><a href="/xhub/proyectos/" data-astro-cid-l7arcky5>Proyectos</a></li><li data-astro-cid-l7arcky5><a href="/xhub/noticias/" data-astro-cid-l7arcky5>Noticias</a></li><li data-astro-cid-l7arcky5><a href="/xhub/docs/" data-astro-cid-l7arcky5>Docs</a></li><li data-astro-cid-l7arcky5><a href="/xhub/changelogs/" data-astro-cid-l7arcky5>Changelogs</a></li></ul><div class="nav-controls" data-astro-cid-l7arcky5><button class="search-btn" id="open-search" aria-label="Search" data-astro-cid-l7arcky5><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-l7arcky5><circle cx="11" cy="11" r="8" data-astro-cid-l7arcky5></circle><path d="m21 21-4.3-4.3" data-astro-cid-l7arcky5></path></svg><span class="search-text" data-astro-cid-l7arcky5>Buscar...</span><kbd class="search-kbd" data-astro-cid-l7arcky5>Ctrl K</kbd></button><div class="lang-selector" data-astro-cid-l7arcky5><select id="lang-switch" aria-label="Cambiar idioma" data-astro-cid-l7arcky5><option value="es" data-astro-cid-l7arcky5>ES</option><option value="en" data-astro-cid-l7arcky5>EN</option></select></div><button class="hamburger" id="hamburger-btn" aria-label="Abrir menú" aria-expanded="false" data-astro-cid-l7arcky5><span data-astro-cid-l7arcky5></span><span data-astro-cid-l7arcky5></span><span data-astro-cid-l7arcky5></span></button></div></div></nav><div class="mobile-drawer" id="mobile-drawer" aria-hidden="true" data-astro-cid-l7arcky5><div class="drawer-header" data-astro-cid-l7arcky5><span class="brand" data-astro-cid-l7arcky5>XHub</span><button class="drawer-close" id="drawer-close" aria-label="Cerrar menú" data-astro-cid-l7arcky5><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-l7arcky5><path d="M18 6 6 18" data-astro-cid-l7arcky5></path><path d="m6 6 12 12" data-astro-cid-l7arcky5></path></svg></button></div><nav class="drawer-nav" data-astro-cid-l7arcky5><a href="/xhub/proyectos/" class="drawer-link" data-astro-cid-l7arcky5><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-l7arcky5><path d="m7.5 4.27 9 5.15" data-astro-cid-l7arcky5></path><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z" data-astro-cid-l7arcky5></path><path d="m3.3 7 8.7 5 8.7-5" data-astro-cid-l7arcky5></path><path d="M12 22V12" data-astro-cid-l7arcky5></path></svg>Proyectos</a><a href="/xhub/noticias/" class="drawer-link" data-astro-cid-l7arcky5><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-l7arcky5><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 0-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2" data-astro-cid-l7arcky5></path><path d="M18 14h-8" data-astro-cid-l7arcky5></path><path d="M15 18h-5" data-astro-cid-l7arcky5></path><path d="M10 6h8v4h-8V6Z" data-astro-cid-l7arcky5></path></svg>Noticias</a><a href="/xhub/docs/" class="drawer-link" data-astro-cid-l7arcky5><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-l7arcky5><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" data-astro-cid-l7arcky5></path></svg>Docs</a><a href="/xhub/changelogs/" class="drawer-link" data-astro-cid-l7arcky5><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-l7arcky5><path d="M12 20h9" data-astro-cid-l7arcky5></path><path d="M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.854z" data-astro-cid-l7arcky5></path></svg>Changelogs</a></nav><div class="drawer-footer" data-astro-cid-l7arcky5><button class="search-btn-drawer" id="open-search-drawer" aria-label="Buscar" data-astro-cid-l7arcky5><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-l7arcky5><circle cx="11" cy="11" r="8" data-astro-cid-l7arcky5></circle><path d="m21 21-4.3-4.3" data-astro-cid-l7arcky5></path></svg>Buscar...</button><div class="lang-selector-drawer" data-astro-cid-l7arcky5><select id="lang-switch-drawer" aria-label="Cambiar idioma" data-astro-cid-l7arcky5><option value="es" data-astro-cid-l7arcky5>ES</option><option value="en" data-astro-cid-l7arcky5>EN</option></select></div></div></div><div class="drawer-overlay" id="drawer-overlay" data-astro-cid-l7arcky5></div><script>
+document.addEventListener('astro:page-load', () => {
+  const selector = document.getElementById('lang-switch');
+  const selectorDrawer = document.getElementById('lang-switch-drawer');
+  const currentLang = localStorage.getItem('lang') || 'es';
+  
+  if (selector) selector.value = currentLang;
+  if (selectorDrawer) selectorDrawer.value = currentLang;
+  document.documentElement.setAttribute('lang', currentLang);
+
+  function setLang(lang) {
+    localStorage.setItem('lang', lang);
+    document.documentElement.setAttribute('lang', lang);
+    if (selector) selector.value = lang;
+    if (selectorDrawer) selectorDrawer.value = lang;
+  }
+
+  if (selector) selector.addEventListener('change', (e) => setLang(e.target.value));
+  if (selectorDrawer) selectorDrawer.addEventListener('change', (e) => setLang(e.target.value));
+
+  const openSearchBtn = document.getElementById('open-search');
+  const openSearchDrawerBtn = document.getElementById('open-search-drawer');
+  function openSearch() {
+    const dialog = document.getElementById('search-dialog');
+    if (dialog) dialog.showModal();
+    closeDrawer();
+  }
+  if (openSearchBtn) openSearchBtn.addEventListener('click', openSearch);
+  if (openSearchDrawerBtn) openSearchDrawerBtn.addEventListener('click', openSearch);
+
+  const hamburger = document.getElementById('hamburger-btn');
+  const drawer = document.getElementById('mobile-drawer');
+  const overlay = document.getElementById('drawer-overlay');
+  const drawerClose = document.getElementById('drawer-close');
+
+  function openDrawer() {
+    if (!drawer) return;
+    drawer.classList.add('open');
+    overlay.classList.add('open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    hamburger.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeDrawer() {
+    if (!drawer) return;
+    drawer.classList.remove('open');
+    overlay.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    hamburger.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  if (hamburger) {
+    hamburger.addEventListener('click', () => {
+      drawer.classList.contains('open') ? closeDrawer() : openDrawer();
+    });
+  }
+  if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+  if (overlay) overlay.addEventListener('click', closeDrawer);
+});
+</script><div class="docs-layout" data-astro-cid-gfcwjq6c><button class="sidebar-toggle" id="sidebar-toggle" aria-label="Abrir navegación" data-astro-cid-gfcwjq6c><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-gfcwjq6c><path d="M3 12h18" data-astro-cid-gfcwjq6c></path><path d="M3 6h18" data-astro-cid-gfcwjq6c></path><path d="M3 18h18" data-astro-cid-gfcwjq6c></path></svg><span data-astro-cid-gfcwjq6c>X4UI</span></button><div class="sidebar-overlay" id="sidebar-overlay" data-astro-cid-gfcwjq6c></div><aside class="sidebar" data-astro-cid-wv7whodv><div class="sidebar-header" data-astro-cid-wv7whodv><a href="/xhub/docs/" class="back-link" data-astro-cid-wv7whodv><span data-i18n="es" data-astro-cid-wv7whodv>&larr; Volver</span><span data-i18n="en" data-astro-cid-wv7whodv>&larr; Back</span></a><button class="sidebar-close-btn" id="sidebar-close-btn" aria-label="Cerrar" data-astro-cid-wv7whodv><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-wv7whodv><path d="M18 6 6 18" data-astro-cid-wv7whodv></path><path d="m6 6 12 12" data-astro-cid-wv7whodv></path></svg></button><h2 class="project-title" data-astro-cid-wv7whodv>X4UI</h2></div><nav class="sidebar-nav" data-astro-cid-wv7whodv><div class="nav-group" data-astro-cid-wv7whodv><h3 class="nav-category" data-astro-cid-wv7whodv>General</h3><ul class="nav-links" data-astro-cid-wv7whodv><li data-astro-cid-wv7whodv><a href="/xhub/docs/x4ui/x4ui-manual/" class data-astro-cid-wv7whodv>X4UI Framework - Manual de desarrollo</a></li><li data-astro-cid-wv7whodv><a href="/xhub/docs/x4ui/getting-started/" class data-astro-cid-wv7whodv>Getting Started</a></li><li data-astro-cid-wv7whodv><a href="/xhub/docs/x4ui/core-concepts/" class data-astro-cid-wv7whodv>Core Concepts</a></li><li data-astro-cid-wv7whodv><a href="/xhub/docs/x4ui/remote-assets/" class data-astro-cid-wv7whodv>Remote Assets</a></li><li data-astro-cid-wv7whodv><a href="/xhub/docs/x4ui/networking-and-sync/" class="active" data-astro-cid-wv7whodv>Networking &amp; Sync</a></li><li data-astro-cid-wv7whodv><a href="/xhub/docs/x4ui/media-limitations/" class data-astro-cid-wv7whodv>Media Limitations</a></li></ul></div><div class="nav-group" data-astro-cid-wv7whodv><h3 class="nav-category" data-astro-cid-wv7whodv>Components</h3><ul class="nav-links" data-astro-cid-wv7whodv><li data-astro-cid-wv7whodv><a href="/xhub/docs/x4ui/components/advanced-components/" class data-astro-cid-wv7whodv>Advanced Components</a></li><li data-astro-cid-wv7whodv><a href="/xhub/docs/x4ui/components/buttons-and-inputs/" class data-astro-cid-wv7whodv>Buttons And Inputs</a></li><li data-astro-cid-wv7whodv><a href="/xhub/docs/x4ui/components/containers-and-panels/" class data-astro-cid-wv7whodv>Containers And Panels</a></li><li data-astro-cid-wv7whodv><a href="/xhub/docs/x4ui/components/multimedia/" class data-astro-cid-wv7whodv>Multimedia</a></li></ul></div></nav></aside><main class="docs-content-area" data-astro-cid-gfcwjq6c><header class="doc-header" data-astro-cid-gfcwjq6c><span class="category-tag" data-astro-cid-gfcwjq6c>General</span><h1 data-astro-cid-gfcwjq6c>Networking &amp; Sync</h1></header><div class="content-wrapper prose" data-astro-cid-gfcwjq6c>
+<div data-i18n="es">
+
+<h1 id="redes-y-sincronización-con-el-servidor">Redes y Sincronización con el Servidor</h1>
+<p>Los componentes de X4UI son estrictamente del lado del cliente (<code>@SideOnly(Side.CLIENT)</code>). Las clases de X4UI nunca deben ser referenciadas desde código de <code>common</code> o del servidor, ya que esto causa <code>ClassNotFoundException</code> en servidores dedicados.</p>
+<blockquote>
+<p><strong>Nota:</strong> El sistema de sincronización servidor-cliente se encuentra en una fase muy temprana de desarrollo. La API de <code>NetworkSyncHelper</code> y <code>StateContainerListener</code> puede cambiar sin previo aviso.</p>
+</blockquote>
+<h2 id="abrir-una-gui-desde-el-servidor">Abrir una GUI desde el Servidor</h2>
+<p>Para abrir una pantalla X4UI desde el servidor, use el sistema de red <code>SimpleImpl</code> de Forge para enviar un paquete que instruya al cliente a abrir la GUI.</p>
+<h3 id="1-definir-el-paquete">1. Definir el Paquete</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> io.netty.buffer.ByteBuf;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> net.minecraftforge.fml.common.network.simpleimpl.IMessage;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> PacketOpenUI</span><span style="color:#F97583"> implements</span><span style="color:#B392F0"> IMessage</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#E1E4E8"> String screenId;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#B392F0"> PacketOpenUI</span><span style="color:#E1E4E8">() {}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#B392F0"> PacketOpenUI</span><span style="color:#E1E4E8">(String </span><span style="color:#FFAB70">screenId</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.screenId </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> screenId;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> fromBytes</span><span style="color:#E1E4E8">(ByteBuf </span><span style="color:#FFAB70">buf</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">        int</span><span style="color:#E1E4E8"> length </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> buf.</span><span style="color:#B392F0">readInt</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#F97583">        byte</span><span style="color:#E1E4E8">[] bytes </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#F97583"> byte</span><span style="color:#E1E4E8">[length];</span></span>
+<span class="line"><span style="color:#E1E4E8">        buf.</span><span style="color:#B392F0">readBytes</span><span style="color:#E1E4E8">(bytes);</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.screenId </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> String</span><span style="color:#E1E4E8">(bytes);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> toBytes</span><span style="color:#E1E4E8">(ByteBuf </span><span style="color:#FFAB70">buf</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">        byte</span><span style="color:#E1E4E8">[] bytes </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> this</span><span style="color:#E1E4E8">.screenId.</span><span style="color:#B392F0">getBytes</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">        buf.</span><span style="color:#B392F0">writeInt</span><span style="color:#E1E4E8">(bytes.length);</span></span>
+<span class="line"><span style="color:#E1E4E8">        buf.</span><span style="color:#B392F0">writeBytes</span><span style="color:#E1E4E8">(bytes);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="2-manejador-del-lado-del-cliente">2. Manejador del Lado del Cliente</h3>
+<p>El manejador se ejecuta exclusivamente en el cliente. Las clases de X4UI pueden ser referenciadas aquí.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> net.minecraft.client.Minecraft;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> net.minecraftforge.fml.common.network.simpleimpl.IMessage;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> net.minecraftforge.fml.common.network.simpleimpl.MessageContext;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> PacketOpenUIHandler</span><span style="color:#F97583"> implements</span><span style="color:#B392F0"> IMessageHandler</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#F97583">PacketOpenUI</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">IMessage</span><span style="color:#E1E4E8">> {</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#E1E4E8"> IMessage </span><span style="color:#B392F0">onMessage</span><span style="color:#E1E4E8">(PacketOpenUI </span><span style="color:#FFAB70">message</span><span style="color:#E1E4E8">, MessageContext </span><span style="color:#FFAB70">ctx</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">        Minecraft.</span><span style="color:#B392F0">getMinecraft</span><span style="color:#E1E4E8">().</span><span style="color:#B392F0">addScheduledTask</span><span style="color:#E1E4E8">(() </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">            Minecraft.</span><span style="color:#B392F0">getMinecraft</span><span style="color:#E1E4E8">().</span><span style="color:#B392F0">displayGuiScreen</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#F97583">                new</span><span style="color:#B392F0"> MyCustomScreen</span><span style="color:#E1E4E8">(Minecraft.</span><span style="color:#B392F0">getMinecraft</span><span style="color:#E1E4E8">().currentScreen)</span></span>
+<span class="line"><span style="color:#E1E4E8">            );</span></span>
+<span class="line"><span style="color:#E1E4E8">        });</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="3-registrar-el-paquete">3. Registrar el Paquete</h3>
+<p>Registre durante <code>FMLPreInitializationEvent</code>:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> net.minecraftforge.fml.common.network.NetworkRegistry;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> static</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> SimpleNetworkWrapper CHANNEL </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> NetworkRegistry.INSTANCE.</span><span style="color:#B392F0">newSimpleChannel</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"mymod"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">EventHandler</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> preInit</span><span style="color:#E1E4E8">(FMLPreInitializationEvent event) {</span></span>
+<span class="line"><span style="color:#E1E4E8">    CHANNEL.</span><span style="color:#B392F0">registerMessage</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#E1E4E8">        PacketOpenUIHandler.class,</span></span>
+<span class="line"><span style="color:#E1E4E8">        PacketOpenUI.class,</span></span>
+<span class="line"><span style="color:#79B8FF">        0</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">        Side.CLIENT</span></span>
+<span class="line"><span style="color:#E1E4E8">    );</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="4-enviar-desde-el-servidor">4. Enviar desde el Servidor</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">MyModNetwork.CHANNEL.</span><span style="color:#B392F0">sendTo</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> PacketOpenUI</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"settings"</span><span style="color:#E1E4E8">), (EntityPlayerMP) player);</span></span></code></pre>
+<h2 id="sincronización-de-datos-servidor-a-cliente-statet--propiedades-de-container">Sincronización de Datos Servidor-a-Cliente (<code>State&#x3C;T></code> + Propiedades de Container)</h2>
+<p>El sistema <code>State&#x3C;T></code> de X4UI puede sincronizarse del servidor al cliente usando el mecanismo de propiedades <code>Container</code> de Minecraft. Esto es útil para sincronizar datos relacionados con inventarios.</p>
+<h3 id="statecontainerlistener">StateContainerListener</h3>
+<p><code>StateContainerListener</code> implementa <code>IContainerListener</code> y vincula IDs de propiedades de container a objetos <code>State</code>.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.common.State;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.common.sync.StateContainerListener;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">State&#x3C;</span><span style="color:#F97583">Integer</span><span style="color:#E1E4E8">> progress </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> State&#x3C;>(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">State&#x3C;</span><span style="color:#F97583">Boolean</span><span style="color:#E1E4E8">> isActive </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> State&#x3C;>(</span><span style="color:#79B8FF">false</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">StateContainerListener listener </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> StateContainerListener</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">listener.</span><span style="color:#B392F0">bindProperty</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, progress);          </span><span style="color:#6A737D">// Propiedad de container 0 -> Estado Integer</span></span>
+<span class="line"><span style="color:#E1E4E8">listener.</span><span style="color:#B392F0">bindBooleanProperty</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, isActive);   </span><span style="color:#6A737D">// Propiedad de container 1 -> Estado Boolean</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">container.</span><span style="color:#B392F0">addListener</span><span style="color:#E1E4E8">(listener);</span></span></code></pre>
+<h3 id="networksynchelper">NetworkSyncHelper</h3>
+<p><code>NetworkSyncHelper</code> proporciona métodos estáticos de conveniencia que gestionan automáticamente instancias de <code>StateContainerListener</code> por <code>Container</code>. Usa un <code>WeakHashMap</code> para prevenir fugas de memoria.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.common.State;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.common.sync.NetworkSyncHelper;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">State&#x3C;</span><span style="color:#F97583">Integer</span><span style="color:#E1E4E8">> fuelLevel </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> State&#x3C;>(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">State&#x3C;</span><span style="color:#F97583">Boolean</span><span style="color:#E1E4E8">> isBurning </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> State&#x3C;>(</span><span style="color:#79B8FF">false</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">State&#x3C;</span><span style="color:#F97583">Float</span><span style="color:#E1E4E8">> temperature </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> State&#x3C;>(</span><span style="color:#79B8FF">0f</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Vincular propiedades de container a objetos State</span></span>
+<span class="line"><span style="color:#E1E4E8">NetworkSyncHelper.</span><span style="color:#B392F0">bindContainerPropertyToState</span><span style="color:#E1E4E8">(container, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, fuelLevel);</span></span>
+<span class="line"><span style="color:#E1E4E8">NetworkSyncHelper.</span><span style="color:#B392F0">bindContainerPropertyToBoolean</span><span style="color:#E1E4E8">(container, </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, isBurning);</span></span>
+<span class="line"><span style="color:#E1E4E8">NetworkSyncHelper.</span><span style="color:#B392F0">bindContainerPropertyToFloat</span><span style="color:#E1E4E8">(container, </span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">, temperature, </span><span style="color:#79B8FF">100f</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#6A737D">// El parámetro de escala (100f) divide el valor entero crudo para producir un float.</span></span>
+<span class="line"><span style="color:#6A737D">// Así que un valor crudo de 50 se convierte en 0.5f.</span></span></code></pre>
+<h3 id="lado-del-servidor-enviar-propiedades">Lado del Servidor: Enviar Propiedades</h3>
+<p>En su subclase de <code>Container</code>, sobrescriba <code>detectAndSendChanges()</code> para enviar valores:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Override</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> detectAndSendChanges</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#79B8FF">    super</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">detectAndSendChanges</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#F97583">    for</span><span style="color:#E1E4E8"> (IContainerListener listener </span><span style="color:#F97583">:</span><span style="color:#E1E4E8"> listeners) {</span></span>
+<span class="line"><span style="color:#E1E4E8">        listener.</span><span style="color:#B392F0">sendWindowProperty</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, fuelLevel);    </span><span style="color:#6A737D">// ID de propiedad 0</span></span>
+<span class="line"><span style="color:#E1E4E8">        listener.</span><span style="color:#B392F0">sendWindowProperty</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, isBurning </span><span style="color:#F97583">?</span><span style="color:#79B8FF"> 1</span><span style="color:#F97583"> :</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">);  </span><span style="color:#6A737D">// ID de propiedad 1</span></span>
+<span class="line"><span style="color:#E1E4E8">        listener.</span><span style="color:#B392F0">sendWindowProperty</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">, (</span><span style="color:#F97583">int</span><span style="color:#E1E4E8">)(temperature </span><span style="color:#F97583">*</span><span style="color:#79B8FF"> 100f</span><span style="color:#E1E4E8">));  </span><span style="color:#6A737D">// ID de propiedad 2, escalado</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="lado-del-cliente-usar-el-estado-sincronizado">Lado del Cliente: Usar el Estado Sincronizado</h3>
+<p>En el cliente, vincule el <code>State</code> sincronizado a los componentes UI:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Override</span></span>
+<span class="line"><span style="color:#F97583">protected</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> initComponents</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">    State&#x3C;</span><span style="color:#F97583">Integer</span><span style="color:#E1E4E8">> fuelLevel </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> State&#x3C;>(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    State&#x3C;</span><span style="color:#F97583">Boolean</span><span style="color:#E1E4E8">> isBurning </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> State&#x3C;>(</span><span style="color:#79B8FF">false</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    NetworkSyncHelper.</span><span style="color:#B392F0">bindContainerPropertyToState</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">getContainer</span><span style="color:#E1E4E8">(), </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, fuelLevel);</span></span>
+<span class="line"><span style="color:#E1E4E8">    NetworkSyncHelper.</span><span style="color:#B392F0">bindContainerPropertyToBoolean</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">getContainer</span><span style="color:#E1E4E8">(), </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, isBurning);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    GuiLabel fuelLabel </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> GuiLabel</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Fuel: 0"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0xFFFFFFFF</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    fuelLabel.</span><span style="color:#B392F0">bindState</span><span style="color:#E1E4E8">(fuelLevel, value </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> fuelLabel.</span><span style="color:#B392F0">setText</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Fuel: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> value));</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    GuiToggle burningToggle </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> GuiToggle</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">120</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Burning"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">false</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">null</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    burningToggle.</span><span style="color:#B392F0">bindState</span><span style="color:#E1E4E8">(isBurning, burning </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> burningToggle.</span><span style="color:#B392F0">setState</span><span style="color:#E1E4E8">(burning));</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h2 id="iguiactionsender">IGuiActionSender</h2>
+<p><code>IGuiActionSender</code> es una interfaz para despachar acciones estructuradas desde la GUI del cliente al servidor. Configúrelo en la pantalla e invóquelo desde callbacks de componentes.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.common.sync.IGuiActionSender;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> net.minecraft.nbt.NBTTagCompound;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Configurar en la pantalla</span></span>
+<span class="line"><span style="color:#E1E4E8">IGuiActionSender sender </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> (actionId, data) </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">    MyModNetwork.CHANNEL.</span><span style="color:#B392F0">sendToServer</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> PacketAction</span><span style="color:#E1E4E8">(actionId, data));</span></span>
+<span class="line"><span style="color:#E1E4E8">};</span></span>
+<span class="line"><span style="color:#B392F0">setActionSender</span><span style="color:#E1E4E8">(sender);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Usar en un callback de botón</span></span>
+<span class="line"><span style="color:#E1E4E8">NBTTagCompound data </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> NBTTagCompound</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">data.</span><span style="color:#B392F0">setString</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"item"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"diamond"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">sender.</span><span style="color:#B392F0">sendActionToServer</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"craft"</span><span style="color:#E1E4E8">, data);</span></span></code></pre>
+<h2 id="restricciones-importantes">Restricciones Importantes</h2>
+<ol>
+<li><strong>Nunca referencie clases de X4UI en paquetes <code>common</code> o del servidor.</strong> Siempre mantenga los imports de X4UI solo en código del lado del cliente.</li>
+<li><strong>Use <code>Minecraft.getMinecraft().addScheduledTask()</code></strong> en manejadores de paquetes para garantizar la seguridad de hilos.</li>
+<li><strong>Las propiedades de container están limitadas a valores <code>int</code>.</strong> Use <code>sendWindowProperty()</code> con escala entera para floats.</li>
+<li><strong><code>State&#x3C;T></code> en <code>com.x4yi.x4ui.common</code></strong> es seguro tanto para cliente como para servidor. Solo los componentes GUI son exclusivos del cliente.
+</li>
+</ol>
+
+</div>
+
+
+<div data-i18n="en">
+
+<h1 id="networking--server-sync">Networking &#x26; Server Sync</h1>
+<p>X4UI components are strictly client-side (<code>@SideOnly(Side.CLIENT)</code>). X4UI classes must never be referenced from <code>common</code> or server-side code, as this causes <code>ClassNotFoundException</code> on dedicated servers.</p>
+<blockquote>
+<p><strong>Note:</strong> The server-client synchronization system is in a very early stage of development. The <code>NetworkSyncHelper</code> and <code>StateContainerListener</code> API may change without notice.</p>
+</blockquote>
+<h2 id="opening-a-gui-from-the-server">Opening a GUI from the Server</h2>
+<p>To open an X4UI screen from the server, use Forge’s <code>SimpleImpl</code> networking to send a packet that instructs the client to open the GUI.</p>
+<h3 id="1-define-the-packet">1. Define the Packet</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> io.netty.buffer.ByteBuf;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> net.minecraftforge.fml.common.network.simpleimpl.IMessage;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> PacketOpenUI</span><span style="color:#F97583"> implements</span><span style="color:#B392F0"> IMessage</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#E1E4E8"> String screenId;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#B392F0"> PacketOpenUI</span><span style="color:#E1E4E8">() {}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#B392F0"> PacketOpenUI</span><span style="color:#E1E4E8">(String </span><span style="color:#FFAB70">screenId</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.screenId </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> screenId;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> fromBytes</span><span style="color:#E1E4E8">(ByteBuf </span><span style="color:#FFAB70">buf</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">        int</span><span style="color:#E1E4E8"> length </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> buf.</span><span style="color:#B392F0">readInt</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#F97583">        byte</span><span style="color:#E1E4E8">[] bytes </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#F97583"> byte</span><span style="color:#E1E4E8">[length];</span></span>
+<span class="line"><span style="color:#E1E4E8">        buf.</span><span style="color:#B392F0">readBytes</span><span style="color:#E1E4E8">(bytes);</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.screenId </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> String</span><span style="color:#E1E4E8">(bytes);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> toBytes</span><span style="color:#E1E4E8">(ByteBuf </span><span style="color:#FFAB70">buf</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">        byte</span><span style="color:#E1E4E8">[] bytes </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> this</span><span style="color:#E1E4E8">.screenId.</span><span style="color:#B392F0">getBytes</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">        buf.</span><span style="color:#B392F0">writeInt</span><span style="color:#E1E4E8">(bytes.length);</span></span>
+<span class="line"><span style="color:#E1E4E8">        buf.</span><span style="color:#B392F0">writeBytes</span><span style="color:#E1E4E8">(bytes);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="2-client-side-handler">2. Client-Side Handler</h3>
+<p>The handler executes exclusively on the client. X4UI classes can be referenced here.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> net.minecraft.client.Minecraft;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> net.minecraftforge.fml.common.network.simpleimpl.IMessage;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> net.minecraftforge.fml.common.network.simpleimpl.MessageContext;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> PacketOpenUIHandler</span><span style="color:#F97583"> implements</span><span style="color:#B392F0"> IMessageHandler</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#F97583">PacketOpenUI</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">IMessage</span><span style="color:#E1E4E8">> {</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#E1E4E8"> IMessage </span><span style="color:#B392F0">onMessage</span><span style="color:#E1E4E8">(PacketOpenUI </span><span style="color:#FFAB70">message</span><span style="color:#E1E4E8">, MessageContext </span><span style="color:#FFAB70">ctx</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">        Minecraft.</span><span style="color:#B392F0">getMinecraft</span><span style="color:#E1E4E8">().</span><span style="color:#B392F0">addScheduledTask</span><span style="color:#E1E4E8">(() </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">            Minecraft.</span><span style="color:#B392F0">getMinecraft</span><span style="color:#E1E4E8">().</span><span style="color:#B392F0">displayGuiScreen</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#F97583">                new</span><span style="color:#B392F0"> MyCustomScreen</span><span style="color:#E1E4E8">(Minecraft.</span><span style="color:#B392F0">getMinecraft</span><span style="color:#E1E4E8">().currentScreen)</span></span>
+<span class="line"><span style="color:#E1E4E8">            );</span></span>
+<span class="line"><span style="color:#E1E4E8">        });</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="3-register-the-packet">3. Register the Packet</h3>
+<p>Register during <code>FMLPreInitializationEvent</code>:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> net.minecraftforge.fml.common.network.NetworkRegistry;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> static</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> SimpleNetworkWrapper CHANNEL </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> NetworkRegistry.INSTANCE.</span><span style="color:#B392F0">newSimpleChannel</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"mymod"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">EventHandler</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> preInit</span><span style="color:#E1E4E8">(FMLPreInitializationEvent event) {</span></span>
+<span class="line"><span style="color:#E1E4E8">    CHANNEL.</span><span style="color:#B392F0">registerMessage</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#E1E4E8">        PacketOpenUIHandler.class,</span></span>
+<span class="line"><span style="color:#E1E4E8">        PacketOpenUI.class,</span></span>
+<span class="line"><span style="color:#79B8FF">        0</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">        Side.CLIENT</span></span>
+<span class="line"><span style="color:#E1E4E8">    );</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="4-send-from-server">4. Send from Server</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">MyModNetwork.CHANNEL.</span><span style="color:#B392F0">sendTo</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> PacketOpenUI</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"settings"</span><span style="color:#E1E4E8">), (EntityPlayerMP) player);</span></span></code></pre>
+<h2 id="server-to-client-data-sync-statet--container-properties">Server-to-Client Data Sync (<code>State&#x3C;T></code> + Container Properties)</h2>
+<p>X4UI’s <code>State&#x3C;T></code> system can be synchronized from server to client using Minecraft’s <code>Container</code> property mechanism. This is useful for syncing inventory-related data.</p>
+<h3 id="statecontainerlistener-1">StateContainerListener</h3>
+<p><code>StateContainerListener</code> implements <code>IContainerListener</code> and bridges container property IDs to <code>State</code> objects.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.common.State;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.common.sync.StateContainerListener;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">State&#x3C;</span><span style="color:#F97583">Integer</span><span style="color:#E1E4E8">> progress </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> State&#x3C;>(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">State&#x3C;</span><span style="color:#F97583">Boolean</span><span style="color:#E1E4E8">> isActive </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> State&#x3C;>(</span><span style="color:#79B8FF">false</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">StateContainerListener listener </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> StateContainerListener</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">listener.</span><span style="color:#B392F0">bindProperty</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, progress);          </span><span style="color:#6A737D">// Container property 0 -> Integer state</span></span>
+<span class="line"><span style="color:#E1E4E8">listener.</span><span style="color:#B392F0">bindBooleanProperty</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, isActive);   </span><span style="color:#6A737D">// Container property 1 -> Boolean state</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">container.</span><span style="color:#B392F0">addListener</span><span style="color:#E1E4E8">(listener);</span></span></code></pre>
+<h3 id="networksynchelper-1">NetworkSyncHelper</h3>
+<p><code>NetworkSyncHelper</code> provides static convenience methods that automatically manage <code>StateContainerListener</code> instances per <code>Container</code>. Uses a <code>WeakHashMap</code> to prevent memory leaks.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.common.State;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.common.sync.NetworkSyncHelper;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">State&#x3C;</span><span style="color:#F97583">Integer</span><span style="color:#E1E4E8">> fuelLevel </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> State&#x3C;>(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">State&#x3C;</span><span style="color:#F97583">Boolean</span><span style="color:#E1E4E8">> isBurning </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> State&#x3C;>(</span><span style="color:#79B8FF">false</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">State&#x3C;</span><span style="color:#F97583">Float</span><span style="color:#E1E4E8">> temperature </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> State&#x3C;>(</span><span style="color:#79B8FF">0f</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Bind container properties to State objects</span></span>
+<span class="line"><span style="color:#E1E4E8">NetworkSyncHelper.</span><span style="color:#B392F0">bindContainerPropertyToState</span><span style="color:#E1E4E8">(container, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, fuelLevel);</span></span>
+<span class="line"><span style="color:#E1E4E8">NetworkSyncHelper.</span><span style="color:#B392F0">bindContainerPropertyToBoolean</span><span style="color:#E1E4E8">(container, </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, isBurning);</span></span>
+<span class="line"><span style="color:#E1E4E8">NetworkSyncHelper.</span><span style="color:#B392F0">bindContainerPropertyToFloat</span><span style="color:#E1E4E8">(container, </span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">, temperature, </span><span style="color:#79B8FF">100f</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#6A737D">// The scale parameter (100f) divides the raw integer value to produce a float.</span></span>
+<span class="line"><span style="color:#6A737D">// So a raw value of 50 becomes 0.5f.</span></span></code></pre>
+<h3 id="server-side-sending-properties">Server-Side: Sending Properties</h3>
+<p>In your <code>Container</code> subclass, override <code>detectAndSendChanges()</code> to push values:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Override</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> detectAndSendChanges</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#79B8FF">    super</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">detectAndSendChanges</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#F97583">    for</span><span style="color:#E1E4E8"> (IContainerListener listener </span><span style="color:#F97583">:</span><span style="color:#E1E4E8"> listeners) {</span></span>
+<span class="line"><span style="color:#E1E4E8">        listener.</span><span style="color:#B392F0">sendWindowProperty</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, fuelLevel);    </span><span style="color:#6A737D">// property ID 0</span></span>
+<span class="line"><span style="color:#E1E4E8">        listener.</span><span style="color:#B392F0">sendWindowProperty</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, isBurning </span><span style="color:#F97583">?</span><span style="color:#79B8FF"> 1</span><span style="color:#F97583"> :</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">);  </span><span style="color:#6A737D">// property ID 1</span></span>
+<span class="line"><span style="color:#E1E4E8">        listener.</span><span style="color:#B392F0">sendWindowProperty</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">, (</span><span style="color:#F97583">int</span><span style="color:#E1E4E8">)(temperature </span><span style="color:#F97583">*</span><span style="color:#79B8FF"> 100f</span><span style="color:#E1E4E8">));  </span><span style="color:#6A737D">// property ID 2, scaled</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="client-side-using-synced-state">Client-Side: Using Synced State</h3>
+<p>On the client, bind the synced <code>State</code> to UI components:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Override</span></span>
+<span class="line"><span style="color:#F97583">protected</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> initComponents</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">    State&#x3C;</span><span style="color:#F97583">Integer</span><span style="color:#E1E4E8">> fuelLevel </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> State&#x3C;>(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    State&#x3C;</span><span style="color:#F97583">Boolean</span><span style="color:#E1E4E8">> isBurning </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> State&#x3C;>(</span><span style="color:#79B8FF">false</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    NetworkSyncHelper.</span><span style="color:#B392F0">bindContainerPropertyToState</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">getContainer</span><span style="color:#E1E4E8">(), </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, fuelLevel);</span></span>
+<span class="line"><span style="color:#E1E4E8">    NetworkSyncHelper.</span><span style="color:#B392F0">bindContainerPropertyToBoolean</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">getContainer</span><span style="color:#E1E4E8">(), </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, isBurning);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    GuiLabel fuelLabel </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> GuiLabel</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Fuel: 0"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0xFFFFFFFF</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    fuelLabel.</span><span style="color:#B392F0">bindState</span><span style="color:#E1E4E8">(fuelLevel, value </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> fuelLabel.</span><span style="color:#B392F0">setText</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Fuel: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> value));</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    GuiToggle burningToggle </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> GuiToggle</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">120</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Burning"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">false</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">null</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    burningToggle.</span><span style="color:#B392F0">bindState</span><span style="color:#E1E4E8">(isBurning, burning </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> burningToggle.</span><span style="color:#B392F0">setState</span><span style="color:#E1E4E8">(burning));</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h2 id="iguiactionsender-1">IGuiActionSender</h2>
+<p><code>IGuiActionSender</code> is an interface for dispatching structured actions from the client GUI to the server. Set it on the screen and invoke it from component callbacks.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.x4yi.x4ui.common.sync.IGuiActionSender;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> net.minecraft.nbt.NBTTagCompound;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Set on the screen</span></span>
+<span class="line"><span style="color:#E1E4E8">IGuiActionSender sender </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> (actionId, data) </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">    MyModNetwork.CHANNEL.</span><span style="color:#B392F0">sendToServer</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> PacketAction</span><span style="color:#E1E4E8">(actionId, data));</span></span>
+<span class="line"><span style="color:#E1E4E8">};</span></span>
+<span class="line"><span style="color:#B392F0">setActionSender</span><span style="color:#E1E4E8">(sender);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Use in a button callback</span></span>
+<span class="line"><span style="color:#E1E4E8">NBTTagCompound data </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> NBTTagCompound</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">data.</span><span style="color:#B392F0">setString</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"item"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"diamond"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">sender.</span><span style="color:#B392F0">sendActionToServer</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"craft"</span><span style="color:#E1E4E8">, data);</span></span></code></pre>
+<h2 id="important-constraints">Important Constraints</h2>
+<ol>
+<li><strong>Never reference X4UI classes in <code>common</code> or server packages.</strong> Always keep X4UI imports in client-side code only.</li>
+<li><strong>Use <code>Minecraft.getMinecraft().addScheduledTask()</code></strong> in packet handlers to ensure thread safety.</li>
+<li><strong>Container properties are limited to <code>int</code> values.</strong> Use <code>sendWindowProperty()</code> with integer scaling for floats.</li>
+<li><strong><code>State&#x3C;T></code> in <code>com.x4yi.x4ui.common</code></strong> is safe for both client and server. Only the GUI components are client-only.
+</li>
+</ol>
+
+</div>
+</div></main><aside class="toc-sidebar" data-astro-cid-gfcwjq6c><nav class="toc" data-astro-cid-lkw5wmmf><h4 class="toc-title" data-astro-cid-lkw5wmmf><span data-i18n="es" data-astro-cid-lkw5wmmf>En esta página</span><span data-i18n="en" data-astro-cid-lkw5wmmf>On this page</span></h4><ul class="toc-list" data-astro-cid-lkw5wmmf><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#abrir-una-gui-desde-el-servidor" data-astro-cid-lkw5wmmf>Abrir una GUI desde el Servidor</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#1-definir-el-paquete" data-astro-cid-lkw5wmmf>1. Definir el Paquete</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#2-manejador-del-lado-del-cliente" data-astro-cid-lkw5wmmf>2. Manejador del Lado del Cliente</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#3-registrar-el-paquete" data-astro-cid-lkw5wmmf>3. Registrar el Paquete</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#4-enviar-desde-el-servidor" data-astro-cid-lkw5wmmf>4. Enviar desde el Servidor</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#sincronización-de-datos-servidor-a-cliente-statet--propiedades-de-container" data-astro-cid-lkw5wmmf>Sincronización de Datos Servidor-a-Cliente (State&lt;T&gt; + Propiedades de Container)</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#statecontainerlistener" data-astro-cid-lkw5wmmf>StateContainerListener</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#networksynchelper" data-astro-cid-lkw5wmmf>NetworkSyncHelper</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#lado-del-servidor-enviar-propiedades" data-astro-cid-lkw5wmmf>Lado del Servidor: Enviar Propiedades</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#lado-del-cliente-usar-el-estado-sincronizado" data-astro-cid-lkw5wmmf>Lado del Cliente: Usar el Estado Sincronizado</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#iguiactionsender" data-astro-cid-lkw5wmmf>IGuiActionSender</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#restricciones-importantes" data-astro-cid-lkw5wmmf>Restricciones Importantes</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#opening-a-gui-from-the-server" data-astro-cid-lkw5wmmf>Opening a GUI from the Server</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#1-define-the-packet" data-astro-cid-lkw5wmmf>1. Define the Packet</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#2-client-side-handler" data-astro-cid-lkw5wmmf>2. Client-Side Handler</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#3-register-the-packet" data-astro-cid-lkw5wmmf>3. Register the Packet</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#4-send-from-server" data-astro-cid-lkw5wmmf>4. Send from Server</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#server-to-client-data-sync-statet--container-properties" data-astro-cid-lkw5wmmf>Server-to-Client Data Sync (State&lt;T&gt; + Container Properties)</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#statecontainerlistener-1" data-astro-cid-lkw5wmmf>StateContainerListener</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#networksynchelper-1" data-astro-cid-lkw5wmmf>NetworkSyncHelper</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#server-side-sending-properties" data-astro-cid-lkw5wmmf>Server-Side: Sending Properties</a></li><li class="toc-item depth-3" data-astro-cid-lkw5wmmf><a href="#client-side-using-synced-state" data-astro-cid-lkw5wmmf>Client-Side: Using Synced State</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#iguiactionsender-1" data-astro-cid-lkw5wmmf>IGuiActionSender</a></li><li class="toc-item depth-2" data-astro-cid-lkw5wmmf><a href="#important-constraints" data-astro-cid-lkw5wmmf>Important Constraints</a></li></ul></nav><script>
+  function updateTOCVisibility() {
+    const currentLang = document.documentElement.getAttribute('lang') || 'es';
+    const tocLinks = document.querySelectorAll('.toc-item a');
+    tocLinks.forEach(link => {
+      const targetId = link.getAttribute('href').substring(1);
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        const wrapper = targetElement.closest('[data-i18n]');
+        if (wrapper) {
+          const wrapperLang = wrapper.getAttribute('data-i18n');
+          if (wrapperLang !== currentLang) {
+            link.parentElement.style.display = 'none';
+          } else {
+            link.parentElement.style.display = 'block';
+          }
+        }
+      }
+    });
+  }
+  document.addEventListener('DOMContentLoaded', updateTOCVisibility);
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.attributeName === 'lang') {
+        updateTOCVisibility();
+      }
+    });
+  });
+  observer.observe(document.documentElement, { attributes: true });
+</script><div class="carbon-wrapper carbon-placeholder" aria-hidden="true" data-astro-cid-radvbx7x><div class="carbon-placeholder-inner" data-astro-cid-radvbx7x><div class="placeholder-icon" data-astro-cid-radvbx7x><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-radvbx7x><rect width="20" height="12" x="2" y="6" rx="2" data-astro-cid-radvbx7x></rect><path d="M12 12h.01" data-astro-cid-radvbx7x></path><path d="M17 12h.01" data-astro-cid-radvbx7x></path><path d="M7 12h.01" data-astro-cid-radvbx7x></path></svg></div><span class="placeholder-label" data-astro-cid-radvbx7x>Carbon Ads</span><span class="placeholder-sub" data-astro-cid-radvbx7x>Pending approval</span></div></div></aside></div><footer class="footer" data-astro-cid-jo6i4kqk><div class="footer-container" data-astro-cid-jo6i4kqk><div class="footer-info" data-astro-cid-jo6i4kqk><h3 data-astro-cid-jo6i4kqk>XHub</h3><p data-astro-cid-jo6i4kqk>The cave of X4yi. Proyects, News and Docs.</p></div><div class="footer-contact" data-astro-cid-jo6i4kqk><h4 data-astro-cid-jo6i4kqk>Contacto</h4><p data-astro-cid-jo6i4kqk>Email: <a href="mailto:contactx4yi@gd.&lt;/p&gt;mail.com" data-astro-cid-jo6i4kqk>contactx4yi@gmail.com</a></p><div class="social-links" data-astro-cid-jo6i4kqk><a href="https://github.com/X4yii" data-astro-cid-jo6i4kqk>GitHub</a></div></div></div><div class="footer-bottom" data-astro-cid-jo6i4kqk><p data-astro-cid-jo6i4kqk>&copy; 2026 X4yi. All rights reserved.</p></div></footer><dialog id="search-dialog" class="search-modal" data-astro-cid-e66w4awt><div class="search-container" data-astro-cid-e66w4awt><header class="search-header" data-astro-cid-e66w4awt><span data-i18n="es" data-astro-cid-e66w4awt>Buscar en XHub</span><span data-i18n="en" data-astro-cid-e66w4awt>Search XHub</span><button id="close-search" class="close-btn" data-astro-cid-e66w4awt>&times;</button></header><div class="search-body" data-astro-cid-e66w4awt><input type="text" id="fuse-search-input" placeholder="Search..." autocomplete="off" data-astro-cid-e66w4awt><div id="fuse-results-area" class="results-area" data-astro-cid-e66w4awt></div></div></div></dialog><script type="module" src="/xhub/_astro/SearchDialog.astro_astro_type_script_index_0_lang.C3MsqoGD.js"></script></body></html><script>
+document.addEventListener('astro:page-load', () => {
+  const toggle   = document.getElementById('sidebar-toggle');
+  const overlay  = document.getElementById('sidebar-overlay');
+  const sidebar  = document.querySelector('.sidebar');
+  const closeBtn = document.getElementById('sidebar-close-btn');
+
+  if (!sidebar) return;
+
+  function openSidebar() {
+    sidebar.classList.add('mobile-open');
+    if(overlay) overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeSidebar() {
+    sidebar.classList.remove('mobile-open');
+    if(overlay) overlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  if (toggle) toggle.addEventListener('click', openSidebar);
+  if (overlay) overlay.addEventListener('click', closeSidebar);
+  if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
+
+  document.querySelectorAll('.sidebar .nav-links a').forEach(link => {
+    link.addEventListener('click', closeSidebar);
+  });
+
+  var touchStartX = 0;
+  var touchStartY = 0;
+  var SWIPE_THRESHOLD = 60;
+  var EDGE_ZONE = 32;
+
+  document.addEventListener('touchstart', function (e) {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+
+  document.addEventListener('touchend', function (e) {
+    var dx = e.changedTouches[0].clientX - touchStartX;
+    var dy = e.changedTouches[0].clientY - touchStartY;
+
+    if (Math.abs(dx) < Math.abs(dy)) return;
+
+    var isOpen = sidebar.classList.contains('mobile-open');
+
+    if (!isOpen && touchStartX <= EDGE_ZONE && dx > SWIPE_THRESHOLD) {
+      openSidebar();
+    }
+
+    if (isOpen && dx < -SWIPE_THRESHOLD) {
+      closeSidebar();
+    }
+  }, { passive: true });
+});
+</script>

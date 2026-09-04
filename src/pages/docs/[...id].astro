@@ -45,7 +45,7 @@ const currentProject = entry.data.project;
 </Layout>
 
 <script is:inline>
-(function () {
+document.addEventListener('astro:page-load', () => {
   const toggle   = document.getElementById('sidebar-toggle');
   const overlay  = document.getElementById('sidebar-overlay');
   const sidebar  = document.querySelector('.sidebar');
@@ -55,19 +55,19 @@ const currentProject = entry.data.project;
 
   function openSidebar() {
     sidebar.classList.add('mobile-open');
-    overlay.classList.add('active');
+    if(overlay) overlay.classList.add('active');
     document.body.style.overflow = 'hidden';
   }
 
   function closeSidebar() {
     sidebar.classList.remove('mobile-open');
-    overlay.classList.remove('active');
+    if(overlay) overlay.classList.remove('active');
     document.body.style.overflow = '';
   }
 
-  toggle  && toggle.addEventListener('click', openSidebar);
-  overlay && overlay.addEventListener('click', closeSidebar);
-  closeBtn && closeBtn.addEventListener('click', closeSidebar);
+  if (toggle) toggle.addEventListener('click', openSidebar);
+  if (overlay) overlay.addEventListener('click', closeSidebar);
+  if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
 
   document.querySelectorAll('.sidebar .nav-links a').forEach(link => {
     link.addEventListener('click', closeSidebar);
@@ -99,7 +99,7 @@ const currentProject = entry.data.project;
       closeSidebar();
     }
   }, { passive: true });
-})();
+});
 </script>
 
 <style>

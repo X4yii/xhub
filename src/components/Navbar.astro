@@ -71,22 +71,24 @@
 <div class="drawer-overlay" id="drawer-overlay"></div>
 
 <script is:inline>
+document.addEventListener('astro:page-load', () => {
   const selector = document.getElementById('lang-switch');
   const selectorDrawer = document.getElementById('lang-switch-drawer');
   const currentLang = localStorage.getItem('lang') || 'es';
-  selector.value = currentLang;
-  selectorDrawer.value = currentLang;
+  
+  if (selector) selector.value = currentLang;
+  if (selectorDrawer) selectorDrawer.value = currentLang;
   document.documentElement.setAttribute('lang', currentLang);
 
   function setLang(lang) {
     localStorage.setItem('lang', lang);
     document.documentElement.setAttribute('lang', lang);
-    selector.value = lang;
-    selectorDrawer.value = lang;
+    if (selector) selector.value = lang;
+    if (selectorDrawer) selectorDrawer.value = lang;
   }
 
-  selector.addEventListener('change', (e) => setLang(e.target.value));
-  selectorDrawer.addEventListener('change', (e) => setLang(e.target.value));
+  if (selector) selector.addEventListener('change', (e) => setLang(e.target.value));
+  if (selectorDrawer) selectorDrawer.addEventListener('change', (e) => setLang(e.target.value));
 
   const openSearchBtn = document.getElementById('open-search');
   const openSearchDrawerBtn = document.getElementById('open-search-drawer');
@@ -104,6 +106,7 @@
   const drawerClose = document.getElementById('drawer-close');
 
   function openDrawer() {
+    if (!drawer) return;
     drawer.classList.add('open');
     overlay.classList.add('open');
     hamburger.setAttribute('aria-expanded', 'true');
@@ -112,6 +115,7 @@
   }
 
   function closeDrawer() {
+    if (!drawer) return;
     drawer.classList.remove('open');
     overlay.classList.remove('open');
     hamburger.setAttribute('aria-expanded', 'false');
@@ -119,11 +123,14 @@
     document.body.style.overflow = '';
   }
 
-  hamburger.addEventListener('click', () => {
-    drawer.classList.contains('open') ? closeDrawer() : openDrawer();
-  });
-  drawerClose.addEventListener('click', closeDrawer);
-  overlay.addEventListener('click', closeDrawer);
+  if (hamburger) {
+    hamburger.addEventListener('click', () => {
+      drawer.classList.contains('open') ? closeDrawer() : openDrawer();
+    });
+  }
+  if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+  if (overlay) overlay.addEventListener('click', closeDrawer);
+});
 </script>
 
 <style>

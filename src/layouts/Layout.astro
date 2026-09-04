@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { ClientRouter } from 'astro:transitions';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import SearchDialog from '../components/SearchDialog.astro';
@@ -27,7 +28,7 @@ const {
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="icon" type="image/svg+xml" href="/xhub/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-        
+        <ClientRouter />
 		<title>{title}</title>
         <meta name="description" content={description} />
         

@@ -16,7 +16,7 @@ const grouped = projectDocs.reduce((acc, doc) => {
 }, {});
 const sortedCategories = Object.keys(grouped).sort((a, b) => grouped[a].order - grouped[b].order);
 sortedCategories.forEach(cat => {
-    grouped[cat].docs.sort((a, b) => a.data.title.localeCompare(b.data.title));
+    grouped[cat].docs.sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0) || a.data.title.localeCompare(b.data.title));
 });
 ---
 <aside class="sidebar">

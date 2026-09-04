@@ -5,7 +5,7 @@ import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 export default defineConfig({
   site: 'https://x4yii.github.io',
   base: '/xhub',
-  trailingSlash: 'always',
+  trailingSlash: 'ignore',
   markdown: {
     remarkPlugins: [remarkI18n]
   },

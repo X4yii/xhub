@@ -9,44 +9,57 @@ interface Props {
   description?: string;
   ogImage?: string;
   type?: string;
-  url?: string;
   pagefindIgnore?: boolean;
 }
 const {
   title = "XHub",
   description = "El cerro de X4yi.",
-  ogImage = "/favicon.svg",
+  ogImage = "/xhub/og-default.png",
   type = "website",
-  url = "https://x4yi.github.io",
-  
 } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 <!doctype html>
-<html lang="en">
+<html>
 	<head>
+		<script is:inline>
+			document.documentElement.setAttribute('lang', localStorage.getItem('lang') || 'es');
+		</script>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="icon" type="image/svg+xml" href="/xhub/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
+		<meta name="theme-color" content="#0a0a0c" />
+		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+		<meta http-equiv="Pragma" content="no-cache" />
+		<meta http-equiv="Expires" content="0" />
         <ClientRouter />
 		<title>{title}</title>
         <meta name="description" content={description} />
-        
+        <link rel="canonical" href={canonicalURL.href} />
+
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
-        <meta property="og:image" content={ogImage} />
+        <meta property="og:image" content={new URL(ogImage, Astro.site).href} />
         <meta property="og:type" content={type} />
-        <meta property="og:url" content={url} />
-        
+        <meta property="og:url" content={canonicalURL.href} />
+        <meta property="og:site_name" content="XHub" />
+
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
-        <meta name="twitter:image" content={ogImage} />
+        <meta name="twitter:image" content={new URL(ogImage, Astro.site).href} />
 	</head>
 	<body>
+		<a href="#main-content" class="skip-link">Saltar al contenido</a>
         <Navbar />
 		<slot />
         <Footer />
         <SearchDialog />
+		<script is:inline>
+			if ('serviceWorker' in navigator) {
+				navigator.serviceWorker.register('/xhub/sw.js');
+			}
+		</script>
 	</body>
 </html>

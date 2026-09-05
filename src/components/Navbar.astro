@@ -74,7 +74,7 @@
 document.addEventListener('astro:page-load', () => {
   const selector = document.getElementById('lang-switch');
   const selectorDrawer = document.getElementById('lang-switch-drawer');
-  const currentLang = localStorage.getItem('lang') || 'es';
+  const currentLang = localStorage.getItem('lang') || 'en';
   
   if (selector) selector.value = currentLang;
   if (selectorDrawer) selectorDrawer.value = currentLang;
@@ -130,6 +130,12 @@ document.addEventListener('astro:page-load', () => {
   }
   if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
   if (overlay) overlay.addEventListener('click', closeDrawer);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && drawer && drawer.classList.contains('open')) {
+      closeDrawer();
+    }
+  });
 });
 </script>
 

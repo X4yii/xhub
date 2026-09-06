@@ -9,18 +9,72 @@ interface Props {
   description?: string;
   ogImage?: string;
   type?: string;
+  keywords?: string;
   pagefindIgnore?: boolean;
 }
 const {
-  title = "XHub",
-  description = "El cerro de X4yi.",
+  title = "XHub - X4yi",
+  description = "XHub es el sitio oficial de X4yi, desarrollador de mods de Minecraft. Aquí encontrarás documentación, changelogs y proyectos como X4UI y LethalWeaponry.",
   ogImage = "/xhub/og-default.png",
   type = "website",
+  keywords = "X4yi, x4ui, XHub, LethalWeaponry, Minecraft mod, Minecraft Forge, 1.12.2, mod developer, GUI framework, Minecraft weapons mod",
 } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "X4yi",
+  "alternateName": ["x4ui", "X4yii", "x4yi"],
+  "url": "https://x4yii.github.io/xhub/",
+  "sameAs": [
+    "https://github.com/X4yii"
+  ],
+  "knowsAbout": ["Minecraft modding", "Java", "Forge 1.12.2", "GUI development", "Game development"],
+  "description": "Desarrollador independiente de mods de Minecraft, autor de X4UI y LethalWeaponry."
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "XHub",
+  "alternateName": "X4yi Hub",
+  "url": "https://x4yii.github.io/xhub/",
+  "author": {
+    "@type": "Person",
+    "name": "X4yi",
+    "alternateName": ["x4ui", "X4yii"]
+  },
+  "description": "Sitio oficial de X4yi. Documentación, changelogs y proyectos de Minecraft como X4UI y LethalWeaponry.",
+  "inLanguage": ["es", "en"],
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://x4yii.github.io/xhub/?q={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+  }
+};
+
+const x4uiSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "X4UI",
+  "alternateName": "X4UI Framework",
+  "applicationCategory": "GameModification",
+  "operatingSystem": "Minecraft Forge 1.12.2",
+  "author": {
+    "@type": "Person",
+    "name": "X4yi",
+    "alternateName": ["x4ui", "X4yii"]
+  },
+  "description": "Framework de interfaz gráfica (GUI) para Minecraft Forge 1.12.2 con soporte de vídeo, animaciones y red.",
+  "url": "https://x4yii.github.io/xhub/docs/x4ui/getting-started/"
+};
 ---
 <!doctype html>
-<html>
+<html lang="es">
 	<head>
 		<script is:inline>
 			document.documentElement.setAttribute('lang', localStorage.getItem('lang') || 'es');
@@ -30,9 +84,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 		<link rel="icon" type="image/svg+xml" href="/xhub/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="theme-color" content="#0a0a0c" />
-		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-		<meta http-equiv="Pragma" content="no-cache" />
-		<meta http-equiv="Expires" content="0" />
+		<meta name="author" content="X4yi" />
+		<meta name="keywords" content={keywords} />
         <ClientRouter />
 		<title>{title}</title>
         <meta name="description" content={description} />
@@ -44,11 +97,19 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         <meta property="og:type" content={type} />
         <meta property="og:url" content={canonicalURL.href} />
         <meta property="og:site_name" content="XHub" />
+        <meta property="og:locale" content="es_ES" />
+        <meta property="og:locale:alternate" content="en_US" />
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={new URL(ogImage, Astro.site).href} />
+        <meta name="twitter:creator" content="@x4yii" />
+
+        <!-- JSON-LD Structured Data -->
+        <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+        <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+        <script type="application/ld+json" set:html={JSON.stringify(x4uiSchema)} />
 	</head>
 	<body>
 		<a href="#main-content" class="skip-link">Saltar al contenido</a>

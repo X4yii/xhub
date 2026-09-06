@@ -1,22 +1,16 @@
 import { getCollection } from 'astro:content';
-
 export async function GET() {
     const docs = await getCollection('docs');
     const noticias = await getCollection('noticias');
     const changelogs = await getCollection('changelogs');
-
     const allEntries = [...docs, ...noticias, ...changelogs];
     const index = [];
-
     allEntries.forEach(entry => {
         const body = entry.body || '';
-        
         const esMatch = body.match(/\[ES\]([\s\S]*?)\[\/ES\]/);
         const esContent = esMatch ? esMatch[1].replace(/[#*`_]/g, '').trim() : '';
-        
         const enMatch = body.match(/\[EN\]([\s\S]*?)\[\/EN\]/);
         const enContent = enMatch ? enMatch[1].replace(/[#*`_]/g, '').trim() : '';
-
         let url = '';
         if (entry.collection === 'docs') {
             url = `/xhub/docs/${entry.slug}/`;
@@ -26,7 +20,6 @@ export async function GET() {
             const projectSlug = entry.id.split('/')[0];
             url = `/xhub/changelogs/${projectSlug}/#${entry.data.version}`;
         }
-
         index.push({
             title: entry.data.title,
             url: url,
@@ -35,7 +28,6 @@ export async function GET() {
             en: enContent
         });
     });
-
     return new Response(JSON.stringify(index), {
         status: 200,
         headers: {

@@ -7,945 +7,509 @@ order: 1
 ---
 
 [ES]
-# Conceptos Fundamentales
+# 01 - Conceptos Fundamentales
 
-Este documento describe los sistemas base de X4UI: el árbol de componentes, el sistema de coordenadas, el motor de diseño, la propagación de eventos, el estado reactivo, los temas, la API builder, las animaciones y la gestión de memoria.
+Este documento describe la arquitectura central de X4UI: el árbol jerárquico de componentes, el ciclo de vida estandarizado, el sistema de coordenadas relativas y porcentuales, el motor de diseño flexbox, la propagación de eventos, el estado reactivo (`State<T>`), el bus desacoplado (`UIStateBus`), el sistema de temas (`ITheme` y `ThemeRegistry`), las animaciones y la gestión de memoria.
 
-## 1. Árbol de Componentes
+---
 
-X4UI utiliza un árbol de componentes de modo retenido (patrón Composite). Cada elemento UI extiende `GuiComponent`. Los componentes forman una jerarquía padre-hijo con raíz en `rootPanel`.
+## 1. Árbol Jerárquico de Componentes
+
+X4UI organiza la interfaz de usuario en un árbol jerárquico de modo retenido (patrón Composite). Cada elemento visual hereda de `GuiComponent`. La raíz de la jerarquía es `rootPanel` (un `GuiPanel` que abarca toda la pantalla).
 
 ```
-rootPanel (GuiPanel)
-├── headerPanel (GuiPanel)
-│   ├── GuiLabel "Title"
-│   └── GuiButton "Close"
-├── contentPanel (GuiScrollPanel)
-│   ├── GuiButton "Item 1"
-│   ├── GuiButton "Item 2"
-│   └── GuiButton "Item 3"
-└── footerPanel (GuiPanel)
+rootPanel (GuiPanel - Ancho x Alto de la pantalla)
+├── headerPanel (GuiPanel - Flex Horizontal)
+│   ├── GuiLabel "Título"
+│   └── GuiButton "[X]" (Cerrar)
+├── contentPanel (GuiScrollPanel - Viewport con scroll)
+│   ├── card1 (GuiPanel)
+│   └── card2 (GuiPanel)
+└── footerPanel (GuiPanel - Barra inferior)
     └── GuiSliderInt
 ```
 
-### Agregar y Eliminar Hijos
+### Operaciones del Árbol
 
 ```java
 GuiPanel panel = new GuiPanel(0, 0, 200, 300);
-GuiButton btn = new GuiButton(0, 0, 100, 20, "Click", () -> {});
+GuiButton btn = new GuiButton(0, 0, 100, 20, "Aceptar", () -> {});
 
-panel.addChild(btn);       // Agrega btn como hijo de panel
-panel.removeChild(btn);    // Elimina btn de panel
-panel.clearChildren();     // Elimina todos los hijos
-panel.getChildren();       // Devuelve la lista de hijos
+panel.addChild(btn);       // Agrega btn y dispara onAttached()
+panel.removeChild(btn);    // Remueve btn y dispara onDetached()
+panel.clearChildren();     // Remueve y destruye todos los hijos
+panel.getChildren();       // Lista inmutable o de solo lectura de hijos
 ```
 
-### Ciclo de Vida del Componente
+---
 
-1. **Construcción** -- `new GuiComponent(x, y, width, height)` establece la posición y el tamaño.
-2. **Adjunción** -- `addChild()` establece la referencia al padre y marca al padre como dirty.
-3. **Tick** -- `tick(float deltaTime)` se llama cada cuadro. Ejecuta el diseño pendiente y luego ejecuta el tick de todos los hijos.
-4. **Renderizado** -- `render(mouseX, mouseY, partialTicks)` llama a `renderSelf()` y luego a `renderChildren()`.
-5. **Destrucción** -- `destroy()` ejecuta todos los desvinculadores (de `bindState()`), luego destruye todos los hijos.
+## 2. Ciclo de Vida del Componente (`GuiComponent`)
 
-Cuando una pantalla se cierra (`onGuiClosed()`), `rootPanel.destroy()` se llama automáticamente, lo que desencadena `destroy()` en cada componente del árbol.
+El ciclo de vida en X4UI r1.0b5 está estandarizado en etapas deterministas:
 
-## 2. Sistema de Coordenadas
+1. **Construcción:** Se establecen las propiedades iniciales en el constructor o mediante métodos encadenables (`withPosition()`, `withSize()`).
+2. **Adjunción (`onAttached()`):** Se invoca automáticamente al agregarse a un contenedor padre mediante `addChild()`. Es el punto ideal para inicializar suscripciones dependientes de la jerarquía.
+3. **Actualización de Cuadro (`update(float deltaTime)` / `tick(float deltaTime)`):** Se ejecuta en cada fotograma antes del renderizado. Si hay flags sucias (`requestLayout()`), se resuelve el diseño y luego se actualizan todos los hijos en cascada.
+4. **Renderizado (`render(IGraphics gfx, int mouseX, int mouseY, float partialTicks)`):**
+   - Llama a `renderSelf(gfx, mouseX, mouseY, partialTicks)` para dibujar el componente propio.
+   - Ordena los hijos por su capa (`layer`) y llama a `renderChildren(gfx, ...)` aplicando recorte si corresponde.
+5. **Separación (`onDetached()`):** Se invoca al removerse del padre mediante `removeChild()`.
+6. **Destrucción (`onDestroy()` / `destroy()`):**
+   - Se desvinculan automáticamente todos los listeners reactivos enlazados mediante `bindState()` o `mapState()`.
+   - Se liberan referencias débiles en `GuiAnimator`.
+   - Se propaga la llamada a todos los hijos recursivamente.
 
-Todas las coordenadas son **relativas al componente padre**. Un hijo en `(x: 10, y: 10)` dentro de un padre en `(x: 50, y: 50)` se renderiza en la posición de pantalla `(60, 60)`.
+---
+
+## 3. Coordenadas y Dimensionamiento Responsivo
+
+### Coordenadas Relativas al Padre
+Todas las coordenadas `(x, y)` son locales a su contenedor padre. Para obtener la posición absoluta en píxeles de pantalla:
 
 ```java
-GuiPanel parent = new GuiPanel(50, 50, 200, 200);
-GuiButton child = new GuiButton(10, 10, 80, 20, "Button", null);
-parent.addChild(child);
-
-// child.getAbsoluteX() == 60
-// child.getAbsoluteY() == 60
+int screenX = component.getAbsoluteX();
+int screenY = component.getAbsoluteY();
 ```
 
-Los métodos `getAbsoluteX()` y `getAbsoluteY()` recorren la cadena de padres para calcular la posición en espacio de pantalla.
+### Dimensionamiento y Posicionamiento Porcentual
+`GuiComponent` soporta dimensionamiento dinámico proporcional al tamaño de su contenedor padre:
 
-### Recorte con OpenGL Scissor
+```java
+// El componente ocupará el 100% del ancho del padre y el 50% de su alto
+panel.withPercentWidth(1.0f)
+     .withPercentHeight(0.5f);
 
-Los componentes hijos renderizados fuera de los límites del padre se recortan mediante OpenGL scissor. Esto se aplica automáticamente en `GuiScrollPanel` y cualquier contenedor que sobrescriba `renderChildren()`.
+// Posicionamiento porcentual (centrado a 50% X, 20% Y)
+badge.withPercentPosition(0.5f, 0.2f);
+```
 
-## 3. Diseño Flexbox (`FlexLayout`)
+*Nota: Pasar `-1.0f` desactiva el cálculo porcentual y restaura el valor absoluto en píxeles.*
 
-`GuiPanel` utiliza un gestor de diseño `FlexLayout` que dispone los hijos secuencialmente. Cuando se establece una dirección flex, los hijos ignoran sus valores estáticos `x/y` y son posicionados por el motor de diseño.
+---
 
-### FlexDirection
+## 4. Diseño Flexbox (`FlexLayout`)
+
+`GuiPanel` incluye un gestor `FlexLayout` para organizar componentes secuencialmente sin coordenadas manuales:
 
 ```java
 import com.x4yi.x4ui.client.gui.component.layout.FlexDirection;
 
-panel.setFlexDirection(FlexDirection.VERTICAL);    // Apila hijos de arriba a abajo
-panel.setFlexDirection(FlexDirection.HORIZONTAL);  // Apila hijos de izquierda a derecha
-panel.setFlexDirection(FlexDirection.ABSOLUTE);    // Los hijos usan su propio x/y (por defecto)
+// Direcciones disponibles
+panel.setFlexDirection(FlexDirection.VERTICAL);    // Apilamiento de arriba a abajo
+panel.setFlexDirection(FlexDirection.HORIZONTAL);  // Alineación en fila de izquierda a derecha
+panel.setFlexDirection(FlexDirection.ABSOLUTE);    // Posicionamiento manual libre por (x, y)
+
+// Configuración adicional
+panel.setGap(6);           // 6 píxeles de separación entre componentes adyacentes
+panel.setFlexWrap(true);   // Salta a la siguiente fila o columna al exceder el límite
+panel.setPadding(new Insets(10)); // Espacio interno del panel
 ```
 
-### Espaciado (Gap)
+Los componentes invisibles (`setVisible(false)`) son omitidos automáticamente por el motor de diseño.
 
-```java
-panel.setGap(5);  // 5px de espacio entre cada hijo
-```
+---
 
-### Envoltura Flex (Flex Wrap)
+## 5. Espaciado Inmutable (`Insets`)
 
-```java
-panel.setFlexWrap(true);  // Envuelve hijos a la siguiente fila/columna cuando exceden las dimensiones del padre
-```
-
-### Comportamiento del Diseño
-
-- **VERTICAL**: Los hijos se apilan de arriba a abajo. La altura del padre se ajusta automáticamente para容纳 a todos los hijos (a menos que `flexWrap` esté habilitado).
-- **HORIZONTAL**: Los hijos se apilan de izquierda a derecha. El ancho del padre se ajusta automáticamente para容纳 a todos los hijos (a menos que `flexWrap` esté habilitado).
-- **ABSOLUTE**: Sin posicionamiento automático. Cada hijo usa sus propios valores `x/y`.
-- El `padding` del padre crea espacio interno. El `margin` del hijo crea espacio exterior alrededor de cada hijo.
-- Los hijos invisibles son omitidos por el motor de diseño.
-
-### Ejemplo Completo
-
-```java
-import com.x4yi.x4ui.client.gui.component.GuiPanel;
-import com.x4yi.x4ui.client.gui.component.GuiButton;
-import com.x4yi.x4ui.client.gui.component.layout.FlexDirection;
-import com.x4yi.x4ui.client.gui.utils.Insets;
-
-GuiPanel form = new GuiPanel(10, 10, 200, 250);
-form.setFlexDirection(FlexDirection.VERTICAL);
-form.setGap(4);
-form.setPadding(new Insets(8));
-
-form.addChild(new GuiButton(0, 0, 180, 20, "Save", () -> System.out.println("Saved")));
-form.addChild(new GuiButton(0, 0, 180, 20, "Cancel", () -> System.out.println("Cancelled")));
-form.addChild(new GuiButton(0, 0, 180, 20, "Delete", () -> System.out.println("Deleted")));
-```
-
-Los botones se apilan verticalmente con 4px de espacio, dentro de un área de 8px de padding.
-
-## 4. Insets (Padding y Margin)
-
-`Insets` es un objeto de valor inmutable para espaciado, análogo al atajo de CSS.
+La clase `Insets` gestiona padding interno y márgenes externos:
 
 ```java
 import com.x4yi.x4ui.client.gui.utils.Insets;
 
-new Insets(5);              // Todos los lados: 5
-new Insets(5, 10);          // Vertical: 5, Horizontal: 10
-new Insets(2, 4, 6, 8);    // Arriba: 2, Derecha: 4, Abajo: 6, Izquierda: 8
-Insets.ZERO;                // Constante sin espaciado
+new Insets(8);             // 8 px en los 4 bordes
+new Insets(4, 8);         // 4 px vertical, 8 px horizontal
+new Insets(2, 4, 6, 8);   // Arriba: 2, Derecha: 4, Abajo: 6, Izquierda: 8
+Insets.ZERO;               // Constante sin espacio
 ```
 
-Aplicar a componentes:
+---
 
+## 6. Sistema de Eventos y Foco
+
+Los eventos de entrada se propagan desde la raíz hacia los hijos en **orden inverso de capa** (los componentes situados al frente reciben el evento primero):
+
+| Evento | Método | Consumo |
+|--------|--------|---------|
+| Clic del ratón | `onMouseClick(int mouseX, int mouseY, int mouseButton)` | Retornar `true` detiene la propagación |
+| Liberación | `onMouseRelease(int mouseX, int mouseY, int state)` | Retornar `true` consume el evento |
+| Arrastre | `onMouseDrag(int mouseX, int mouseY, int button, long time)` | Procesado mientras el botón se mantiene presionado |
+| Rueda de scroll | `onMouseScroll(int mouseX, int mouseY, int wheel)` | Manejado por paneles desplazables |
+| Teclado | `onKeyPress(char typedChar, int keyCode)` | Solo el componente con foco recibe teclas |
+
+### Modelo de Foco Único
+Solo un componente puede poseer el foco de teclado a la vez:
 ```java
-panel.setPadding(new Insets(10));          // Espacio interno dentro del panel
-button.setMargin(new Insets(0, 0, 5, 0)); // 5px de margen debajo del botón
+input.requestFocus();   // Otorga foco exclusivo
+input.clearFocus();     // Retira el foco
+boolean f = input.isFocused();
 ```
 
-## 5. Sistema de Eventos
+---
 
-Los eventos se propagan desde el componente raíz hacia abajo a través del árbol. La raíz (`GuiBaseScreen` o `GuiBaseContainer`) recibe eventos crudos de Minecraft y los reenvía a `rootPanel`.
+## 7. Estado Reactivo (`State<T>`)
 
-### Tipos de Evento
-
-| Evento | Método | Descripción |
-|--------|--------|-------------|
-| Clic del ratón | `onMouseClick(mouseX, mouseY, mouseButton)` | Izquierdo (0), derecho (1), medio (2) |
-| Liberación del ratón | `onMouseRelease(mouseX, mouseY, state)` | Después de liberar el clic |
-| Arrastre del ratón | `onMouseDrag(mouseX, mouseY, button, timeSinceLastClick)` | Mientras el botón está presionado |
-| Desplazamiento del ratón | `onMouseScroll(mouseX, mouseY, wheel)` | Rueda de desplazamiento |
-| Tecla presionada | `onKeyPress(typedChar, keyCode)` | Entrada de teclado |
-
-### Orden de Propagación
-
-Los eventos iteran los hijos en **orden de renderizado inverso** (el hijo con mayor capa/primer plano primero). Si un hijo retorna `true` desde un manejador de eventos, la propagación se detiene (el evento es consumido).
-
-```java
-GuiButton btn = new GuiButton(0, 0, 100, 20, "Click", null);
-
-// Sobrescribir onMouseClick para agregar comportamiento personalizado
-@Override
-public boolean onMouseClick(int mouseX, int mouseY, int mouseButton) {
-    if (super.onMouseClick(mouseX, mouseY, mouseButton)) {
-        return true; // Ya fue manejado por un hijo
-    }
-    if (isMouseOver(mouseX, mouseY) && mouseButton == 0) {
-        System.out.println("Custom click logic");
-        return true; // Consumido
-    }
-    return false; // No manejado
-}
-```
-
-### Gestión del Foco
-
-Solo un componente puede tener el foco a la vez. El foco se almacena en el componente raíz.
-
-```java
-textField.requestFocus();   // Otorga el foco al campo de texto
-textField.clearFocus();     // Elimina el foco
-textField.isFocused();      // Retorna true si tiene el foco
-```
-
-El foco se elimina automáticamente al hacer clic fuera del componente enfocado.
-
-## 6. Estado Reactivo (`State<T>`)
-
-`State<T>` es un contenedor reactivo que notifica a los listeners cuando su valor cambia. Es el mecanismo principal para el enlace de datos en X4UI.
+`State<T>` (en `com.x4yi.x4ui.common`) es un contenedor reactivo seguro para hilos que notifica a los suscriptores cuando su valor muta. Deduplica actualizaciones mediante `Objects.equals()`.
 
 ```java
 import com.x4yi.x4ui.common.State;
 
-State<Integer> counter = new State<>(0);
+State<Integer> score = new State<>(0);
 
-// Escuchar cambios
-counter.addListener(value -> System.out.println("Counter: " + value));
+// Enlace seguro al ciclo de vida del componente
+label.bindState(score, val -> label.setText("Puntos: " + val));
 
-counter.set(1);  // Imprime: Counter: 1
-counter.set(5);  // Imprime: Counter: 5
-counter.set(5);  // No imprime (valor sin cambio, deduplicado)
+// Mutación del valor
+score.set(10); // Actualiza la etiqueta automáticamente
+score.set(10); // No emite evento (deduplicado)
 ```
 
-### Estado Derivado con `map()`
-
+### Transformaciones Derivadas (`map`)
 ```java
-State<Integer> count = new State<>(0);
-State<String> label = count.map(c -> "Count: " + c);
-
-label.addListener(System.out::println);
-
-count.set(1);  // Imprime: Count: 1
-count.set(2);  // Imprime: Count: 2
+State<Boolean> isOnline = new State<>(true);
+State<String> statusText = isOnline.map(online -> online ? "Conectado" : "Desconectado");
 ```
 
-### Enlazar Estado a Componentes
+---
 
-Use `bindState()` en cualquier `GuiComponent` para actualizar automáticamente cuando el estado cambia. La función de回调 se garantiza que se ejecute en el hilo de renderizado. Los enlaces se eliminan automáticamente cuando se llama `destroy()`.
+## 8. Bus Global de Estados (`UIStateBus`)
+
+Para comunicar módulos o interfaces independientes sin acoplamiento directo, X4UI provee `UIStateBus`:
 
 ```java
-State<Boolean> showButton = new State<>(true);
+import com.x4yi.x4ui.client.gui.bus.UIStateBus;
 
-GuiButton btn = new GuiButton(0, 0, 100, 20, "Dynamic", () -> {});
+// Publicar un evento o estado
+UIStateBus.publish(new UserProfileUpdatedEvent(userId, newName));
 
-btn.bindState(showButton, visible -> btn.setVisible(visible));
-
-// Después: showButton.set(false) oculta el botón
-// showButton.set(true) lo muestra de nuevo
+// Suscribirse al evento
+UIStateBus.subscribe(UserProfileUpdatedEvent.class, event -> {
+    System.out.println("Perfil actualizado: " + event.getName());
+});
 ```
 
-### Enlazar Estado mediante GuiBuilder
+---
 
+## 9. Sistema de Temas (`ITheme` y `ThemeRegistry`)
+
+Los estilos visuales están encapsulados en la interfaz `ITheme`. `DefaultTheme.INSTANCE` provee una paleta oscura estándar.
+
+### Uso y Registro Global
 ```java
-State<Boolean> enabled = new State<>(false);
-
-GuiBuilder.createButton("Submit")
-    .position(10, 10)
-    .size(100, 20)
-    .bindEnabled(enabled)
-    .build();
-
-// Después: enabled.set(true) habilita el botón
-```
-
-### Estado en Contenedores
-
-`State<T>` se encuentra en `com.x4yi.x4ui.common`, lo que lo hace seguro para usar tanto en cliente como en servidor. Para la sincronización de servidor a cliente, use `NetworkSyncHelper` (véase `networking-and-sync.md`).
-
-## 7. Temas (`ITheme`)
-
-Los temas definen todos los estilos visuales usados por los componentes. Cada componente resuelve su tema recorriendo la cadena de padres. Si no se encuentra ningún tema, se usa `DefaultTheme.INSTANCE`.
-
-### DefaultTheme
-
-El tema oscuro integrado con colores inspirados en Material Design:
-
-| Token | Color | Descripción |
-|-------|-------|-------------|
-| Primary | `0xFF3B82F6` | Acento azul |
-| Background | `0xFF1F2937` | Gris oscuro |
-| Text | `0xFFF3F4F6` | Gris claro |
-| Button BG | `0x80000000` | Negro semitransparente |
-| Button Hover | `0xFF29B6F6` | Azul claro |
-| Slider Fill | `0xFF29B6F6` | Azul claro |
-
-### Aplicar un Tema
-
-```java
+import com.x4yi.x4ui.client.gui.utils.ThemeRegistry;
 import com.x4yi.x4ui.client.gui.utils.DefaultTheme;
 
-// Aplicar a toda la pantalla
-setTheme(DefaultTheme.INSTANCE);
+// Registrar un tema personalizado con ID único
+ThemeRegistry.register("mi_tema_oscuro", customTheme);
 
-// Aplicar a un subárbol específico
-myPanel.setTheme(customTheme);
+// Obtener un tema registrado
+ITheme theme = ThemeRegistry.get("mi_tema_oscuro");
+
+// Aplicar al componente o panel raíz
+rootPanel.setTheme(theme);
 ```
 
-### Implementar un Tema Personalizado
+Los componentes buscan su tema subiendo por la cadena de ancestros hasta llegar al tema predeterminado.
 
-```java
-import com.x4yi.x4ui.client.gui.utils.ITheme;
-import com.x4yi.x4ui.client.gui.component.GuiComponent;
-import java.util.List;
+---
 
-public class MyTheme implements ITheme {
-    @Override public int getPrimaryColor()           { return 0xFF6200EA; }
-    @Override public int getSecondaryColor()          { return 0xFF03DAC5; }
-    @Override public int getBackgroundColor()         { return 0xFF121212; }
-    @Override public int getTextColor()               { return 0xFFE0E0E0; }
-    @Override public int getDisabledTextColor()       { return 0xFF757575; }
-    @Override public int getButtonBackgroundColor()   { return 0x80000000; }
-    @Override public int getButtonHoverColor()        { return 0xFF6200EA; }
-    @Override public int getButtonDisabledColor()     { return 0x40000000; }
-    @Override public int getScrollbarTrackColor()     { return 0xFF2C2C36; }
-    @Override public int getScrollbarThumbColor()     { return 0xFF555560; }
-    @Override public int getScrollbarThumbHoverColor(){ return 0xFF777782; }
-    @Override public int getSliderTrackColor()        { return 0xFF2C2C36; }
-    @Override public int getSliderFillColor()         { return 0xFF6200EA; }
-    @Override public int getSliderHandleColor()       { return 0xFFBBBBCC; }
-    @Override public int getSliderHandleHoverColor()  { return 0xFFFFFFFF; }
-    @Override public int getTextInputBackgroundColor(){ return 0xFF16161E; }
-    @Override public int getTextInputBorderColor()    { return 0xFF2C2C36; }
-    @Override public int getTextInputFocusedBorderColor() { return 0xFF6200EA; }
-    @Override public int getTooltipBackgroundColor()  { return 0xE01A1A24; }
-    @Override public int getTooltipBorderColor()      { return 0xFF3B3B48; }
-    @Override public int getTooltipTextColor()        { return 0xFFE0E0E0; }
-    @Override public int getTooltipPadding()          { return 6; }
-    @Override public int getTooltipGap()              { return 2; }
+## 10. Motor de Animaciones (`GuiAnimator`)
 
-    @Override
-    public void drawTooltip(List<String> lines, int mouseX, int mouseY, int screenW, int screenH) {
-        // Implementar renderizado de tooltip
-    }
-
-    @Override
-    public void drawTooltipComponent(GuiComponent component, int mouseX, int mouseY, int screenW, int screenH) {
-        // Implementar renderizado de componente tooltip personalizado
-    }
-}
-```
-
-## 8. Tooltips
-
-Cualquier `GuiComponent` puede mostrar un tooltip al pasar el cursor. Los tooltips son renderizados por el tema.
-
-### Tooltip de Texto
-
-```java
-button.setTooltip("Click to save your progress");
-```
-
-### Tooltip Multilínea
-
-Use `\n` para saltos de línea:
-
-```java
-button.setTooltip("Line 1\nLine 2\nLine 3");
-```
-
-### Componente Tooltip Personalizado
-
-Para tooltips enriquecidos, cree un componente personalizado:
-
-```java
-import com.x4yi.x4ui.client.gui.component.GuiPanel;
-import com.x4yi.x4ui.client.gui.component.GuiLabel;
-import com.x4yi.x4ui.client.gui.component.layout.FlexDirection;
-
-GuiPanel tooltipPanel = new GuiPanel(0, 0, 150, 60);
-tooltipPanel.setFlexDirection(FlexDirection.VERTICAL);
-tooltipPanel.addChild(new GuiLabel(0, 0, "Custom Tooltip", 0xFF00E5FF));
-tooltipPanel.addChild(new GuiLabel(0, 0, "With multiple lines", 0xFFAAAAAA));
-
-button.setTooltipComponent(tooltipPanel);
-```
-
-### Propagación de Tooltips
-
-Los tooltips se resuelven recorriendo la cadena de padres. Si un hijo no tiene tooltip, se usa el tooltip del padre. El componente más profundo con tooltip bajo el cursor es el que se muestra.
-
-## 9. Sistema de Dirty Flags (Rendimiento)
-
-X4UI utiliza un modelo de evaluación perezosa con dirty flags para evitar recálculos innecesarios:
-
-- `requestLayout()` -- Marca el componente como necesitando re-diseño. El motor de diseño se ejecuta en el siguiente `tick()`.
-- `requestRender()` -- Marca el componente como necesitando re-ordenación del orden de renderizado. Los hijos se re-ordenan por `layer` en el siguiente renderizado.
-- `markDirty()` -- Llama a `requestLayout()` y `requestRender()`.
-
-El diseño y la ordenación de renderizado solo se ejecutan cuando los flags están activados. Mutar propiedades puramente visuales (por ejemplo, color, texto) sin cambiar posición o tamaño evita activar el recálculo del diseño.
-
-```java
-// Esto NO activa el recálculo del diseño
-label.setText("New text");
-
-// Esto SÍ activa el recálculo del diseño
-button.setWidth(200);
-button.setHeight(30);
-```
-
-## 10. Sistema de Capas (Z-Index)
-
-Cada componente tiene un entero `layer`. Los hijos se renderizan en orden ascendente de capa. Las capas más altas se renderizan encima.
-
-```java
-background.setLayer(0);   // Se renderiza primero (detrás)
-foreground.setLayer(10);  // Se renderiza último (al frente)
-popup.setLayer(100);      // Se renderiza encima de todo
-```
-
-El componente `GuiDropdown` usa `layer = 100` por defecto para que su popup se renderice encima de otros componentes.
-
-## 11. Motor de Animación (`GuiAnimator`)
-
-Un sistema de animación de propiedades basado en tiempo con funciones de aceleración (easing).
+Permite animar valores flotantes en el tiempo con funciones de aceleración (*easing*):
 
 ```java
 import com.x4yi.x4ui.client.gui.animation.GuiAnimator;
 import com.x4yi.x4ui.client.gui.animation.GuiAnimator.Easing;
 
-// Animar una propiedad float de 0 a 1 en 500ms con ease-out
 GuiAnimator.animate(
-    myComponent,           // objeto objetivo
-    "opacity",             // nombre de la propiedad (String)
-    0.0f,                  // valor inicial
-    1.0f,                  // valor final
-    500,                   // duración en milisegundos
-    Easing.EASE_OUT,       // función de aceleración
+    card, "alpha", 0.0f, 1.0f, 400, Easing.EASE_OUT,
     new GuiAnimator.AnimationCallback() {
-        @Override public void onUpdate(float value) {
-            // Llamado cada cuadro con el valor interpolado
-        }
-        @Override public void onComplete() {
-            // Llamado cuando la animación termina
-        }
+        @Override public void onUpdate(float value) { card.setAlpha(value); }
+        @Override public void onComplete() { System.out.println("Animación finalizada"); }
     }
 );
 ```
 
-### Funciones de Aceleración
+`GuiAnimator` almacena referencias débiles al objeto objetivo, evitando fugas de memoria si la pantalla se cierra a mitad de una animación.
 
-| Aceleración | Descripción |
-|-------------|-------------|
-| `LINEAR` | Velocidad constante |
-| `EASE_IN` | Inicio lento, final rápido |
-| `EASE_OUT` | Inicio rápido, final lento |
-| `EASE_IN_OUT` | Inicio y final lentos |
+---
 
-### Notas Importantes
+## 11. Banderas de Actualización (Dirty Flags)
 
-- `GuiAnimator.update()` se debe llamar cada cuadro para actualizar las animaciones.
-- Las animaciones en el mismo objetivo+propiedad se reemplazan (solo una activa por propiedad).
-- Llame a `GuiAnimator.clearAnimations()` para cancelar todas las animaciones activas.
+- `requestLayout()`: Solicita recalcular dimensiones y posiciones en el próximo cuadro.
+- `requestRender()`: Solicita reordenar las capas visuales (`layer`).
+- Cambios puramente visuales (color, alfa) NO requieren llamar a `requestLayout()`.
 
-## 12. Caché de Ancho de Fuente
+---
 
-`FontWidthCache` proporciona una caché LRU por mod para los resultados de `FontRenderer.getStringWidth()`. Esto previene fugas de memoria en UIs con mucho texto (por ejemplo, `GuiMarkdown`) limitando las entradas en caché a 10,000 por namespace de mod.
+## Qué Evitar Hacer (Antipatrones y Buenas Prácticas)
 
-```java
-import com.x4yi.x4ui.client.gui.utils.FontWidthCache;
+> [!CAUTION]
+> **1. NUNCA agregar hijos (`addChild()`) dentro de `renderSelf()` o `render()`.**
+> Instancie y agregue los componentes únicamente en `initComponents()` o dentro de callbacks de eventos para evitar destruir el rendimiento.
 
-// Usar en componentes personalizados
-int width = FontWidthCache.getStringWidth(fontRenderer, "Hello World", "mymod");
+> [!WARNING]
+> **2. NUNCA llamar a `requestLayout()` incondicionalmente en cada tick.**
+> Hágalo solo cuando una propiedad estructural (ancho, alto, visibilidad, separación) realmente cambie.
 
-// Limpiar la caché cuando ya no se necesite
-FontWidthCache.clearCache("mymod");
-FontWidthCache.clearAll();
-```
+> [!WARNING]
+> **3. NUNCA suscribirse manualmente a `State.addListener()` sin desuscribirse.**
+> Utilice siempre `component.bindState()`, que asegura la limpieza de listeners automáticamente.
 
-## 13. ScissorHelper
-
-`ScissorHelper` gestiona regiones de scissor OpenGL anidadas. Cada `pushScissor()` intersecciona con la región de scissor actual (semántica similar a `overflow: hidden` de CSS).
-
-```java
-import com.x4yi.x4ui.client.gui.utils.ScissorHelper;
-
-ScissorHelper.pushScissor(x * scale, y * scale, w * scale, h * scale);
-// ... renderizar contenido recortado ...
-ScissorHelper.popScissor();
-```
-
-Esto se usa internamente por `GuiScrollPanel` para el recorte de desplazamiento. Los componentes que se renderizan fuera de la región de scissor son recortados.
-
-## 14. Delta Time
-
-`GuiBaseScreen.deltaTime` es un float estático (en segundos) que representa el tiempo entre el cuadro actual y el anterior. Está limitado a 0.1s para evitar saltos de animación después de picos de latencia.
-
-```java
-float dt = GuiBaseScreen.deltaTime;
-float speed = 10f * dt; // Velocidad independiente de FPS
-```
-
-Todos los componentes integrados usan delta time para animaciones (interpolación de hover, animación de toggle, suavizado de desplazamiento).
+> [!IMPORTANT]
+> **4. NUNCA bloquear el hilo principal de Minecraft.**
+> No realice peticiones de red o disco bloqueantes en los callbacks de botones. Utilice `RemoteResourceManager` o hilos secundarios.
 [/ES]
 
 [EN]
-# Core Concepts
+# 01 - Core Concepts
 
-This document covers the foundational systems of X4UI: the component tree, coordinate system, layout engine, event propagation, reactive state, theming, the builder API, animation, and memory management.
+This document details the core architecture of X4UI: the component hierarchy tree, standardized component lifecycle, relative and percentage-based coordinate systems, flexbox layout engine, event propagation, reactive state management (`State<T>`), decoupled state bus (`UIStateBus`), theming engine (`ITheme` & `ThemeRegistry`), animations, and memory management.
 
-## 1. Component Tree
+---
 
-X4UI uses a retained-mode component tree (Composite pattern). Every UI element extends `GuiComponent`. Components form a parent-child hierarchy rooted at `rootPanel`.
+## 1. Hierarchical Component Tree
+
+X4UI organizes user interfaces as a retained-mode hierarchical tree (Composite pattern). Every visual widget extends `GuiComponent`. The root of this tree is `rootPanel` (a full-screen `GuiPanel` created automatically by `GuiBaseScreen` and `GuiBaseContainer`).
 
 ```
-rootPanel (GuiPanel)
-├── headerPanel (GuiPanel)
+rootPanel (GuiPanel - Full Screen Width x Height)
+├── headerPanel (GuiPanel - Horizontal Flex)
 │   ├── GuiLabel "Title"
-│   └── GuiButton "Close"
-├── contentPanel (GuiScrollPanel)
-│   ├── GuiButton "Item 1"
-│   ├── GuiButton "Item 2"
-│   └── GuiButton "Item 3"
-└── footerPanel (GuiPanel)
+│   └── GuiButton "[X]" (Close)
+├── contentPanel (GuiScrollPanel - Scissored Viewport)
+│   ├── card1 (GuiPanel)
+│   └── card2 (GuiPanel)
+└── footerPanel (GuiPanel - Bottom Toolbar)
     └── GuiSliderInt
 ```
 
-### Adding and Removing Children
+### Tree Operations
 
 ```java
 GuiPanel panel = new GuiPanel(0, 0, 200, 300);
-GuiButton btn = new GuiButton(0, 0, 100, 20, "Click", () -> {});
+GuiButton btn = new GuiButton(0, 0, 100, 20, "Accept", () -> {});
 
-panel.addChild(btn);       // Adds btn as a child of panel
-panel.removeChild(btn);    // Removes btn from panel
-panel.clearChildren();     // Removes all children
-panel.getChildren();       // Returns the children list
+panel.addChild(btn);       // Adds btn and invokes onAttached()
+panel.removeChild(btn);    // Removes btn and invokes onDetached()
+panel.clearChildren();     // Recursively removes and destroys all children
+panel.getChildren();       // Read-only list of children
 ```
 
-### Component Lifecycle
+---
 
-1. **Construction** -- `new GuiComponent(x, y, width, height)` sets position and size.
-2. **Attachment** -- `addChild()` sets the parent reference and marks the parent dirty.
-3. **Tick** -- `tick(float deltaTime)` is called each frame. Runs pending layout, then ticks all children.
-4. **Render** -- `render(mouseX, mouseY, partialTicks)` calls `renderSelf()` then `renderChildren()`.
-5. **Destroy** -- `destroy()` runs all unbinders (from `bindState()`), then destroys all children.
+## 2. Component Lifecycle (`GuiComponent`)
 
-When a screen closes (`onGuiClosed()`), `rootPanel.destroy()` is called automatically, which cascades `destroy()` to every component in the tree.
+In X4UI r1.0b5, component lifecycle stages are deterministic and standardized:
 
-## 2. Coordinate System
+1. **Construction:** Initial bounds and properties set via constructor or fluent builders (`withPosition()`, `withSize()`).
+2. **Attachment (`onAttached()`):** Triggered when added to a parent container via `addChild()`. This is the designated hook for hierarchy-dependent registrations.
+3. **Per-Frame Update (`update(float deltaTime)` / `tick(float deltaTime)`):** Executed once per frame before rendering. Evaluates dirty layout flags (`requestLayout()`) and ticks all children in cascade.
+4. **Rendering (`render(IGraphics gfx, int mouseX, int mouseY, float partialTicks)`):**
+   - Invokes `renderSelf(gfx, mouseX, mouseY, partialTicks)` for the component's own drawing.
+   - Sorts children by layer (`layer`) and invokes `renderChildren(gfx, ...)` with automatic scissor clipping if applicable.
+5. **Detachment (`onDetached()`):** Triggered when removed from a parent via `removeChild()`.
+6. **Destruction (`onDestroy()` / `destroy()`):**
+   - Automatically unbinds and cleans all reactive state listeners registered via `bindState()` or `mapState()`.
+   - Releases weak animation targets in `GuiAnimator`.
+   - Propagates destruction recursively to all children.
 
-All coordinates are **relative to the parent component**. A child at `(x: 10, y: 10)` inside a parent at `(x: 50, y: 50)` renders at screen position `(60, 60)`.
+---
+
+## 3. Coordinates & Responsive Sizing
+
+### Parent-Relative Coordinates
+All component coordinates `(x, y)` are relative to their parent container. To query absolute screen coordinates:
 
 ```java
-GuiPanel parent = new GuiPanel(50, 50, 200, 200);
-GuiButton child = new GuiButton(10, 10, 80, 20, "Button", null);
-parent.addChild(child);
-
-// child.getAbsoluteX() == 60
-// child.getAbsoluteY() == 60
+int screenX = component.getAbsoluteX();
+int screenY = component.getAbsoluteY();
 ```
 
-The `getAbsoluteX()` and `getAbsoluteY()` methods walk up the parent chain to compute the screen-space position.
+### Percentage-Based Sizing & Positioning
+`GuiComponent` supports dynamic percentage dimensions calculated relative to parent bounds:
 
-### OpenGL Scissor Clipping
+```java
+// Fill 100% of parent width, 50% of parent height
+panel.withPercentWidth(1.0f)
+     .withPercentHeight(0.5f);
 
-Child components rendered outside their parent's bounds are clipped via OpenGL scissor. This is applied automatically by `GuiScrollPanel` and any container that overrides `renderChildren()`.
+// Relative positioning (center at 50% X, 20% Y)
+badge.withPercentPosition(0.5f, 0.2f);
+```
 
-## 3. Flexbox Layout (`FlexLayout`)
+*Note: Passing `-1.0f` disables percentage calculation and restores absolute pixel sizing.*
 
-`GuiPanel` uses a `FlexLayout` manager that arranges children sequentially. When a flex direction is set, children ignore their static `x/y` values and are positioned by the layout engine.
+---
 
-### FlexDirection
+## 4. Flexbox Layout (`FlexLayout`)
+
+`GuiPanel` integrates a `FlexLayout` manager to arrange children sequentially without manual coordinate calculations:
 
 ```java
 import com.x4yi.x4ui.client.gui.component.layout.FlexDirection;
 
-panel.setFlexDirection(FlexDirection.VERTICAL);    // Stack children top-to-bottom
-panel.setFlexDirection(FlexDirection.HORIZONTAL);  // Stack children left-to-right
-panel.setFlexDirection(FlexDirection.ABSOLUTE);    // Children use their own x/y (default)
+// Available layout directions
+panel.setFlexDirection(FlexDirection.VERTICAL);    // Top-to-bottom column
+panel.setFlexDirection(FlexDirection.HORIZONTAL);  // Left-to-right row
+panel.setFlexDirection(FlexDirection.ABSOLUTE);    // Manual absolute positioning via (x, y)
+
+// Layout properties
+panel.setGap(6);           // 6 px separation between adjacent children
+panel.setFlexWrap(true);   // Wrap onto next row/column when boundary is reached
+panel.setPadding(new Insets(10)); // Internal panel padding
 ```
 
-### Gap
+Hidden components (`setVisible(false)`) are automatically bypassed by the layout engine.
 
-```java
-panel.setGap(5);  // 5px spacing between each child
-```
+---
 
-### Flex Wrap
+## 5. Immutable Spacing (`Insets`)
 
-```java
-panel.setFlexWrap(true);  // Wraps children to the next row/column when they exceed the parent's dimensions
-```
-
-### Layout Behavior
-
-- **VERTICAL**: Children are stacked top-to-bottom. The parent's height auto-sizes to fit all children (unless `flexWrap` is enabled).
-- **HORIZONTAL**: Children are stacked left-to-right. The parent's width auto-sizes to fit all children (unless `flexWrap` is enabled).
-- **ABSOLUTE**: No automatic positioning. Each child uses its own `x/y` values.
-- Parent `padding` creates inner spacing. Child `margin` creates outer spacing around each child.
-- Invisible children are skipped by the layout engine.
-
-### Full Example
-
-```java
-import com.x4yi.x4ui.client.gui.component.GuiPanel;
-import com.x4yi.x4ui.client.gui.component.GuiButton;
-import com.x4yi.x4ui.client.gui.component.layout.FlexDirection;
-import com.x4yi.x4ui.client.gui.utils.Insets;
-
-GuiPanel form = new GuiPanel(10, 10, 200, 250);
-form.setFlexDirection(FlexDirection.VERTICAL);
-form.setGap(4);
-form.setPadding(new Insets(8));
-
-form.addChild(new GuiButton(0, 0, 180, 20, "Save", () -> System.out.println("Saved")));
-form.addChild(new GuiButton(0, 0, 180, 20, "Cancel", () -> System.out.println("Cancelled")));
-form.addChild(new GuiButton(0, 0, 180, 20, "Delete", () -> System.out.println("Deleted")));
-```
-
-The buttons are stacked vertically with 4px gaps, inside an 8px padding area.
-
-## 4. Insets (Padding and Margin)
-
-`Insets` is an immutable value object for spacing, analogous to CSS shorthand.
+The immutable `Insets` class models uniform or asymmetric padding and margins:
 
 ```java
 import com.x4yi.x4ui.client.gui.utils.Insets;
 
-new Insets(5);              // All sides: 5
-new Insets(5, 10);          // Vertical: 5, Horizontal: 10
-new Insets(2, 4, 6, 8);    // Top: 2, Right: 4, Bottom: 6, Left: 8
-Insets.ZERO;                // Constant for no spacing
+new Insets(8);             // 8 px on all 4 sides
+new Insets(4, 8);         // 4 px vertical, 8 px horizontal
+new Insets(2, 4, 6, 8);   // Top: 2, Right: 4, Bottom: 6, Left: 8
+Insets.ZERO;               // Zero-spacing constant
 ```
 
-Apply to components:
+---
 
+## 6. Event Handling & Focus System
+
+Input events propagate from root to children in **reverse layer order** (top-most z-layer receives the event first):
+
+| Event | Method | Consumption |
+|--------|--------|-------------|
+| Mouse Click | `onMouseClick(int mouseX, int mouseY, int mouseButton)` | Returning `true` stops propagation |
+| Mouse Release | `onMouseRelease(int mouseX, int mouseY, int state)` | Returning `true` consumes event |
+| Mouse Drag | `onMouseDrag(int mouseX, int mouseY, int button, long time)` | Continuous drag while button held |
+| Mouse Scroll | `onMouseScroll(int mouseX, int mouseY, int wheel)` | Handled by scrollable panels |
+| Key Press | `onKeyPress(char typedChar, int keyCode)` | Dispatched exclusively to focused component |
+
+### Single-Focus Model
+Only one component may hold keyboard input focus at any time:
 ```java
-panel.setPadding(new Insets(10));          // Inner spacing inside the panel
-button.setMargin(new Insets(0, 0, 5, 0)); // 5px margin below the button
+input.requestFocus();   // Claim focus
+input.clearFocus();     // Yield focus
+boolean f = input.isFocused();
 ```
 
-## 5. Event System
+---
 
-Events propagate from the root component down through the tree. The root (`GuiBaseScreen` or `GuiBaseContainer`) receives raw Minecraft events and forwards them to `rootPanel`.
+## 7. Reactive State (`State<T>`)
 
-### Event Types
-
-| Event | Method | Description |
-|-------|--------|-------------|
-| Mouse click | `onMouseClick(mouseX, mouseY, mouseButton)` | Left (0), right (1), middle (2) |
-| Mouse release | `onMouseRelease(mouseX, mouseY, state)` | After click release |
-| Mouse drag | `onMouseDrag(mouseX, mouseY, button, timeSinceLastClick)` | While button held |
-| Mouse scroll | `onMouseScroll(mouseX, mouseY, wheel)` | Scroll wheel |
-| Key press | `onKeyPress(typedChar, keyCode)` | Keyboard input |
-
-### Propagation Order
-
-Events iterate children in **reverse render order** (topmost/highest-layer child first). If a child returns `true` from an event handler, propagation stops (the event is consumed).
-
-```java
-GuiButton btn = new GuiButton(0, 0, 100, 20, "Click", null);
-
-// Override onMouseClick to add custom behavior
-@Override
-public boolean onMouseClick(int mouseX, int mouseY, int mouseButton) {
-    if (super.onMouseClick(mouseX, mouseY, mouseButton)) {
-        return true; // Already handled by a child
-    }
-    if (isMouseOver(mouseX, mouseY) && mouseButton == 0) {
-        System.out.println("Custom click logic");
-        return true; // Consumed
-    }
-    return false; // Not handled
-}
-```
-
-### Focus Management
-
-Only one component can be focused at a time. Focus is stored on the root component.
-
-```java
-textField.requestFocus();   // Gives focus to the text field
-textField.clearFocus();     // Removes focus
-textField.isFocused();      // Returns true if focused
-```
-
-Focus is automatically cleared when clicking outside the focused component.
-
-## 6. Reactive State (`State<T>`)
-
-`State<T>` is a reactive container that notifies listeners when its value changes. It is the primary mechanism for data binding in X4UI.
+`State<T>` (in `com.x4yi.x4ui.common`) is a thread-safe reactive container that notifies subscribers when its value changes. Updates are deduplicated using `Objects.equals()`.
 
 ```java
 import com.x4yi.x4ui.common.State;
 
-State<Integer> counter = new State<>(0);
+State<Integer> score = new State<>(0);
 
-// Listen for changes
-counter.addListener(value -> System.out.println("Counter: " + value));
+// Lifecycle-managed binding
+label.bindState(score, val -> label.setText("Score: " + val));
 
-counter.set(1);  // Prints: Counter: 1
-counter.set(5);  // Prints: Counter: 5
-counter.set(5);  // No print (value unchanged, deduplicated)
+// Mutating state
+score.set(10); // Automatically triggers label update
+score.set(10); // Deduplicated, no event emitted
 ```
 
-### Derived State with `map()`
-
+### Derived Transformations (`map`)
 ```java
-State<Integer> count = new State<>(0);
-State<String> label = count.map(c -> "Count: " + c);
-
-label.addListener(System.out::println);
-
-count.set(1);  // Prints: Count: 1
-count.set(2);  // Prints: Count: 2
+State<Boolean> isOnline = new State<>(true);
+State<String> statusText = isOnline.map(online -> online ? "Online" : "Offline");
 ```
 
-### Binding State to Components
+---
 
-Use `bindState()` on any `GuiComponent` to automatically update when the state changes. The callback is guaranteed to run on the render thread. Bindings are automatically removed when `destroy()` is called.
+## 8. Global State Bus (`UIStateBus`)
+
+To communicate between independent screens or third-party mods without direct coupling, X4UI provides `UIStateBus`:
 
 ```java
-State<Boolean> showButton = new State<>(true);
+import com.x4yi.x4ui.client.gui.bus.UIStateBus;
 
-GuiButton btn = new GuiButton(0, 0, 100, 20, "Dynamic", () -> {});
+// Publish event
+UIStateBus.publish(new UserProfileUpdatedEvent(userId, newName));
 
-btn.bindState(showButton, visible -> btn.setVisible(visible));
-
-// Later: showButton.set(false) hides the button
-// showButton.set(true) shows it again
+// Subscribe to event
+UIStateBus.subscribe(UserProfileUpdatedEvent.class, event -> {
+    System.out.println("Profile updated: " + event.getName());
+});
 ```
 
-### Binding State via GuiBuilder
+---
 
+## 9. Theming System (`ITheme` & `ThemeRegistry`)
+
+Visual styling tokens are encapsulated within the `ITheme` interface. `DefaultTheme.INSTANCE` supplies a clean Material-inspired dark theme.
+
+### Global Registration & Application
 ```java
-State<Boolean> enabled = new State<>(false);
-
-GuiBuilder.createButton("Submit")
-    .position(10, 10)
-    .size(100, 20)
-    .bindEnabled(enabled)
-    .build();
-
-// Later: enabled.set(true) enables the button
-```
-
-### State in Containers
-
-`State<T>` lives in `com.x4yi.x4ui.common`, making it safe to use on both client and server. For server-to-client synchronization, use `NetworkSyncHelper` (see `networking-and-sync.md`).
-
-## 7. Theming (`ITheme`)
-
-Themes define all visual styles used by components. Every component resolves its theme by walking up the parent chain. If no theme is found, `DefaultTheme.INSTANCE` is used.
-
-### DefaultTheme
-
-The built-in dark theme with Material Design-inspired colors:
-
-| Token | Color | Description |
-|-------|-------|-------------|
-| Primary | `0xFF3B82F6` | Blue accent |
-| Background | `0xFF1F2937` | Dark gray |
-| Text | `0xFFF3F4F6` | Light gray |
-| Button BG | `0x80000000` | Semi-transparent black |
-| Button Hover | `0xFF29B6F6` | Light blue |
-| Slider Fill | `0xFF29B6F6` | Light blue |
-
-### Applying a Theme
-
-```java
+import com.x4yi.x4ui.client.gui.utils.ThemeRegistry;
 import com.x4yi.x4ui.client.gui.utils.DefaultTheme;
 
-// Apply to entire screen
-setTheme(DefaultTheme.INSTANCE);
+// Register custom theme
+ThemeRegistry.register("my_dark_theme", customTheme);
 
-// Apply to a specific subtree
-myPanel.setTheme(customTheme);
+// Retrieve registered theme
+ITheme theme = ThemeRegistry.get("my_dark_theme");
+
+// Apply to component or screen root
+rootPanel.setTheme(theme);
 ```
 
-### Implementing a Custom Theme
+Components resolve active themes by ascending their parent chain up to the root default.
 
-```java
-import com.x4yi.x4ui.client.gui.utils.ITheme;
-import com.x4yi.x4ui.client.gui.component.GuiComponent;
-import java.util.List;
+---
 
-public class MyTheme implements ITheme {
-    @Override public int getPrimaryColor()           { return 0xFF6200EA; }
-    @Override public int getSecondaryColor()          { return 0xFF03DAC5; }
-    @Override public int getBackgroundColor()         { return 0xFF121212; }
-    @Override public int getTextColor()               { return 0xFFE0E0E0; }
-    @Override public int getDisabledTextColor()       { return 0xFF757575; }
-    @Override public int getButtonBackgroundColor()   { return 0x80000000; }
-    @Override public int getButtonHoverColor()        { return 0xFF6200EA; }
-    @Override public int getButtonDisabledColor()     { return 0x40000000; }
-    @Override public int getScrollbarTrackColor()     { return 0xFF2C2C36; }
-    @Override public int getScrollbarThumbColor()     { return 0xFF555560; }
-    @Override public int getScrollbarThumbHoverColor(){ return 0xFF777782; }
-    @Override public int getSliderTrackColor()        { return 0xFF2C2C36; }
-    @Override public int getSliderFillColor()         { return 0xFF6200EA; }
-    @Override public int getSliderHandleColor()       { return 0xFFBBBBCC; }
-    @Override public int getSliderHandleHoverColor()  { return 0xFFFFFFFF; }
-    @Override public int getTextInputBackgroundColor(){ return 0xFF16161E; }
-    @Override public int getTextInputBorderColor()    { return 0xFF2C2C36; }
-    @Override public int getTextInputFocusedBorderColor() { return 0xFF6200EA; }
-    @Override public int getTooltipBackgroundColor()  { return 0xE01A1A24; }
-    @Override public int getTooltipBorderColor()      { return 0xFF3B3B48; }
-    @Override public int getTooltipTextColor()        { return 0xFFE0E0E0; }
-    @Override public int getTooltipPadding()          { return 6; }
-    @Override public int getTooltipGap()              { return 2; }
+## 10. Animation Engine (`GuiAnimator`)
 
-    @Override
-    public void drawTooltip(List<String> lines, int mouseX, int mouseY, int screenW, int screenH) {
-        // Implement tooltip rendering
-    }
-
-    @Override
-    public void drawTooltipComponent(GuiComponent component, int mouseX, int mouseY, int screenW, int screenH) {
-        // Implement custom tooltip component rendering
-    }
-}
-```
-
-## 8. Tooltips
-
-Any `GuiComponent` can display a tooltip on hover. Tooltips are rendered by the theme.
-
-### Text Tooltip
-
-```java
-button.setTooltip("Click to save your progress");
-```
-
-### Multi-line Tooltip
-
-Use `\n` for line breaks:
-
-```java
-button.setTooltip("Line 1\nLine 2\nLine 3");
-```
-
-### Custom Tooltip Component
-
-For rich tooltips, create a custom component:
-
-```java
-import com.x4yi.x4ui.client.gui.component.GuiPanel;
-import com.x4yi.x4ui.client.gui.component.GuiLabel;
-import com.x4yi.x4ui.client.gui.component.layout.FlexDirection;
-
-GuiPanel tooltipPanel = new GuiPanel(0, 0, 150, 60);
-tooltipPanel.setFlexDirection(FlexDirection.VERTICAL);
-tooltipPanel.addChild(new GuiLabel(0, 0, "Custom Tooltip", 0xFF00E5FF));
-tooltipPanel.addChild(new GuiLabel(0, 0, "With multiple lines", 0xFFAAAAAA));
-
-button.setTooltipComponent(tooltipPanel);
-```
-
-### Tooltip Propagation
-
-Tooltips are resolved by walking up the parent chain. If a child has no tooltip, the parent's tooltip is used. The deepest component with a tooltip under the cursor is the one displayed.
-
-## 9. Dirty Flag System (Performance)
-
-X4UI uses a lazy evaluation model with dirty flags to avoid unnecessary recalculations:
-
-- `requestLayout()` -- Marks the component as needing re-layout. The layout engine runs on the next `tick()`.
-- `requestRender()` -- Marks the component as needing render-order re-sort. Children are re-sorted by `layer` on the next render.
-- `markDirty()` -- Calls both `requestLayout()` and `requestRender()`.
-
-Layout and render sorting only execute when the flags are set. Mutating purely visual properties (e.g., color, text) without changing position or size avoids triggering layout recalculation.
-
-```java
-// This does NOT trigger layout recalculation
-label.setText("New text");
-
-// This DOES trigger layout recalculation
-button.setWidth(200);
-button.setHeight(30);
-```
-
-## 10. Layer System (Z-Index)
-
-Each component has a `layer` integer. Children are rendered in ascending layer order. Higher layers render on top.
-
-```java
-background.setLayer(0);   // Rendered first (behind)
-foreground.setLayer(10);  // Rendered last (in front)
-popup.setLayer(100);      // Rendered above everything
-```
-
-The `GuiDropdown` component uses `layer = 100` by default so its popup renders above other components.
-
-## 11. Animation Engine (`GuiAnimator`)
-
-A time-based property animation system with easing functions.
+Interpolates float properties over time using configurable easing curves:
 
 ```java
 import com.x4yi.x4ui.client.gui.animation.GuiAnimator;
 import com.x4yi.x4ui.client.gui.animation.GuiAnimator.Easing;
 
-// Animate a float property from 0 to 1 over 500ms with ease-out
 GuiAnimator.animate(
-    myComponent,           // target object
-    "opacity",             // property name (String)
-    0.0f,                  // start value
-    1.0f,                  // end value
-    500,                   // duration in milliseconds
-    Easing.EASE_OUT,       // easing function
+    card, "alpha", 0.0f, 1.0f, 400, Easing.EASE_OUT,
     new GuiAnimator.AnimationCallback() {
-        @Override public void onUpdate(float value) {
-            // Called each frame with interpolated value
-        }
-        @Override public void onComplete() {
-            // Called when animation finishes
-        }
+        @Override public void onUpdate(float value) { card.setAlpha(value); }
+        @Override public void onComplete() { System.out.println("Animation complete"); }
     }
 );
 ```
 
-### Easing Functions
+`GuiAnimator` retains weak references to targets, preventing memory retention if a screen is closed mid-animation.
 
-| Easing | Description |
-|--------|-------------|
-| `LINEAR` | Constant speed |
-| `EASE_IN` | Slow start, fast end |
-| `EASE_OUT` | Fast start, slow end |
-| `EASE_IN_OUT` | Slow start and end |
+---
 
-### Important Notes
+## 11. Dirty Flags
 
-- `GuiAnimator.update()` must be called every frame to tick animations.
-- Animations on the same target+property are replaced (only one active per property).
-- Call `GuiAnimator.clearAnimations()` to cancel all active animations.
+- `requestLayout()`: Requests recalculation of bounds and positions on the next frame.
+- `requestRender()`: Requests child layer reordering on the next frame.
+- Purely visual mutations (color, alpha) do NOT require calling `requestLayout()`.
 
-## 12. Font Width Cache
+---
 
-`FontWidthCache` provides a per-mod LRU cache for `FontRenderer.getStringWidth()` results. This prevents memory leaks in text-heavy UIs (e.g., `GuiMarkdown`) by capping cached entries at 10,000 per mod namespace.
+## What to Avoid (Pitfalls & Best Practices)
 
-```java
-import com.x4yi.x4ui.client.gui.utils.FontWidthCache;
+> [!CAUTION]
+> **1. NEVER add children (`addChild()`) inside `renderSelf()` or `render()`.**
+> Instantiate and add components only in `initComponents()` or event callbacks to avoid destroying performance.
 
-// Use in custom components
-int width = FontWidthCache.getStringWidth(fontRenderer, "Hello World", "mymod");
+> [!WARNING]
+> **2. NEVER invoke `requestLayout()` unconditionally every tick.**
+> Only do so when structural properties (width, height, visibility, gap) have actually changed.
 
-// Clear cache when no longer needed
-FontWidthCache.clearCache("mymod");
-FontWidthCache.clearAll();
-```
+> [!WARNING]
+> **3. NEVER subscribe to `State.addListener()` without explicit removal.**
+> Always prefer `component.bindState()`, which unbinds automatically and prevents memory leaks.
 
-## 13. Scissor Helper
-
-`ScissorHelper` manages nested OpenGL scissor regions. Each `pushScissor()` intersects with the current scissor region (CSS-like `overflow: hidden` semantics).
-
-```java
-import com.x4yi.x4ui.client.gui.utils.ScissorHelper;
-
-ScissorHelper.pushScissor(x * scale, y * scale, w * scale, h * scale);
-// ... render clipped content ...
-ScissorHelper.popScissor();
-```
-
-This is used internally by `GuiScrollPanel` for scroll clipping. Components that render outside the scissor region are clipped.
-
-## 14. Delta Time
-
-`GuiBaseScreen.deltaTime` is a static float (in seconds) representing the time between the current and previous frame. It is capped at 0.1s to prevent animation jumps after lag spikes.
-
-```java
-float dt = GuiBaseScreen.deltaTime;
-float speed = 10f * dt; // FPS-independent speed
-```
-
-All built-in components use delta time for animations (hover lerp, toggle animation, scroll smoothing).
+> [!IMPORTANT]
+> **4. NEVER block Minecraft's main client thread.**
+> Do not perform synchronous disk I/O or HTTP requests in callbacks. Use `RemoteResourceManager` or background threads.
 [/EN]

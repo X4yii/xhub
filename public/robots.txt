@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://x4yii.github.io/xhub/sitemap-index.xml

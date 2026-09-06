@@ -7,15 +7,19 @@ order: 2
 ---
 
 [ES]
-# Recursos Remotos (`RemoteResourceManager`)
+# 02 - Recursos Remotos (`RemoteResourceManager`)
 
-X4UI incluye un gestor de recursos remotos para descargar y cachear medios desde URLs HTTP/HTTPS. Utiliza canales NIO para transferencias zero-copy en hilos de fondo sin afectar el rendimiento del juego.
+X4UI incluye un subsistema de recursos remotos para descargar y almacenar en caché archivos multimedia (imágenes, audio, video) desde URLs HTTP/HTTPS públicas de forma asíncrona en segundo plano.
 
-## Crear un Namespace
+---
 
-Una instancia de `RemoteResourceManager` está vinculada a un Mod ID específico. Cada mod debe crear su propia instancia para aislar los archivos en caché.
+## 1. Crear un Espacio de Nombres (Namespace)
+
+Cada mod debe crear su propia instancia de `RemoteResourceManager` vinculada a su Mod ID. Esto aísla el directorio de caché local:
 
 ```java
+package com.example.mymod.client;
+
 import com.x4yi.x4ui.api.client.resource.RemoteResourceManager;
 
 public class MyClientProxy {
@@ -23,86 +27,95 @@ public class MyClientProxy {
 }
 ```
 
-Los archivos se almacenan en `.minecraft/x4ui/cache/<modid>/` con nombres de archivo hasheados con SHA-256.
+Los archivos se guardan en `.minecraft/x4ui/cache/<modid>/` nombrados mediante el hash SHA-256 de su URL.
 
-## Cargar Medios Remotos
+---
 
-Use `getMedia(url)` para obtener una ruta de archivo local. Si el archivo no está en caché, se descarga de forma asíncrona y se retorna `null` en la primera llamada. Las llamadas subsiguientes retornan la ruta en caché.
+## 2. Descarga y Obtención Asíncrona
+
+El método `getMedia(url)` devuelve la ruta local en disco del archivo si ya se encuentra en caché. Si aún no se ha descargado, inicia la descarga en segundo plano y retorna `null`:
 
 ```java
-String cachedPath = MyClientProxy.ASSETS.getMedia("https://example.com/image.png");
+String localPath = MyClientProxy.ASSETS.getMedia("https://example.com/assets/banner.png");
 
-if (cachedPath != null) {
-    // El archivo está listo, usarlo
-    GuiImage image = new GuiImage(0, 0, 200, 100);
-    image.setResource(new ResourceLocation("file://" + cachedPath));
+if (localPath != null) {
+    // El archivo ya está disponible en disco
+    guiImage.setResource(new ResourceLocation("file://" + localPath));
 } else {
-    // El archivo se está descargando, mostrar un marcador temporal
-    GuiLabel loading = new GuiLabel(0, 0, "Loading...", 0xFFAAAAAA);
+    // Descargando en segundo plano, mostrar estado de carga
+    statusLabel.setText("Descargando recurso...");
 }
 ```
 
-## Usar URLs Remotas con GuiImage
+---
 
-`GuiImage` tiene soporte integrado de URLs que maneja la descarga y caché internamente:
+## 3. Integración Directa con Componentes
 
-```java
-import com.x4yi.x4ui.client.gui.component.GuiImage;
-
-GuiImage logo = new GuiImage(10, 10, 200, 100);
-logo.setUrl("https://example.com/logo.png");
-```
-
-La imagen se descarga de forma asíncrona mediante `ThreadDownloadImageData` de Minecraft y se cachea en `.minecraft/x4ui_cache/`. El método `setUrl()` se puede llamar antes de que el componente se agregue al árbol.
-
-## Usar URLs Remotas con GuiVideo
+### `GuiImage` con URL Remota
+`GuiImage` integra internamente el pipeline de descarga asíncrona:
 
 ```java
-import com.x4yi.x4ui.client.gui.component.GuiVideo;
+GuiImage webBanner = new GuiImage(10, 10, 200, 100);
+webBanner.setUrl("https://example.com/images/banner.png");
+rootPanel.addChild(webBanner);
+```
+Mientras se descarga, renderiza un placeholder transparente.
 
-GuiVideo video = new GuiVideo(0, 0, 640, 480);
-video.setVideoUrl("https://example.com/intro.mp4");
-video.play();
-
-// Detener la reproducción al cerrar la pantalla
-@Override
-public void onGuiClosed() {
-    super.onGuiClosed();
-    video.stop();
-}
+### `GuiVideo` con URL Remota
+```java
+GuiVideo player = new GuiVideo(0, 0, 640, 360);
+player.setVideoUrl("https://example.com/media/intro.mp4");
+player.play();
+rootPanel.addChild(player);
 ```
 
-`GuiVideo` inicializa perezosamente el decodificador en la primera llamada a `play()`. El decodificador es o bien `FFmpegProcessDecoder` (FFmpeg nativo) o `JCodecVideoDecoder` (alternativa en Java puro).
+---
 
-## Gestión de la Caché
+## 4. Mantenimiento y Limpieza de Caché
 
-Elimine archivos en caché más antiguos que un número específico de días:
+Para evitar la acumulación indefinida de archivos en disco, utilice `cleanOldCache(int maxAgeDays)`:
 
 ```java
-// Eliminar archivos no accedidos en los últimos 30 días
-MyClientProxy.ASSETS.cleanOldCache(30);
+// Eliminar archivos que no se hayan accedido en los últimos 15 días
+MyClientProxy.ASSETS.cleanOldCache(15);
 ```
+Se recomienda invocar este método durante `FMLPostInitializationEvent` en el cliente.
 
-Llame a esto durante `FMLPostInitializationEvent` o en cualquier punto del ciclo de vida del mod.
+---
 
-## Detalles de Implementación
+## Qué Evitar Hacer (Antipatrones y Limitaciones)
 
-- **Gestor de Descargas**: `DownloadManager` es un singleton con un pool de ejecutores de 2 hilos. Las descargas usan `FileChannel` de NIO para transferencias zero-copy.
-- **Clave de Caché**: Los archivos se nombran usando el hash SHA-256 de la URL, asegurando rutas deterministas y deduplicación.
-- **Seguridad de Hilos**: `getMedia()` se puede llamar desde cualquier hilo de forma segura. La descarga se ejecuta en un hilo de fondo.
-- **Manejo de Errores**: Las descargas fallidas no crashean el juego. El archivo simplemente no se cachea y `getMedia()` retorna `null`.
+> [!CAUTION]
+> **1. NUNCA realizar descargas HTTP síncronas en el hilo principal.**
+> Nunca utilice `new URL().openStream()` directamente. Utilice siempre `RemoteResourceManager` para evitar congelar el juego.
+
+> [!WARNING]
+> **2. NUNCA asumir que `getMedia()` retornará una ruta en el primer cuadro.**
+> Si un archivo no está descargado, retornará `null`. Programe estados de carga.
+
+> [!WARNING]
+> **3. NUNCA suministrar videos en formatos no soportados.**
+> Utilice SÓLO contenedores MP4 con video **H.264** y audio **AAC**. Otros formatos fallarán.
+
+> [!IMPORTANT]
+> **4. NUNCA descargar archivos gigantescos sin advertir al jugador.**
+> Respete el ancho de banda del usuario en conexiones limitadas.
 [/ES]
 
 [EN]
-# Remote Assets (`RemoteResourceManager`)
+# 02 - Remote Assets (`RemoteResourceManager`)
 
-X4UI includes a remote asset manager for downloading and caching media from HTTP/HTTPS URLs. It uses NIO channels for zero-copy transfers on background threads without impacting game performance.
+X4UI features a remote asset management subsystem designed to asynchronously download and cache multimedia assets (images, audio, video) from public HTTP/HTTPS URLs in the background.
 
-## Creating a Namespace
+---
 
-A `RemoteResourceManager` instance is scoped to a specific mod ID. Each mod should create its own instance to isolate cache files.
+## 1. Creating a Mod Namespace
+
+Each mod must instantiate its own `RemoteResourceManager` instance tied to its unique Mod ID. This guarantees an isolated local cache namespace:
 
 ```java
+package com.example.mymod.client;
+
 import com.x4yi.x4ui.api.client.resource.RemoteResourceManager;
 
 public class MyClientProxy {
@@ -110,72 +123,77 @@ public class MyClientProxy {
 }
 ```
 
-Files are stored in `.minecraft/x4ui/cache/<modid>/` with SHA-256 hashed filenames.
+Files are stored in `.minecraft/x4ui/cache/<modid>/` and hashed using SHA-256 for deterministic caching and deduplication.
 
-## Loading Remote Media
+---
 
-Use `getMedia(url)` to obtain a local file path. If the file is not cached, it is downloaded asynchronously and `null` is returned on the first call. Subsequent calls return the cached path.
+## 2. Asynchronous Retrieval
+
+The `getMedia(url)` method returns the local absolute file path if the file is already cached. If the file is still downloading or not present, it triggers a background download and returns `null`:
 
 ```java
-String cachedPath = MyClientProxy.ASSETS.getMedia("https://example.com/image.png");
+String localPath = MyClientProxy.ASSETS.getMedia("https://example.com/assets/banner.png");
 
-if (cachedPath != null) {
-    // File is ready, use it
-    GuiImage image = new GuiImage(0, 0, 200, 100);
-    image.setResource(new ResourceLocation("file://" + cachedPath));
+if (localPath != null) {
+    // File is ready on disk
+    guiImage.setResource(new ResourceLocation("file://" + localPath));
 } else {
-    // File is downloading, show a placeholder
-    GuiLabel loading = new GuiLabel(0, 0, "Loading...", 0xFFAAAAAA);
+    // Downloading in background; show placeholder or loading state
+    statusLabel.setText("Downloading asset...");
 }
 ```
 
-## Using Remote URLs with GuiImage
+---
 
-`GuiImage` has built-in URL support that handles downloading and caching internally:
+## 3. Direct Component Integration
 
-```java
-import com.x4yi.x4ui.client.gui.component.GuiImage;
-
-GuiImage logo = new GuiImage(10, 10, 200, 100);
-logo.setUrl("https://example.com/logo.png");
-```
-
-The image is downloaded asynchronously via Minecraft's `ThreadDownloadImageData` and cached to `.minecraft/x4ui_cache/`. The `setUrl()` method can be called before the component is added to the tree.
-
-## Using Remote URLs with GuiVideo
+### `GuiImage` with Remote URLs
+`GuiImage` handles the async download lifecycle out of the box:
 
 ```java
-import com.x4yi.x4ui.client.gui.component.GuiVideo;
+GuiImage webBanner = new GuiImage(10, 10, 200, 100);
+webBanner.setUrl("https://example.com/images/banner.png");
+rootPanel.addChild(webBanner);
+```
+While downloading, it renders a transparent placeholder.
 
-GuiVideo video = new GuiVideo(0, 0, 640, 480);
-video.setVideoUrl("https://example.com/intro.mp4");
-video.play();
-
-// Stop playback when closing the screen
-@Override
-public void onGuiClosed() {
-    super.onGuiClosed();
-    video.stop();
-}
+### `GuiVideo` with Remote URLs
+```java
+GuiVideo player = new GuiVideo(0, 0, 640, 360);
+player.setVideoUrl("https://example.com/media/intro.mp4");
+player.play();
+rootPanel.addChild(player);
 ```
 
-`GuiVideo` lazily initializes the decoder on the first `play()` call. The decoder is either `FFmpegProcessDecoder` (native FFmpeg) or `JCodecVideoDecoder` (pure-Java fallback).
+---
 
-## Cache Management
+## 4. Cache Maintenance & Cleanup
 
-Delete cached files older than a specified number of days:
+To avoid unbounded disk usage, use `cleanOldCache(int maxAgeDays)`:
 
 ```java
-// Remove files not accessed in 30 days
-MyClientProxy.ASSETS.cleanOldCache(30);
+// Delete cached files not accessed in the last 15 days
+MyClientProxy.ASSETS.cleanOldCache(15);
 ```
+Calling this during `FMLPostInitializationEvent` on the client is recommended.
 
-Call this during `FMLPostInitializationEvent` or at any point during the mod lifecycle.
+---
 
-## Implementation Details
+## What to Avoid (Pitfalls & Limitations)
 
-- **Download Manager**: `DownloadManager` is a singleton with a 2-thread executor pool. Downloads use NIO `FileChannel` for zero-copy transfers.
-- **Cache Key**: Files are named using the SHA-256 hash of the URL, ensuring deterministic paths and deduplication.
-- **Thread Safety**: `getMedia()` is safe to call from any thread. The download runs on a background thread.
-- **Error Handling**: Failed downloads do not crash the game. The file is simply not cached, and `getMedia()` returns `null`.
+> [!CAUTION]
+> **1. NEVER execute synchronous HTTP network calls on the main thread.**
+> Never call `new URL().openStream()` directly. Always use `RemoteResourceManager` to avoid freezing the game.
+
+> [!WARNING]
+> **2. NEVER assume `getMedia()` returns a non-null path immediately.**
+> If an asset is not yet downloaded, it returns `null`. Always design UI loading states.
+
+> [!WARNING]
+> **3. NEVER supply unsupported video formats.**
+> ONLY use MP4 containers with **H.264** video and **AAC** audio. Other formats will fail.
+
+> [!IMPORTANT]
+> **4. NEVER trigger massive multi-hundred-megabyte downloads unprompted.**
+> Be considerate of players on limited internet connections.
 [/EN]

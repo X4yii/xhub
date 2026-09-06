@@ -18,7 +18,6 @@ order: -1
 - **Arquitectura DOM:** Construye tu interfaz anidando componentes (`rootPanel.addChild(new GuiButton(...))`).
 - **Diseños FlexBox:** `GuiPanel` soporta apilamiento automático `VERTICAL` y `HORIZONTAL`.
 - **Micro-Animaciones:** Lógica de interpolación (lerp) integrada para transiciones fluidas e independientes de los FPS.
-- **Rendimiento Extremo (Dirty Flag System):** Los diseños sólo se recalcularán matemáticamente cuando un componente cambia físicamente.
 
 ## Inicio Rápido
 
@@ -58,7 +57,6 @@ Tired of dealing with hardcoded coordinates, messy `drawScreen` overrides, and i
 - **DOM Architecture:** Build your UI by nesting components (`rootPanel.addChild(new GuiButton(...))`).
 - **FlexBox Layouts:** `GuiPanel` supports automatic `VERTICAL` and `HORIZONTAL` stacking.
 - **Micro-Animations:** Built-in lerp logic for buttery-smooth, FPS-independent hover and click transitions.
-- **High Performance (Dirty Flag System):** Layouts are only recalculated when a component physically changes.
 
 ## Quick Start
 

@@ -5,7 +5,6 @@ xhub_dir = "/home/x4yi/Documentos/xhub/src/content/docs/x4ui"
 x4ui_es_dir = "/home/x4yi/Documentos/tmp/x4ui/Docs/es-latam"
 x4ui_en_dir = "/home/x4yi/Documentos/tmp/x4ui/Docs/en-us"
 
-# Mapeo canónico de archivos en XHub -> (archivo origen, título, categoría, categoryOrder, order)
 DOC_MAP = {
     "getting-started.md": ("00-getting-started.md", "Getting Started", "General", 0, 0),
     "core-concepts.md": ("01-core-concepts.md", "Core Concepts", "General", 0, 1),

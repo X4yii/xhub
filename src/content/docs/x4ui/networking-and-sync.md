@@ -9,259 +9,321 @@ order: 3
 [ES]
 # 03 - Redes, Sidedness y Sincronización Servidor/Cliente
 
-Este documento detalla la arquitectura de separación de lados (*sidedness*), compatibilidad de conexión asimétrica y sincronización reactiva de datos entre el servidor dedicado y las pantallas de cliente de X4UI.
+Este documento detalla la arquitectura de red flexible de `x4ui` (`r1.0b6`), diseñada para funcionar **tanto con `Container` vanilla como sin ningún `Container`** (paneles administrativos, tiendas, diálogos, gremios, HUDs remotos o máquinas personalizadas).
 
 ---
 
-## 1. Arquitectura de Sidedness (@SidedProxy)
+## 1. Arquitectura de Sidedness y Handshake (`UINetwork`)
 
-X4UI implementa separación estricta mediante proxies de Forge:
-- **`ClientProxy`:** Inicializa servicios de renderizado (`IGraphics`), rasterización de fuentes (`FontRegistry`), servicios multimedia (`MediaService`, OpenAL) y registros de superposición (`GuiOverlayManager`).
-- **`CommonProxy`:** Punto de entrada en servidor dedicado. No carga ninguna clase de OpenGL, LWJGL ni interfaz visual.
+- **`ClientProxy`:** Inicializa renderizado (`IGraphics`), fuentes (`FontRegistry`), multimedia (`MediaService`) y overlays (`GuiOverlayManager`).
+- **`CommonProxy`:** Punto de entrada en servidor dedicado. No carga ninguna clase de OpenGL, LWJGL ni `client.*`.
+- **Server-Optional (`@NetworkCheckHandler`) + Handshake automático (`PacketHandshake`):**
+  - Un cliente con `x4ui` puede entrar a servidores vanilla o sin `x4ui`.
+  - En cliente, `UINetwork.isServerSupported()` indica si el servidor tiene `x4ui`.
+  - En servidor, `UINetwork.hasClient(player)` indica si el jugador completó el handshake.
 
-### Conexión Server-Optional (@NetworkCheckHandler)
-En X4UI r1.0b5, los clientes pueden ingresar a cualquier servidor (vanilla o modded) sin requerir que el servidor tenga instalado X4UI:
+---
 
+## 2. Registro y Apertura Remota de Pantallas (`ScreenRegistry` + `UINetwork`)
+
+### Registro en Cliente (`@SideOnly(Side.CLIENT)`)
 ```java
-@NetworkCheckHandler
-public boolean checkModVersion(Map<String, String> mods, Side side) {
-    // Retorna true sin exigir presencia en servidor
-    return true;
-}
+import com.x4yi.x4ui.client.gui.ScreenRegistry;
+
+ScreenRegistry.register("mimod:shop", payload -> new ShopScreen(payload));
 ```
 
----
-
-## 2. Apertura de Pantallas desde el Servidor
-
-Las pantallas de X4UI residen exclusivamente en el cliente. Para abrir una interfaz desde el servidor (por ejemplo, al interactuar con un bloque o comando), envíe un paquete estándar de Forge al cliente y programe la apertura en el hilo del cliente:
-
+### Apertura desde Servidor
 ```java
-// En el MessageHandler del cliente (Side.CLIENT)
-@Override
-public IMessage onMessage(PacketOpenUI message, MessageContext ctx) {
-    Minecraft.getMinecraft().addScheduledTask(() -> {
-        Minecraft.getMinecraft().displayGuiScreen(
-            new MyCustomScreen(Minecraft.getMinecraft().currentScreen)
-        );
-    });
-    return null;
+import com.x4yi.x4ui.common.network.UINetwork;
+
+if (UINetwork.hasClient(player)) {
+    NBTTagCompound payload = new NBTTagCompound();
+    payload.setString("shopId", "blacksmith");
+    UINetwork.openScreen(player, "mimod:shop", payload);
 }
 ```
+- También puedes cerrar la pantalla (`UINetwork.closeScreen(player)`) o enviar notificaciones toast (`UINetwork.sendToast(player, "Título", "Mensaje", 4.0f)`).
 
 ---
 
-## 3. Sincronización de Contenedores (`NetworkSyncHelper`)
+## 3. Estado Reactivo por Pantalla, Namespaces y Lotes (`UIStateBus` + `PacketStateBatch`)
 
-Para sincronizar datos continuos de máquinas o inventarios (progreso, combustible, energía) sin crear canales de red propietarios, X4UI aprovecha el pipeline de propiedades de `Container` de Minecraft:
+No necesitas crear un `Container` para sincronizar datos del servidor hacia la interfaz:
 
-### Lado Servidor (`Container`)
-En su subclase de `Container`, sobrescriba `detectAndSendChanges()`:
-
+### Servidor → Cliente
 ```java
-@Override
-public void detectAndSendChanges() {
-    super.detectAndSendChanges();
-    for (IContainerListener listener : listeners) {
-        // Enviar propiedades de 16 bits
-        listener.sendWindowProperty(this, 0, tileEntity.getProgress());
-        listener.sendWindowProperty(this, 1, tileEntity.isActive() ? 1 : 0);
-        listener.sendWindowProperty(this, 2, (int)(tileEntity.getTemperature() * 10.0f));
+// Un valor puntual
+UINetwork.syncState(player, UIStateBus.scopedKey("shop:blacksmith", "gold"), 1500);
+
+// Múltiples llaves en un solo paquete Netty
+Map<String, Object> batch = new LinkedHashMap<>();
+batch.put("shop:blacksmith:gold", 1500);
+batch.put("shop:blacksmith:open", true);
+UINetwork.syncBatch(player, batch);
+```
+
+### Cliente (`GuiBaseScreen` / `GuiBaseContainer`)
+- Usa `syncedState(key, valorInicial)` para crear estados con **`Scope.SCREEN`**: se limpian automáticamente en `onGuiClosed()`.
+- También existen `Scope.SESSION` (toda la sesión en el servidor) y `Scope.GLOBAL` (persiste entre desconexiones).
+- `UIStateBus.scopedKey(namespace, key)` y `UIStateBus.clearNamespace(namespace)` evitan colisiones entre múltiples bloques, entidades o menús.
+
+---
+
+## 4. Acciones Cliente → Servidor y Request–Response (RPC)
+
+### Acciones unidireccionales (`sendActionToServer` / `sendActionOrLocal`)
+En servidor:
+```java
+UINetwork.registerActionHandler(
+    "mimod:buy_item",
+    ActionGuard.withinDistance(pos, 8.0), // opcional
+    (player, actionId, data) -> {
+        // Lógica autoritativa en servidor
     }
-}
+);
+```
+En cliente (`GuiBaseScreen` o `GuiBaseContainer`):
+```java
+// Envía al servidor si tiene x4ui, o ejecuta el fallback local en modo client-only
+sendActionOrLocal("mimod:buy_item", data, () -> showLocalPreview());
 ```
 
-### Lado Cliente (`GuiBaseContainer`)
-En `initComponents()`, vincule las propiedades del contenedor a objetos `State<T>`:
+### Consultas Request–Response (`PacketGuiRpc`)
+Ideal para búsquedas, listas paginadas o validaciones sin coordinar paquetes manualmente:
 
 ```java
-@Override
-protected void initComponents() {
-    State<Integer> progress = new State<>(0);
-    State<Boolean> active = new State<>(false);
-    State<Float> temperature = new State<>(0.0f);
+// Servidor
+UINetwork.onRpc("mimod:search_catalog", ActionGuard.opLevel(0), (player, params) -> {
+    NBTTagCompound res = new NBTTagCompound();
+    res.setInteger("total", 42);
+    return RpcResult.ok(res);
+});
 
-    // Vinculación automática mediante NetworkSyncHelper
-    NetworkSyncHelper.bindContainerPropertyToState(getContainer(), 0, progress);
-    NetworkSyncHelper.bindContainerPropertyToBoolean(getContainer(), 1, active);
-    NetworkSyncHelper.bindContainerPropertyToFloat(getContainer(), 2, temperature, 10.0f);
+// Cliente (dentro de GuiBaseScreen / GuiBaseContainer)
+request("mimod:search_catalog", queryNbt, result -> {
+    if (result.isOk()) {
+        int total = result.getData().getInteger("total");
+    }
+});
+```
+- El framework ejecuta el handler en el hilo del servidor, entrega la respuesta en el hilo principal del cliente, aplica timeout (5s por defecto), responde `NO_SERVER_SUPPORT` al instante si el servidor no tiene `x4ui`, y **cancela automáticamente** los callbacks pendientes si el jugador cierra la pantalla.
 
-    // Enlazar los estados a componentes visuales
-    progressBar.bindState(progress, val -> progressBar.setProgress(val / 100.0f));
-    statusLabel.bindState(active, act -> statusLabel.setText(act ? "ACTIVO" : "INACTIVO"));
-}
+---
+
+## 5. Canales Multi-Jugador con Ciclo de Vida Automático (`UIChannels`)
+
+Para UIs compartidas entre varios jugadores sin `Container` (tableros de facción, subastas, paneles compartidos):
+
+```java
+// Servidor: abre la pantalla y suscribe automáticamente al jugador al canal
+UINetwork.openChannelScreen(player, "mimod:faction_panel", "faction:alpha", data);
+
+// Cuando cambia el estado compartido, transmite a todos los suscritos con cliente compatible:
+UIChannels.broadcastState("faction:alpha", "treasury", 9800);
+UIChannels.broadcastBatch("faction:alpha", entries);
+UIChannels.broadcastToast("faction:alpha", "Tesorería", "+500 oro", 3.0f);
+```
+- Al cerrar la pantalla (`onGuiClosed()`) o desconectarse (`ClientSessionTracker`), el jugador se desuscribe automáticamente del canal.
+
+---
+
+## 6. Seguridad y Validación (`ActionGuard` + Rate-Limiting)
+
+- **Rate-limiting integrado:** `UINetwork` aplica por defecto un cooldown de `50ms` por jugador y `actionId`/`rpcId` (configurable vía `UINetwork.setDefaultRateLimitMs(ms)`).
+- **Guardas componibles (`ActionGuard`):**
+  - `ActionGuard.opLevel(int level)`
+  - `ActionGuard.withinDistance(BlockPos pos, double maxDist)`
+  - `ActionGuard.withinEntityDistance(int entityId, double maxDist)`
+  - `ActionGuard.require(Predicate<EntityPlayerMP>)`
+  - Combinables con `.and(...)`.
+
+---
+
+## 7. Sincronización de `Container` Vanilla (`NetworkSyncHelper`)
+
+Si tu pantalla sí usa un `Container` de inventario (`GuiBaseContainer`), puedes seguir vinculando propiedades de ventana (16-bit o 32-bit atómicas) a `State<T>`:
+
+```java
+// Servidor (Container.detectAndSendChanges)
+NetworkSyncHelper.send32BitProperty(listener, this, 0, 1, energy);
+NetworkSyncHelper.sendFloat32Property(listener, this, 2, 3, temperature);
+
+// Cliente (GuiBaseContainer.initComponents)
+NetworkSyncHelper.bindContainerPropertyTo32Bit(getContainer(), 0, 1, energyState);
+NetworkSyncHelper.bindContainerPropertyToFloat32(getContainer(), 2, 3, tempState);
 ```
 
 ---
 
-## 4. Despacho de Acciones Cliente-a-Servidor (`IGuiActionSender`)
-
-Para enviar comandos desde la interfaz al servidor (clics en botones de configuración, cambios de pestañas), configure un `IGuiActionSender` en su pantalla:
-
-```java
-import com.x4yi.x4ui.common.sync.IGuiActionSender;
-import net.minecraft.nbt.NBTTagCompound;
-
-// Configurar el despachador en la pantalla
-setActionSender((actionId, data) -> {
-    MyModNetwork.CHANNEL.sendToServer(new PacketGuiAction(actionId, data));
-});
-
-// Invocar desde el callback de un botón
-saveButton.setOnClick(() -> {
-    NBTTagCompound data = new NBTTagCompound();
-    data.setInteger("powerMode", selectedMode);
-    sendActionToServer("set_power_mode", data);
-});
-```
-
----
-
-## Qué Evitar Hacer (Errores Críticos de Red y Sidedness)
+## Qué Evitar Hacer
 
 > [!CAUTION]
-> **1. NUNCA importar paquetes `com.x4yi.x4ui.client.*` en clases del servidor.**
-> Utilice estas clases únicamente con `@SideOnly(Side.CLIENT)`. Para paquetes comunes, use `State<T>` o `NetworkSyncHelper`.
+> **1. NUNCA importar `com.x4yi.x4ui.client.*` en clases comunes o de servidor.**
+> Mantén `ScreenRegistry` y `GuiBaseScreen` aislados con `@SideOnly(Side.CLIENT)`.
 
 > [!CAUTION]
-> **2. NUNCA confiar ciegamente en datos recibidos mediante `IGuiActionSender`.**
-> Valide siempre la información en el servidor (rango, contenedor abierto, límites de valores) antes de procesar acciones de los jugadores.
-
-> [!WARNING]
-> **3. NUNCA olvidar el factor de escala en valores de punto flotante.**
-> `sendWindowProperty` solo envía enteros (`short`). Multiplique por una escala (ej. `10.0f`) en el servidor y pase la misma a `bindContainerPropertyToFloat()` en el cliente.
-
-> [!IMPORTANT]
-> **4. NUNCA ejecutar apertura de GUIs fuera de `addScheduledTask()`.**
-> Los paquetes de red llegan en hilos secundarios. Abrir GUIs sin agendarlo en el hilo principal bloqueará el cliente.
+> **2. NUNCA confiar en payloads de acciones o RPCs sin `ActionGuard` o validación en servidor.**
+> Verifica distancia, dimensión, permisos y rangos numéricos en el servidor.
 [/ES]
 
 [EN]
 # 03 - Networking, Sidedness & Server/Client Sync
 
-This document covers X4UI's sidedness architecture, server-optional connection capabilities, and reactive synchronization between dedicated servers and client screens.
+This document covers `x4ui` (`r1.0b6`) networking and synchronization, designed to work **both with vanilla `Container`s and completely without `Container`s** (admin panels, shops, dialogs, guild boards, remote HUDs, or custom screens).
 
 ---
 
-## 1. Sidedness Architecture (@SidedProxy)
+## 1. Sidedness & Automatic Handshake (`UINetwork`)
 
-X4UI maintains strict separation between client-only code and server-safe common logic using Forge proxies:
-- **`ClientProxy`:** Initializes OpenGL graphics layers (`IGraphics`), vector font pipelines (`FontRegistry`), multimedia services (`MediaService`), and screen overlay handlers (`GuiOverlayManager`).
-- **`CommonProxy`:** Server-side entry point. Loads zero OpenGL, LWJGL, or client rendering classes.
+- **`ClientProxy`:** Initializes rendering (`IGraphics`), fonts (`FontRegistry`), multimedia (`MediaService`), and overlays (`GuiOverlayManager`).
+- **`CommonProxy`:** Dedicated server entry point. Loads zero OpenGL, LWJGL, or `client.*` classes.
+- **Server-Optional (`@NetworkCheckHandler`) + Handshake (`PacketHandshake`):**
+  - Clients with `x4ui` can join vanilla or modded servers without requiring `x4ui` on the server.
+  - Client-side: `UINetwork.isServerSupported()` reports whether the server has `x4ui`.
+  - Server-side: `UINetwork.hasClient(player)` reports whether the player completed the handshake.
 
-### Server-Optional Connection (@NetworkCheckHandler)
-In X4UI r1.0b5, clients with X4UI installed can join any remote server (vanilla or modded) without requiring X4UI on the server:
+---
 
+## 2. Remote Screen Registration & Opening (`ScreenRegistry` + `UINetwork`)
+
+### Client Registration (`@SideOnly(Side.CLIENT)`)
 ```java
-@NetworkCheckHandler
-public boolean checkModVersion(Map<String, String> mods, Side side) {
-    // Returns true without enforcing server presence
-    return true;
-}
+import com.x4yi.x4ui.client.gui.ScreenRegistry;
+
+ScreenRegistry.register("mymod:shop", payload -> new ShopScreen(payload));
 ```
 
----
-
-## 2. Opening Client Screens from the Server
-
-X4UI screens are strictly client-side. To trigger a GUI from the server (e.g., right-clicking a block or executing a command), send a standard Forge packet to the client and schedule screen opening on the client main thread:
-
+### Opening from Server
 ```java
-// Inside client message handler (Side.CLIENT)
-@Override
-public IMessage onMessage(PacketOpenUI message, MessageContext ctx) {
-    Minecraft.getMinecraft().addScheduledTask(() -> {
-        Minecraft.getMinecraft().displayGuiScreen(
-            new MyCustomScreen(Minecraft.getMinecraft().currentScreen)
-        );
-    });
-    return null;
+import com.x4yi.x4ui.common.network.UINetwork;
+
+if (UINetwork.hasClient(player)) {
+    NBTTagCompound payload = new NBTTagCompound();
+    payload.setString("shopId", "blacksmith");
+    UINetwork.openScreen(player, "mymod:shop", payload);
 }
 ```
+- You can also close the active screen (`UINetwork.closeScreen(player)`) or send toast notifications (`UINetwork.sendToast(player, "Title", "Message", 4.0f)`).
 
 ---
 
-## 3. Container Property Synchronization (`NetworkSyncHelper`)
+## 3. Screen-Scoped State, Namespaces & Batching (`UIStateBus` + `PacketStateBatch`)
 
-To sync continuous machine or tile data (progress bars, fuel levels, heat) without creating proprietary network channels, X4UI leverages Minecraft's native `Container` property pipeline:
+You do not need a `Container` to sync server state to a UI:
 
-### Server Side (`Container`)
-In your `Container` subclass, override `detectAndSendChanges()`:
-
+### Server → Client
 ```java
-@Override
-public void detectAndSendChanges() {
-    super.detectAndSendChanges();
-    for (IContainerListener listener : listeners) {
-        // Broadcast 16-bit signed window properties
-        listener.sendWindowProperty(this, 0, tileEntity.getProgress());
-        listener.sendWindowProperty(this, 1, tileEntity.isActive() ? 1 : 0);
-        listener.sendWindowProperty(this, 2, (int)(tileEntity.getTemperature() * 10.0f));
+// Single key
+UINetwork.syncState(player, UIStateBus.scopedKey("shop:blacksmith", "gold"), 1500);
+
+// Multiple keys in a single Netty packet
+Map<String, Object> batch = new LinkedHashMap<>();
+batch.put("shop:blacksmith:gold", 1500);
+batch.put("shop:blacksmith:open", true);
+UINetwork.syncBatch(player, batch);
+```
+
+### Client (`GuiBaseScreen` / `GuiBaseContainer`)
+- Use `syncedState(key, initialValue)` to create **`Scope.SCREEN`** states that are automatically cleaned up in `onGuiClosed()`.
+- `Scope.SESSION` (cleared on disconnect) and `Scope.GLOBAL` (persists across disconnects) are also available.
+- `UIStateBus.scopedKey(namespace, key)` and `UIStateBus.clearNamespace(namespace)` prevent key collisions across multiple blocks, entities, or menus.
+
+---
+
+## 4. Client → Server Actions & Request–Response (RPC)
+
+### Fire-and-Forget Actions (`sendActionToServer` / `sendActionOrLocal`)
+Server-side:
+```java
+UINetwork.registerActionHandler(
+    "mymod:buy_item",
+    ActionGuard.withinDistance(pos, 8.0), // optional guard
+    (player, actionId, data) -> {
+        // Server-authoritative logic
     }
-}
+);
+```
+Client-side (`GuiBaseScreen` or `GuiBaseContainer`):
+```java
+// Sends to server if supported, otherwise executes localFallback immediately
+sendActionOrLocal("mymod:buy_item", data, () -> showLocalPreview());
 ```
 
-### Client Side (`GuiBaseContainer`)
-In `initComponents()`, bind the container properties to `State<T>` objects:
+### Request–Response Queries (`PacketGuiRpc`)
+Ideal for paginated lists, search queries, or server validations without manual packet correlation:
 
 ```java
-@Override
-protected void initComponents() {
-    State<Integer> progress = new State<>(0);
-    State<Boolean> active = new State<>(false);
-    State<Float> temperature = new State<>(0.0f);
+// Server
+UINetwork.onRpc("mymod:search_catalog", ActionGuard.opLevel(0), (player, params) -> {
+    NBTTagCompound res = new NBTTagCompound();
+    res.setInteger("total", 42);
+    return RpcResult.ok(res);
+});
 
-    // Bind automatically using NetworkSyncHelper
-    NetworkSyncHelper.bindContainerPropertyToState(getContainer(), 0, progress);
-    NetworkSyncHelper.bindContainerPropertyToBoolean(getContainer(), 1, active);
-    NetworkSyncHelper.bindContainerPropertyToFloat(getContainer(), 2, temperature, 10.0f);
+// Client (inside GuiBaseScreen / GuiBaseContainer)
+request("mymod:search_catalog", queryNbt, result -> {
+    if (result.isOk()) {
+        int total = result.getData().getInteger("total");
+    }
+});
+```
+- The framework runs the handler on the server main thread, delivers the result on the client main thread, enforces a default 5s timeout, returns `NO_SERVER_SUPPORT` immediately on client-only servers, and **auto-cancels** pending callbacks when the screen closes.
 
-    // Bind states directly to UI components
-    progressBar.bindState(progress, val -> progressBar.setProgress(val / 100.0f));
-    statusLabel.bindState(active, act -> statusLabel.setText(act ? "ACTIVE" : "IDLE"));
-}
+---
+
+## 5. Multi-Player Pub/Sub Channels (`UIChannels`)
+
+For shared UIs without a `Container` (faction panels, auction houses, shared dashboards):
+
+```java
+// Server: opens the screen and automatically subscribes the player to the channel
+UINetwork.openChannelScreen(player, "mymod:faction_panel", "faction:alpha", data);
+
+// Broadcast updates to all subscribed players with compatible clients:
+UIChannels.broadcastState("faction:alpha", "treasury", 9800);
+UIChannels.broadcastBatch("faction:alpha", entries);
+UIChannels.broadcastToast("faction:alpha", "Treasury", "+500 gold", 3.0f);
+```
+- Closing the screen (`onGuiClosed()`) or logging out (`ClientSessionTracker`) automatically unsubscribes the player.
+
+---
+
+## 6. Security & Validation (`ActionGuard` + Rate-Limiting)
+
+- **Built-in rate-limiting:** `UINetwork` enforces a default `50ms` cooldown per player and `actionId`/`rpcId` (configurable via `UINetwork.setDefaultRateLimitMs(ms)`).
+- **Composable `ActionGuard` helpers:**
+  - `ActionGuard.opLevel(int level)`
+  - `ActionGuard.withinDistance(BlockPos pos, double maxDist)`
+  - `ActionGuard.withinEntityDistance(int entityId, double maxDist)`
+  - `ActionGuard.require(Predicate<EntityPlayerMP>)`
+  - Combine guards with `.and(...)`.
+
+---
+
+## 7. Vanilla `Container` Sync (`NetworkSyncHelper`)
+
+When your screen is backed by an inventory `Container` (`GuiBaseContainer`), you can bind window properties (16-bit or atomic 32-bit `int`/`float`) to `State<T>`:
+
+```java
+// Server (Container.detectAndSendChanges)
+NetworkSyncHelper.send32BitProperty(listener, this, 0, 1, energy);
+NetworkSyncHelper.sendFloat32Property(listener, this, 2, 3, temperature);
+
+// Client (GuiBaseContainer.initComponents)
+NetworkSyncHelper.bindContainerPropertyTo32Bit(getContainer(), 0, 1, energyState);
+NetworkSyncHelper.bindContainerPropertyToFloat32(getContainer(), 2, 3, tempState);
 ```
 
 ---
 
-## 4. Client-to-Server Actions (`IGuiActionSender`)
-
-To send user actions from UI components to the server (saving settings, switching tabs), configure an `IGuiActionSender` on your screen:
-
-```java
-import com.x4yi.x4ui.common.sync.IGuiActionSender;
-import net.minecraft.nbt.NBTTagCompound;
-
-// Configure action sender on screen
-setActionSender((actionId, data) -> {
-    MyModNetwork.CHANNEL.sendToServer(new PacketGuiAction(actionId, data));
-});
-
-// Invoke from button callback
-saveButton.setOnClick(() -> {
-    NBTTagCompound data = new NBTTagCompound();
-    data.setInteger("powerMode", selectedMode);
-    sendActionToServer("set_power_mode", data);
-});
-```
-
----
-
-## What to Avoid (Critical Network & Sidedness Pitfalls)
+## What to Avoid
 
 > [!CAUTION]
-> **1. NEVER import `com.x4yi.x4ui.client.*` packages in server code.**
-> Keep all UI imports isolated within `@SideOnly(Side.CLIENT)` classes. In common classes or containers, use only `State<T>` and `NetworkSyncHelper`.
+> **1. NEVER import `com.x4yi.x4ui.client.*` in common or server classes.**
+> Keep `ScreenRegistry` and `GuiBaseScreen` isolated inside `@SideOnly(Side.CLIENT)`.
 
 > [!CAUTION]
-> **2. NEVER blindly trust client payload in `IGuiActionSender`.**
-> On the server, always verify that the sender player has the container open, is within interaction range of the tile, and that received parameter values are within allowed bounds.
-
-> [!WARNING]
-> **3. NEVER omit the scaling factor when synchronizing float values.**
-> `sendWindowProperty` transports signed 16-bit integers (`short`). When syncing floats, multiply by a constant scale (e.g., `10.0f`) on the server and pass the identical scale to `bindContainerPropertyToFloat()` on the client.
-
-> [!IMPORTANT]
-> **4. NEVER open screens outside `addScheduledTask()`.**
-> Network packets arrive on background threads. Opening GUIs without scheduling it on the main game thread will crash the client.
+> **2. NEVER trust client payloads without `ActionGuard` or server-side validation.**
+> Always validate distance, dimension, permissions, and numeric bounds on the server.
 [/EN]

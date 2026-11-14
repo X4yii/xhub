@@ -2,247 +2,116 @@
 title: "Advanced Components"
 project: "X4UI"
 category: "Components"
-categoryOrder: 4
+categoryOrder: 1
+order: 3
 ---
 
 [ES]
 # Componentes Avanzados
 
-Este documento cubre los componentes especializados de X4UI: `GuiMarkdown` (renderizado de texto enriquecido), `GuiModelRender` (visualización 3D de entidades e ítems), `GuiDropdown` (selectores con scroll y apertura adaptativa) y el sistema jerárquico de Tooltips.
+Esta sección documenta los componentes diseñados para manejar alto rendimiento o entradas de datos complejas.
 
----
+## GuiVirtualList<T>
 
-## GuiMarkdown
+`GuiVirtualList` es el componente más avanzado de X4UI para mostrar listas masivas (cientos o miles de elementos). En lugar de instanciar miles de componentes y saturar la memoria, utiliza **Reciclaje de Vistas (View Recycling)**: solo instancia y renderiza los componentes que son actualmente visibles en la pantalla. A medida que el usuario hace scroll, los componentes que salen por arriba se reciclan y se rellenan con los datos que entran por abajo.
 
-Un motor ligero de análisis sintáctico y renderizado de Markdown dentro del juego para guías, tutoriales y documentación interactiva.
+### Implementación Responsiva
 
-**Paquete:** `com.x4yi.x4ui.client.gui.component.GuiMarkdown`
+Para que las filas de una lista virtual se escalen correctamente bajo el estándar de `FlexLayout`, debes asegurarte de dos cosas:
+1. El `GuiVirtualList` debe recibir un tamaño (mediante `.withPercentWidth()`).
+2. Las filas generadas por tu lambda **deben** solicitar heredar ese tamaño devolviendo su componente con `.withPercentWidth(1.0f)`.
 
-### Uso Básico
-```java
-import com.x4yi.x4ui.client.gui.component.GuiMarkdown;
-
-String doc = "# Guía de Usuario\n\n"
-           + "Bienvenido a la documentación de **X4UI**.\n\n"
-           + "- Arquitectura fluida\n"
-           + "- Tipografía vectorial\n"
-           + "- [Ver Repositorio](https://github.com/X4yi/X4UI)";
-
-GuiMarkdown viewer = new GuiMarkdown(10, 10, 260, doc);
-viewer.onLinkClicked = url -> System.out.println("Enlace abierto: " + url);
-rootPanel.addChild(viewer);
-```
-
----
-
-## GuiModelRender
-
-Renderiza entidades vivas (`EntityLivingBase`) o pilas de objetos (`ItemStack`) en tres dimensiones dentro del espacio 2D de la interfaz gráfica.
-
-**Paquete:** `com.x4yi.x4ui.client.gui.component.GuiModelRender`
-
-### Renderizado de Entidades 3D
-```java
-import com.x4yi.x4ui.client.gui.component.GuiModelRender;
-import net.minecraft.entity.passive.EntitySheep;
-
-GuiModelRender entityPreview = new GuiModelRender(20, 20, 120, 120);
-entityPreview.setEntity(new EntitySheep(mc.world));
-entityPreview.setScale(35.0f);
-entityPreview.setLookAtCursor(true);       // Rota la cabeza hacia el cursor del mouse
-entityPreview.setAllowDragRotation(true);  // Permite al usuario rotar arrastrando
-rootPanel.addChild(entityPreview);
-```
-
-### Aislamiento de Profundidad (Z-Buffer) en r1.0b5
-En X4UI r1.0b5, `GuiModelRender` aísla su búfer de profundidad (`GL_DEPTH_TEST`) mediante `IGraphics`, permitiendo que modelos complejos se rendericen sin que las caras traseras se traspasen sobre las frontales ni contaminen el resto de la interfaz 2D.
-
----
-
-## GuiDropdown
-
-Un selector desplegable genérico enlazado reactivamente a un `State<T>`.
-
-**Paquete:** `com.x4yi.x4ui.client.gui.component.GuiDropdown`
-
-### Constructor y Operación
-```java
-import com.x4yi.x4ui.client.gui.component.GuiDropdown;
-import com.x4yi.x4ui.common.State;
-import java.util.Arrays;
-
-State<String> selectedMode = new State<>("Normal");
-GuiDropdown<String> dropdown = new GuiDropdown<>(
-    10, 10, 160, 20,
-    selectedMode,
-    Arrays.asList("Fácil", "Normal", "Difícil", "Extremo", "Creativo", "Aventura")
-);
-
-rootPanel.addChild(dropdown);
-```
-
-### Características en r1.0b5:
-- **Desplazamiento por Rueda de Ratón:** Cuando la lista de opciones excede el máximo visible (por defecto 5), el menú habilita desplazamiento por rueda y muestra un indicador de barra de scroll interactiva.
-- **Apertura Adaptativa:** Si el selector se encuentra cerca del borde inferior de la pantalla, se despliega automáticamente hacia arriba para no salirse de la ventana.
-- **Elevación de Capa Automática:** Al abrirse, eleva automáticamente su capa visual (`layer + 100`) para renderizarse por encima de los componentes adyacentes, restaurándola al cerrarse.
-
----
-
-## Sistema de Tooltips
-
-Permite desplegar información flotante contextual al pasar el ratón por encima de cualquier componente:
-
-### 1. Tooltip de Texto Simple y Multilínea
-```java
-button.setTooltip("Guardar datos en disco");
-statusIcon.setTooltip("Estado: Óptimo\nLatencia: 15 ms\nPaquetes: 0 perdidos");
-```
-
-### 2. Tooltip de Componente Personalizado
-Puede asignar un `GuiPanel` enriquecido con etiquetas, imágenes o íconos como tooltip:
+### Ejemplo Práctico:
 
 ```java
-GuiPanel richTooltip = new GuiPanel(0, 0, 140, 50);
-richTooltip.addChild(new GuiLabel(4, 4, "Espada de Diamante", 0xFF00FFFF));
-richTooltip.addChild(new GuiLabel(4, 20, "+7 Daño de Ataque", 0xFFAAAAAA));
+import com.x4yi.x4ui.client.gui.component.GuiVirtualList;
+import com.x4yi.x4ui.client.gui.component.GuiLabel;
 
-button.setTooltipComponent(richTooltip);
+// Definición de tu modelo de datos
+class MyItem {
+    public String name;
+    public MyItem(String name) { this.name = name; }
+}
+
+// 1. Instanciar pasándole el Alto por fila (ej. 24px) y los lambdas de construcción y enlazado.
+GuiVirtualList<MyItem> virtualList = (GuiVirtualList<MyItem>) new GuiVirtualList<MyItem>(
+    0, 0, 0, 300, 24,
+    // Constructor (se llama solo para los elementos visibles iniciales):
+    (MyItem item) -> {
+        // MUY IMPORTANTE: La fila debe tener width porcentual 1.0f para llenar el panel
+        return new GuiLabel(0, 0, 0, 20, "", null).withPercentWidth(1.0f);
+    },
+    // Binder (se llama constantemente al hacer scroll para rellenar datos):
+    (GuiComponent comp, MyItem item) -> {
+        GuiLabel label = (GuiLabel) comp;
+        label.setText(item.name);
+    }
+).withPercentWidth(1.0f); // El VirtualList en sí también toma el 100% de su padre.
+
+// Llenarlo con 1000 elementos
+List<MyItem> thousandItems = new ArrayList<>();
+for (int i = 0; i < 1000; i++) {
+    thousandItems.add(new MyItem("Fila " + i));
+}
+virtualList.setItems(thousandItems);
 ```
-
----
-
-## Qué Evitar Hacer (Antipatrones en Componentes Avanzados)
 
 > [!CAUTION]
-> **1. NUNCA dejar animaciones de entidad activas en `GuiModelRender` si no son necesarias.**
-> Desactive las animaciones de reposo si renderiza modelos estáticos para ahorrar rendimiento (`setEnableEntityAnimations(false)`).
-
-> [!WARNING]
-> **2. NUNCA colocar `GuiDropdown` dentro de paneles recortados (con scroll) sin revisar elevación.**
-> La lista emergente podría quedar cortada por el área del panel padre.
-
-> [!IMPORTANT]
-> **3. NUNCA re-parsear cadenas Markdown en cada fotograma.**
-> Actualice `GuiMarkdown` únicamente cuando cambie el texto origen mediante `setText()`.
+> **El Ancho Cero (0 Width) en Filas Virtuales**
+> Si olvidas poner `.withPercentWidth(1.0f)` en la raíz del componente que devuelve el lambda constructor, la fila heredará el ancho absoluto inicial (`0` en el ejemplo superior) y se volverá totalmente invisible, dejándote con una lista aparentemente vacía aunque los datos estén allí.
 [/ES]
 
 [EN]
 # Advanced Components
 
-This document details specialized X4UI components: `GuiMarkdown` (in-game rich text rendering), `GuiModelRender` (3D entity and item rendering), `GuiDropdown` (interactive selectors with scroll and adaptive positioning), and the hierarchical Tooltip subsystem.
+This section documents components designed to handle high performance or complex data inputs.
 
----
+## GuiVirtualList<T>
 
-## GuiMarkdown
+`GuiVirtualList` is the most advanced component in X4UI for displaying massive lists (hundreds or thousands of elements). Instead of instantiating thousands of components and choking memory, it uses **View Recycling**: it only instantiates and renders the components that are currently visible on the screen. As the user scrolls, components that exit the top are recycled and repopulated with data entering from the bottom.
 
-A lightweight, in-game Markdown parsing and rendering component designed for manuals, documentation, and quest dialogs.
+### Responsive Implementation
 
-**Package:** `com.x4yi.x4ui.client.gui.component.GuiMarkdown`
+For the rows of a virtual list to scale correctly under the `FlexLayout` standard, you must ensure two things:
+1. The `GuiVirtualList` itself must receive a width (via `.withPercentWidth()`).
+2. The rows generated by your lambda **must** request to inherit that size by returning their component with `.withPercentWidth(1.0f)`.
 
-### Basic Usage
-```java
-import com.x4yi.x4ui.client.gui.component.GuiMarkdown;
-
-String doc = "# User Manual\n\n"
-           + "Welcome to **X4UI** documentation.\n\n"
-           + "- Retained-mode tree\n"
-           + "- Vector typography\n"
-           + "- [View Repository](https://github.com/X4yi/X4UI)";
-
-GuiMarkdown viewer = new GuiMarkdown(10, 10, 260, doc);
-viewer.onLinkClicked = url -> System.out.println("Opened link: " + url);
-rootPanel.addChild(viewer);
-```
-
----
-
-## GuiModelRender
-
-Renders living entities (`EntityLivingBase`) or item stacks (`ItemStack`) in three dimensions within the 2D user interface.
-
-**Package:** `com.x4yi.x4ui.client.gui.component.GuiModelRender`
-
-### 3D Entity Rendering
-```java
-import com.x4yi.x4ui.client.gui.component.GuiModelRender;
-import net.minecraft.entity.passive.EntitySheep;
-
-GuiModelRender entityPreview = new GuiModelRender(20, 20, 120, 120);
-entityPreview.setEntity(new EntitySheep(mc.world));
-entityPreview.setScale(35.0f);
-entityPreview.setLookAtCursor(true);       // Tracks mouse pointer with head rotation
-entityPreview.setAllowDragRotation(true);  // Allows player click-and-drag rotation
-rootPanel.addChild(entityPreview);
-```
-
-### Depth Buffer Isolation (Z-Buffer) in r1.0b5
-In X4UI r1.0b5, `GuiModelRender` isolates its depth testing pipeline (`GL_DEPTH_TEST`) via `IGraphics`, ensuring intricate 3D models render without back faces shining through front faces or contaminating the 2D GUI canvas.
-
----
-
-## GuiDropdown
-
-A generic selector popup dropdown reactively linked to a `State<T>`.
-
-**Package:** `com.x4yi.x4ui.client.gui.component.GuiDropdown`
-
-### Constructor & Operations
-```java
-import com.x4yi.x4ui.client.gui.component.GuiDropdown;
-import com.x4yi.x4ui.common.State;
-import java.util.Arrays;
-
-State<String> selectedMode = new State<>("Normal");
-GuiDropdown<String> dropdown = new GuiDropdown<>(
-    10, 10, 160, 20,
-    selectedMode,
-    Arrays.asList("Easy", "Normal", "Hard", "Extreme", "Creative", "Adventure")
-);
-
-rootPanel.addChild(dropdown);
-```
-
-### Features in r1.0b5:
-- **Mouse-Wheel Scrolling:** When options exceed the visible limit (default 5), the dropdown activates wheel scrolling and displays an interactive scroll indicator.
-- **Adaptive Upward Opening:** If positioned near the bottom of the screen, the popup automatically opens upward to avoid overflowing the window.
-- **Automatic Layer Elevation:** Elevates its visual layer (`layer + 100`) upon opening so popup options render over sibling components, resetting layer on close.
-
----
-
-## Tooltip Subsystem
-
-Enables contextual floating tooltips upon hovering over any visual component:
-
-### 1. Plain & Multiline Text Tooltips
-```java
-button.setTooltip("Save changes to disk");
-statusIcon.setTooltip("Status: Optimal\nLatency: 15 ms\nPacket Loss: 0%");
-```
-
-### 2. Custom Component Tooltips
-You can assign an entire `GuiPanel` featuring labels, images, or formatted icons as a tooltip:
+### Practical Example:
 
 ```java
-GuiPanel richTooltip = new GuiPanel(0, 0, 140, 50);
-richTooltip.addChild(new GuiLabel(4, 4, "Diamond Sword", 0xFF00FFFF));
-richTooltip.addChild(new GuiLabel(4, 20, "+7 Attack Damage", 0xFFAAAAAA));
+import com.x4yi.x4ui.client.gui.component.GuiVirtualList;
+import com.x4yi.x4ui.client.gui.component.GuiLabel;
 
-button.setTooltipComponent(richTooltip);
+// Definition of your data model
+class MyItem {
+    public String name;
+    public MyItem(String name) { this.name = name; }
+}
+
+// 1. Instantiate passing Row Height (e.g., 24px) and the builder/binder lambdas.
+GuiVirtualList<MyItem> virtualList = (GuiVirtualList<MyItem>) new GuiVirtualList<MyItem>(
+    0, 0, 0, 300, 24,
+    // Builder (called only for the initial visible elements):
+    (MyItem item) -> {
+        // VERY IMPORTANT: The row must have a percentage width of 1.0f to fill the panel
+        return new GuiLabel(0, 0, 0, 20, "", null).withPercentWidth(1.0f);
+    },
+    // Binder (called constantly while scrolling to populate data):
+    (GuiComponent comp, MyItem item) -> {
+        GuiLabel label = (GuiLabel) comp;
+        label.setText(item.name);
+    }
+).withPercentWidth(1.0f); // The VirtualList itself also takes 100% of its parent.
+
+// Fill it with 1000 items
+List<MyItem> thousandItems = new ArrayList<>();
+for (int i = 0; i < 1000; i++) {
+    thousandItems.add(new MyItem("Row " + i));
+}
+virtualList.setItems(thousandItems);
 ```
-
----
-
-## What to Avoid (Advanced Component Pitfalls)
 
 > [!CAUTION]
-> **1. NEVER leave entity idle animations running in `GuiModelRender` unnecessarily.**
-> Call `setEnableEntityAnimations(false)` if static previews suffice to save CPU overhead.
-
-> [!WARNING]
-> **2. NEVER place `GuiDropdown` inside clipped panels without checking elevation.**
-> Scissor clipping from parent scroll panels can truncate opened dropdowns.
-
-> [!IMPORTANT]
-> **3. NEVER re-parse Markdown strings on every render frame.**
-> Update `GuiMarkdown` only when the source text changes via `setText()`.
+> **The Zero Width (0 Width) in Virtual Rows**
+> If you forget to attach `.withPercentWidth(1.0f)` to the root of the component returned by the builder lambda, the row will inherit its initial absolute width (`0` in the example above) and will become completely invisible, leaving you with an apparently empty list even though the data is there.
 [/EN]

@@ -2,198 +2,148 @@
 title: "Remote Assets"
 project: "X4UI"
 category: "General"
-categoryOrder: 2
+categoryOrder: 0
 order: 2
 ---
 
 [ES]
-# 02 - Recursos Remotos (`RemoteResourceManager`)
+# 02 - Recursos Remotos y Asincronía (MediaPipeline)
 
-X4UI incluye un subsistema de recursos remotos para descargar y almacenar en caché archivos multimedia (imágenes, audio, video) desde URLs HTTP/HTTPS públicas de forma asíncrona en segundo plano.
-
----
-
-## 1. Crear un Espacio de Nombres (Namespace)
-
-Cada mod debe crear su propia instancia de `RemoteResourceManager` vinculada a su Mod ID. Esto aísla el directorio de caché local:
-
-```java
-package com.example.mymod.client;
-
-import com.x4yi.x4ui.api.client.resource.RemoteResourceManager;
-
-public class MyClientProxy {
-    public static final RemoteResourceManager ASSETS = RemoteResourceManager.create("mymod");
-}
-```
-
-Los archivos se guardan en `.minecraft/x4ui/cache/<modid>/` nombrados mediante el hash SHA-256 de su URL.
+Este documento describe cómo X4UI maneja operaciones asíncronas, como descargas de imágenes o procesamiento de videos FFmpeg en segundo plano, mediante el sistema desacoplado `MediaPipeline`.
 
 ---
 
-## 2. Descarga y Obtención Asíncrona
+## 1. El Paradigma de Asincronía Desacoplada
 
-El método `getMedia(url)` devuelve la ruta local en disco del archivo si ya se encuentra en caché. Si aún no se ha descargado, inicia la descarga en segundo plano y retorna `null`:
+El `MediaPipeline` está completamente aislado de la UI. Retorna promesas en forma de `CompletableFuture`s, permitiéndole al invocador (o al componente GUI específico) decidir **cuándo** y **cómo** notificar al usuario.
+
+---
+
+## 2. Uso de MediaPipeline
+
+Cuando necesites descargar o procesar recursos externos de manera controlada y aislada en caché por Mod ID, invoca al `MediaPipeline`:
 
 ```java
-String localPath = MyClientProxy.ASSETS.getMedia("https://example.com/assets/banner.png");
+import com.x4yi.x4ui.impl.client.media.MediaPipeline;
 
-if (localPath != null) {
-    // El archivo ya está disponible en disco
-    guiImage.setResource(new ResourceLocation("file://" + localPath));
-} else {
-    // Descargando en segundo plano, mostrar estado de carga
-    statusLabel.setText("Descargando recurso...");
-}
+// Obtener un video o recurso remoto de forma aislada para tu mod
+CompletableFuture<File> mediaFuture = MediaPipeline.getInstance().obtainMedia("mimodid", "https://example.com/video.mp4", (status, percent) -> {
+    System.out.println("Progreso [" + status + "]: " + percent + "%");
+});
+
+mediaFuture.thenAccept(file -> {
+    // El archivo se descargó y optimizó con éxito en .minecraft/x4ui/cache/mimodid/
+    System.out.println("Disponible en: " + file.getAbsolutePath());
+}).exceptionally(ex -> {
+    // Manejar errores de red o fallo de FFmpeg
+    ex.printStackTrace();
+    return null;
+});
 ```
 
 ---
 
-## 3. Integración Directa con Componentes
+## 3. Integración en UI (`GuiVideo` y `GuiImage`)
 
-### `GuiImage` con URL Remota
-`GuiImage` integra internamente el pipeline de descarga asíncrona:
+No necesitas manejar `CompletableFuture`s manualmente si solo quieres mostrar multimedia; los componentes nativos ya incorporan lógica asíncrona no bloqueante con estados de carga internos.
+
+### GuiVideo
+`GuiVideo` actúa como un componente asíncrono auto-contenido. Al asignarle una URL mediante `setVideoUrl(url)`, solicita el recurso al `MediaPipeline` y despliega el estado de carga exclusivamente dentro de sus límites.
 
 ```java
-GuiImage webBanner = new GuiImage(10, 10, 200, 100);
-webBanner.setUrl("https://example.com/images/banner.png");
-rootPanel.addChild(webBanner);
+GuiVideo videoPlayer = (GuiVideo) new GuiVideo(0, 0, 0, 200).withPercentWidth(1.0f);
+videoPlayer.setVideoUrl("https://example.com/trailer.mp4");
+videoPlayer.play();
 ```
-Mientras se descarga, renderiza un placeholder transparente.
 
-### `GuiVideo` con URL Remota
+### GuiImage
+De igual forma, `GuiImage` soporta tanto recursos locales (`ResourceLocation`) como texturas web seguras mediante `setUrl(url)`:
+
 ```java
-GuiVideo player = new GuiVideo(0, 0, 640, 360);
-player.setVideoUrl("https://example.com/media/intro.mp4");
-player.play();
-rootPanel.addChild(player);
+GuiImage banner = (GuiImage) new GuiImage(0, 0, 0, 100).withPercentWidth(1.0f);
+banner.setUrl("https://example.com/banner.png");
 ```
 
 ---
 
-## 4. Mantenimiento y Limpieza de Caché
-
-Para evitar la acumulación indefinida de archivos en disco, utilice `cleanOldCache(int maxAgeDays)`:
-
-```java
-// Eliminar archivos que no se hayan accedido en los últimos 15 días
-MyClientProxy.ASSETS.cleanOldCache(15);
-```
-Se recomienda invocar este método durante `FMLPostInitializationEvent` en el cliente.
-
----
-
-## Qué Evitar Hacer (Antipatrones y Limitaciones)
+## 4. Qué Evitar Hacer (Antipatrones Críticos)
 
 > [!CAUTION]
-> **1. NUNCA realizar descargas HTTP síncronas en el hilo principal.**
-> Nunca utilice `new URL().openStream()` directamente. Utilice siempre `RemoteResourceManager` para evitar congelar el juego.
+> **1. NUNCA bloquear el hilo esperando un CompletableFuture.**
+> Jamás llames a `future.join()` ni `future.get()` dentro de un método de UI (como `update()` o `render()`). Congelarás el cliente de Minecraft entero, forzando un reinicio.
 
-> [!WARNING]
-> **2. NUNCA asumir que `getMedia()` retornará una ruta en el primer cuadro.**
-> Si un archivo no está descargado, retornará `null`. Programe estados de carga.
-
-> [!WARNING]
-> **3. NUNCA suministrar videos en formatos no soportados.**
-> Utilice SÓLO contenedores MP4 con video **H.264** y audio **AAC**. Otros formatos fallarán.
-
-> [!IMPORTANT]
-> **4. NUNCA descargar archivos gigantescos sin advertir al jugador.**
-> Respete el ancho de banda del usuario en conexiones limitadas.
+> [!CAUTION]
+> **2. NUNCA inyectar Toasts globales desde gestores de fondo.**
+> El `MediaPipeline` nunca debe referenciar a `GuiToastManager`. Si deseas notificar la finalización de una descarga, hazlo en el callback `.thenAccept()` situado exclusivamente dentro de la lógica de tu *Screen*.
 [/ES]
 
 [EN]
-# 02 - Remote Assets (`RemoteResourceManager`)
+# 02 - Remote Assets & Asynchrony (MediaPipeline)
 
-X4UI features a remote asset management subsystem designed to asynchronously download and cache multimedia assets (images, audio, video) from public HTTP/HTTPS URLs in the background.
-
----
-
-## 1. Creating a Mod Namespace
-
-Each mod must instantiate its own `RemoteResourceManager` instance tied to its unique Mod ID. This guarantees an isolated local cache namespace:
-
-```java
-package com.example.mymod.client;
-
-import com.x4yi.x4ui.api.client.resource.RemoteResourceManager;
-
-public class MyClientProxy {
-    public static final RemoteResourceManager ASSETS = RemoteResourceManager.create("mymod");
-}
-```
-
-Files are stored in `.minecraft/x4ui/cache/<modid>/` and hashed using SHA-256 for deterministic caching and deduplication.
+This document describes how X4UI handles asynchronous operations such as downloading images or processing FFmpeg videos in the background using the decoupled `MediaPipeline`.
 
 ---
 
-## 2. Asynchronous Retrieval
+## 1. The Decoupled Asynchrony Paradigm
 
-The `getMedia(url)` method returns the local absolute file path if the file is already cached. If the file is still downloading or not present, it triggers a background download and returns `null`:
+The `MediaPipeline` is completely decoupled from the UI. It returns `CompletableFuture`s, allowing the caller (or the specific GUI component) to decide when and how to notify the user.
+
+---
+
+## 2. Using MediaPipeline
+
+When downloading or processing external media in a sandboxed, per-mod cached pipeline, invoke `MediaPipeline`:
 
 ```java
-String localPath = MyClientProxy.ASSETS.getMedia("https://example.com/assets/banner.png");
+import com.x4yi.x4ui.impl.client.media.MediaPipeline;
 
-if (localPath != null) {
-    // File is ready on disk
-    guiImage.setResource(new ResourceLocation("file://" + localPath));
-} else {
-    // Downloading in background; show placeholder or loading state
-    statusLabel.setText("Downloading asset...");
-}
+// Fetch media with per-mod cache isolation (.minecraft/x4ui/cache/<modid>/)
+CompletableFuture<File> mediaFuture = MediaPipeline.getInstance().obtainMedia("mymodid", "https://example.com/video.mp4", (status, percent) -> {
+    System.out.println("Progress [" + status + "]: " + percent + "%");
+});
+
+mediaFuture.thenAccept(file -> {
+    // Media was successfully downloaded, optimized, and cached
+    System.out.println("Ready at: " + file.getAbsolutePath());
+}).exceptionally(ex -> {
+    // Handle network errors or FFmpeg failures
+    ex.printStackTrace();
+    return null;
+});
 ```
 
 ---
 
-## 3. Direct Component Integration
+## 3. UI Integration (GuiVideo & GuiImage)
 
-### `GuiImage` with Remote URLs
-`GuiImage` handles the async download lifecycle out of the box:
+You do not need to manually handle `CompletableFuture`s if you use the native multimedia components, which have built-in localized loading states.
+
+### GuiVideo
+`GuiVideo` acts as a self-contained asynchronous component. When you assign a URL via `setVideoUrl(url)`, it automatically requests the `MediaPipeline` to stream or download it, displaying localized loading progress inside the video component bounds.
 
 ```java
-GuiImage webBanner = new GuiImage(10, 10, 200, 100);
-webBanner.setUrl("https://example.com/images/banner.png");
-rootPanel.addChild(webBanner);
+GuiVideo videoPlayer = (GuiVideo) new GuiVideo(0, 0, 0, 200).withPercentWidth(1.0f);
+videoPlayer.setVideoUrl("https://example.com/trailer.mp4");
+videoPlayer.play();
 ```
-While downloading, it renders a transparent placeholder.
 
-### `GuiVideo` with Remote URLs
+### GuiImage
+Similarly, `GuiImage` supports both local assets (`ResourceLocation`) and remote URLs via `setUrl(url)`:
+
 ```java
-GuiVideo player = new GuiVideo(0, 0, 640, 360);
-player.setVideoUrl("https://example.com/media/intro.mp4");
-player.play();
-rootPanel.addChild(player);
+GuiImage banner = (GuiImage) new GuiImage(0, 0, 0, 100).withPercentWidth(1.0f);
+banner.setUrl("https://example.com/banner.png");
 ```
 
 ---
 
-## 4. Cache Maintenance & Cleanup
-
-To avoid unbounded disk usage, use `cleanOldCache(int maxAgeDays)`:
-
-```java
-// Delete cached files not accessed in the last 15 days
-MyClientProxy.ASSETS.cleanOldCache(15);
-```
-Calling this during `FMLPostInitializationEvent` on the client is recommended.
-
----
-
-## What to Avoid (Pitfalls & Limitations)
+## 4. What To Avoid (Anti-Patterns)
 
 > [!CAUTION]
-> **1. NEVER execute synchronous HTTP network calls on the main thread.**
-> Never call `new URL().openStream()` directly. Always use `RemoteResourceManager` to avoid freezing the game.
+> **1. NEVER block the thread waiting for a CompletableFuture.**
+> Never call `future.join()` or `future.get()` inside `update()` or `render()`. Minecraft will freeze completely.
 
-> [!WARNING]
-> **2. NEVER assume `getMedia()` returns a non-null path immediately.**
-> If an asset is not yet downloaded, it returns `null`. Always design UI loading states.
-
-> [!WARNING]
-> **3. NEVER supply unsupported video formats.**
-> ONLY use MP4 containers with **H.264** video and **AAC** audio. Other formats will fail.
-
-> [!IMPORTANT]
-> **4. NEVER trigger massive multi-hundred-megabyte downloads unprompted.**
-> Be considerate of players on limited internet connections.
+> [!CAUTION]
+> **2. NEVER inject global Toasts from background managers.**
+> The `MediaPipeline` must never know about `GuiToastManager`. If you want to notify the user of a download completion, do it in the `.thenAccept()` callback within your *Screen* class.
 [/EN]

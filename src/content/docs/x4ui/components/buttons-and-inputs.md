@@ -1,328 +1,153 @@
 ---
-title: "Buttons And Inputs"
+title: "Buttons & Inputs"
 project: "X4UI"
 category: "Components"
-categoryOrder: 4
+categoryOrder: 1
+order: 0
 ---
 
 [ES]
-# Botones e Inputs
+# Botones y Entradas (Inputs)
 
-Este documento cubre los componentes interactivos de entrada: `GuiButton`, `GuiTextInput`, `GuiToggle`, `GuiSlider` y sus variantes modulares tipadas (`GuiSliderInt`, `GuiSliderFloat`, `GuiSliderDouble`).
-
----
+Los componentes de interacción primaria están diseñados para aprovechar al máximo la **API Fluida** (Fluent API) y eliminar la necesidad de sobrecargar el código con llamadas repetitivas.
 
 ## GuiButton
 
-Un botón clickeable con estado de hover animado, texto centrado, soporte de fuentes personalizadas y sonido de clic.
+El botón clásico interactivo. Las propiedades visuales y variantes se configuran mediante builders fluidos:
 
-**Paquete:** `com.x4yi.x4ui.client.gui.component.GuiButton`
-
-### Constructores y Uso Fluido
 ```java
-import com.x4yi.x4ui.client.gui.component.GuiButton;
-
-GuiButton saveBtn = new GuiButton(10, 10, 120, 24, "Guardar", () -> {
+GuiButton btn = (GuiButton) new GuiButton(0, 0, 0, 20, "Guardar", () -> {
     System.out.println("Guardado!");
-});
-
-// Configuración encadenable
-saveBtn.withPosition(10, 10)
-       .withSize(140, 24)
-       .withTooltip("Guardar cambios actuales");
-
-rootPanel.addChild(saveBtn);
+})
+.withPercentWidth(1.0f)                           // Dimensionamiento responsivo
+.withVariant(GuiButton.Variant.SUCCESS)            // Variante visual del tema (DEFAULT, PRIMARY, SECONDARY, SUCCESS, DANGER, GHOST)
+.withTooltip("Guarda los cambios permanentemente"); // Tooltip instantáneo al pasar el cursor
 ```
 
-### Estado Deshabilitado
+## Entradas de Texto (GuiTextInput)
+
+`GuiTextInput` gestiona internamente el foco, renderizado de cursor parpadeante, selección y portapapeles.
+
 ```java
-saveBtn.setEnabled(false); // Renderiza en color atenuado y no procesa clics
-```
+GuiTextInput nameInput = (GuiTextInput) new GuiTextInput(0, 0, 0, 20, "")
+    .withPercentWidth(1.0f);
 
----
-
-## GuiTextInput
-
-Un campo de texto avanzado con soporte de desplazamiento horizontal para cadenas largas, selección mediante arrastre de ratón, atajos de edición y texto de placeholder.
-
-**Paquete:** `com.x4yi.x4ui.client.gui.component.GuiTextInput`
-
-### Uso Básico
-```java
-import com.x4yi.x4ui.client.gui.component.GuiTextInput;
-
-GuiTextInput nameInput = new GuiTextInput(10, 40, 200, 20);
+// Configurar placeholder
 nameInput.setPlaceholder("Escribe tu nombre...");
-nameInput.setMaxLength(64);
 
-// Callback al presionar Enter
-nameInput.onEnter(() -> {
-    System.out.println("Texto enviado: " + nameInput.getText());
+// Escuchar cambios de texto
+nameInput.setOnTextChanged(text -> {
+    System.out.println("Texto actual: " + text);
 });
-
-rootPanel.addChild(nameInput);
 ```
 
-### Atajos de Teclado Soportados
-- **Ctrl + A:** Seleccionar todo el texto.
-- **Ctrl + C / X / V:** Copiar, cortar y pegar del portapapeles del sistema.
-- **Ctrl + Backspace:** Borrar la palabra anterior completa.
-- **Ctrl + Delete:** Borrar la palabra siguiente completa.
-- **Shift + Flechas:** Expandir o contraer la selección de texto.
-- **Home / End:** Mover el cursor al inicio o final de la línea.
+### Estados Reactivos
+Para vincular `GuiTextInput` a un `State<String>` reactivo:
 
----
-
-## GuiToggle
-
-Un interruptor tipo píldora interactivo con transición animada, texto indicador adaptativo ("ON" / "OFF") y vinculación a `State<Boolean>`.
-
-**Paquete:** `com.x4yi.x4ui.client.gui.component.GuiToggle`
-
-### Constructores
 ```java
-import com.x4yi.x4ui.client.gui.component.GuiToggle;
-import com.x4yi.x4ui.common.State;
-
-// Vinculado a un State reactivo
-State<Boolean> soundEnabled = new State<>(true);
-GuiToggle soundToggle = new GuiToggle(10, 70, 140, 20, "Sonido", soundEnabled);
-
-// O con valor inicial booleano y callback
-GuiToggle autoSave = new GuiToggle(10, 95, 140, 20, "Auto-Guardar", true, enabled -> {
-    System.out.println("Auto-guardar: " + enabled);
+State<String> userName = new State<>("");
+nameInput.bindState(userName, txt -> {
+    nameInput.setText(txt);
 });
-
-rootPanel.addChild(soundToggle);
 ```
 
-Las dimensiones de la píldora se ajustan automáticamente a la métrica y altura de la tipografía activa (`gfx.getFontHeight()`).
+## Sliders y Toggles
 
----
+### Sliders Numéricos (`GuiSliderInt`, `GuiSliderFloat`, `GuiSliderDouble`)
 
-## GuiSlider (Modular y Tipado)
-
-En X4UI r1.0b5, los deslizadores se encuentran organizados en el paquete `com.x4yi.x4ui.client.gui.component.slider` y ofrecen implementaciones tipadas seguras para `Integer`, `Float` y `Double`, con soporte tanto horizontal como vertical.
-
-**Paquete:** `com.x4yi.x4ui.client.gui.component.slider.*`
-
-### Variantes Disponibles
-
-#### 1. `GuiSliderInt`
-```java
-import com.x4yi.x4ui.client.gui.component.slider.GuiSliderInt;
-import com.x4yi.x4ui.common.State;
-
-State<Integer> fov = new State<>(70);
-GuiSliderInt fovSlider = new GuiSliderInt(10, 120, 160, 16, fov, 30, 110, 1);
-rootPanel.addChild(fovSlider);
-```
-
-#### 2. `GuiSliderFloat`
-```java
-import com.x4yi.x4ui.client.gui.component.slider.GuiSliderFloat;
-
-State<Float> volume = new State<>(0.8f);
-GuiSliderFloat volumeSlider = new GuiSliderFloat(10, 145, 160, 16, volume, 0.0f, 1.0f, 0.05f);
-rootPanel.addChild(volumeSlider);
-```
-
-#### 3. `GuiSliderDouble`
-```java
-import com.x4yi.x4ui.client.gui.component.slider.GuiSliderDouble;
-
-State<Double> sensitivity = new State<>(1.0);
-GuiSliderDouble sensSlider = new GuiSliderDouble(10, 170, 160, 16, sensitivity, 0.1, 5.0, 0.1);
-rootPanel.addChild(sensSlider);
-```
-
-### Orientación Vertical
-Cualquier deslizador puede configurarse en modo vertical mediante `withHorizontal(false)`:
+Permiten seleccionar valores numéricos con arrastre del ratón o teclado:
 
 ```java
-GuiSliderFloat verticalGain = new GuiSliderFloat(200, 40, 16, 120, volume, 0.0f, 1.0f, 0.05f)
-    .withHorizontal(false);
-rootPanel.addChild(verticalGain);
+GuiSliderInt volumeSlider = (GuiSliderInt) new GuiSliderInt(0, 0, 0, 20, 0, 100, 50, "Volumen: ")
+    .withPercentWidth(1.0f);
+
+volumeSlider.setOnValueChanged(val -> {
+    System.out.println("Nuevo volumen: " + val);
+});
 ```
 
----
+### Interruptores y Casillas (`GuiToggle`)
 
-## Qué Evitar Hacer (Antipatrones en Entradas)
+`GuiToggle` proporciona un interruptor booleano animado con soporte para etiquetas:
 
-> [!CAUTION]
-> **1. NUNCA mutar el `State<T>` del slider dentro de su propio listener.**
-> Podría provocar bucles infinitos de actualización.
+```java
+GuiToggle showHUD = (GuiToggle) new GuiToggle(0, 0, 120, 20, "Mostrar HUD", true);
 
-> [!WARNING]
-> **2. NUNCA usar constructores obsoletos de `GuiSlider`.**
-> Utilice siempre las versiones tipadas (`GuiSliderInt`, `GuiSliderFloat`, etc) con `State<T>`.
-
-> [!WARNING]
-> **3. NUNCA dejar campos de `GuiTextInput` sin límite de longitud (`setMaxLength`).**
-> Defina siempre un máximo de caracteres razonable (ej. 32) para prevenir desbordamientos.
-
-> [!IMPORTANT]
-> **4. NUNCA asumir clics si las dimensiones son 0.**
-> Si utiliza anchos porcentuales, asegúrese de que el padre esté dimensionado antes de interactuar.
+showHUD.setOnToggle(enabled -> {
+    System.out.println("HUD activo: " + enabled);
+});
+```
 [/ES]
 
 [EN]
-# Buttons & Inputs
+# Buttons and Inputs
 
-This document details interactive input components: `GuiButton`, `GuiTextInput`, `GuiToggle`, and typed modular sliders (`GuiSliderInt`, `GuiSliderFloat`, `GuiSliderDouble`).
-
----
+Primary interaction components are designed to fully leverage the **Fluent API** and eliminate the need to clutter the code with repetitive setter calls.
 
 ## GuiButton
 
-A clickable button featuring animated hover transitions, centered label text, custom font support, and native click sounds.
+The classic interactive button. Secondary visual properties and variants are configured through fluent builders:
 
-**Package:** `com.x4yi.x4ui.client.gui.component.GuiButton`
-
-### Constructors & Fluent Usage
 ```java
-import com.x4yi.x4ui.client.gui.component.GuiButton;
-
-GuiButton saveBtn = new GuiButton(10, 10, 120, 24, "Save", () -> {
+GuiButton btn = (GuiButton) new GuiButton(0, 0, 0, 20, "Save", () -> {
     System.out.println("Saved!");
+})
+.withPercentWidth(1.0f)                           // Responsive sizing
+.withVariant(GuiButton.Variant.SUCCESS)            // Visual variant from theme (DEFAULT, PRIMARY, SECONDARY, SUCCESS, DANGER, GHOST)
+.withTooltip("Saves changes permanently");         // Instant hover tooltip
+```
+
+## Text Inputs (GuiTextInput)
+
+`GuiTextInput` internally handles focus, blinking cursor rendering, text selection, and clipboard operations.
+
+```java
+GuiTextInput nameInput = (GuiTextInput) new GuiTextInput(0, 0, 0, 20, "")
+    .withPercentWidth(1.0f);
+
+// Configure placeholder
+nameInput.setPlaceholder("Enter your name...");
+
+// Listen for text changes
+nameInput.setOnTextChanged(text -> {
+    System.out.println("Current text: " + text);
 });
-
-// Fluent chaining
-saveBtn.withPosition(10, 10)
-       .withSize(140, 24)
-       .withTooltip("Save current configuration");
-
-rootPanel.addChild(saveBtn);
 ```
 
-### Disabled State
+### Reactive States
+To bind `GuiTextInput` to a reactive `State<String>`:
+
 ```java
-saveBtn.setEnabled(false); // Renders with dimmed text and ignores click events
-```
-
----
-
-## GuiTextInput
-
-A full-featured text field with horizontal scrolling for long inputs, mouse-drag text selection, word-jumping shortcuts, and placeholder text.
-
-**Package:** `com.x4yi.x4ui.client.gui.component.GuiTextInput`
-
-### Basic Usage
-```java
-import com.x4yi.x4ui.client.gui.component.GuiTextInput;
-
-GuiTextInput nameInput = new GuiTextInput(10, 40, 200, 20);
-nameInput.setPlaceholder("Enter username...");
-nameInput.setMaxLength(64);
-
-// Submit callback on Enter key
-nameInput.onEnter(() -> {
-    System.out.println("Submitted: " + nameInput.getText());
+State<String> userName = new State<>("");
+nameInput.bindState(userName, txt -> {
+    nameInput.setText(txt);
 });
-
-rootPanel.addChild(nameInput);
 ```
 
-### Supported Keyboard Shortcuts
-- **Ctrl + A:** Select all text.
-- **Ctrl + C / X / V:** Copy, cut, and paste from system clipboard.
-- **Ctrl + Backspace:** Delete entire previous word.
-- **Ctrl + Delete:** Delete entire next word.
-- **Shift + Arrows:** Expand or contract character selection.
-- **Home / End:** Move caret to start or end of text.
+## Sliders and Toggles
 
----
+### Numeric Sliders (`GuiSliderInt`, `GuiSliderFloat`, `GuiSliderDouble`)
 
-## GuiToggle
+Allow continuous value adjustments via mouse drag or keyboard navigation:
 
-An animated iOS-style pill toggle switch with adaptive "ON" / "OFF" text badges, bound to `State<Boolean>`.
-
-**Package:** `com.x4yi.x4ui.client.gui.component.GuiToggle`
-
-### Constructors
 ```java
-import com.x4yi.x4ui.client.gui.component.GuiToggle;
-import com.x4yi.x4ui.common.State;
+GuiSliderInt volumeSlider = (GuiSliderInt) new GuiSliderInt(0, 0, 0, 20, 0, 100, 50, "Volume: ")
+    .withPercentWidth(1.0f);
 
-// Reactive state binding
-State<Boolean> soundEnabled = new State<>(true);
-GuiToggle soundToggle = new GuiToggle(10, 70, 140, 20, "Sound", soundEnabled);
-
-// Or with primitive boolean and listener callback
-GuiToggle autoSave = new GuiToggle(10, 95, 140, 20, "Auto-Save", true, enabled -> {
-    System.out.println("Auto-save: " + enabled);
+volumeSlider.setOnValueChanged(val -> {
+    System.out.println("New volume: " + val);
 });
-
-rootPanel.addChild(soundToggle);
 ```
 
-Pill badge width and height adapt automatically to the active typography font metrics (`gfx.getFontHeight()`).
+### Switches and Checkboxes (`GuiToggle`)
 
----
-
-## GuiSlider (Modular & Typed)
-
-In X4UI r1.0b5, sliders reside under `com.x4yi.x4ui.client.gui.component.slider` and provide type-safe implementations for `Integer`, `Float`, and `Double`, supporting horizontal and vertical orientations.
-
-**Package:** `com.x4yi.x4ui.client.gui.component.slider.*`
-
-### Available Variants
-
-#### 1. `GuiSliderInt`
-```java
-import com.x4yi.x4ui.client.gui.component.slider.GuiSliderInt;
-import com.x4yi.x4ui.common.State;
-
-State<Integer> fov = new State<>(70);
-GuiSliderInt fovSlider = new GuiSliderInt(10, 120, 160, 16, fov, 30, 110, 1);
-rootPanel.addChild(fovSlider);
-```
-
-#### 2. `GuiSliderFloat`
-```java
-import com.x4yi.x4ui.client.gui.component.slider.GuiSliderFloat;
-
-State<Float> volume = new State<>(0.8f);
-GuiSliderFloat volumeSlider = new GuiSliderFloat(10, 145, 160, 16, volume, 0.0f, 1.0f, 0.05f);
-rootPanel.addChild(volumeSlider);
-```
-
-#### 3. `GuiSliderDouble`
-```java
-import com.x4yi.x4ui.client.gui.component.slider.GuiSliderDouble;
-
-State<Double> sensitivity = new State<>(1.0);
-GuiSliderDouble sensSlider = new GuiSliderDouble(10, 170, 160, 16, sensitivity, 0.1, 5.0, 0.1);
-rootPanel.addChild(sensSlider);
-```
-
-### Vertical Orientation
-Any slider can switch to vertical mode using `withHorizontal(false)`:
+`GuiToggle` provides a smooth, animated boolean switch with label support:
 
 ```java
-GuiSliderFloat verticalGain = new GuiSliderFloat(200, 40, 16, 120, volume, 0.0f, 1.0f, 0.05f)
-    .withHorizontal(false);
-rootPanel.addChild(verticalGain);
+GuiToggle showHUD = (GuiToggle) new GuiToggle(0, 0, 120, 20, "Show HUD", true);
+
+showHUD.setOnToggle(enabled -> {
+    System.out.println("HUD enabled: " + enabled);
+});
 ```
-
----
-
-## What to Avoid (Input Anti-Patterns)
-
-> [!CAUTION]
-> **1. NEVER mutate slider `State<T>` inside its own listener.**
-> Mutating state in self-listeners without deduplication triggers infinite update loops.
-
-> [!WARNING]
-> **2. NEVER use legacy `GuiSlider` constructors.**
-> Always use typed versions (`GuiSliderInt`, `GuiSliderFloat`, etc) with `State<T>`.
-
-> [!WARNING]
-> **3. NEVER leave `GuiTextInput` instances without maximum lengths (`setMaxLength`).**
-> Always enforce bounds (e.g. 32 chars) to prevent overflow abuse.
-
-> [!IMPORTANT]
-> **4. NEVER assume button clicks register when dimensions are zero.**
-> When using percentage widths, ensure parent containers are sized before interaction.
 [/EN]

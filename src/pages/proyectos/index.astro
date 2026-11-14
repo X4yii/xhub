@@ -3,30 +3,60 @@ import Layout from '../../layouts/Layout.astro';
 ---
 <Layout
   title="Proyectos | XHub — X4yi"
-  description="Directorio de proyectos de X4yi: X4UI Framework (GUI para Minecraft Forge 1.12.2) y LethalWeaponry Mod. Mods de Minecraft desarrollados por x4ui."
-  keywords="X4yi, x4ui, X4UI Framework, LethalWeaponry, Minecraft mod, Forge 1.12.2, proyectos Minecraft"
+  description="Directorio de proyectos de X4yi: ModularVoiceX4yi (MVX), X4UI Framework (GUI para Minecraft Forge 1.12.2) y LethalWeaponry Mod."
+  keywords="X4yi, x4ui, ModularVoiceX4yi, MVX, PipeWire voice changer, X4UI Framework, LethalWeaponry, Minecraft mod, Forge 1.12.2"
 >
   <main class="container">
     <header class="section-header">
-        <h1>Proyectos</h1>
-        <p>Directorio de herramientas, frameworks y mods desarrollados por X4yi.</p>
+        <h1>
+            <span data-i18n="es">Proyectos</span>
+            <span data-i18n="en">Projects</span>
+        </h1>
+        <p>
+            <span data-i18n="es">Directorio de herramientas, frameworks y mods desarrollados por X4yi.</span>
+            <span data-i18n="en">Directory of tools, frameworks, and mods developed by X4yi.</span>
+        </p>
     </header>
     <div class="card-grid">
         <div class="project-card">
-            <h2>LethalWeaponry</h2>
-            <p>A Minecraft Forge 1.12.2 combat overhaul featuring 4 weapon types (WarHammer, Katana, Scythe, Chain Blade) with unique mechanics, advanced capabilities, and fully synced multiplayer networking.</p>
+            <span class="project-tag">Linux / PipeWire / Rust</span>
+            <h2>ModularVoiceX4yi (MVX)</h2>
+            <p>
+                <span data-i18n="es">Estudio vocal modular en tiempo real sobre PipeWire. Incluye rack DSP de ultra baja latencia (&lt;15 ms), supresión neuronal de ruido (DeepFilterNet3), biometría vocal (CAM++) y clonación neuronal de timbre (OpenVoice V2).</span>
+                <span data-i18n="en">Real-time modular vocal studio powered by PipeWire. Features an ultra-low-latency DSP rack (&lt;15 ms), neural noise suppression (DeepFilterNet3), vocal biometrics (CAM++), and neural timbre cloning (OpenVoice V2).</span>
+            </p>
             <div class="project-links">
-                <a href="/xhub/docs/lethalweaponry/00-introduction/00-overview/" class="external-link">Docs &rarr;</a>
-                <a href="https://github.com/X4yii/LethalWeaponry" target="_blank" class="external-link">GitHub &rarr;</a>
-                <a href="https://www.curseforge.com/minecraft/mc-mods/lethalweaponry" target="_blank" class="external-link">CurseForge &rarr;</a>
-                <a href="https://modrinth.com/mod/lethalweaponryy" target="_blank" class="external-link">Modrinth &rarr;</a>
+                <a href="/xhub/docs/modularvoicex4yi/00-overview/" class="external-link">Docs &rarr;</a>
+                <a href="/xhub/changelogs/modularvoicex4yi/" class="external-link">Changelogs &rarr;</a>
+                <a href="https://github.com/X4yii/ModularVoiceX4yi" target="_blank" class="external-link">GitHub &rarr;</a>
             </div>
         </div>
         <div class="project-card">
+            <span class="project-tag">Framework / Forge 1.12.2</span>
             <h2>X4UI Framework</h2>
-            <p>A modern, high-performance, object-oriented GUI framework for Minecraft Forge 1.12.2. Includes FlexBox layouts and DOM structure.</p>
+            <p>
+                <span data-i18n="es">Framework moderno de interfaz gráfica de modo retenido para Minecraft Forge 1.12.2. Incluye layouts FlexBox, árbol de componentes DOM, tipografía vectorial TrueType, estados reactivos y reproducción de video Zero-Copy.</span>
+                <span data-i18n="en">A modern, high-performance retained-mode GUI framework for Minecraft Forge 1.12.2. Includes FlexBox layouts, DOM component tree, TrueType vector typography, reactive state, and Zero-Copy video playback.</span>
+            </p>
             <div class="project-links">
-                <a href="https://github.com/X4yii/X4UI" target="_blank" class="external-link">GitHub &rarr;</a>
+                <a href="/xhub/docs/x4ui/getting-started/" class="external-link">Docs &rarr;</a>
+                <a href="/xhub/changelogs/x4ui/" class="external-link">Changelogs &rarr;</a>
+                <a href="https://github.com/X4yii/x4ui" target="_blank" class="external-link">GitHub &rarr;</a>
+            </div>
+        </div>
+        <div class="project-card">
+            <span class="project-tag">Minecraft Mod / Forge 1.12.2</span>
+            <h2>LethalWeaponry</h2>
+            <p>
+                <span data-i18n="es">Expansión de combate para Minecraft Forge 1.12.2 con 4 arquetipos de armas (WarHammer, Katana, Scythe, Chain Blade), mecánicas activas, encantamientos exclusivos y sincronización multijugador completa.</span>
+                <span data-i18n="en">A Minecraft Forge 1.12.2 combat overhaul featuring 4 weapon types (WarHammer, Katana, Scythe, Chain Blade) with unique mechanics, advanced capabilities, and fully synced multiplayer networking.</span>
+            </p>
+            <div class="project-links">
+                <a href="/xhub/docs/lethalweaponry/00-introduction/00-overview/" class="external-link">Docs &rarr;</a>
+                <a href="/xhub/changelogs/lethalweaponry/" class="external-link">Changelogs &rarr;</a>
+                <a href="https://github.com/X4yii/Lethalweaponry" target="_blank" class="external-link">GitHub &rarr;</a>
+                <a href="https://www.curseforge.com/minecraft/mc-mods/lethalweaponry" target="_blank" class="external-link">CurseForge &rarr;</a>
+                <a href="https://modrinth.com/mod/lethalweaponryy" target="_blank" class="external-link">Modrinth &rarr;</a>
             </div>
         </div>
     </div>
@@ -39,11 +69,12 @@ import Layout from '../../layouts/Layout.astro';
   p { color: var(--text-secondary); font-size: 1.1rem; }
   .card-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
       gap: 1.5rem;
   }
   .project-card {
-      display: block;
+      display: flex;
+      flex-direction: column;
       padding: 1.5rem;
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid rgba(255,255,255,0.05);
@@ -56,6 +87,15 @@ import Layout from '../../layouts/Layout.astro';
       border-color: var(--accent-projects);
       transform: translateY(-4px);
   }
+  .project-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--accent-projects);
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+      display: inline-block;
+  }
   .project-card h2 {
       color: var(--text-primary);
       font-size: 1.5rem;
@@ -64,6 +104,7 @@ import Layout from '../../layouts/Layout.astro';
   .project-card p {
       font-size: 0.95rem;
       margin-bottom: 1.5rem;
+      line-height: 1.6;
   }
   .project-links {
       display: flex;

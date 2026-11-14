@@ -1,246 +1,83 @@
 ---
-title: "Containers And Panels"
+title: "Containers & Panels"
 project: "X4UI"
 category: "Components"
-categoryOrder: 4
+categoryOrder: 1
+order: 1
 ---
 
 [ES]
 # Contenedores y Paneles
 
-Este documento cubre los componentes contenedores fundamentales de X4UI: `GuiPanel`, `GuiScrollPanel`, `GuiVirtualList` y `GuiSlot`.
-
----
+Los contenedores son los bloques de construcción estructurales de X4UI. Su propósito principal es hospedar otros componentes y gestionar su disposición a través de `FlexLayout`.
 
 ## GuiPanel
 
-El bloque de construcción estructural fundamental. Aloja componentes hijos y gestiona su disposición mediante `FlexLayout` o coordenadas locales.
+El contenedor básico por excelencia. Por defecto, no dibuja fondo a menos que se le asigne un `GuiSprite` explícitamente o tenga un tema con un panel de fondo asignado.
 
-**Paquete:** `com.x4yi.x4ui.client.gui.component.GuiPanel`
-
-### Constructor y Configuración
 ```java
-import com.x4yi.x4ui.client.gui.component.GuiPanel;
 import com.x4yi.x4ui.client.gui.component.layout.FlexDirection;
-import com.x4yi.x4ui.client.gui.utils.Insets;
 
-GuiPanel panel = new GuiPanel(10, 10, 240, 320);
-panel.setFlexDirection(FlexDirection.VERTICAL);
-panel.setGap(6);
-panel.setPadding(new Insets(8));
-
-panel.addChild(new GuiButton(0, 0, 200, 20, "Opción 1", () -> {}));
-panel.addChild(new GuiButton(0, 0, 200, 20, "Opción 2", () -> {}));
-
-rootPanel.addChild(panel);
+GuiPanel panel = new GuiPanel(0, 0, 0, 0).withPercentWidth(1.0f);
+panel.setFlexDirection(FlexDirection.VERTICAL); // Apilar verticalmente
+panel.setGap(5); // 5 píxeles de separación
+panel.setPadding(new Insets(10)); // 10 píxeles de padding interno
 ```
-
----
 
 ## GuiScrollPanel
 
-Un panel con viewport recortado mediante hardware scissor, desplazamiento suave interpolado, soporte para rueda del ratón y barra de desplazamiento interactiva arrastrable.
+Este panel incluye todo el comportamiento de `GuiPanel`, pero encapsula a sus hijos dentro de un **viewport de desplazamiento**. Posee su propio sub-contenedor llamado `contentPanel`.
 
-**Paquete:** `com.x4yi.x4ui.client.gui.component.GuiScrollPanel`
-
-### Constructor y Operaciones
-```java
-import com.x4yi.x4ui.client.gui.component.GuiScrollPanel;
-
-GuiScrollPanel scrollList = new GuiScrollPanel(10, 10, 220, 200);
-
-for (int i = 0; i < 50; i++) {
-    final int idx = i;
-    scrollList.addChild(new GuiButton(0, 0, 190, 20, "Elemento #" + idx, () -> {
-        System.out.println("Seleccionado: " + idx);
-    }));
-}
-
-rootPanel.addChild(scrollList);
-```
-
-### Sesión de Desplazamiento Bloqueada (Sticky Scroll Session)
-En X4UI r1.0b5, cuando el usuario interactúa con la rueda del ratón sobre un panel con scroll anidado, el foco de desplazamiento se bloquea temporalmente al panel bajo el cursor para evitar transferencias erráticas al panel padre.
-
----
-
-## GuiVirtualList
-
-Una lista virtualizada de alto rendimiento basada en el patrón *ViewHolder*. En lugar de instanciar cientos o miles de componentes en memoria, solo mantiene creados aquellos elementos visibles en el viewport actual.
-
-**Paquete:** `com.x4yi.x4ui.client.gui.component.GuiVirtualList`
-
-### Constructor y Uso
-```java
-import com.x4yi.x4ui.client.gui.component.GuiVirtualList;
-import com.x4yi.x4ui.client.gui.component.GuiButton;
-
-List<String> items = new ArrayList<>();
-for (int i = 0; i < 5000; i++) {
-    items.add("Registro " + i);
-}
-
-// itemHeight: 24 px por fila fija
-GuiVirtualList<String> virtualList = new GuiVirtualList<>(
-    10, 10, 250, 300, 24,
-    item -> new GuiButton(0, 0, 230, 20, item, () -> System.out.println("Click en " + item))
-);
-
-virtualList.setItems(items);
-rootPanel.addChild(virtualList);
-```
-
----
-
-## GuiSlot
-
-Envuelve un `Slot` de Minecraft vanilla permitiendo ubicarlo dentro de la jerarquía visual de X4UI. En cada tick, `GuiSlot` sincroniza sus coordenadas locales calculando la posición absoluta en pantalla y trasladándola a `slot.xPos` y `slot.yPos`.
-
-**Paquete:** `com.x4yi.x4ui.client.gui.component.GuiSlot`
+### La Regla del Ancho en GuiScrollPanel
+Por un principio de responsabilidad de Layout, el `contentPanel` interno hereda el 100% del ancho (`.withPercentWidth(1.0f)`) automáticamente desde su constructor si su `GuiScrollPanel` padre recibe un ancho.
+Aun así, al inicializar el padre responsivamente, la sintaxis correcta es:
 
 ```java
-import com.x4yi.x4ui.client.gui.component.GuiSlot;
-import net.minecraft.inventory.Slot;
+GuiScrollPanel scroll = (GuiScrollPanel) new GuiScrollPanel(0, 0, 0, 250).withPercentWidth(1.0f);
+scroll.getContentPanel().setFlexDirection(FlexDirection.VERTICAL); // Configurar el layout interno
 
-// Dentro de un GuiBaseContainer
-for (Slot slot : inventorySlots.inventorySlots) {
-    gridPanel.addChild(new GuiSlot(slot, this));
-}
+scroll.addChild(card1); // Nota: GuiScrollPanel redirige los addChildren a su contentPanel
+scroll.addChild(card2);
 ```
-
----
-
-## Qué Evitar Hacer (Antipatrones en Contenedores)
-
-> [!CAUTION]
-> **1. NUNCA agregar miles de hijos a un `GuiPanel` convencional.**
-> Si tiene más de 100 elementos (ej. listas enormes), utilice siempre `GuiVirtualList` para reciclar memoria.
 
 > [!WARNING]
-> **2. NUNCA alojar un `GuiVirtualList` sin altura definida.**
-> Requiere un límite espacial para saber cuántos elementos renderizar.
-
-> [!WARNING]
-> **3. NUNCA modificar `xPos`/`yPos` de un `Slot` de Minecraft.**
-> Si utiliza `GuiSlot`, este tomará el control absoluto de las coordenadas y anulará cualquier cambio manual.
+> No confundas `scroll.setFlexDirection(...)` con `scroll.getContentPanel().setFlexDirection(...)`. El primero afecta a cómo el panel exterior acomoda sus elementos (generalmente inútil, ya que su único hijo interno directo es el `contentPanel`), mientras que el segundo define cómo se organizan los elementos que tú agregas al scroll.
 [/ES]
 
 [EN]
-# Containers & Panels
+# Containers and Panels
 
-This document covers X4UI's fundamental layout containers: `GuiPanel`, `GuiScrollPanel`, `GuiVirtualList`, and `GuiSlot`.
-
----
+Containers are the structural building blocks of X4UI. Their primary purpose is to host other components and manage their arrangement using `FlexLayout`.
 
 ## GuiPanel
 
-The primary structural container. Groups child components and manages their layout via `FlexLayout` or relative coordinates.
+The basic quintessential container. By default, it does not draw a background unless explicitly assigned a `GuiSprite` or if it has a theme with a background panel assigned.
 
-**Package:** `com.x4yi.x4ui.client.gui.component.GuiPanel`
-
-### Constructor & Configuration
 ```java
-import com.x4yi.x4ui.client.gui.component.GuiPanel;
 import com.x4yi.x4ui.client.gui.component.layout.FlexDirection;
-import com.x4yi.x4ui.client.gui.utils.Insets;
 
-GuiPanel panel = new GuiPanel(10, 10, 240, 320);
-panel.setFlexDirection(FlexDirection.VERTICAL);
-panel.setGap(6);
-panel.setPadding(new Insets(8));
-
-panel.addChild(new GuiButton(0, 0, 200, 20, "Option 1", () -> {}));
-panel.addChild(new GuiButton(0, 0, 200, 20, "Option 2", () -> {}));
-
-rootPanel.addChild(panel);
+GuiPanel panel = new GuiPanel(0, 0, 0, 0).withPercentWidth(1.0f);
+panel.setFlexDirection(FlexDirection.VERTICAL); // Stack vertically
+panel.setGap(5); // 5 pixels of spacing
+panel.setPadding(new Insets(10)); // 10 pixels of internal padding
 ```
-
----
 
 ## GuiScrollPanel
 
-A container featuring hardware scissor clipping, smooth interpolated scrolling, mouse wheel support, and an interactive draggable scrollbar.
+This panel includes all the behavior of `GuiPanel` but encapsulates its children within a **scrolling viewport**. It possesses its own sub-container called `contentPanel`.
 
-**Package:** `com.x4yi.x4ui.client.gui.component.GuiScrollPanel`
-
-### Constructor & Operations
-```java
-import com.x4yi.x4ui.client.gui.component.GuiScrollPanel;
-
-GuiScrollPanel scrollList = new GuiScrollPanel(10, 10, 220, 200);
-
-for (int i = 0; i < 50; i++) {
-    final int idx = i;
-    scrollList.addChild(new GuiButton(0, 0, 190, 20, "Item #" + idx, () -> {
-        System.out.println("Selected: " + idx);
-    }));
-}
-
-rootPanel.addChild(scrollList);
-```
-
-### Sticky Scroll Sessions
-In X4UI r1.0b5, mouse-wheel scrolling over nested scrollable panels temporarily locks focus to the targeted child panel, preventing erratic scroll transfers to parent containers.
-
----
-
-## GuiVirtualList
-
-A high-performance virtualized list implementing the *ViewHolder* pattern. Rather than allocating components for thousands of rows, it only instantiates widgets currently visible within the scroll viewport.
-
-**Package:** `com.x4yi.x4ui.client.gui.component.GuiVirtualList`
-
-### Constructor & Usage
-```java
-import com.x4yi.x4ui.client.gui.component.GuiVirtualList;
-import com.x4yi.x4ui.client.gui.component.GuiButton;
-
-List<String> items = new ArrayList<>();
-for (int i = 0; i < 5000; i++) {
-    items.add("Entry " + i);
-}
-
-// Fixed 24 px row height
-GuiVirtualList<String> virtualList = new GuiVirtualList<>(
-    10, 10, 250, 300, 24,
-    item -> new GuiButton(0, 0, 230, 20, item, () -> System.out.println("Clicked " + item))
-);
-
-virtualList.setItems(items);
-rootPanel.addChild(virtualList);
-```
-
----
-
-## GuiSlot
-
-Wraps a vanilla Minecraft `Slot`, seamlessly positioning it within the X4UI component tree. On each game tick, `GuiSlot` synchronizes its screen position into `slot.xPos` and `slot.yPos`.
-
-**Package:** `com.x4yi.x4ui.client.gui.component.GuiSlot`
+### The Width Rule in GuiScrollPanel
+By a principle of Layout responsibility, the internal `contentPanel` automatically inherits 100% of the width (`.withPercentWidth(1.0f)`) from its constructor if its parent `GuiScrollPanel` receives a width.
+Even so, when initializing the parent responsively, the correct syntax is:
 
 ```java
-import com.x4yi.x4ui.client.gui.component.GuiSlot;
-import net.minecraft.inventory.Slot;
+GuiScrollPanel scroll = (GuiScrollPanel) new GuiScrollPanel(0, 0, 0, 250).withPercentWidth(1.0f);
+scroll.getContentPanel().setFlexDirection(FlexDirection.VERTICAL); // Configure internal layout
 
-// Inside GuiBaseContainer
-for (Slot slot : inventorySlots.inventorySlots) {
-    gridPanel.addChild(new GuiSlot(slot, this));
-}
+scroll.addChild(card1); // Note: GuiScrollPanel redirects addChildren to its contentPanel
+scroll.addChild(card2);
 ```
-
----
-
-## What to Avoid (Container Pitfalls)
-
-> [!CAUTION]
-> **1. NEVER populate standard `GuiPanel` with thousands of items.**
-> When rendering large datasets (100+ items), always use `GuiVirtualList` to recycle memory.
 
 > [!WARNING]
-> **2. NEVER place a `GuiVirtualList` inside a container with zero height.**
-> Virtualization requires a definite spatial bound to know how many rows to render.
-
-> [!WARNING]
-> **3. NEVER manually mutate `slot.xPos` or `slot.yPos` when using `GuiSlot`.**
-> `GuiSlot` takes absolute ownership of coordinates; manual assignments will be overridden.
+> Do not confuse `scroll.setFlexDirection(...)` with `scroll.getContentPanel().setFlexDirection(...)`. The former affects how the outer panel arranges its elements (usually useless, since its only direct internal child is the `contentPanel`), while the latter defines how the elements you add to the scroll are organized.
 [/EN]

@@ -1,27 +1,53 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
+
 const allDocs = await getCollection('docs');
 const projectsMap = new Map();
+
 allDocs.forEach(doc => {
     const proj = doc.data.project;
     if (!projectsMap.has(proj)) {
         projectsMap.set(proj, doc);
     } else {
         const existing = projectsMap.get(proj);
-        const docOrder = doc.data.categoryOrder ?? 99;
-        const existingOrder = existing.data.categoryOrder ?? 99;
-        if (docOrder < existingOrder) {
+        const docCatOrder = doc.data.categoryOrder ?? 99;
+        const existingCatOrder = existing.data.categoryOrder ?? 99;
+        const docOrder = doc.data.order ?? 99;
+        const existingOrder = existing.data.order ?? 99;
+        // Prefer lowest non-negative categoryOrder (e.g. 0 = Introduction/Getting Started), then lowest order
+        const normDocCat = docCatOrder < 0 ? 50 : docCatOrder;
+        const normExCat = existingCatOrder < 0 ? 50 : existingCatOrder;
+        if (normDocCat < normExCat || (normDocCat === normExCat && docOrder < existingOrder)) {
             projectsMap.set(proj, doc);
         }
     }
 });
+
+const projectMeta: Record<string, { tag: string; es: string; en: string }> = {
+    ModularVoiceX4yi: {
+        tag: 'Audio / PipeWire / Rust',
+        es: 'Manual de instalación, TUI/CLI, rack DSP, supresión neuronal DeepFilterNet3, biometría CAM++ y clonación OpenVoice V2.',
+        en: 'Installation guide, TUI/CLI reference, DSP rack, DeepFilterNet3 denoiser, CAM++ biometrics, and OpenVoice V2 cloning.'
+    },
+    X4UI: {
+        tag: 'GUI Framework',
+        es: 'Documentación de arquitectura DOM retenida, FlexLayout, IGraphics, tipografía TrueType, estados reactivos y video Zero-Copy.',
+        en: 'Retained DOM architecture, FlexLayout, IGraphics, TrueType typography, reactive states, and Zero-Copy video documentation.'
+    },
+    LethalWeaponry: {
+        tag: 'Minecraft Mod',
+        es: 'Guía de usuario, armas (WarHammer, Katana, Scythe, Chain Blade), encantamientos, fórmulas matemáticas y configuración JSON.',
+        en: 'User guide, weapons (WarHammer, Katana, Scythe, Chain Blade), enchantments, math formulas, and JSON configuration.'
+    }
+};
+
 const projects = Array.from(projectsMap.values());
 ---
 <Layout
   title="Documentación | XHub — X4yi"
-  description="Documentación oficial de los mods y frameworks de X4yi (x4ui): X4UI Framework para Minecraft Forge 1.12.2 y LethalWeaponry Mod."
-  keywords="X4yi, x4ui, X4UI docs, LethalWeaponry docs, Minecraft mod documentation, Forge 1.12.2"
+  description="Documentación oficial de los proyectos de X4yi: ModularVoiceX4yi (MVX), X4UI Framework y LethalWeaponry Mod."
+  keywords="X4yi, x4ui, ModularVoiceX4yi docs, MVX docs, X4UI docs, LethalWeaponry docs, PipeWire, Forge 1.12.2"
 >
   <main class="container">
     <header class="section-header">
@@ -35,16 +61,23 @@ const projects = Array.from(projectsMap.values());
         </p>
     </header>
     <div class="card-grid">
-      {projects.map(doc => (
-        <a href={`/xhub/docs/${doc.id}/`} class="doc-card">
-            <span class="project-tag">Framework</span>
-            <h2>{doc.data.project} &rarr;</h2>
-            <p class="proj-desc">
-                <span data-i18n="es">Documentación oficial.</span>
-                <span data-i18n="en">Official documentation.</span>
-            </p>
-        </a>
-      ))}
+      {projects.map(doc => {
+        const meta = projectMeta[doc.data.project] || {
+            tag: 'Project',
+            es: 'Documentación oficial.',
+            en: 'Official documentation.'
+        };
+        return (
+          <a href={`/xhub/docs/${doc.id}/`} class="doc-card">
+              <span class="project-tag">{meta.tag}</span>
+              <h2>{doc.data.project} &rarr;</h2>
+              <p class="proj-desc">
+                  <span data-i18n="es">{meta.es}</span>
+                  <span data-i18n="en">{meta.en}</span>
+              </p>
+          </a>
+        );
+      })}
     </div>
   </main>
 </Layout>
@@ -90,6 +123,7 @@ const projects = Array.from(projectsMap.values());
       color: var(--text-secondary);
       font-size: 0.95rem;
       margin: 0;
+      line-height: 1.6;
   }
 
   @media (max-width: 768px) {

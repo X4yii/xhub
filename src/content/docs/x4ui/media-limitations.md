@@ -2,8 +2,8 @@
 title: "Media Limitations"
 project: "X4UI"
 category: "General"
-categoryOrder: 3
-order: 4
+categoryOrder: 0
+order: 9
 ---
 
 [ES]

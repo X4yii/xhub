@@ -2,280 +2,94 @@
 title: "Multimedia"
 project: "X4UI"
 category: "Components"
-categoryOrder: 4
+categoryOrder: 1
+order: 2
 ---
 
 [ES]
-# Componentes Multimedia
+# Componentes Multimedia (Videos e Imágenes)
 
-Este documento cubre los componentes de medios de X4UI: `GuiImage` (texturas, URLs y 9-slice), `GuiSprite` (motor de animación 2D), `GuiVideo` (reproducción de video) y `GuiAudio` (audio streaming).
+En X4UI, los componentes multimedia están diseñados bajo el estricto Principio de Sustitución de Liskov.
 
----
+## GuiImage (Imágenes Estáticas y 9-Slice)
 
-## GuiImage (Texturas, URLs y 9-Slice)
+`GuiImage` maneja tanto texturas empaquetadas (ResourceLocation) como imágenes descargadas de la web, con soporte de dibujado normal y **NineSlice**.
 
-**Paquete:** `com.x4yi.x4ui.client.gui.component.GuiImage`
-
-### 1. Recurso Local y URL Remota
-```java
-import com.x4yi.x4ui.client.gui.component.GuiImage;
-import net.minecraft.util.ResourceLocation;
-
-// Textura local del mod
-GuiImage icon = new GuiImage(10, 10, 64, 64, new ResourceLocation("mymod", "textures/icon.png"));
-
-// Imagen remota por URL
-GuiImage webBanner = new GuiImage(10, 80, 200, 100, "https://example.com/banner.png");
-```
-
-### 2. Soporte 9-Slice (Nine-Patch) en `GuiImage`
-En X4UI r1.0b5, el escalado 9-slice se configura directamente en `GuiImage` mediante `NineSliceConfig`:
+### Carga de Texturas Web
 
 ```java
-import com.x4yi.x4ui.client.gui.component.image.NineSliceConfig;
-import com.x4yi.x4ui.client.gui.utils.Insets;
-
-GuiImage frame = new GuiImage(10, 10, 300, 200, new ResourceLocation("mymod", "textures/frame.png"))
-    .withNineSlice(new NineSliceConfig(new Insets(8), 64, 64)); // Margen de corte 8 px en textura de 64x64
-
-rootPanel.addChild(frame);
+GuiImage banner = (GuiImage) new GuiImage(0, 0, 0, 150).withPercentWidth(1.0f);
+// Descarga asíncrona; el juego no se congela
+banner.setImage("https://ejemplo.com/fondo.jpg");
 ```
 
----
-
-## GuiSprite (Motor de Animación 2D)
-
-**Paquete:** `com.x4yi.x4ui.client.gui.component.GuiSprite`
-
-### Fuentes de Animación (`ISpriteSource`)
-
-#### 1. Sprite Sheet (`SpriteSheetSource`)
-Divide una textura compuesta en fotogramas de cuadrícula:
+### Configuraciones 9-Slice
+La manera de aplicar divisiones es instanciar un `NineSliceConfig`:
 
 ```java
-import com.x4yi.x4ui.client.gui.component.GuiSprite;
-import com.x4yi.x4ui.client.gui.component.sprite.SpriteSheetSource;
-import com.x4yi.x4ui.client.gui.component.sprite.LoopMode;
-
-// Textura de 256x256 dividida en fotogramas de 64x64 (total 16 fotogramas)
-SpriteSheetSource sheet = new SpriteSheetSource(
-    new ResourceLocation("mymod", "textures/orb_sheet.png"),
-    64, 64, 16
-);
-
-GuiSprite animatedOrb = new GuiSprite(10, 10, 64, 64, sheet);
-animatedOrb.setFps(24.0f);
-animatedOrb.setLoopMode(LoopMode.LOOP); // LOOP, ONCE, PING_PONG
-rootPanel.addChild(animatedOrb);
+// Configurar los márgenes 9-slice de la textura
+banner.setNineSliceConfig(new NineSliceConfig(4, 4, 4, 4));
+// Indicarle a GuiImage que dibuje usando los bordes protegidos
+banner.setMode(GuiImage.ImageMode.NINESLICE);
 ```
 
-#### 2. Secuencia de Texturas (`SequenceSource`)
-Para animaciones compuestas por múltiples archivos de imagen independientes:
+## GuiVideo (Reproductor de FFmpeg)
+
+`GuiVideo` es una entidad independiente que extiende de `GuiComponent`.
+Gestiona su propio renderizador de *frames* asíncronos enlazado a las promesas del `MediaPipeline`.
 
 ```java
-import com.x4yi.x4ui.client.gui.component.sprite.SequenceSource;
+GuiVideo introVideo = (GuiVideo) new GuiVideo(0, 0, 0, 240).withPercentWidth(1.0f);
 
-List<ResourceLocation> frames = Arrays.asList(
-    new ResourceLocation("mymod", "textures/anim/frame_0.png"),
-    new ResourceLocation("mymod", "textures/anim/frame_1.png"),
-    new ResourceLocation("mymod", "textures/anim/frame_2.png")
-);
-
-GuiSprite sequence = new GuiSprite(10, 80, 64, 64, new SequenceSource(frames));
+introVideo.setVideo("https://ejemplo.com/mi_intro.mp4");
+introVideo.setLooping(true); // Repetir al acabar
+introVideo.setVolume(0.5f);  // Volumen al 50%
 ```
 
-### Controles de Línea de Tiempo y Efectos
-```java
-animatedOrb.play();
-animatedOrb.pause();
-animatedOrb.stop();
-
-// Efectos de espejo y scroll continuo
-animatedOrb.setFlipX(true); // Invertir horizontalmente
-animatedOrb.setUvScrollSpeed(0.1f, 0.0f); // Desplazamiento continuo de textura
-```
-
----
-
-## GuiVideo
-
-**Paquete:** `com.x4yi.x4ui.client.gui.component.GuiVideo`
-
-```java
-import com.x4yi.x4ui.client.gui.component.GuiVideo;
-
-GuiVideo video = new GuiVideo(10, 10, 320, 180);
-video.setVideoUrl("https://example.com/trailer.mp4");
-video.play();
-rootPanel.addChild(video);
-```
-
----
-
-## GuiAudio
-
-```java
-import com.x4yi.x4ui.client.gui.component.GuiAudio;
-
-GuiAudio audio = new GuiAudio("https://example.com/soundtrack.ogg");
-audio.play();
-```
-
----
-
-## Qué Evitar Hacer (Antipatrones Multimedia)
-
-> [!CAUTION]
-> **1. NUNCA usar el constructor obsoleto de `GuiSprite` para 9-slice.**
-> El soporte de 9-slice fue trasladado a `GuiImage.withNineSlice()`. El constructor de `GuiSprite` para 9-slice está marcado como `@Deprecated` y se mantendrá únicamente por retrocompatibilidad.
-
-> [!WARNING]
-> **2. NUNCA olvidar detener la reproducción de `GuiVideo` o `GuiAudio` al cerrar la pantalla.**
-> En el método `onGuiClosed()` de su pantalla, invoque siempre `video.stop()` para liberar los subprocesos de decodificación y los búferes OpenAL.
-
-> [!WARNING]
-> **3. NUNCA cargar sprite sheets gigantescas que excedan 2048x2048 px sin verificar la GPU.**
-> En tarjetas gráficas antiguas o controladores limitados, texturas mayores a 2048 o 4096 px pueden provocar colapsos en OpenGL.
+### Barra de Carga Integrada
+Al iniciar la descarga del video, el componente mostrará internamente un indicador de carga. No inyectará `Toasts` en el gestor global, manteniendo tu pantalla limpia de popups si estás iterando sobre menús pesados.
 [/ES]
 
 [EN]
-# Multimedia Components
+# Multimedia Components (Videos and Images)
 
-This document details media display widgets in X4UI: `GuiImage` (static textures, remote URLs, and 9-slice borders), `GuiSprite` (2D animated sprite engine), `GuiVideo` (video playback), and `GuiAudio` (audio streaming).
+In X4UI, the multimedia components are designed under strict adherence to the Liskov Substitution Principle.
 
----
+## GuiImage (Static Images and 9-Slice)
 
-## GuiImage (Textures, URLs & 9-Slice)
+`GuiImage` handles both packaged textures (`ResourceLocation`) and images downloaded from the web, with support for normal rendering and **NineSlice** scaling.
 
-Displays static mod textures, remote web images, or expandable nine-patch (9-slice) frames.
-
-**Package:** `com.x4yi.x4ui.client.gui.component.GuiImage`
-
-### 1. Local Resource & Remote URL
-```java
-import com.x4yi.x4ui.client.gui.component.GuiImage;
-import net.minecraft.util.ResourceLocation;
-
-// Local mod texture
-GuiImage icon = new GuiImage(10, 10, 64, 64, new ResourceLocation("mymod", "textures/icon.png"));
-
-// Remote URL
-GuiImage webBanner = new GuiImage(10, 80, 200, 100, "https://example.com/banner.png");
-```
-
-### 2. 9-Slice (Nine-Patch) Support in `GuiImage`
-In X4UI r1.0b5, 9-slice border scaling is natively integrated into `GuiImage` via `NineSliceConfig`:
+### Loading Web Textures
 
 ```java
-import com.x4yi.x4ui.client.gui.component.image.NineSliceConfig;
-import com.x4yi.x4ui.client.gui.utils.Insets;
-
-GuiImage frame = new GuiImage(10, 10, 300, 200, new ResourceLocation("mymod", "textures/frame.png"))
-    .withNineSlice(new NineSliceConfig(new Insets(8), 64, 64)); // 8 px border slice on a 64x64 texture
-
-rootPanel.addChild(frame);
+GuiImage banner = (GuiImage) new GuiImage(0, 0, 0, 150).withPercentWidth(1.0f);
+// Asynchronous download; the game thread is not blocked
+banner.setImage("https://example.com/background.jpg");
 ```
-Corners maintain their native proportions, edges stretch unidirectionally, and the center fills smoothly.
 
----
-
-## GuiSprite (2D Animation Engine)
-
-In X4UI r1.0b5, `GuiSprite` is architected as a real-time 2D animated sprite engine for UI graphics.
-
-**Package:** `com.x4yi.x4ui.client.gui.component.GuiSprite`
-
-### Animation Sources (`ISpriteSource`)
-
-#### 1. Sprite Sheet (`SpriteSheetSource`)
-Subdivides a combined texture grid into sequential animation frames:
+### 9-Slice Configurations
+The way to apply slice margins is by instantiating a `NineSliceConfig`:
 
 ```java
-import com.x4yi.x4ui.client.gui.component.GuiSprite;
-import com.x4yi.x4ui.client.gui.component.sprite.SpriteSheetSource;
-import com.x4yi.x4ui.client.gui.component.sprite.LoopMode;
-
-// 256x256 texture split into 64x64 frames (16 total frames)
-SpriteSheetSource sheet = new SpriteSheetSource(
-    new ResourceLocation("mymod", "textures/orb_sheet.png"),
-    64, 64, 16
-);
-
-GuiSprite animatedOrb = new GuiSprite(10, 10, 64, 64, sheet);
-animatedOrb.setFps(24.0f);
-animatedOrb.setLoopMode(LoopMode.LOOP); // LOOP, ONCE, PING_PONG
-rootPanel.addChild(animatedOrb);
+// Configure the 9-slice margins for the texture
+banner.setNineSliceConfig(new NineSliceConfig(4, 4, 4, 4));
+// Instruct GuiImage to draw using the protected borders
+banner.setMode(GuiImage.ImageMode.NINESLICE);
 ```
 
-#### 2. Texture Sequence (`SequenceSource`)
-Animates across multiple independent resource files:
+## GuiVideo (FFmpeg Player)
+
+`GuiVideo` is a fully independent entity extending `GuiComponent`.
+It manages its own asynchronous frame renderer tied directly to the `MediaPipeline` promises.
 
 ```java
-import com.x4yi.x4ui.client.gui.component.sprite.SequenceSource;
+GuiVideo introVideo = (GuiVideo) new GuiVideo(0, 0, 0, 240).withPercentWidth(1.0f);
 
-List<ResourceLocation> frames = Arrays.asList(
-    new ResourceLocation("mymod", "textures/anim/frame_0.png"),
-    new ResourceLocation("mymod", "textures/anim/frame_1.png"),
-    new ResourceLocation("mymod", "textures/anim/frame_2.png")
-);
-
-GuiSprite sequence = new GuiSprite(10, 80, 64, 64, new SequenceSource(frames));
+introVideo.setVideo("https://example.com/my_intro.mp4");
+introVideo.setLooping(true); // Repeat when finished
+introVideo.setVolume(0.5f);  // Volume at 50%
 ```
 
-### Timeline Controls & Visual Effects
-```java
-animatedOrb.play();
-animatedOrb.pause();
-animatedOrb.stop();
-
-// Mirroring and UV scrolling
-animatedOrb.setFlipX(true); // Horizontal flip
-animatedOrb.setUvScrollSpeed(0.1f, 0.0f); // Continuous scrolling
-```
-
----
-
-## GuiVideo
-
-Embeds video playback into user interfaces.
-
-**Package:** `com.x4yi.x4ui.client.gui.component.GuiVideo`
-
-```java
-import com.x4yi.x4ui.client.gui.component.GuiVideo;
-
-GuiVideo video = new GuiVideo(10, 10, 320, 180);
-video.setVideoUrl("https://example.com/trailer.mp4");
-video.play();
-rootPanel.addChild(video);
-```
-
----
-
-## GuiAudio
-
-Provides synchronized audio streaming through OpenAL (`OpenALAudioSink`):
-
-```java
-import com.x4yi.x4ui.client.gui.component.GuiAudio;
-
-GuiAudio audio = new GuiAudio("https://example.com/soundtrack.ogg");
-audio.play();
-```
-
----
-
-## What to Avoid (Multimedia Anti-Patterns)
-
-> [!CAUTION]
-> **1. NEVER use legacy `GuiSprite` constructors for 9-slice borders.**
-> 9-slice border functionality has moved to `GuiImage.withNineSlice()`. The legacy `GuiSprite` constructor is `@Deprecated` and preserved solely for backwards compatibility.
-
-> [!WARNING]
-> **2. NEVER forget to stop `GuiVideo` or `GuiAudio` on screen close.**
-> In your screen's `onGuiClosed()` method, invoke `video.stop()` to gracefully terminate background processes and release native memory.
-
-> [!WARNING]
-> **3. NEVER load oversized sprite sheets exceeding GPU limits (e.g. above 2048x2048).**
-> Older graphics hardware or restricted drivers may crash when attempting to bind textures exceeding hardware limits.
+### Integrated Loading Bar
+Upon starting the video download, the component will internally render a loading spinner. It will NOT inject `Toasts` into the global manager, keeping your screen entirely clean of popups even if you are iterating over heavy multimedia menus.
 [/EN]

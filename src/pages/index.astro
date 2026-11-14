@@ -9,7 +9,7 @@ const combinedFeed = [...allNews, ...allChangelogs]
 const allDocs = await getCollection('docs');
 const uniqueProjectsDocs = new Set(allDocs.map((doc: any) => doc.data.project)).size;
 const numDocs = uniqueProjectsDocs;
-const numProjects = 2;
+const numProjects = 3;
 ---
 <Layout
   title="XHub | X4yi — Proyectos, Docs & Changelogs"

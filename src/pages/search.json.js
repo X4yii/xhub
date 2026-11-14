@@ -13,7 +13,7 @@ export async function GET() {
         const enContent = enMatch ? enMatch[1].replace(/[#*`_]/g, '').trim() : '';
         let url = '';
         if (entry.collection === 'docs') {
-            url = `/xhub/docs/${entry.slug}/`;
+            url = `/xhub/docs/${entry.id}/`;
         } else if (entry.collection === 'noticias') {
             url = `/xhub/noticias/${entry.id}/`;
         } else if (entry.collection === 'changelogs') {

@@ -3,37 +3,13 @@ title: "WarHammer"
 project: "LethalWeaponry"
 category: "Armas"
 categoryOrder: 1
+order: 0
 ---
 
 [ES]
-[EN]
 # WarHammer
 
-**Index:**
-- [Critical Hit & Ground Slam](#critical-hit-ground-slam)
-- [Sneak Slam](#sneak-slam)
-- [Skybreaker](#skybreaker)
-
-## Critical Hit & Ground Slam
-Scoring a **critical hit** (attacking while falling) triggers:
-- **Stun:** The primary target's movement and camera rotation are locked (duration reduced by 50% on players). Mobs lose pathfinding. Note: Stun ONLY occurs on critical hits, not standard heavy attacks.
-- **Ground Slam (AoE):** An expanding shockwave damages and stuns entities around the target. Damage, radius, and stun scale with fall distance.
-
-## Sneak Slam
-Holding **Shift (Sneak)** when landing from a fall:
-- **Cancels all fall damage**.
-- Unleashes a Ground Slam centered on you, scaling with fall distance.
-
-## Skybreaker
-- **Activation:** Hold `Shift + Look Down + Right-Click`.
-- **Effect:** Launches the player ~15 blocks upward. Grants knockback immunity while airborne and automatically cancels fall damage upon landing.
-- **Combo:** Hold `Shift` upon landing to trigger a massive Ground Slam.
-- **Cooldown:** Displayed in the HUD as the **"S" bar**.
-[/EN]
-[ES]
-# WarHammer
-
-**Index:**
+**Índice:**
 - [Golpe Crítico y Ground Slam](#golpe-critico-y-ground-slam)
 - [Sneak Slam](#sneak-slam)
 - [Skybreaker](#skybreaker)
@@ -41,7 +17,7 @@ Holding **Shift (Sneak)** when landing from a fall:
 ## Golpe Crítico y Ground Slam
 Un **golpe crítico** (atacar cayendo) activa:
 - **Aturdimiento:** Bloquea movimiento y rotación de cámara del objetivo primario (duración reducida 50% en jugadores). Los mobs pierden inteligencia de ruteo. Nota: El aturdimiento SOLO ocurre en golpes críticos, no en ataques pesados normales.
-- **Ground Slam (AoE):** Onda de choque que daña y aturde en área. Radio, daño y aturdimiento escalan con la distancia de caída.
+- **Ground Slam (AoE):** Onda de choque que daña (50% del daño directo y caída), reduce levemente la armadura (o aplica *Severance* en su totalidad si está encantado) y aturde en área. Radio, daño y aturdimiento escalan con la distancia de caída.
 
 ## Sneak Slam
 Mantener **Shift (Sneak)** al aterrizar de una caída:
@@ -54,9 +30,7 @@ Mantener **Shift (Sneak)** al aterrizar de una caída:
 - **Combo:** Mantén `Shift` al aterrizar para desatar un Ground Slam masivo.
 - **Cooldown:** Mostrado en el HUD en la **barra "S"**.
 [/ES]
-[/ES]
 
-[EN]
 [EN]
 # WarHammer
 
@@ -68,7 +42,7 @@ Mantener **Shift (Sneak)** al aterrizar de una caída:
 ## Critical Hit & Ground Slam
 Scoring a **critical hit** (attacking while falling) triggers:
 - **Stun:** The primary target's movement and camera rotation are locked (duration reduced by 50% on players). Mobs lose pathfinding. Note: Stun ONLY occurs on critical hits, not standard heavy attacks.
-- **Ground Slam (AoE):** An expanding shockwave damages and stuns entities around the target. Damage, radius, and stun scale with fall distance.
+- **Ground Slam (AoE):** An expanding shockwave damages (50% of direct hit and fall damage), applies minor armor reduction (or full *Severance* if enchanted), and stuns entities around the target. Damage, radius, and stun scale with fall distance.
 
 ## Sneak Slam
 Holding **Shift (Sneak)** when landing from a fall:
@@ -80,29 +54,4 @@ Holding **Shift (Sneak)** when landing from a fall:
 - **Effect:** Launches the player ~15 blocks upward. Grants knockback immunity while airborne and automatically cancels fall damage upon landing.
 - **Combo:** Hold `Shift` upon landing to trigger a massive Ground Slam.
 - **Cooldown:** Displayed in the HUD as the **"S" bar**.
-[/EN]
-[ES]
-# WarHammer
-
-**Index:**
-- [Golpe Crítico y Ground Slam](#golpe-critico-y-ground-slam)
-- [Sneak Slam](#sneak-slam)
-- [Skybreaker](#skybreaker)
-
-## Golpe Crítico y Ground Slam
-Un **golpe crítico** (atacar cayendo) activa:
-- **Aturdimiento:** Bloquea movimiento y rotación de cámara del objetivo primario (duración reducida 50% en jugadores). Los mobs pierden inteligencia de ruteo. Nota: El aturdimiento SOLO ocurre en golpes críticos, no en ataques pesados normales.
-- **Ground Slam (AoE):** Onda de choque que daña y aturde en área. Radio, daño y aturdimiento escalan con la distancia de caída.
-
-## Sneak Slam
-Mantener **Shift (Sneak)** al aterrizar de una caída:
-- **Anula todo el daño por caída**.
-- Desata un Ground Slam centrado en ti que escala con la altura de la caída.
-
-## Skybreaker
-- **Activación:** `Shift + Mirar hacia Abajo + Clic Derecho`.
-- **Efecto:** Lanza al jugador ~15 bloques arriba. Otorga inmunidad al knockback en el aire y anula automáticamente el daño de la caída.
-- **Combo:** Mantén `Shift` al aterrizar para desatar un Ground Slam masivo.
-- **Cooldown:** Mostrado en el HUD en la **barra "S"**.
-[/ES]
 [/EN]

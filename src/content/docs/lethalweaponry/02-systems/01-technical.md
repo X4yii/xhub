@@ -1,8 +1,9 @@
 ---
-title: "Mecánicas Técnicas y Configuración"
+title: "Mecánicas Técnicas y Fórmulas"
 project: "LethalWeaponry"
 category: "Sistemas"
 categoryOrder: 2
+order: 1
 ---
 
 [ES]

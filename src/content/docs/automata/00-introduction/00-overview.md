@@ -9,37 +9,85 @@ order: 0
 [ES]
 # Automata v1.0.0 — Visión General
 
-**Automata** añade agentes autónomos tipo jugador para **Minecraft 1.12.2 (CleanroomMC)** con navegación 3D asíncrona, combate táctico, supervivencia reactiva y coordinación por escuadrones.
+**Automata** implementa agentes autónomos tipo jugador para **Minecraft 1.12.2** sobre **CleanroomMC**. Cada entidad `EntityAutomaton` opera con inventario propio, equipamiento automático, navegación tridimensional asíncrona, evaluación de supervivencia, combate táctico y coordinación por escuadrones.
 
-## Requisitos
-- **Minecraft:** `1.12.2`
-- **Loader:** CleanroomMC `0.6.X` (Java 21) o `0.7.X` (Java 25)
-- **Java:** `21+`
-- **Dependencia obligatoria:** `x4ui` **`r1.0b6`** (`required-after:x4ui@[r1.0b6]`)
-- **Integraciones opcionales:** Hwyla / Waila, HEI / JEI, Spartan Weaponry `[WIP]` Scape and Run: Parasites.
+---
 
-## Sistemas principales
-1. **Pathfinding A\* 3D asíncrono:** Corre fuera del `Server thread` sobre secciones cacheadas en memoria primitiva (`WorldCacheManager`).
-2. **IA de utilidad con histéresis:** Prioriza supervivencia crítica (lava, fuego, explosivos, poca vida, reanimación de aliados) sobre combate y trabajos.
-3. **Escuadrones y separación aliada:** Los autómatas aliados no se empujan físicamente entre sí y mantienen una separación suave de **0.5 bloques**.
-4. **Throttling adaptativo por MSPT:** Si un modpack pesado degrada el tick del servidor (`>= 35 mspt`), escala automáticamente las tareas secundarias.
+## Requisitos del Entorno
+
+| Componente | Requisito | Notas |
+| :--- | :--- | :--- |
+| **Minecraft** | `1.12.2` | — |
+| **Mod Loader** | CleanroomMC `0.6.X` / `0.7.X` | Compilado con bytecode Java 21 (`major 65`) |
+| **Java** | `21+` | Compatible con Java 21 (`0.6.X`) y Java 25 (`0.7.X`) |
+| **Dependencia obligatoria** | `x4ui` **`r1.0b6`** | `required-after:x4ui@[r1.0b6]` |
+
+### Integraciones Opcionales
+- **Hwyla / Waila:** Tooltip de estado, trabajo activo y canal de escuadrón al apuntar a un autómata.
+- **HEI / JEI:** Consulta de recetas (como `Comida con alas`).
+- **Scape and Run: Parasites (SRP):** Inmunidad frente a infección COTH en autómatas vivos y en estado `downed`.
+- **Spartan Weaponry `[WIP]`:** Integración experimental incompleta para armas arrojadizas, ballestas y alcance.
+
+---
+
+## Matriz de Estado de Funciones (`v1.0.0`)
+
+| Sistema / Trabajo | Estado | Descripción breve |
+| :--- | :--- | :--- |
+| **Defend / CrazyDefend / Roam** | Estable | Combate melee/arco parabólico, patrulla de zona y chunk loading |
+| **Excavation / Idle** | Estable | Excavación por caja `Pos1`–`Pos2` y seguimiento/espera |
+| **Squads (`SquadBlackboard`)** | Estable | Reserva de bloques, turnos de combate, rescate `downed` y separación `0.5` m |
+| **AutomaStaff & X4UI** | Estable | HUD de 4 modos, selección `Pos1`–`Pos2`, cofres y paneles X4UI |
+| **Comida con alas** | Estable | Espada (`9` daño / `1.6` vel. / `3200` dur.) y despido seguro |
+| **Pathfinding 3D & Nado** | Estable | A\* asíncrono en FastUtil, parkour 1–4 bloques, nado vertical y orilla |
+| **Throttling por MSPT** | Estable | Escalado automático de tareas secundarias bajo carga de modpacks |
+| **Mine (`MinerJob`)** | `[WIP]` | Minado de vetas expuestas cercanas; sujeto a cambios |
+| **Lumberjack (`LumberjackJob`)** | `[WIP]` | Tala y replantado en espiral; sujeto a cambios |
+| **Farmer (`FarmerJob`)** | `[WIP]` | Labrado por filas y siembra intercalada; sujeto a cambios |
+| **Pillar / Bridge / Break-through** | `[WIP]` | Modificación de terreno en pathfinding fuera de zonas |
+| **Spartan Weaponry Compat** | `[WIP]` | Soporte muy incompleto |
+| **Courier (`CourierJob`)** | `[En diseño]` | **Desactivado** en `v1.0.0` (sin mecánica activa) |
 [/ES]
 
 [EN]
 # Automata v1.0.0 — Overview
 
-**Automata** adds autonomous player-like agents for **Minecraft 1.12.2 (CleanroomMC)** featuring asynchronous 3D navigation, tactical combat, reactive survival, and squad coordination.
+**Automata** implements autonomous player-like agents for **Minecraft 1.12.2** on **CleanroomMC**. Each `EntityAutomaton` operates with its own inventory, automatic equipment selection, asynchronous 3D navigation, survival evaluation, tactical combat, and squad coordination.
 
-## Requirements
-- **Minecraft:** `1.12.2`
-- **Mod Loader:** CleanroomMC `0.6.X` (Java 21) or `0.7.X` (Java 25)
-- **Java:** `21+`
-- **Required Dependency:** `x4ui` **`r1.0b6`** (`required-after:x4ui@[r1.0b6]`)
-- **Optional Integrations:** Hwyla / Waila, HEI / JEI, Spartan Weaponry `[WIP]` Scape and Run: Parasites.
+---
 
-## Core Systems
-1. **Asynchronous 3D A\* Pathfinding:** Executes off the `Server thread` over primitive-backed cached world sections (`WorldCacheManager`).
-2. **Hybrid Utility AI with Hysteresis:** Prioritizes critical survival (lava, fire, explosives, low health, ally revival) over combat and tasks.
-3. **Squads & Ally Separation:** Allied automata ignore physical pushing against each other and maintain a **0.5-block** soft separation gap.
-4. **Adaptive MSPT Throttling:** Automatically scales non-critical intervals when a heavy modpack increases server tick time (`>= 35 mspt`).
+## Environment Requirements
+
+| Component | Requirement | Notes |
+| :--- | :--- | :--- |
+| **Minecraft** | `1.12.2` | — |
+| **Mod Loader** | CleanroomMC `0.6.X` / `0.7.X` | Compiled to Java 21 bytecode (`major 65`) |
+| **Java** | `21+` | Compatible with Java 21 (`0.6.X`) and Java 25 (`0.7.X`) |
+| **Required Dependency** | `x4ui` **`r1.0b6`** | `required-after:x4ui@[r1.0b6]` |
+
+### Optional Integrations
+- **Hwyla / Waila:** Displays status, active job, and squad channel when looking at an automaton.
+- **HEI / JEI:** Recipe lookup (including `Comida con alas`).
+- **Scape and Run: Parasites (SRP):** COTH infection immunity for both living and `downed` automata.
+- **Spartan Weaponry `[WIP]`:** Incomplete experimental integration for throwing weapons, crossbows, and reach.
+
+---
+
+## Feature Status Matrix (`v1.0.0`)
+
+| System / Job | Status | Summary |
+| :--- | :--- | :--- |
+| **Defend / CrazyDefend / Roam** | Stable | Melee/parabolic bow combat, zone patrol, and chunk loading |
+| **Excavation / Idle** | Stable | `Pos1`–`Pos2` box clearing and follow/hold behavior |
+| **Squads (`SquadBlackboard`)** | Stable | Block reservation, combat turns, `downed` rescue, and `0.5` m separation |
+| **AutomaStaff & X4UI** | Stable | 4-mode HUD, `Pos1`–`Pos2` selection, chest binding, and X4UI panels |
+| **Comida con alas** | Stable | Sword (`9` dmg / `1.6` spd / `3200` dur.) and safe dismissal |
+| **3D Pathfinding & Swimming** | Stable | Async FastUtil A\*, 1–4 block parkour, vertical swim-up, and shore exit |
+| **MSPT Throttling** | Stable | Automatic scaling of non-critical intervals under modpack load |
+| **Mine (`MinerJob`)** | `[WIP]` | Nearby exposed ore vein mining; subject to change |
+| **Lumberjack (`LumberjackJob`)** | `[WIP]` | Tree felling and spiral sapling replanting; subject to change |
+| **Farmer (`FarmerJob`)** | `[WIP]` | Row-aligned tilling and interleaved planting; subject to change |
+| **Pillar / Bridge / Break-through** | `[WIP]` | Terrain modification during pathfinding outside work zones |
+| **Spartan Weaponry Compat** | `[WIP]` | Very incomplete support |
+| **Courier (`CourierJob`)** | `[In Design]` | **Disabled** in `v1.0.0` (no active mechanic) |
 [/EN]

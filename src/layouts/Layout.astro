@@ -122,5 +122,16 @@ const x4uiSchema = {
 				navigator.serviceWorker.register('/xhub/sw.js');
 			}
 		</script>
+        <script is:inline data-goatcounter="https://x4yii.goatcounter.com/count"
+                async src="https://gc.zgo.at/count.js"></script>
+        <script is:inline>
+            document.addEventListener('astro:after-swap', () => {
+                if (window.goatcounter && typeof window.goatcounter.count === 'function') {
+                    window.goatcounter.count({
+                        path: location.pathname + location.search + location.hash,
+                    });
+                }
+            });
+        </script>
 	</body>
 </html>

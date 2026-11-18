@@ -9,7 +9,9 @@ order: 3
 [ES]
 # 03 - Redes, Sidedness y Sincronización Servidor/Cliente
 
-Este documento describe la arquitectura de red de X4UI (`r1.0b6`), diseñada para operar **tanto con `Container` vanilla como sin ningún `Container`** (paneles administrativos, tiendas, diálogos, gremios, HUDs remotos y máquinas personalizadas).
+Este documento describe la arquitectura de red de X4UI (`r1.0b7`), diseñada para operar **tanto con `Container` vanilla como sin ningún `Container`** (paneles administrativos, tiendas, diálogos, gremios, HUDs remotos y máquinas personalizadas).
+
+> **Política de Conexión (`r1.0b7`):** Un cliente con X4UI puede conectarse a servidores vanilla sin X4UI (modo fallback client-only mediante `UINetwork.isServerSupported()` / `sendActionOrLocal(...)`). Cuando un servidor tiene X4UI instalado, exige que el cliente también tenga X4UI (`@NetworkCheckHandler`) para garantizar sincronización consistente de estado y RPCs.
 
 ---
 
@@ -109,7 +111,7 @@ request("mymod:search_catalog", queryNbt, result -> {
 });
 ```
 
-El framework ejecuta el handler en el hilo del servidor, entrega la respuesta en el hilo principal del cliente, aplica timeout (`5s` por defecto), responde `NO_SERVER_SUPPORT` de inmediato si el servidor no tiene X4UI y cancela automáticamente los callbacks pendientes al cerrar la pantalla.
+El framework ejecuta el handler en el hilo del servidor, entrega la respuesta en el hilo principal del cliente, aplica timeout (`5s` por defecto, barrido automáticamente vía `ScreenHost` tanto en `GuiBaseScreen` como en `GuiBaseContainer`), responde `NO_SERVER_SUPPORT` de inmediato si el servidor no tiene X4UI y cancela automáticamente los callbacks pendientes al cerrar la pantalla.
 
 ---
 
@@ -133,7 +135,7 @@ Al cerrar la pantalla (`onGuiClosed()`) o desconectarse (`ClientSessionTracker`)
 
 ## 6. Seguridad en Red (`ActionGuard` y Rate-Limiting)
 
-- **Rate-limiting integrado:** `UINetwork` aplica por defecto un cooldown de `50ms` por jugador y por `actionId`/`rpcId` (configurable mediante `UINetwork.setDefaultRateLimitMs(ms)`).
+- **Rate-limiting integrado:** `UINetwork` aplica por defecto un cooldown de `50ms` por jugador y por `actionId`/`rpcId` (configurable mediante `UINetwork.setDefaultRateLimitMs(ms)`). Las entradas por jugador se liberan automáticamente al desconectarse mediante `UINetwork.clearPlayerRateLimits(UUID)` desde `ClientSessionTracker`.
 - **Guardas componibles (`ActionGuard`):**
   - `ActionGuard.opLevel(int level)`
   - `ActionGuard.withinDistance(BlockPos pos, double maxDist)`
@@ -171,7 +173,9 @@ NetworkSyncHelper.bindContainerPropertyToFloat32(getContainer(), 2, 3, tempState
 [EN]
 # 03 - Networking, Sidedness & Server/Client Sync
 
-This document details X4UI's networking architecture (`r1.0b6`), engineered to work **both with vanilla `Container`s and completely without `Container`s** (administrative panels, shops, dialogs, guild boards, remote HUDs, and custom machines).
+This document details X4UI's networking architecture (`r1.0b7`), engineered to work **both with vanilla `Container`s and completely without `Container`s** (administrative panels, shops, dialogs, guild boards, remote HUDs, and custom machines).
+
+> **Connection Policy (`r1.0b7`):** A client with X4UI can join vanilla servers without X4UI (client-only fallback via `UINetwork.isServerSupported()` / `sendActionOrLocal(...)`). When a server has X4UI installed, connecting clients are required to have X4UI installed (`@NetworkCheckHandler`) to guarantee consistent state and RPC synchronization.
 
 ---
 
@@ -271,7 +275,7 @@ request("mymod:search_catalog", queryNbt, result -> {
 });
 ```
 
-The framework executes handlers on the server main thread, delivers responses on the client main thread, enforces a default `5s` timeout, returns `NO_SERVER_SUPPORT` immediately on vanilla servers, and automatically cancels pending callbacks on screen close.
+The framework executes handlers on the server main thread, delivers responses on the client main thread, enforces a default `5s` timeout (swept automatically by `ScreenHost` on both `GuiBaseScreen` and `GuiBaseContainer`), returns `NO_SERVER_SUPPORT` immediately on vanilla servers, and automatically cancels pending callbacks on screen close.
 
 ---
 
@@ -295,7 +299,7 @@ Closing the screen (`onGuiClosed()`) or logging out (`ClientSessionTracker`) aut
 
 ## 6. Network Security (`ActionGuard` & Rate-Limiting)
 
-- **Built-in rate-limiting:** `UINetwork` enforces a default `50ms` cooldown per player and `actionId`/`rpcId` (configurable via `UINetwork.setDefaultRateLimitMs(ms)`).
+- **Built-in rate-limiting:** `UINetwork` enforces a default `50ms` cooldown per player and `actionId`/`rpcId` (configurable via `UINetwork.setDefaultRateLimitMs(ms)`). Per-player entries are automatically evicted on disconnect via `UINetwork.clearPlayerRateLimits(UUID)` from `ClientSessionTracker`.
 - **Composable guards (`ActionGuard`):**
   - `ActionGuard.opLevel(int level)`
   - `ActionGuard.withinDistance(BlockPos pos, double maxDist)`

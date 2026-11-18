@@ -9,7 +9,7 @@ order: 6
 [ES]
 # 06 - Tipografía Vectorial y Fuentes (`IFont`)
 
-Este documento detalla el sistema de tipografía de X4UI (`r1.0b6`), centrado en la interfaz `IFont` (`com.x4yi.x4ui.api.client.font.IFont`) y el registro central `FontRegistry`.
+Este documento detalla el sistema de tipografía de X4UI (`r1.0b7`), centrado en la interfaz `IFont` (`com.x4yi.x4ui.api.client.font.IFont`) y el registro central `FontRegistry`.
 
 ---
 
@@ -19,7 +19,7 @@ El `FontRenderer` de vanilla está limitado a texturas bitmap fijas que se pixel
 
 X4UI resuelve esto mediante:
 1. **Abstracción `IFont`:** Unifica `VanillaFont` y `TrueTypeFont` bajo un mismo contrato de medición y dibujado.
-2. **Atlas dinámico en VRAM (`TrueTypeFont`):** Rasteriza glifos bajo demanda con anti-aliasing y soporte completo de códigos vanilla (`§0`–`§f`, `§l`, `§o`, `§n`).
+2. **Atlas dinámico en VRAM (`TrueTypeFont`):** Rasteriza glifos bajo demanda con anti-aliasing y soporte completo de códigos vanilla (`§0`–`§f`, `§l`, `§o`, `§n`). Tras subir la textura a GPU (`DynamicTexture`), el `BufferedImage` del atlas (~4 MB por fuente) se libera de inmediato del heap.
 3. **Caché LRU de anchos (`FontWidthCache`):** Almacena mediciones repetidas con evicción acotada para evitar fugas de memoria en interfaces ricas en texto.
 4. **Ciclo de vida centralizado (`FontRegistry`):** Gestiona carga única y recarga transparente en caliente al pulsar `F3 + T`.
 
@@ -89,7 +89,7 @@ headerPanel.withFont(FontRegistry.get("roboto_regular")); // Propaga a los hijos
 [EN]
 # 06 - Vector Typography & Fonts (`IFont`)
 
-This document covers X4UI's typography system (`r1.0b6`), centered on the `IFont` contract (`com.x4yi.x4ui.api.client.font.IFont`) and the central `FontRegistry`.
+This document covers X4UI's typography system (`r1.0b7`), centered on the `IFont` contract (`com.x4yi.x4ui.api.client.font.IFont`) and the central `FontRegistry`.
 
 ---
 
@@ -99,7 +99,7 @@ Vanilla's `FontRenderer` relies on fixed bitmap sheets that blur or alias under 
 
 X4UI solves this with four design decisions:
 1. **`IFont` abstraction:** Unifies `VanillaFont` and `TrueTypeFont` behind one measurement and rendering contract.
-2. **Dynamic VRAM glyph atlas (`TrueTypeFont`):** Rasterizes glyphs on demand with anti-aliasing and full vanilla formatting code support (`§0`–`§f`, `§l`, `§o`, `§n`).
+2. **Dynamic VRAM glyph atlas (`TrueTypeFont`):** Rasterizes glyphs on demand with anti-aliasing and full vanilla formatting code support (`§0`–`§f`, `§l`, `§o`, `§n`). Once uploaded to GPU (`DynamicTexture`), the CPU-side `BufferedImage` atlas (~4 MB per font) is immediately released from heap.
 3. **Bounded width cache (`FontWidthCache`):** LRU eviction caches repeated width lookups without unbounded memory growth.
 4. **Centralized lifecycle (`FontRegistry`):** Ensures single-load registration and transparent hot-reloading on `F3 + T`.
 

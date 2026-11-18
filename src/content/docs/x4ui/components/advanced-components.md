@@ -15,7 +15,7 @@ Componentes especializados para listas masivas recicladas, selección desplegabl
 
 ## 1. `GuiVirtualList<T>`
 
-Implementa **reciclaje de vistas (*View Recycling*)**: solo instancia y dibuja las filas visibles en el viewport actual, manteniendo uso constante de memoria incluso con miles de registros:
+Implementa **reciclaje de vistas (*View Recycling*)**: solo instancia y dibuja las filas visibles en el viewport actual, manteniendo uso constante de memoria incluso con miles de registros. En `r1.0b7`, redimensionar la lista invalida el rango visible automáticamente y `setItems(...)` recicla las vistas activas hacia el pool en lugar de descartarlas:
 
 ```java
 class Entry {
@@ -23,14 +23,14 @@ class Entry {
     Entry(String name) { this.name = name; }
 }
 
-GuiVirtualList<Entry> list = (GuiVirtualList<Entry>) new GuiVirtualList<Entry>(
+GuiVirtualList<Entry> list = new GuiVirtualList<Entry>(
     0, 0, 0, 240, 24,
     // Builder: instancia una fila visible (debe usar withPercentWidth(1.0f))
-    item -> new GuiLabel(0, 0, item.name, 0xFFE6E8EC).withPercentWidth(1.0f),
+    item -> GuiLabel.of(item.name, 0xFFE6E8EC).withPercentWidth(1.0f),
     // Binder: actualiza la fila reciclada al hacer scroll
     (comp, item) -> ((GuiLabel) comp).setText(item.name)
-).withPercentWidth(1.0f);
-
+);
+list.withPercentWidth(1.0f);
 list.setItems(entries);
 ```
 
@@ -44,21 +44,20 @@ Selector desplegable enlazado a un `State<T>` y a una lista de opciones:
 State<String> selectedMode = new State<>("Normal");
 List<String> modes = Arrays.asList("Normal", "Compacto", "Avanzado");
 
-GuiDropdown<String> dropdown = (GuiDropdown<String>) new GuiDropdown<>(
-    0, 0, 0, 22, selectedMode, modes
-).withPercentWidth(1.0f);
+GuiDropdown<String> dropdown = GuiDropdown.of(selectedMode, modes)
+    .withPercentWidth(1.0f);
 ```
 
 ---
 
 ## 3. `GuiMarkdown`
 
-Renderiza texto enriquecido (encabezados, listas, código, enlaces y separadores) respetando el ancho del contenedor y la fuente asignada:
+Renderiza texto enriquecido (encabezados, listas, código, enlaces y separadores) respetando el ancho del contenedor y la fuente asignada. En `r1.0b7`, `GuiMarkdown` recalcula el ajuste de líneas automáticamente en `onBoundsChanged()` al cambiar de ancho bajo `withPercentWidth(...)` o `FlexLayout` (`flexGrow`/`flexShrink`):
 
 ```java
-GuiMarkdown docView = (GuiMarkdown) new GuiMarkdown(0, 0, 0, "# Guía\nContenido **enriquecido**.")
-    .withFont("roboto_regular")
-    .withPercentWidth(1.0f);
+GuiMarkdown docView = new GuiMarkdown(0, 0, 0, "# Guía\nContenido **enriquecido**.")
+    .withFont("roboto_regular");
+docView.withPercentWidth(1.0f);
 ```
 
 ---
@@ -87,7 +86,7 @@ Specialized widgets for recycled large lists, dropdown selection, Markdown rende
 
 ## 1. `GuiVirtualList<T>`
 
-Implements **View Recycling**: only visible rows inside the viewport are instantiated and rendered, keeping memory and layout cost constant even with thousands of entries:
+Implements **View Recycling**: only visible rows inside the viewport are instantiated and rendered, keeping memory and layout cost constant even with thousands of entries. In `r1.0b7`, resizing invalidates the visible range automatically and `setItems(...)` recycles active views back into the pool instead of discarding them:
 
 ```java
 class Entry {
@@ -95,14 +94,14 @@ class Entry {
     Entry(String name) { this.name = name; }
 }
 
-GuiVirtualList<Entry> list = (GuiVirtualList<Entry>) new GuiVirtualList<Entry>(
+GuiVirtualList<Entry> list = new GuiVirtualList<Entry>(
     0, 0, 0, 240, 24,
     // Builder: instantiates a visible row (must use withPercentWidth(1.0f))
-    item -> new GuiLabel(0, 0, item.name, 0xFFE6E8EC).withPercentWidth(1.0f),
+    item -> GuiLabel.of(item.name, 0xFFE6E8EC).withPercentWidth(1.0f),
     // Binder: rebinds recycled rows during scrolling
     (comp, item) -> ((GuiLabel) comp).setText(item.name)
-).withPercentWidth(1.0f);
-
+);
+list.withPercentWidth(1.0f);
 list.setItems(entries);
 ```
 
@@ -116,21 +115,20 @@ Dropdown selector bound directly to a `State<T>` and an option list:
 State<String> selectedMode = new State<>("Normal");
 List<String> modes = Arrays.asList("Normal", "Compact", "Advanced");
 
-GuiDropdown<String> dropdown = (GuiDropdown<String>) new GuiDropdown<>(
-    0, 0, 0, 22, selectedMode, modes
-).withPercentWidth(1.0f);
+GuiDropdown<String> dropdown = GuiDropdown.of(selectedMode, modes)
+    .withPercentWidth(1.0f);
 ```
 
 ---
 
 ## 3. `GuiMarkdown`
 
-Renders formatted Markdown (headings, lists, code, links, separators) adapting to container width and assigned `IFont`:
+Renders formatted Markdown (headings, lists, code, links, separators) adapting to container width and assigned `IFont`. In `r1.0b7`, `GuiMarkdown` automatically re-wraps lines in `onBoundsChanged()` whenever its width changes under `withPercentWidth(...)` or `FlexLayout` (`flexGrow`/`flexShrink`):
 
 ```java
-GuiMarkdown docView = (GuiMarkdown) new GuiMarkdown(0, 0, 0, "# Guide\nFormatted **content**.")
-    .withFont("roboto_regular")
-    .withPercentWidth(1.0f);
+GuiMarkdown docView = new GuiMarkdown(0, 0, 0, "# Guide\nFormatted **content**.")
+    .withFont("roboto_regular");
+docView.withPercentWidth(1.0f);
 ```
 
 ---

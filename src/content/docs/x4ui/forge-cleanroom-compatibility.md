@@ -9,7 +9,7 @@ order: 9
 [ES]
 # 09 - Compatibilidad Forge 1.12.2 ↔ CleanroomMC y Abstracciones
 
-X4UI (`r1.0b6`) soporta oficialmente **Forge 1.12.2 (Java 8 + LWJGL 2)** y **CleanroomMC (Java 25 + LWJGL 3 / `lwjgly`)**. Este documento detalla las decisiones de arquitectura Multi-Release y las reglas de portabilidad para mods consumidores.
+X4UI (`r1.0b7`) soporta oficialmente **Forge 1.12.2 (Java 8 + LWJGL 2)** y **CleanroomMC (Java 25 + LWJGL 3 / `lwjgly`)**. Este documento detalla las decisiones de arquitectura Multi-Release y las reglas de portabilidad para mods consumidores.
 
 ---
 
@@ -48,7 +48,7 @@ X4UI empaqueta **`PlatformBridge` como Multi-Release JAR** (`Java 8` base + `MET
 [EN]
 # 09 - Forge 1.12.2 ↔ CleanroomMC Compatibility & Abstractions
 
-X4UI (`r1.0b6`) officially supports **Forge 1.12.2 (Java 8 + LWJGL 2)** and **CleanroomMC (Java 25 + LWJGL 3 / `lwjgly`)**. This document explains the Multi-Release architecture and portability rules for consumer mods.
+X4UI (`r1.0b7`) officially supports **Forge 1.12.2 (Java 8 + LWJGL 2)** and **CleanroomMC (Java 25 + LWJGL 3 / `lwjgly`)**. This document explains the Multi-Release architecture and portability rules for consumer mods.
 
 ---
 

@@ -45,7 +45,12 @@ mediaFuture.thenAccept(file -> {
     // Manejo explícito de fallo de red, validación o códec
     return null;
 });
+
+// Mantenimiento opcional de caché: elimina archivos con más de 7 días de antigüedad para el mod
+MediaPipeline.getInstance().cleanCache("mymodid", 7);
 ```
+
+> **Nota `r1.0b7`:** `MediaPipeline` + `MediaManager` consolidan y reemplazan completamente a las clases legacy eliminadas (`DownloadManager`, `RemoteResourceManager`, `IMediaService` y `MediaService`).
 
 ---
 
@@ -53,7 +58,7 @@ mediaFuture.thenAccept(file -> {
 
 Antes de ejecutar cualquier descarga o escritura en caché, `SecurityUtils` aplica las siguientes comprobaciones:
 - `validateHttpUrl(...)`: restringe esquemas a `http`/`https` y bloquea direcciones de loopback, enlace local o rangos privados (protección SSRF).
-- `resolveSafeChild(...)`: normaliza rutas e impide secuencias de escape (`..`) fuera del directorio de caché del mod (*path traversal*).
+- `resolveSafeChild(...)`: normaliza rutas y impide secuencias de escape (`..`) fuera del directorio de caché del mod (*path traversal*).
 
 ---
 
@@ -116,7 +121,12 @@ mediaFuture.thenAccept(file -> {
     // Explicit handling for network, validation, or codec errors
     return null;
 });
+
+// Optional cache maintenance: remove cached files older than 7 days for this mod
+MediaPipeline.getInstance().cleanCache("mymodid", 7);
 ```
+
+> **`r1.0b7` Note:** `MediaPipeline` + `MediaManager` supersede and replace the removed legacy classes (`DownloadManager`, `RemoteResourceManager`, `IMediaService`, and `MediaService`).
 
 ---
 

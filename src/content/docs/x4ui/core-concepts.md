@@ -84,7 +84,7 @@ Los eventos de mouse (`mouseClicked`, `mouseReleased`, `mouseDragged`, `mouseScr
 ## 5. Estado Reactivo (`State<T>`) y Bus de Estados (`UIStateBus`)
 
 ### `State<T>`
-`com.x4yi.x4ui.common.State<T>` es un contenedor observable seguro para hilos y compatible con servidor dedicado. Deduplica notificaciones mediante `Objects.equals()` para evitar trabajo redundante cuando el valor no cambia:
+`com.x4yi.x4ui.common.State<T>` es un contenedor observable seguro para hilos (`volatile` + serialización de notificaciones en `set(T)` para evitar condiciones de carrera entre hilos Netty/I/O y el hilo principal) y compatible con servidor dedicado. Deduplica notificaciones mediante `Objects.equals()` para evitar trabajo redundante cuando el valor no cambia:
 
 ```java
 State<Integer> score = new State<>(0);
@@ -119,10 +119,13 @@ rootPanel.setTheme(ThemeRegistry.getTheme("custom_dark"));
 
 ---
 
-## 7. Optimización mediante Dirty Flags
+## 7. Optimización mediante Dirty Flags, `ScreenHost` y Caché de Coordenadas
 
 - `requestLayout()`: marca que las dimensiones o la jerarquía estructural cambiaron; el layout se recalculará una única vez en el siguiente `update()`.
 - `requestRender()`: solicita reordenar las capas visuales (`layer`).
+- **Caché de Coordenadas Absolutas:** `GuiComponent` cachea `absX`/`absY` e invalida en cascada solo al mutar `x`, `y` o `parent`, evitando recorrer toda la cadena de padres en cada hit-test o dibujo.
+- **`ScreenHost` Unificado:** `GuiBaseScreen` y `GuiBaseContainer` delegan la lógica compartida a `ScreenHost` — seguimiento y expiración unificada de RPCs, `deltaTime`, tooltips multilínea cacheados, animación opcional de apertura independiente de FPS (`setAnimateOpen(boolean)`) y limpieza automática en `onGuiClosed()`.
+- **Composición sin Casts:** `GuiComponent.add(T child)` y `add(T child, Consumer<T> config)` (delegados también en `GuiScrollPanel`) retornan el tipo exacto del hijo para evitar casts manuales.
 - Las mutaciones puramente visuales (color, opacidad, texto cuando no altera tamaño estructural) no requieren `requestLayout()`.
 
 ---
@@ -215,7 +218,7 @@ Mouse events (`mouseClicked`, `mouseReleased`, `mouseDragged`, `mouseScrolled`) 
 ## 5. Reactive State (`State<T>`) & State Bus (`UIStateBus`)
 
 ### `State<T>`
-`com.x4yi.x4ui.common.State<T>` is a thread-safe, dedicated-server-compatible observable container. It deduplicates updates using `Objects.equals()` to prevent redundant UI work:
+`com.x4yi.x4ui.common.State<T>` is a thread-safe, dedicated-server-compatible observable container (`volatile` storage + serialized update delivery in `set(T)` to prevent races between Netty/I/O threads and the main client thread). It deduplicates updates using `Objects.equals()` to prevent redundant UI work:
 
 ```java
 State<Integer> score = new State<>(0);
@@ -250,10 +253,13 @@ rootPanel.setTheme(ThemeRegistry.getTheme("custom_dark"));
 
 ---
 
-## 7. Dirty-Flag Optimization
+## 7. Dirty-Flag Optimization, `ScreenHost` & Absolute Coordinate Caching
 
 - `requestLayout()`: marks that dimensions or structural hierarchy changed; layout runs once on the next `update()`.
 - `requestRender()`: requests resorting of visual `layer`s.
+- **Absolute Coordinate Cache:** `GuiComponent` caches `absX`/`absY` and invalidates them in cascade only when `x`, `y`, or `parent` mutates, avoiding repeated parent-chain walks during hit-testing and drawing.
+- **Unified `ScreenHost`:** `GuiBaseScreen` and `GuiBaseContainer` delegate shared lifecycle logic to `ScreenHost` — unified RPC tracking and expiration sweeps, frame `deltaTime`, cached multi-line tooltips, optional FPS-independent opening zoom (`setAnimateOpen(boolean)`), and cleanup on `onGuiClosed()`.
+- **Cast-Free Composition:** `GuiComponent.add(T child)` and `add(T child, Consumer<T> config)` (also delegated in `GuiScrollPanel`) return the exact child type so fluent wiring requires no casts.
 - Purely visual mutations (color, alpha, or text changes that do not alter structural bounds) do not require `requestLayout()`.
 
 ---

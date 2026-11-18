@@ -55,19 +55,26 @@ GuiPanel section = GuiPanel.card(10, 6);
 ```
 
 - **Alineación (`FlexAlign`):** `START`, `CENTER`, `END` y `STRETCH` en eje transversal (`setAlignItems`) y eje principal (`setJustifyContent`), complementados con `GuiPanel.spacer()`.
+- **Solver Elástico (`flexGrow` / `flexShrink` y Cotas `min`/`max`):** Los hijos pueden declarar `withFlexGrow(float)`, `withFlexShrink(float)`, `withMinSize(w, h)` y `withMaxSize(w, h)`. `FlexLayout` utiliza un algoritmo *water-filling* sobre `baseWidth`/`baseHeight` para repartir espacio libre o comprimir desbordamientos respetando límites sin deriva acumulativa frame a frame.
 - **Control `hugContent`:** Por defecto `FlexLayout` es **no destructivo** (`hugContent = false`) y respeta el tamaño asignado al padre. Activar `.withHugContent(true)` hace que el contenedor ajuste su tamaño a la suma de sus hijos visibles.
 - **Regla de bucle en `VERTICAL` + `hugContent(true)`:** Si la altura del contenedor depende de sus hijos, los hijos deben definir un alto absoluto en píxeles (no `withPercentHeight(...)`) y usar `withPercentWidth(...)` para adaptarse horizontalmente.
 
-### Pilar 3: Contención Obligatoria en `GuiScrollPanel`
+### Pilar 3: Contención Obligatoria en `GuiScrollPanel` y `GuiGridPanel`
 
-Todo contenido vertical extenso (listas, formularios, secciones apiladas) debe residir dentro de un `GuiScrollPanel`:
+Todo contenido vertical extenso (listas, formularios, secciones apiladas) debe residir dentro de un `GuiScrollPanel`, o en un `GuiGridPanel` para grillas uniformes de slots o celdas:
 
 ```java
 // Scroll vertical preconfigurado (contentPanel VERTICAL, hugContent=true, 100% ancho)
 GuiScrollPanel scrollPanel = GuiScrollPanel.vertical(180, 6);
+
+// Grilla dinámica con autoColumns y scroll vertical automático
+GuiGridPanel slotGrid = GuiGridPanel.slotGrid(140, 2);
+slotGrid.addSlots(inventorySlots.inventorySlots, this);
 ```
 
-`GuiScrollPanel` reserva automáticamente el ancho de su barra de desplazamiento cuando el contenido excede el viewport, evitando solapamientos sobre el borde derecho en escalas 3x y 4x.
+Tanto `GuiScrollPanel` como `GuiGridPanel` reservan automáticamente el ancho de su barra de desplazamiento en una sola pasada determinista cuando el contenido excede el viewport, evitando solapamientos u oscilación de columnas en escalas 3x y 4x.
+
+En pantallas de inventario (`GuiBaseContainer`), se pueden acoplar paneles laterales mediante `attachSidePanel(DockSide, GuiComponent)`, manteniendo el conjunto dentro de los márgenes de pantalla (`flexShrink`), registrando áreas de exclusión JEI/HEI (`jeiRecipeAreas`) y protegiendo clics externos (`hasClickedOutside`).
 
 ### Pilar 4: Preservación del Árbol en `onScreenResize`
 
@@ -134,19 +141,26 @@ GuiPanel section = GuiPanel.card(10, 6);
 ```
 
 - **Alignment (`FlexAlign`):** Supports `START`, `CENTER`, `END`, and `STRETCH` on cross axis (`setAlignItems`) and main axis (`setJustifyContent`), paired with `GuiPanel.spacer()`.
+- **Elastic Solver (`flexGrow` / `flexShrink` & `min`/`max` Bounds):** Children can declare `withFlexGrow(float)`, `withFlexShrink(float)`, `withMinSize(w, h)`, and `withMaxSize(w, h)`. `FlexLayout` runs a *water-filling* solver against `baseWidth`/`baseHeight` to distribute free space or compress overflow within bounds without cumulative frame-to-frame drift.
 - **`hugContent` behavior:** By default `FlexLayout` is **non-destructive** (`hugContent = false`), preserving explicit or percentage parent bounds. Enabling `.withHugContent(true)` fits the container to its visible children.
 - **Circular sizing rule (`VERTICAL` + `hugContent(true)`):** When a container's height is summed from its children, children must specify pixel heights (not `withPercentHeight(...)`) and use `withPercentWidth(...)` for horizontal responsiveness.
 
-### Pillar 3: Mandatory Containment in `GuiScrollPanel`
+### Pillar 3: Mandatory Containment in `GuiScrollPanel` & `GuiGridPanel`
 
-All tall vertical content (lists, forms, stacked sections) must reside inside a `GuiScrollPanel`:
+All tall vertical content (lists, forms, stacked sections) must reside inside a `GuiScrollPanel`, or inside a `GuiGridPanel` for uniform slot or cell grids:
 
 ```java
 // Preconfigured vertical scroll (VERTICAL contentPanel, hugContent=true, 100% width)
 GuiScrollPanel scrollPanel = GuiScrollPanel.vertical(180, 6);
+
+// Dynamic grid with autoColumns and automatic vertical scroll fallback
+GuiGridPanel slotGrid = GuiGridPanel.slotGrid(140, 2);
+slotGrid.addSlots(inventorySlots.inventorySlots, this);
 ```
 
-`GuiScrollPanel` automatically reserves scrollbar width when content overflows the viewport, preventing right-edge clipping at GUI Scale 3x and 4x.
+Both `GuiScrollPanel` and `GuiGridPanel` reserve scrollbar width in a single deterministic pass when content overflows the viewport, preventing right-edge clipping or column oscillation at GUI Scale 3x and 4x.
+
+In inventory screens (`GuiBaseContainer`), side panels can be docked via `attachSidePanel(DockSide, GuiComponent)`, clamping the ensemble within screen bounds (`flexShrink`), updating JEI/HEI `jeiRecipeAreas`, and protecting `hasClickedOutside`.
 
 ### Pillar 4: Hierarchy Preservation on `onScreenResize`
 

@@ -57,8 +57,9 @@ MediaPipeline.getInstance().cleanCache("mymodid", 7);
 ## 3. Seguridad de Red y Sistema de Archivos (`SecurityUtils`)
 
 Antes de ejecutar cualquier descarga o escritura en caché, `SecurityUtils` aplica las siguientes comprobaciones:
-- `validateHttpUrl(...)`: restringe esquemas a `http`/`https` y bloquea direcciones de loopback, enlace local o rangos privados (protección SSRF).
-- `resolveSafeChild(...)`: normaliza rutas y impide secuencias de escape (`..`) fuera del directorio de caché del mod (*path traversal*).
+- `validateHttpUrl(...)`: restringe esquemas a `http`/`https`, valida redirecciones manualmente y bloquea direcciones de loopback, enlace local, multicast y rangos privados tanto IPv4 como IPv6 (protección SSRF).
+- `resolveSafeChild(...)`: normaliza rutas e impide secuencias de escape (`..`) fuera del directorio de caché del mod (*path traversal*).
+- Limpieza de caché: `MediaPipeline.getInstance().cleanCache(modId, daysOld)` elimina archivos antiguos dentro del directorio de caché del mod.
 
 ---
 
@@ -133,8 +134,9 @@ MediaPipeline.getInstance().cleanCache("mymodid", 7);
 ## 3. Network & Filesystem Security (`SecurityUtils`)
 
 Before executing downloads or writing cache files, `SecurityUtils` enforces:
-- `validateHttpUrl(...)`: restricts schemes to `http`/`https` and blocks loopback, link-local, and private network ranges (SSRF protection).
+- `validateHttpUrl(...)`: restricts schemes to `http`/`https`, validates redirects manually, and blocks loopback, link-local, multicast, and private IPv4/IPv6 network ranges (SSRF protection).
 - `resolveSafeChild(...)`: canonicalizes paths and rejects directory traversal (`..`) outside the mod's cache directory.
+- Cache cleanup: `MediaPipeline.getInstance().cleanCache(modId, daysOld)` purges stale cached files inside the mod's cache directory.
 
 ---
 

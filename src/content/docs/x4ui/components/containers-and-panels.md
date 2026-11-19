@@ -7,7 +7,7 @@ order: 1
 ---
 
 [ES]
-# Contenedores y Paneles (`GuiPanel`, `GuiUnionPanel`, `GuiCard`, `GuiScrollPanel`, `GuiGridPanel`, `GuiSlot`)
+# Contenedores y Paneles (`GuiPanel`, `GuiUnionPanel`, `GuiScrollPanel`, `GuiGridPanel`, `GuiSlot`)
 
 Los contenedores organizan la jerarquía visual, gestionan el diseño mediante `ILayoutManager` (`FlexLayout`) y controlan el recorte (*clipping*) de sus hijos.
 
@@ -55,9 +55,9 @@ union.attachWing(DockSide.RIGHT, configWing, 12);
 
 ---
 
-## 3. `GuiCard`, `GuiScrollPanel` y `GuiGridPanel`
+## 3. Tarjetas (`GuiPanel.card`), `GuiScrollPanel` y `GuiGridPanel`
 
-- **`GuiCard`:** extiende `GuiPanel` con título integrado (`getTitleLabel()`) estilizado por el tema activo.
+- **`GuiPanel.card(...)`:** crea una tarjeta temática con título opcional y padding por defecto (reemplaza al antiguo `GuiCard` eliminado en `r1.0b7`).
 - **`GuiScrollPanel`:** encapsula `contentPanel` dentro de un viewport con recorte hardware y desplazamiento normalizado (`GuiScrollPanel.vertical(220, 6)`).
 - **`GuiGridPanel`:** extiende `GuiScrollPanel` con cálculo automático de columnas (`autoColumns`), reserva de scrollbar en 1 sola pasada y helper `addSlots(...)`:
 
@@ -83,7 +83,7 @@ grid.addSlots(inventorySlots.inventorySlots, this);
 [/ES]
 
 [EN]
-# Containers & Panels (`GuiPanel`, `GuiUnionPanel`, `GuiCard`, `GuiScrollPanel`, `GuiGridPanel`, `GuiSlot`)
+# Containers & Panels (`GuiPanel`, `GuiUnionPanel`, `GuiScrollPanel`, `GuiGridPanel`, `GuiSlot`)
 
 Containers structure the visual hierarchy, arrange children through `ILayoutManager` (`FlexLayout`), and enforce hardware clipping bounds.
 
@@ -131,9 +131,9 @@ union.attachWing(DockSide.RIGHT, configWing, 12);
 
 ---
 
-## 3. `GuiCard`, `GuiScrollPanel` & `GuiGridPanel`
+## 3. Cards (`GuiPanel.card`), `GuiScrollPanel` & `GuiGridPanel`
 
-- **`GuiCard`:** extends `GuiPanel` with a built-in header label (`getTitleLabel()`) styled by the active theme.
+- **`GuiPanel.card(...)`:** creates a themed card container with optional header title and default padding (replacing the legacy `GuiCard` removed in `r1.0b7`).
 - **`GuiScrollPanel`:** wraps `contentPanel` inside a scissored viewport with normalized scroll wheel support (`GuiScrollPanel.vertical(220, 6)`).
 - **`GuiGridPanel`:** extends `GuiScrollPanel` with `autoColumns` calculation, 1-pass scrollbar reservation, and `addSlots(...)`:
 

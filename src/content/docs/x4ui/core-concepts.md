@@ -45,10 +45,9 @@ rootPanel (GuiPanel)
 ### Operaciones sobre el Árbol
 
 ```java
-GuiPanel panel = new GuiPanel(0, 0, 0, 300).withPercentWidth(1.0f);
-GuiButton btn = (GuiButton) new GuiButton(0, 0, 0, 20, "Aceptar", () -> {}).withPercentWidth(0.5f);
+GuiPanel panel = GuiPanel.column(10, 6).withPercentWidth(1.0f);
+GuiButton btn = panel.add(GuiButton.of("Aceptar", () -> {}), b -> b.withPercentWidth(0.5f));
 
-panel.addChild(btn);       // Adjunta btn e invoca onAttached()
 panel.removeChild(btn);    // Separa btn e invoca onDetached()
 panel.clearChildren();     // Separa y destruye todos los hijos
 ```
@@ -84,7 +83,7 @@ Los eventos de mouse (`mouseClicked`, `mouseReleased`, `mouseDragged`, `mouseScr
 ## 5. Estado Reactivo (`State<T>`) y Bus de Estados (`UIStateBus`)
 
 ### `State<T>`
-`com.x4yi.x4ui.common.State<T>` es un contenedor observable seguro para hilos (`volatile` + serialización de notificaciones en `set(T)` para evitar condiciones de carrera entre hilos Netty/I/O y el hilo principal) y compatible con servidor dedicado. Deduplica notificaciones mediante `Objects.equals()` para evitar trabajo redundante cuando el valor no cambia:
+`com.x4yi.x4ui.common.State<T>` es un contenedor observable seguro para hilos (`volatile` + serialización de notificaciones en `set(T)` para evitar condiciones de carrera entre hilos Netty/I/O y el hilo principal) y compatible con servidor dedicado. Deduplica notificaciones mediante `Objects.equals()` y aísla excepciones por listener para que un fallo en un suscriptor no interrumpa a los demás:
 
 ```java
 State<Integer> score = new State<>(0);
@@ -179,10 +178,9 @@ rootPanel (GuiPanel)
 ### Tree Operations
 
 ```java
-GuiPanel panel = new GuiPanel(0, 0, 0, 300).withPercentWidth(1.0f);
-GuiButton btn = (GuiButton) new GuiButton(0, 0, 0, 20, "Accept", () -> {}).withPercentWidth(0.5f);
+GuiPanel panel = GuiPanel.column(10, 6).withPercentWidth(1.0f);
+GuiButton btn = panel.add(GuiButton.of("Accept", () -> {}), b -> b.withPercentWidth(0.5f));
 
-panel.addChild(btn);       // Attaches btn and invokes onAttached()
 panel.removeChild(btn);    // Detaches btn and invokes onDetached()
 panel.clearChildren();     // Detaches and destroys all children
 ```
@@ -218,7 +216,7 @@ Mouse events (`mouseClicked`, `mouseReleased`, `mouseDragged`, `mouseScrolled`) 
 ## 5. Reactive State (`State<T>`) & State Bus (`UIStateBus`)
 
 ### `State<T>`
-`com.x4yi.x4ui.common.State<T>` is a thread-safe, dedicated-server-compatible observable container (`volatile` storage + serialized update delivery in `set(T)` to prevent races between Netty/I/O threads and the main client thread). It deduplicates updates using `Objects.equals()` to prevent redundant UI work:
+`com.x4yi.x4ui.common.State<T>` is a thread-safe, dedicated-server-compatible observable container (`volatile` storage + serialized update delivery in `set(T)` to prevent races between Netty/I/O threads and the main client thread). It deduplicates updates using `Objects.equals()` and isolates per-listener exceptions so one failing subscriber cannot block the rest:
 
 ```java
 State<Integer> score = new State<>(0);

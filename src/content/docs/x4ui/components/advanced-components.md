@@ -7,7 +7,7 @@ order: 3
 ---
 
 [ES]
-# Componentes Avanzados (`GuiVirtualList`, `GuiDropdown`, `GuiMarkdown`, `GuiModelRender`, `GuiTooltip`)
+# Componentes Avanzados (`GuiVirtualList`, `GuiDropdown`, `GuiMarkdown`, `GuiModelRender`)
 
 Componentes especializados para listas masivas recicladas, selección desplegable, renderizado Markdown, modelos 3D con depth buffer y tooltips contextuales.
 
@@ -38,7 +38,7 @@ list.setItems(entries);
 
 ## 2. `GuiDropdown<T>`
 
-Selector desplegable enlazado a un `State<T>` y a una lista de opciones:
+Selector desplegable enlazado a un `State<T>` y a una lista de opciones, con soporte completo de navegación por teclado (`Flecha Arriba`/`Abajo` para resaltar opciones, `Enter` para confirmar y `Escape` para cerrar):
 
 ```java
 State<String> selectedMode = new State<>("Normal");
@@ -62,10 +62,10 @@ docView.withPercentWidth(1.0f);
 
 ---
 
-## 4. `GuiModelRender` y `GuiTooltip`
+## 4. `GuiModelRender` y Tooltips
 
 - **`GuiModelRender`:** renderiza entidades (`setEntity`) o ítems (`setItemStack`) en 3D limpiando el buffer de profundidad de forma segura (`IGraphics.clearDepthBuffer()`), con soporte de escala (`setScale`), rotación (`setRotation`) y arrastre (`setAllowDragRotation`).
-- **`GuiTooltip`:** componente de tooltip flotante configurable también mediante `.withTooltip(...)` en cualquier `GuiComponent`.
+- **Tooltips en componentes:** cualquier `GuiComponent` soporta tooltips flotantes mediante `.withTooltip(...)` (renderizados por `ScreenHost` con soporte multilínea cacheado).
 
 ---
 
@@ -78,7 +78,7 @@ docView.withPercentWidth(1.0f);
 [/ES]
 
 [EN]
-# Advanced Components (`GuiVirtualList`, `GuiDropdown`, `GuiMarkdown`, `GuiModelRender`, `GuiTooltip`)
+# Advanced Components (`GuiVirtualList`, `GuiDropdown`, `GuiMarkdown`, `GuiModelRender`)
 
 Specialized widgets for recycled large lists, dropdown selection, Markdown rendering, depth-cleared 3D models, and contextual tooltips.
 
@@ -109,7 +109,7 @@ list.setItems(entries);
 
 ## 2. `GuiDropdown<T>`
 
-Dropdown selector bound directly to a `State<T>` and an option list:
+Dropdown selector bound directly to a `State<T>` and an option list, with full keyboard navigation (`Up`/`Down` arrows to highlight options, `Enter` to confirm, and `Escape` to close):
 
 ```java
 State<String> selectedMode = new State<>("Normal");
@@ -133,10 +133,10 @@ docView.withPercentWidth(1.0f);
 
 ---
 
-## 4. `GuiModelRender` & `GuiTooltip`
+## 4. `GuiModelRender` & Tooltips
 
 - **`GuiModelRender`:** renders 3D entities (`setEntity`) or item stacks (`setItemStack`) with safe depth buffer clearing (`IGraphics.clearDepthBuffer()`), scaling (`setScale`), rotation (`setRotation`), and drag interaction (`setAllowDragRotation`).
-- **`GuiTooltip`:** floating tooltip widget, also configurable via `.withTooltip(...)` on any `GuiComponent`.
+- **Component Tooltips:** any `GuiComponent` supports floating tooltips via `.withTooltip(...)` (rendered by `ScreenHost` with cached multiline layout).
 
 ---
 

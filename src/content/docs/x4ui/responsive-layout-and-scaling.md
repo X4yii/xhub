@@ -55,7 +55,7 @@ GuiPanel section = GuiPanel.card(10, 6);
 ```
 
 - **Alineación (`FlexAlign`):** `START`, `CENTER`, `END` y `STRETCH` en eje transversal (`setAlignItems`) y eje principal (`setJustifyContent`), complementados con `GuiPanel.spacer()`.
-- **Solver Elástico (`flexGrow` / `flexShrink` y Cotas `min`/`max`):** Los hijos pueden declarar `withFlexGrow(float)`, `withFlexShrink(float)`, `withMinSize(w, h)` y `withMaxSize(w, h)`. `FlexLayout` utiliza un algoritmo *water-filling* sobre `baseWidth`/`baseHeight` para repartir espacio libre o comprimir desbordamientos respetando límites sin deriva acumulativa frame a frame.
+- **Solver Elástico (`flexGrow` / `flexShrink` y Cotas `min`/`max`):** Los hijos pueden declarar `withFlexGrow(float)`, `withFlexShrink(float)`, `withFlex(grow, shrink)`, `withMinWidth(int)`, `withMaxWidth(int)`, `withMinHeight(int)`, `withMaxHeight(int)`, `withMinSize(w, h)` y `withMaxSize(w, h)`. `FlexLayout` utiliza un algoritmo *water-filling* sobre `baseWidth`/`baseHeight` para repartir espacio libre o comprimir desbordamientos respetando límites sin deriva acumulativa frame a frame.
 - **Control `hugContent`:** Por defecto `FlexLayout` es **no destructivo** (`hugContent = false`) y respeta el tamaño asignado al padre. Activar `.withHugContent(true)` hace que el contenedor ajuste su tamaño a la suma de sus hijos visibles.
 - **Regla de bucle en `VERTICAL` + `hugContent(true)`:** Si la altura del contenedor depende de sus hijos, los hijos deben definir un alto absoluto en píxeles (no `withPercentHeight(...)`) y usar `withPercentWidth(...)` para adaptarse horizontalmente.
 
@@ -141,7 +141,7 @@ GuiPanel section = GuiPanel.card(10, 6);
 ```
 
 - **Alignment (`FlexAlign`):** Supports `START`, `CENTER`, `END`, and `STRETCH` on cross axis (`setAlignItems`) and main axis (`setJustifyContent`), paired with `GuiPanel.spacer()`.
-- **Elastic Solver (`flexGrow` / `flexShrink` & `min`/`max` Bounds):** Children can declare `withFlexGrow(float)`, `withFlexShrink(float)`, `withMinSize(w, h)`, and `withMaxSize(w, h)`. `FlexLayout` runs a *water-filling* solver against `baseWidth`/`baseHeight` to distribute free space or compress overflow within bounds without cumulative frame-to-frame drift.
+- **Elastic Solver (`flexGrow` / `flexShrink` & `min`/`max` Bounds):** Children can declare `withFlexGrow(float)`, `withFlexShrink(float)`, `withFlex(grow, shrink)`, `withMinWidth(int)`, `withMaxWidth(int)`, `withMinHeight(int)`, `withMaxHeight(int)`, `withMinSize(w, h)`, and `withMaxSize(w, h)`. `FlexLayout` runs a *water-filling* solver against `baseWidth`/`baseHeight` to distribute free space or compress overflow within bounds without cumulative frame-to-frame drift.
 - **`hugContent` behavior:** By default `FlexLayout` is **non-destructive** (`hugContent = false`), preserving explicit or percentage parent bounds. Enabling `.withHugContent(true)` fits the container to its visible children.
 - **Circular sizing rule (`VERTICAL` + `hugContent(true)`):** When a container's height is summed from its children, children must specify pixel heights (not `withPercentHeight(...)`) and use `withPercentWidth(...)` for horizontal responsiveness.
 
